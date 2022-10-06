@@ -1,0 +1,382 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:select ="clr-namespace:TechresStandaloneSale.Helpers"
+        xmlns:l ="clr-namespace:TechresStandaloneSale.Loading"
+        mc:Ignorable="d"
+        WindowState="Normal"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontFamily="Roboto"
+        TextElement.FontSize="14"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="Roboto"
+        Name="loginWindow"
+        DataContext="{StaticResource loginVM}"
+        Title="Đăng nhập hệ thống" 
+        Icon="logo.ico" ShowInTaskbar="True">
+    <Window.InputBindings>
+        <KeyBinding  Command="{Binding EnterLoginCommand}" Key="Enter" CommandParameter="{Binding ElementName=loginWindow}"></KeyBinding>
+    </Window.InputBindings>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closed">
+            <i:InvokeCommandAction Command="{Binding ClosedAppCommand}" 
+                                   CommandParameter="{Binding ElementName=loginWindow}"></i:InvokeCommandAction>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" 
+                                   CommandParameter="{Binding ElementName=loginWindow}"></i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.Resources>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <Style x:Key="RevealButtonExtendedStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Border x:Name="PasswordRevealGlyphBorder" Background="Transparent" Margin="0,1"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                                <TextBlock x:Name="GlyphElement" Foreground="Black"
+                            VerticalAlignment="Center" HorizontalAlignment="Center" 
+                            FontFamily="Segoe UI Symbol" Margin="3,0"
+                            FontSize="{TemplateBinding FontSize}" >
+                                    <materialDesign:PackIcon Kind="EyeOutline" Foreground="Black" />
+                                </TextBlock>
+                            </Border>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=GlyphElement, Path=IsMouseOver}" Value="True">
+                                <Setter TargetName="PasswordRevealGlyphBorder" Property="Background" Value="Gainsboro" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="True">
+                                <Setter TargetName="PasswordRevealGlyphBorder" Property="Background" Value="Black" />
+                                <Setter TargetName="GlyphElement" Property="Foreground" Value="White" />
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <BitmapImage x:Key="horizontal_logo" UriSource="/TechresStandaloneSale;component/Resources/Images/horizontal_logo.png" />
+        <BitmapImage x:Key="techres" UriSource="/TechresStandaloneSale;component/Resources/Images/techres.png" />
+        <BitmapImage x:Key="avatar" UriSource="/TechresStandaloneSale;component/Resources/Images/avatar.png" />
+        <BitmapImage x:Key="icon-user" UriSource="/TechresStandaloneSale;component/Resources/Images/icon-user.png" />
+        <BitmapImage x:Key="icon-password" UriSource="/TechresStandaloneSale;component/Resources/Images/icon-password.png" />
+        <BitmapImage x:Key="bg" UriSource="/TechresStandaloneSale;component/Resources/Images/bg-login-windows.png" />
+        <BitmapImage x:Key="icon-restaurant" UriSource="/TechresStandaloneSale;component/Resources/Images/icon-restaurant.png" />
+        <BitmapImage x:Key="icon-forgot-pass" UriSource="/TechresStandaloneSale;component/Resources/Images/icon-forgot-pass.png" />
+        <BitmapImage x:Key="ic-online-gray" UriSource="/TechresStandaloneSale;component/Resources/Images/ic-online-gray.png" />
+        <BitmapImage x:Key="ic-loupe" UriSource="/TechresStandaloneSale;component/Resources/Images/ic-loupe.png" />
+    </Window.Resources>
+
+    <l:AdornedControl x:Name="LoadingAdorner" IsAdornerVisible="{Binding Path=DialogHostOpen,UpdateSourceTrigger=PropertyChanged}">
+        <l:AdornedControl.AdornerContent>
+            <l:LoadingWait></l:LoadingWait>
+        </l:AdornedControl.AdornerContent>
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="55"></RowDefinition>
+            </Grid.RowDefinitions>
+            <DockPanel  Grid.Row="0" Background="{StaticResource MainBrush}">
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Center" DockPanel.Dock="Right">
+                    <ComboBox Visibility="Hidden" Margin="10 0" Background="#ffa233" Foreground="White" HorizontalAlignment="Right">
+                        <ComboBoxItem IsSelected="True">Tiếng việt</ComboBoxItem>
+                        <ComboBoxItem IsSelected="False">Tiếng anh</ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox Visibility="Hidden" Margin="10 0" Width="60" Background="#ffa233">
+                        <ComboBoxItem HorizontalAlignment="Center" Background="#ffa233" IsSelected="True">
+                            <materialDesign:PackIcon Foreground="White" Kind="HelpOutline" />
+                        </ComboBoxItem>
+                    </ComboBox>
+                    <Button Margin="10 0" Background="#ffa233" BorderThickness="0"
+                        Command="{Binding MinimizeWindowCommand}"
+                            CommandParameter="{Binding ElementName=loginWindow}">
+                        <materialDesign:PackIcon Foreground="White" Kind="WindowMinimize" />
+                    </Button>
+                    <Button Margin="10 0" Background="#ffa233" BorderThickness="0"
+                        Command="{Binding CloseWindowCommand}"
+                            CommandParameter="{Binding ElementName=loginWindow}">
+                        <materialDesign:PackIcon Foreground="White" Kind="Close" />
+                    </Button>
+                </StackPanel>
+            </DockPanel>
+            <Grid Grid.Row="1">
+                <Grid.Background>
+                    <ImageBrush ImageSource="{StaticResource bg}"></ImageBrush>
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                    <ColumnDefinition Width="430"></ColumnDefinition>
+                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.05*"></RowDefinition>
+                    <RowDefinition Height="600"></RowDefinition>
+                    <RowDefinition Height="0.35*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Image Grid.Column="0" Grid.Row="1" Width="300" VerticalAlignment="Top" Margin="50 0 0 0" Source="{StaticResource horizontal_logo}" HorizontalAlignment="Left" ></Image>
+
+                <Border Grid.Row="1" Grid.Column="1" CornerRadius="7">
+                    <Border.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.07"></SolidColorBrush>
+                    </Border.Background>
+                    <Border Margin="25" CornerRadius="7">
+                        <Border.Background>
+                            <SolidColorBrush Color="{StaticResource F5F1F1}"  Opacity="0.7"></SolidColorBrush>
+                        </Border.Background>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition MinHeight="400"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0">
+                                <DockPanel Height="50">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Button Command="{Binding WorkingOnlineCommand}" CommandParameter="{Binding ElementName=loginWindow}" Grid.Column="0" Background="{Binding WorkingOnlineBackground}" Foreground="{Binding WorkingOnlineForeground}">
+                                            <Button.Content>
+                                                <DockPanel>
+                                                    <Image Width="25" Height="25" Margin="0 0 0 5" Source="{Binding WorkingOnlineIcon}"></Image>
+                                                    <Label VerticalContentAlignment="Center" FontWeight="DemiBold" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_WORKING_ONLINE}}"  Foreground="{Binding WorkingOnlineForeground}"></Label>
+                                                </DockPanel>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button  Command="{Binding WorkingOfflineCommand}" CommandParameter="{Binding ElementName=loginWindow}" Grid.Column="1" Background="{Binding WorkingOfflineBackground}"  Foreground="{Binding WorkingOfflineForeground}" >
+                                            <Button.Content>
+                                                <DockPanel>
+                                                    <Image Width="25" Height="25" Margin="0 0 0 5"  Source="{Binding WorkingOfflineIcon}"></Image>
+                                                    <Label VerticalContentAlignment="Center" FontWeight="DemiBold"  Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_WORKING_OFFLINE}}"  Foreground="{Binding WorkingOfflineForeground}"></Label>
+                                                </DockPanel>
+                                            </Button.Content>
+                                        </Button>
+                                    </Grid>
+                                </DockPanel>
+                                <Border Visibility="{Binding WorkingOnlineVisibility}" BorderBrush="{StaticResource LineListViewBrush}" Margin="20 30 20 20" Height="45"  BorderThickness="0" CornerRadius="20" Background="White">
+                                    <DockPanel>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="40"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Image  VerticalAlignment="Center" Grid.Column="0" Source="{StaticResource icon-restaurant}" Width="25" Height="25" Margin="0 0 0 4" HorizontalAlignment="Right"></Image>
+                                            <TextBox HorizontalContentAlignment="Left" MaxLength="30" Grid.Column="1" select:SelectAllFocusBehavior.Enable="True" ToolTip="Vui lòng nhập Tên nhà hàng từ 2 đến 30 kí tự"
+                                                 Padding="5 0 0 0"  Tag="Nhà hàng" BorderThickness="0" Name="restaurant" VerticalContentAlignment="Center" Text="{Binding Path=RestaurantName, UpdateSourceTrigger=PropertyChanged}" />
+                                        </Grid>
+                                    </DockPanel>
+                                </Border>
+                                <Border Visibility="{Binding WorkingOfflineVisibility}" BorderBrush="{StaticResource LineListViewBrush}" Margin="20 30 20 20" Height="45"  BorderThickness="0" CornerRadius="20" Background="White">
+                                    <DockPanel>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="40"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="40"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Image  VerticalAlignment="Center" Grid.Column="0" Source="{StaticResource ic-online-gray}" Width="25" Height="25" Margin="0 0 0 4" HorizontalAlignment="Right"></Image>
+                                            <TextBox HorizontalContentAlignment="Left" Grid.Column="1" select:SelectAllFocusBehavior.Enable="True" Padding="5 0 0 0"  Tag="192.168.1.199:6198" BorderThickness="0"  VerticalContentAlignment="Center" Text="{Binding Path=RestaurantAddress, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+                                            <Button Command="{Binding SearchServerCommand}" Background="Transparent" CommandParameter="{Binding ElementName=loginWindow}" VerticalAlignment="Center" Grid.Column="2"  Width="25" Height="25" Margin="0 0 0 4" HorizontalAlignment="Left">
+                                                <Image Source="{StaticResource ic-loupe}" ></Image>
+                                            </Button>
+                                        </Grid>
+                                    </DockPanel>
+                                </Border>
+                                <Border BorderBrush="{StaticResource LineListViewBrush}" Margin="20 0 20 20" Height="45"  BorderThickness="0" CornerRadius="20" Background="White">
+                                    <DockPanel>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="40"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Image  VerticalAlignment="Center" Grid.Column="0" Source="{StaticResource icon-user}" Width="25" Height="25" Margin="0 0 0 4" HorizontalAlignment="Right"></Image>
+                                            <TextBox HorizontalContentAlignment="Left" Grid.Column="1" select:SelectAllFocusBehavior.Enable="True" ToolTip="Vui lòng nhập Mã nhân viên từ 8 đến 10 kí tự" MaxLength="10"
+                                                 Padding="5 0 0 0"  Tag="Mã nhân viên" BorderThickness="0" Name="userName" VerticalContentAlignment="Center" Text="{Binding Path=UserName, UpdateSourceTrigger=PropertyChanged}" />
+                                        </Grid>
+                                    </DockPanel>
+                                </Border>
+                                <Border BorderBrush="{StaticResource LineListViewBrush}" Margin="20 0 20 20" Height="45"  BorderThickness="0" CornerRadius="20" Background="White">
+                                    <DockPanel>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="40"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Image  VerticalAlignment="Center" Grid.Column="0" Source="{StaticResource icon-password}" Width="25" Height="25" Margin="0 0 0 4" HorizontalAlignment="Right"></Image>
+                                            <PasswordBox  Grid.Column="1" Tag="Mật khẩu" BorderThickness="0" Padding="5 0 0 0" ToolTip="Vui lòng nhập Mật khẩu từ 4 đến 20 kí tự" MaxLength="20"
+                                                      select:SelectAllFocusBehavior.Enable="True"  PasswordChanged="PasswordBox_PasswordChanged" Name="PasswordBox" VerticalContentAlignment="Center">
+                                                <PasswordBox.Resources>
+                                                    <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+                                                    <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+                                                    <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+                                                    <Style x:Key="RevealButtonExtendedStyle" TargetType="{x:Type Button}">
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                                    <Grid Background="White">
+                                                                        <Border x:Name="PasswordRevealGlyphBorder" Background="Transparent" Margin="0" BorderThickness="{TemplateBinding BorderThickness}">
+                                                                            <TextBlock x:Name="GlyphElement" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource Roboto-Regular}" FontSize="{TemplateBinding FontSize}" >
+                                                    <materialDesign:PackIcon x:Name="GlyphElementIcon" Kind="EyeOutline" Foreground="Black" />
+                                                    <materialDesign:PackIcon x:Name="GlyphElementHideIcon" Visibility="Collapsed" Kind="EyeOffOutline" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                                                            </TextBlock>
+                                                                        </Border>
+                                                                    </Grid>
+                                                                    <ControlTemplate.Triggers>
+                                                                        <DataTrigger Binding="{Binding ElementName=GlyphElement, Path=IsMouseOver}" Value="True">
+                                                                            <Setter TargetName="PasswordRevealGlyphBorder" Property="Background" Value="Transparent" />
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="True">
+                                                                            <Setter TargetName="PasswordRevealGlyphBorder" Property="Background" Value="Transparent" />
+                                                                            <Setter TargetName="GlyphElement" Property="Foreground" Value="Black" />
+                                                                            <Setter TargetName="GlyphElementIcon" Property="Foreground" Value="#ffa233" />
+                                                                            <Setter TargetName="GlyphElementIcon" Property="Visibility" Value="Collapsed" />
+                                                                            <Setter TargetName="GlyphElementHideIcon" Property="Visibility" Value="Visible" />
+                                                                        </DataTrigger>
+                                                                    </ControlTemplate.Triggers>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                    <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource {x:Type PasswordBox}}">
+                                                        <Setter Property="PasswordChar" Value="●"/>
+                                                        <Setter Property="Margin" Value="5 0 0 0"/>
+                                                        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+                                                        <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+                                                        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                                                        <Setter Property="BorderThickness" Value="0.5"/>
+                                                        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+                                                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                                        <Setter Property="AllowDrop" Value="true"/>
+                                                        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+                                                        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="{x:Type PasswordBox}">
+                                                                    <Grid Margin="0 0 15 0">
+                                                                        <Border x:Name="border" BorderThickness="0" SnapsToDevicePixels="True">
+                                                                            <Grid>
+                                                                                <Grid.ColumnDefinitions>
+                                                                                    <ColumnDefinition />
+                                                                                    <ColumnDefinition Width="Auto" />
+                                                                                    <ColumnDefinition Width="Auto" />
+                                                                                </Grid.ColumnDefinitions>
+                                                                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                                                                                <Label Content="Nhập mật khẩu đăng nhập" Padding="5 0 0 0" x:Name="WaterMarkLabel"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                               Visibility="Collapsed" Foreground="Gray" FontFamily="{StaticResource Roboto-Regular}"/>
+                                                                                <TextBox  x:Name="RevealedPassword" IsReadOnly="True"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              VerticalContentAlignment="Center" Margin="{TemplateBinding Padding}" Background="{TemplateBinding Background}" Visibility="Hidden" BorderThickness="0" >
+                                                                                </TextBox>
+                                                                                <Button x:Name="PART_RevealButton" Grid.Column="1" SnapsToDevicePixels="True" Style="{StaticResource RevealButtonExtendedStyle}" Visibility="Visible">
+                                                                                </Button>
+                                                                            </Grid>
+                                                                        </Border>
+                                                                    </Grid>
+                                                                    <ControlTemplate.Triggers>
+                                                                        <Trigger Property="IsEnabled" Value="false">
+                                                                            <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                                                                        </Trigger>
+                                                                        <Trigger Property="IsMouseOver" Value="true">
+                                                                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                                                                        </Trigger>
+                                                                        <Trigger Property="IsKeyboardFocused" Value="true">
+                                                                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                                                                        </Trigger>
+                                                                        <DataTrigger Binding="{Binding ElementName=PART_RevealButton, Path=IsPressed}" Value="True">
+                                                                            <Setter TargetName="RevealedPassword" Property="Visibility" Value="Visible" />
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding ElementName=RevealedPassword, Path=Text.Length, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                                                                            <Setter TargetName="PART_RevealButton" Property="Visibility" Value="Collapsed" />
+                                                                            <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                                                                        </DataTrigger>
+                                                                    </ControlTemplate.Triggers>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Style.Triggers>
+                                                            <MultiTrigger>
+                                                                <MultiTrigger.Conditions>
+                                                                    <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                                                                    <Condition Property="IsSelectionActive" Value="false"/>
+                                                                </MultiTrigger.Conditions>
+                                                                <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                                                            </MultiTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </PasswordBox.Resources>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="PasswordChanged">
+                                                        <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}"  CommandParameter="{Binding ElementName=PasswordBox}"></i:InvokeCommandAction>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </PasswordBox>
+                                        </Grid>
+                                    </DockPanel>
+                                </Border>
+                                <DockPanel Margin="40 0 0 0">
+                                    <CheckBox IsChecked="{Binding IsSavePassword}"  Content="Lưu mật khẩu">
+                                    </CheckBox>
+                                </DockPanel>
+                                <Button Cursor="Hand" Margin="20 30 20 0" FontSize="{StaticResource fontSizeHeader}" Style="{StaticResource BoderButtonLogin}" Content="ĐĂNG NHẬP" Background="{StaticResource MainBrush}" Height="45" VerticalAlignment="Center" VerticalContentAlignment="Center" Name="btnLogin" IsDefault="True"  FontWeight="DemiBold"  Foreground="White" Command="{Binding LoginCommanded}" CommandParameter="{Binding ElementName=loginWindow}" >
+                                </Button>
+                            </StackPanel>
+                            <Button Grid.Row="1" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding ForgotCommand}">
+                                <StackPanel VerticalAlignment="Center" Grid.Row="1">
+                                    <Image  VerticalAlignment="Center" Grid.Column="0" Source="{StaticResource icon-forgot-pass}" Width="30" Height="30" HorizontalAlignment="Center"></Image>
+                                    <TextBlock Margin="0 10 0 0" FontSize="{StaticResource fontSizeSixTeen}" FontWeight="DemiBold" HorizontalAlignment="Center">
+                                <Label Content="QUÊN MẬT KHẨU"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+
+                    </Border>
+                </Border>
+
+            </Grid>
+            <StackPanel Grid.Row="2" Background="{StaticResource GrayLBrush}" VerticalAlignment="Bottom">
+                <DockPanel HorizontalAlignment="Center">
+                    <WrapPanel>
+                        <materialDesign:PackIcon Kind="Call" VerticalAlignment="Center" Foreground="#ffa233" />
+                        <Label Foreground="#ffa233" FontWeight="DemiBold" Content="Tổng đài tư vấn: 0904 010 143"/>
+                    </WrapPanel>
+                    <WrapPanel Margin="30 0 0 0">
+                        <materialDesign:PackIcon Kind="Email" VerticalAlignment="Center" Foreground="#ffa233" />
+                        <Label Foreground="#ffa233" FontWeight="DemiBold" Content="Email: support@techres.vn"/>
+                    </WrapPanel>
+                    <WrapPanel VerticalAlignment="Center" Margin="30 0 0 0">
+                        <materialDesign:PackIcon Kind="Play" VerticalAlignment="Center" Foreground="#ffa233" />
+                        <TextBlock VerticalAlignment="Center" Foreground="#ffa233" FontWeight="DemiBold">
+                        <Hyperlink TextDecorations="None"  Foreground="#ffa233" RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="http://help.techres.vn/">
+                            Hướng dẫn sử dụng
+                        </Hyperlink>
+                        </TextBlock>
+                    </WrapPanel>
+                </DockPanel>
+                <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="30" Background="#ffa233">
+                    <Label HorizontalAlignment="Center" Foreground="White" FontSize="14" Content="Website: http://techres.vn"/>
+                    <Label VerticalAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Content="{Binding VersionTitle}" HorizontalAlignment="Right" Width="114" Margin="0,-5"/>
+                </DockPanel>
+            </StackPanel>
+        </Grid>
+
+    </l:AdornedControl>
+   
+</Window>

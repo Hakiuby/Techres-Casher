@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="ButtonDefaultColor">#FF09A2CF</Color>
+    <Color x:Key="MainColor">#FFA233</Color>
+    <Color x:Key="LineColor">#aaabad</Color>
+    <Color x:Key="BackgroundColor">#00AFF0</Color>
+    <Color x:Key="HeaderColor">#d9d9d9</Color>
+    <Color x:Key="BlueGG">#0072bc</Color>
+    <Color x:Key="BlueGGMain">#418bca</Color>
+    <Color x:Key="YellowGG">#FBBC05</Color>
+    <Color x:Key="GreenGG">#34A853</Color>
+    <Color x:Key="GreenTag">#6bfa91</Color>
+    <Color x:Key="RedGG">#EA4335</Color>
+    <Color x:Key="GrayLittle">#F0F0F0</Color>             
+    <Color x:Key="LineListView">#B4B1B0</Color>
+    <Color x:Key="Shadow">#ff9933</Color>
+    <Color x:Key="DarkBlue">#0000cc</Color>
+    <Color x:Key="GrayBackgroup">#d6d6d4</Color>
+    <Color x:Key="Purple">#4B0082</Color>
+    <Color x:Key="Orange">#eb8334</Color>
+    <Color x:Key="PendingTable">#418bca</Color>
+    <Color x:Key="GrayDataGridHeader">#d0d0d0</Color>
+    <Color x:Key="ColorForeground">#6D7278</Color>
+    <Color x:Key="GrayBackground">#EEEAEA</Color>
+    <Color x:Key="RedBackground">#E02020</Color>
+    <Color x:Key="BlueBackground">#0072BC</Color>
+    <Color x:Key="GreenBackground">#60B00C</Color>
+    <Color x:Key="GrayDarkBackground">#B3B1B1</Color>
+    <Color x:Key="F5F1F1">#F5F1F1</Color>
+    <Color x:Key="SkyBlue">#87CEEB</Color>
+    <Color x:Key="OutOfStock">#f2f2f2</Color>
+    <Color x:Key="TextBlockOuStock">#666666</Color>
+    <Color x:Key="LineBorderOutOfStock">#cccccc</Color>
+    <Color x:Key="BtnOutOfStock">#ff1a1a</Color>
+    
+    <SolidColorBrush x:Key="GrayDarkBackgroundBrush" Color="{DynamicResource GrayDarkBackground}" />
+    <SolidColorBrush x:Key="SkyBlueBackgroundBrush" Color="{DynamicResource SkyBlue}" />
+    <SolidColorBrush x:Key="ColorForegroundBrush" Color="{DynamicResource ColorForeground}" />
+    <SolidColorBrush x:Key="GrayBackgroundBrush" Color="{DynamicResource GrayBackground}" />
+    <SolidColorBrush x:Key="RedBackgroundeBrush" Color="{DynamicResource RedBackground}" />
+    <SolidColorBrush x:Key="BlueBackgroundBrush" Color="{DynamicResource BlueBackground}" />
+    <SolidColorBrush x:Key="GreenBackgroundBrush" Color="{DynamicResource GreenBackground}" />
+    <SolidColorBrush x:Key="GridOutOfStock" Color="{DynamicResource OutOfStock}"/>
+    <SolidColorBrush x:Key="TblOutOfStock" Color="{DynamicResource TextBlockOuStock}"/>
+    <SolidColorBrush x:Key="BorderThicknessOutOfStock" Color="{DynamicResource LineBorderOutOfStock}"/>
+    <SolidColorBrush x:Key="ButtonOutOfStock" Color="{DynamicResource BtnOutOfStock}"/>
+
+    <SolidColorBrush x:Key="OrangeBrush" Color="{DynamicResource Orange}" />
+    <SolidColorBrush x:Key="DarkBlueBrush" Color="{DynamicResource DarkBlue}" />
+    <SolidColorBrush x:Key="LineListViewBrush" Color="{DynamicResource LineListView}" />
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{DynamicResource BackgroundColor}" />
+    <SolidColorBrush x:Key="MainBrush" Color="{DynamicResource MainColor}" />
+    <SolidColorBrush x:Key="MainLine" Color="{DynamicResource LineColor}" />
+    <SolidColorBrush x:Key="HeaderLine" Color="{DynamicResource HeaderColor}" />
+    <SolidColorBrush x:Key="BlueGGBrush" Color="{DynamicResource BlueGG}" />
+    <SolidColorBrush x:Key="BlueGGBrushMain" Color="{DynamicResource BlueGGMain}" />
+    <SolidColorBrush x:Key="YellowGGBrush" Color="{DynamicResource YellowGG}" />
+    <SolidColorBrush x:Key="GreenGGBrush" Color="{DynamicResource GreenGG}" />
+    <SolidColorBrush x:Key="GreenTagBrush" Color="{DynamicResource GreenTag}" />
+    <SolidColorBrush x:Key="RedGGBrush" Color="{DynamicResource RedGG}" />
+    <SolidColorBrush x:Key="GrayLBrush" Color="{DynamicResource GrayLittle}" />
+    <SolidColorBrush x:Key="ShadowBrush" Color="{DynamicResource Shadow}" />
+    <SolidColorBrush x:Key="GrayBackgroupBrush" Color="{DynamicResource GrayBackgroup}" />
+    
+    <SolidColorBrush x:Key="PurpleBrush" Color="{DynamicResource Purple}" />
+    <SolidColorBrush x:Key="PendingTableBrush" Color="{DynamicResource PendingTable}" />
+    <SolidColorBrush x:Key="GrayHeader" Color="{DynamicResource GrayDataGridHeader}" />
+</ResourceDictionary>

@@ -1,0 +1,225 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.OrderFoodBookingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+         xmlns:select ="clr-namespace:TechresStandaloneSale.Helpers"
+        mc:Ignorable="d"
+        FontFamily="{StaticResource Roboto-Regular}"
+        TextElement.FontSize="{StaticResource fontSize}"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="White"
+        BorderThickness="1"
+        BorderBrush="{StaticResource LineListViewBrush}"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Icon="logo.ico"
+        Loaded="CreateOrder_Loaded"
+        x:Name="orderFoodBookingWindow"
+        WindowStartupLocation="CenterScreen"
+        Height="700" Width="1024">
+
+    <Window.Resources>
+        <BitmapImage x:Key="logo" UriSource="/TechresStandaloneSale;component/Resources/Images/white_logo.png" />
+        <BitmapImage x:Key="line-select-food" UriSource="/TechresStandaloneSale;component/Resources/Images/line-select-food.png" />
+        <BitmapImage x:Key="btn_add_food" UriSource="/TechresStandaloneSale;component/Resources/Images/btn_add_food.png" />
+    </Window.Resources>
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*" />
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="110"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0" Background="{StaticResource MainBrush}">
+                <!--<Image Margin="10 0 0 0" Width="40" Height="40"  Grid.Column="0" Source="{StaticResource logo}" Stretch="Uniform" VerticalAlignment="Stretch"/>-->
+                <Label Margin="10 0 0 0" Foreground="White" Content="{Binding ContentTilte}" VerticalAlignment="Center" FontSize="{StaticResource fontSizeLabelHeader}"/>
+                <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=orderFoodBookingWindow}" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" BorderBrush="{x:Null}" Foreground="#FF2387D6">
+                    <materialDesign:PackIcon HorizontalAlignment="Center" VerticalContentAlignment="Center" Kind="Close" Foreground="White" Width="50" Height="40" />
+                </Button>
+            </DockPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid  Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"></RowDefinition>
+                    <RowDefinition Height="*"> </RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.55*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.45*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox Grid.Column="0" IsEditable="True" Name="branchId" Margin="10 0  10 0" Height="40" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch"
+                          SelectedItem="{Binding CategoryItem}"
+                          Padding="5,0,0,0" 
+                          VerticalContentAlignment="Center"  
+                               Background="{StaticResource GrayBackgroundBrush}"
+                            BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0" ItemsSource="{Binding CategoryList}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding ElementName=orderFoodBookingWindow}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Padding="3" Text="{Binding Name}"></TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <TextBox Grid.Column="1" TextChanged="CommentTextBox_TextChanged" Style="{StaticResource SearchTextBoxCreateOrder}"  Background="{StaticResource GrayBackgroundBrush}" select:SelectAllFocusBehavior.Enable="True" Margin="0 0 10 0" VerticalContentAlignment="Center" Padding="5 0 0 0"  BorderBrush="{StaticResource MainLine}" BorderThickness="0"  Height="40" Name="CommentTextBox" Tag="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_SEARCH_FOOD}}">
+                        </TextBox>
+                    </Grid>
+                </DockPanel>
+                <DockPanel Grid.Row="1">
+                    <DataGrid  Margin="5" Padding="0 0 0 5" Grid.Row="0" RowDetailsVisibilityMode="Visible" SelectionMode="Extended" GridLinesVisibility="None" Background="White"  Name="lvFoodPending"  BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0.5" ItemsSource="{Binding FoodList}" 
+                            AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="True" Grid.ColumnSpan="3" >
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridColumnHeaderNoBorder}"></Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCook}"></Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn  Width="0.22*" IsReadOnly="True" x:Name="code">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock FontSize="{StaticResource fontSizeMini}" Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_LIST_FOOD_NAME}}" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate >
+                                    <DataTemplate>
+                                        <TextBlock Margin="10 0 0 0" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="Black" FontSize="{StaticResource fontSizeMini}" Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="0.1*" IsReadOnly="True">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock HorizontalAlignment="Center" FontSize="{StaticResource fontSizeMini}" Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_LIST_UNIT_AMOUNT}}" TextWrapping="WrapWithOverflow" Foreground="Black" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock FontSize="{StaticResource fontSizeMini}"  HorizontalAlignment="Center" Text="{Binding PriceString,UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="50" IsReadOnly="True">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock  HorizontalAlignment="Center" Text="" TextWrapping="WrapWithOverflow" Foreground="Black" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 5 0" ToolTip ="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_ADD_QUANTITY_TOOTIP}}"  Width="45" Height="30" Command="{Binding DataContext.AddQuantityCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                            <Button.Background>
+                                                <ImageBrush ImageSource="{StaticResource btn_add_food}"></ImageBrush>
+                                            </Button.Background>
+                                            </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </Grid>
+            <Image Grid.Column="1"  Source="{StaticResource line-select-food}"></Image>
+            <Grid  Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="1">
+                    <DataGrid Margin="5"  RowDetailsVisibilityMode="Visible" SelectionMode="Extended" GridLinesVisibility="None" Background="White"  BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0.5" ItemsSource="{Binding FoodOrderList}" 
+                            AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="True" Grid.ColumnSpan="3" >
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridColumnHeaderNoBorder}"></Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCook}"></Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn  Width="0.22*" IsReadOnly="True">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock FontSize="{StaticResource fontSizeMini}" Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_LIST_FOOD_NAME}}" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate >
+                                    <DataTemplate>
+                                        <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" TextWrapping="Wrap" Foreground="Black" FontSize="{StaticResource fontSizeMini}" Text="{Binding FoodName}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="0.1*" IsReadOnly="True">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock HorizontalAlignment="Center" FontSize="{StaticResource fontSizeMini}" Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_LIST_QUANTITY}}" TextWrapping="WrapWithOverflow" Foreground="Black" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Border  Background="{StaticResource GrayBackgroundBrush}" CornerRadius="10" Height="20" Width="40">
+                                            <TextBlock  FontSize="{StaticResource fontSizeMini}"  HorizontalAlignment="Center" Text="{Binding Quantity,UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                        </Border>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="50" IsReadOnly="True">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock  HorizontalAlignment="Center" Text="" TextWrapping="WrapWithOverflow" Foreground="Black" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Margin="3" Grid.Column="2" Width="25" Height="25" x:Name="BtnCancelMethod1" Command="{Binding DataContext.CancelFood, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" VerticalAlignment="Center"  Background="{StaticResource GrayBackgroundBrush}" Foreground="Black" BorderThickness="0" >
+                                            <materialDesign:PackIcon Kind="Close" Foreground="Red" />
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+                <DockPanel Grid.Row="2" VerticalAlignment="Center">
+                    <TextBlock Margin="5 0 0 0" FontFamily="roboto" Foreground="Black" FontWeight="Bold" HorizontalAlignment="Left" FontSize="{StaticResource fontSizeSixTeen}" Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_ORDER_LIST_TOTAL_MONEY}}"></TextBlock>
+                    <TextBlock Margin="0 0 20 0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="{StaticResource fontSizeEightTeen}" Text="{Binding TotalAmount}"  FontFamily="roboto" Foreground="Black" FontWeight="Bold"></TextBlock>
+                </DockPanel>
+            </Grid>
+        </Grid>
+        <Rectangle Grid.Row="2" VerticalAlignment="Center" Margin="0 0 0 0" StrokeDashArray="0.0 4.0 0.0" Stroke="{StaticResource LineListViewBrush}" StrokeThickness="0.75"  />
+        <DockPanel Grid.Row="3">
+            <TextBlock Margin="5 10 0 0" FontFamily="roboto" Foreground="Black" FontWeight="Bold" HorizontalAlignment="Left" FontSize="{StaticResource fontSize}" Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_CHOOSE_FOOD}}"></TextBlock>
+            <Border Height="100"  Margin="10 5 5 0" BorderThickness="0.75">
+                <Border.BorderBrush>
+                    <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                    <GeometryDrawing.Geometry>
+                                        <GeometryGroup>
+                                            <RectangleGeometry Rect="0,0,30,30" />
+                                            <RectangleGeometry Rect="30,30,30,30" />
+                                        </GeometryGroup>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Border.BorderBrush>
+                <TextBlock Padding="5" TextWrapping="WrapWithOverflow"   FontSize="{StaticResource fontSize}" Text="{Binding FoodOrderListString}"  Foreground="{StaticResource ColorForegroundBrush}" ></TextBlock>
+            </Border>
+        </DockPanel>
+        <DockPanel Grid.Row="4" Name="GR14" Background="{StaticResource GrayBackgroupBrush}">
+            <DockPanel HorizontalAlignment="Right">
+                <Button Width="150" Style="{StaticResource BoderButtonClose}" Margin="0 0 5 0" Height="40" VerticalAlignment="Center" HorizontalAlignment="Right" BorderBrush="{StaticResource MainBrush}"  BorderThickness="1" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=orderFoodBookingWindow}"  Foreground="White" Background="{StaticResource MainBrush}" >
+                </Button>
+                <Button Width="150" Style="{StaticResource BoderButtonAgree}" Margin="0 0 5 0" Height="40" VerticalAlignment="Center" HorizontalAlignment="Right" BorderBrush="{StaticResource MainBrush}"  BorderThickness="1" Command="{Binding SaveOrderCommand}" CommandParameter="{Binding ElementName=orderFoodBookingWindow}"  Foreground="White" Background="{StaticResource MainBrush}" >
+                </Button>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</Window>

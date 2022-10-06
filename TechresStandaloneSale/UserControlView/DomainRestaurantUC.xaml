@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="TechresStandaloneSale.UserControlView.DomainRestaurantUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:TechresStandaloneSale.UserControlView"
+             xmlns:select ="clr-namespace:TechresStandaloneSale.Helpers"
+             mc:Ignorable="d" FontFamily="{StaticResource Roboto-Regular}">
+    
+    <Grid VerticalAlignment="top">
+        <DockPanel>
+            <Label Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_RESTAURANT_SEARCH}}" FontSize="{StaticResource fontSize}" VerticalAlignment="Center" Foreground="Black" FontWeight="DemiBold"/>
+            <TextBox Margin="10 0" select:SelectAllFocusBehavior.Enable="True" VerticalContentAlignment="Center"  Tag="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_ENTER_RESTAURANT_NAME_CODE_TAG}}" Padding="5 0 5 0" TextChanged="DomainRestaurant_TextChanged" Height="35" Background="White" BorderThickness="1" MinWidth="320" HorizontalAlignment="Stretch" Name="DomainRestaurant"/>
+        </DockPanel>
+    </Grid>
+</UserControl>

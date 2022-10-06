@@ -1,0 +1,26 @@
+﻿<Window x:Class="TechresStandaloneSale.Template.PrintQrCodeCheckIn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Template"
+        mc:Ignorable="d"
+       Background="White"
+        WindowState="Maximized"
+        Title="PrintQrCode" Width="210">
+    <Grid>
+        <FlowDocumentPageViewer  Height="Auto" Margin=" 0 0 0 0">
+            <FlowDocument Name="InfoDocument">
+                <Paragraph   Margin="20" >
+                    <TextBlock Name="Title" HorizontalAlignment="Center" FontFamily="Times New Roman" Foreground="Black" FontSize="18" FontWeight="Bold"></TextBlock>
+                </Paragraph>
+                <Paragraph Margin="2"   FontFamily="Times New Roman">
+                    <Image Name="ImageQrCode" Height="200" Width="200"></Image>
+                </Paragraph>
+                <Paragraph Margin="2 10 0 0"   FontFamily="Times New Roman">
+                    <TextBlock HorizontalAlignment="Center" Foreground="Black" Name="RestaurantName" FontSize="15" TextWrapping="Wrap">Nguyễn Minh Anh</TextBlock>
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentPageViewer>
+    </Grid>
+</Window>

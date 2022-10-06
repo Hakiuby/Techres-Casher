@@ -1,0 +1,46 @@
+﻿<Window x:Class="TechresStandaloneSale.Template.PrintQrCode"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Template"
+        mc:Ignorable="d"
+        Background="White"
+        WindowState="Maximized"
+        Title="PrintQrCode" Width="210">
+    <Grid>
+        <FlowDocumentPageViewer  Height="Auto" Margin=" 0 0 0 0">
+            <FlowDocument Name="InfoDocument">
+
+                <Paragraph Margin="15" >
+                    <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="18" FontWeight="Bold" TextWrapping="Wrap">THÔNG TIN ĐĂNG NHẬP</TextBlock>
+                </Paragraph>
+
+                <Paragraph Margin="20 10 0 0" >
+                    <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="16" FontWeight="Bold" TextWrapping="Wrap">(Techres Bán Hàng)</TextBlock>
+                </Paragraph>
+
+                <Paragraph Margin="2 10 0 0"   FontFamily="Times New Roman">
+                    Tên nhân viên:
+                    <TextBlock  Foreground="Black" Name="EmployeeName" TextWrapping="Wrap">Nguyễn Minh Anh</TextBlock>
+                </Paragraph>
+                <Paragraph Margin="2 10 0 0"   FontFamily="Times New Roman">
+                    Tên  nhà hàng:
+                    <TextBlock  Foreground="Black" Name="restaurantName" TextWrapping="Wrap">Nguyễn Minh Anh</TextBlock>
+                </Paragraph>
+                <Paragraph Margin="2 10 0 0"   FontFamily="Times New Roman">
+                    Tên đăng nhập:
+                    <TextBlock  Foreground="Black" Name="Username" TextWrapping="Wrap">Nguyễn Minh Anh</TextBlock>
+                </Paragraph>
+              <Paragraph Margin="2 10 0 0"   FontFamily="Times New Roman">
+                  Mật khẩu:
+                    <TextBlock  Foreground="Black" Name="Password" TextWrapping="Wrap">Nguyễn Minh Anh</TextBlock>
+                </Paragraph>
+                <Paragraph Margin="5"   FontFamily="Times New Roman">
+                    <Image Name="ImageQrCode" Height="300" Width="300"></Image>
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentPageViewer>
+    </Grid>
+</Window>

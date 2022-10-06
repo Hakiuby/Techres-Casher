@@ -1,0 +1,93 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.NoteFoodWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views"
+          xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+         xmlns:select ="clr-namespace:TechresStandaloneSale.Helpers"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontFamily="{StaticResource Roboto-Regular}"
+        TextElement.FontSize="{StaticResource fontSize}"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+       Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+         Icon="logo.ico"
+        WindowStartupLocation="CenterScreen"
+        BorderThickness="0.75"
+        BorderBrush="{StaticResource LineListViewBrush}"
+        Name="noteFoodWindow"
+        Title="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_NOTE_FOOD}}" Height="350" Width="550">
+    <Window.Resources>
+        <Color x:Key="MainColor">#FBBC05</Color>
+        <BitmapImage x:Key="logo" UriSource="/TechresStandaloneSale;component/Resources/Images/white_logo.png" />
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="F4" Command="{Binding AddCommand}"  CommandParameter="{Binding ElementName=noteFoodWindow}"></KeyBinding>
+        <KeyBinding Key="Esc" Command="{Binding CloseCommand}"  CommandParameter="{Binding ElementName=noteFoodWindow}"></KeyBinding>
+    </Window.InputBindings>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Background="{StaticResource MainBrush}">
+            <!--<Image Margin="10 00 00 00" Width="40" Height="40"  Grid.Column="0" Source="{StaticResource logo}" Stretch="Uniform" VerticalAlignment="Stretch"/>-->
+
+            <Label Margin="10 0 0 0" HorizontalContentAlignment="Center" Foreground="White" FontSize="{StaticResource fontSizeLabelHeader}" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_TAKE_QUICK_NOTES_TITLE}}" VerticalAlignment="Center"/>
+            <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=noteFoodWindow}" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" BorderBrush="{x:Null}" Foreground="#FF2387D6">
+                <materialDesign:PackIcon HorizontalAlignment="Center" VerticalContentAlignment="Center" Kind="Close" Foreground="White" Width="50" Height="40" />
+            </Button>
+        </DockPanel>
+        <StackPanel Grid.Row="1">
+                <TextBox Name="tb_Note"  VerticalContentAlignment="Center" Background="{StaticResource GrayBackgroundBrush}" TextChanged="TextBox_TextChanged" TextWrapping="Wrap" Margin="5 5 5 5" Height="150" MaxLength="50" Text="{Binding Note,UpdateSourceTrigger=PropertyChanged}" Tag="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_NOTE_INPUT_FOOD}}" BorderBrush="{StaticResource MainLine}" BorderThickness="0">
+                </TextBox>
+            <ListBox Margin="5" Name="TblItemsControl" ItemsSource="{Binding TagSuggestList,IsAsync=True }"  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemContainerStyle>
+                    <Style>
+                        <Style.Triggers>
+                            <Trigger Property="Control.IsMouseOver" Value="False">
+                                <Setter Property="Control.Background" Value="Transparent" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" Orientation="Horizontal"  />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="{StaticResource MainBrush}" Width="auto" Height="30" CornerRadius="15">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonUp">
+                                    <i:InvokeCommandAction Command="{Binding DataContext.ChooseNoteSuggestCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}"></i:InvokeCommandAction>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <TextBlock Text="{Binding Content}" TextWrapping="WrapWithOverflow" Padding="10 0 10 0" VerticalAlignment="Center" FontSize="{StaticResource fontSize}" Foreground="White"></TextBlock>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </StackPanel>
+        <DockPanel Grid.Row="2" Background="{StaticResource GrayBackgroundBrush}" Grid.ColumnSpan="2">
+            <DockPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Button Height="40"  Style="{StaticResource BoderButtonClose}" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=noteFoodWindow}" Margin="15 0 10 0">
+                </Button>
+                <Button Style="{StaticResource BoderButtonAgree}" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=noteFoodWindow}" Height="40" Margin="0 0 10 0" HorizontalAlignment="Right">
+                </Button>
+                
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</Window>

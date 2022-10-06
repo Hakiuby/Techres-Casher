@@ -1,0 +1,73 @@
+﻿<Window x:Class="TechresStandaloneSale.Template.PrintFoodCook58MM"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Template"
+        mc:Ignorable="d"
+        Background="White"
+        WindowState="Maximized"
+        WindowStyle="None"
+        ResizeMode="NoResize" Width="210"
+        Title="PrintFoodCook58MM">
+    <Grid>
+        <FlowDocumentReader Width="210" Height="Auto" Margin=" 10 0 0 0">
+            <FlowDocument Name="billDocument">
+                <Paragraph TextAlignment="Center">
+                    <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="18" FontWeight="Bold" Name="FoodCall">MÓN MỚI</TextBlock>
+                </Paragraph>
+                <!--<Paragraph>
+                    <Rectangle Fill="Black" Height="1" Width="500" HorizontalAlignment="Center" />
+                    <LineBreak/>
+                </Paragraph>-->
+                <Paragraph>
+                    <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="8" FontStyle="Italic" VerticalAlignment="Center" Text="-------------------------------------------------------------------------------------"></TextBlock>
+                </Paragraph>
+                <Paragraph>
+                    <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="12" FontStyle="Italic" VerticalAlignment="Center">Ngày:</TextBlock>
+                    <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="12" Name="Time"  FontStyle="Italic" VerticalAlignment="Center">16/11/2019 13:00</TextBlock>
+                </Paragraph>
+                <Paragraph>
+                    <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="12"  VerticalAlignment="Center">Order:</TextBlock>
+                    <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="12" Name="OrderCode" FontWeight="Bold" Margin="10 0 0 0" VerticalAlignment="Center">#4302</TextBlock>
+                    <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="12" Margin="10 0 0 0" VerticalAlignment="Center">Bàn:</TextBlock>
+                    <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="12" Name="TableName" Margin="10 0 0 0 " VerticalAlignment="Center" FontWeight="Bold">KHU VIP</TextBlock>
+                </Paragraph>
+                <Paragraph>
+                    <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="12" VerticalAlignment="Center">Nhân viên:</TextBlock>
+                    <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="12" Name="EmployeeName" VerticalAlignment="Center">16/11/2019 13:00</TextBlock>
+                </Paragraph>
+                <Table Name="TableRow" CellSpacing="0" >
+                    <Table.Resources>
+                        <Style x:Key="headerFooterRowStyle" TargetType="{x:Type TableRowGroup}">
+                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+                            <Setter Property="Foreground" Value="Black"></Setter>
+                        </Style>
+                    </Table.Resources>
+                    <TableRowGroup Style="{StaticResource headerFooterRowStyle}" x:Name="tableRowGroup">
+                        <TableRow>
+                            <TableCell ColumnSpan="3" >
+                                <Paragraph Margin="5" FontSize="12" FontWeight="DemiBold" TextAlignment="Center">TÊN MÓN</Paragraph>
+                            </TableCell>
+                            <TableCell ColumnSpan="1">
+                                <Paragraph Margin="5" FontSize="12"  FontWeight="DemiBold"  TextAlignment="Center">SL</Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell ColumnSpan="4">
+                                <Paragraph FontSize="8">
+                                    <Rectangle Fill="Black" Height="1"  Width="500" HorizontalAlignment="Left" />
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+                </Table>
+                <Paragraph>
+                    <Rectangle Fill="Black" Height="1" Width="500" HorizontalAlignment="Left" />
+                    <LineBreak/>
+                </Paragraph>
+            </FlowDocument >
+        </FlowDocumentReader>
+    </Grid>
+</Window>

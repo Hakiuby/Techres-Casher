@@ -1,0 +1,114 @@
+﻿<UserControl x:Class="TechresStandaloneSale.UserControlView.BatenderUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:helps ="clr-namespace:TechresStandaloneSale.Helpers"
+             xmlns:res ="clr-namespace:TechresStandaloneSale.Resources"
+            xmlns:l ="clr-namespace:TechresStandaloneSale.Loading"
+             FontFamily="{StaticResource Roboto-Regular}"
+             mc:Ignorable="d" 
+             Name="batenderUC" 
+             Background="{StaticResource GrayBackgroupBrush}"
+             DataContext="{StaticResource batenderVM}"
+             Loaded="batenderUC_Loaded"
+             d:DesignHeight="450" d:DesignWidth="12000">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedUCCommand}" 
+                                   CommandParameter="{Binding ElementName=batenderUC}"></i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.Resources>
+        <BitmapImage x:Key="icon-refresh" UriSource="../Resources/Images/icon-refresh.png"/>
+    </UserControl.Resources>
+    <l:AdornedControl x:Name="LoadingAdorner" IsAdornerVisible="{Binding DialogHostOpen,UpdateSourceTrigger=PropertyChanged}">
+        <l:AdornedControl.AdornerContent>
+            <l:LoadingWait></l:LoadingWait>
+        </l:AdornedControl.AdornerContent>
+        <DockPanel>
+            <DockPanel DockPanel.Dock="Top" Height="50" Background="{StaticResource GrayBackgroundBrush}" >
+                <Grid  Margin="5 0 5 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="160"></ColumnDefinition>
+                        <ColumnDefinition Width="160"></ColumnDefinition>
+                        <ColumnDefinition Width="160"></ColumnDefinition>
+                        <ColumnDefinition Width="160"></ColumnDefinition>
+                        <ColumnDefinition Width="160"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Button Grid.Column="0"  Click="Button_Click_2" CommandParameter="{Binding ElementName=batenderUC}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ALL_ORDER}}"   Command="{Binding BtnAllFood}" FontSize="{StaticResource fontSize}" 
+                           VerticalAlignment="Center" Height="40" Padding="5 0 5 0"   BorderThickness="0" Foreground="White" BorderBrush="{StaticResource LineListViewBrush}"  Background="{Binding AllFoodBackground}"/>
+                   
+                    <Button  Click="Button_Click_2" Grid.Column="1" CommandParameter="{Binding ElementName=batenderUC}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_PENDING}}" Command="{Binding BtWaitingFood}" FontSize="{StaticResource fontSize}" 
+                           VerticalAlignment="Center" Height="40" BorderThickness="0" Foreground="White" BorderBrush="{StaticResource LineListViewBrush}"  Background="{Binding PendingBackground}"/>
+                   
+                    <Button Click="Button_Click_3" Grid.Column="2"  CommandParameter="{Binding ElementName=batenderUC}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_CASHIER_MAIN_HOME_ORDER_TAKE_AWAY}}"   Command="{Binding BtnTakeAwayFood}" FontSize="{StaticResource fontSize}" 
+                            VerticalAlignment="Center"  Height="40" BorderThickness="0"  Foreground="White" BorderBrush="{StaticResource LineListViewBrush}"  Background="{Binding TakeAwayBackground}"/>
+
+
+                    <Button Grid.Column="3" Click="Button_Click_4"   CommandParameter="{Binding ElementName=batenderUC}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_CASHIER_MAIN_HOME_ORDER_OUT_STORE}}" Command="{Binding BtnOutOfFood}" FontSize="{StaticResource fontSize}" 
+                            VerticalAlignment="Center"  Height="40" BorderThickness="0"  Foreground="White" BorderBrush="{StaticResource LineListViewBrush}"  Background="{Binding OutOfStockBackground}"/>
+
+                    <Button Click='Button_Click_1' Grid.Column="4"  CommandParameter="{Binding ElementName=batenderUC}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_HISTORY}}"   Command="{Binding BtnHistoryFood}" FontSize="{StaticResource fontSize}" 
+                            VerticalAlignment="Center"  Height="40" BorderThickness="0"  Foreground="White" BorderBrush="{StaticResource LineListViewBrush}"  Background="{Binding HistoryBackground}"/>
+                    <!--<Button  Visibility="Collapsed"  CommandParameter="{Binding ElementName=batenderUC}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_STOCKING}}"   Command="{Binding BtnInventoryWarehouse}" Background="{StaticResource BlueGGBrush}" FontSize="{StaticResource fontSize}" 
+                            VerticalAlignment="Center"  Height="35" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" BorderThickness="1" BorderBrush="White"/>-->
+                    <Grid Grid.Column="5" Margin="10 0 10 0">
+                        <!--<TextBox   Style="{StaticResource SearchTextBox}" Background="{StaticResource GrayDarkBackgroundBrush}"  Foreground="White" MouseLeftButtonUp="PART_ContentHost_Supplier_PreviewMouseDown"  Margin="0" TextChanged="PART_ContentHost_Supplier_TextChanged" VerticalContentAlignment="Center"
+                                  Tag="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SEARCH_TABLE_TAG}}" UseLayoutRounding="True" KeyUp="PART_ContentHost_Supplier_KeyUp" VerticalAlignment="Center" Name="PART_ContentHost_Supplier" Padding="6,0,0,0" Height="40" helps:SelectAllFocusBehavior.Enable="True" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0">
+                        </TextBox>-->
+                        <TextBox   Style="{StaticResource SearchTextBox}" Background="{StaticResource GrayDarkBackgroundBrush}"  Foreground="White"   Margin="0" TextChanged="PART_ContentHost_Supplier_TextChanged" VerticalContentAlignment="Center" KeyUp="PART_ContentHost_Supplier_KeyUp"
+                                  Tag="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SEARCH_TABLE_TAG}}" VerticalAlignment="Center" Name="txtFilter" Padding="6,0,0,0" Height="40" helps:SelectAllFocusBehavior.Enable="True" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0">
+                        </TextBox>
+                        <Popup  StaysOpen="False" x:Name="PART_Popup_Supplier"   MinHeight="20"
+    							    AllowsTransparency="true" 
+    							    Placement="Bottom" Width="{Binding ElementName=PART_ContentHost_Supplier, Path=ActualWidth}"
+    							    IsOpen="{Binding IsOpenPopupSupplier}">
+                            <ListBox ItemsSource="{Binding ListTableName}" BorderBrush="{StaticResource LineListViewBrush}" Background="White" BorderThickness="0.5" MinHeight="20" x:Name="PART_ItemList_Supplier" MaxHeight="400"
+    								    VerticalContentAlignment="Stretch" 
+    								    HorizontalContentAlignment="Stretch"
+    								    KeyboardNavigation.DirectionalNavigation="Contained" >
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Height="35" Margin="-7 -7" Padding="10 0 0 0" Click="Button_Click" HorizontalContentAlignment="Left" Background="Transparent" Content="{Binding Name}"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Popup>
+                    </Grid>
+                    <DockPanel  Grid.Column="6" Visibility="{Binding DatePickerVisibility}" Height="40" >
+                        <DatePicker Foreground="Black" DisplayDateEnd="{Binding DateTimeDisplayDateEnd}" Template="{StaticResource SpecialDatePicker}" BorderBrush="{StaticResource MainLine}"  BorderThickness="0" Background="{StaticResource GrayDarkBackgroundBrush}" HorizontalAlignment="Center" Height="40" FontSize="14" VerticalAlignment="Top"
+                      Width="200" VerticalContentAlignment="Center" Name="DayTimeText"  SelectedDate="{Binding DateTimeInput}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="CalendarClosed">
+                                    <i:InvokeCommandAction Command="{Binding SelectionDateChangedCommand}" CommandParameter="{Binding ElementName=batenderUC}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </DatePicker>
+                    </DockPanel>
+                    <Button  Grid.Column="7" Margin="10 0 10 0" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_REFRESH_DATA}}" Height="45" Visibility="{Binding RefreshVisibility}" CommandParameter="{Binding ElementName=refreshRealtime}" Name="refreshRealtime" Command="{Binding RefreshRealtimeCommand}" Background="Transparent" FontSize="12" 
+                             HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" BorderThickness="0" Width="45" BorderBrush="{StaticResource LineListViewBrush}">
+                        <Image Source="{StaticResource icon-refresh}" Height="40" Width="40"></Image>
+                    </Button>
+                    <!--<Button   Grid.Column="6" Visibility="{Binding RefreshVisibility}" Name="resfreshRealtime" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_REFRESH_DATA}}" Height="35" CommandParameter="{Binding ElementName=resfreshRealtime}"  Command="{Binding RefreshRealtimeCommand}" Background="{StaticResource GrayLBrush}" FontSize="12" 
+                             HorizontalAlignment="Left" VerticalAlignment="Center" Width="auto"  Foreground="White" BorderThickness="0.5" BorderBrush="{StaticResource LineListViewBrush}">
+                        <materialDesign:PackIcon Kind="Refresh" Foreground="{StaticResource LineListViewBrush}" Width="30" Height="30" />
+                    </Button>-->
+                    <!--<Button Width="150" Visibility="{Binding BtnSaveVisibility}" HorizontalAlignment="Right" CommandParameter="{Binding ElementName=batenderUC}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SAVE}}"   Command="{Binding SaveInventoryWarehouse}" Background="{StaticResource RedGGBrush }" FontSize="12" 
+                          VerticalAlignment="Center"  Height="Auto"  Padding="5 8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" BorderThickness="1" BorderBrush="White"/>-->
+
+                </Grid>
+            </DockPanel>
+            <Border BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0" Grid.Row="1">
+                <ContentControl x:Name="listData"></ContentControl>
+            </Border>
+
+        </DockPanel>
+    </l:AdornedControl>
+</UserControl>

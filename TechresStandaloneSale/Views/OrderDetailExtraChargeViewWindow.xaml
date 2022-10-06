@@ -1,0 +1,386 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.OrderDetailExtraChargeViewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views"
+               xmlns:helps="clr-namespace:TechresStandaloneSale.Helpers"
+       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="15"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        mc:Ignorable="d" Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Icon="logo.ico"
+        WindowStartupLocation="CenterScreen"
+        BorderThickness="0"
+        Name="orderDetailViewWindow"
+        Height="470" Width="900">
+    <Window.Resources>
+        <Color x:Key="MainColor">#FBBC05</Color>
+        <BitmapImage x:Key="logo" UriSource="/TechresStandaloneSale;component/Resources/Images/white_logo.png" />
+
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="Esc" Command="{Binding CloseCommand}"  CommandParameter="{Binding ElementName=orderDetailViewWindow}"></KeyBinding>
+    </Window.InputBindings>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0"  Background="{StaticResource MainBrush}">
+            <!--<Image Margin="10 0 0 0" Width="40" Height="40"  Grid.Column="0" Source="{StaticResource logo}" Stretch="Uniform" VerticalAlignment="Stretch"/>-->
+            <Label Foreground="White" Margin="10 0 0 0" FontSize="18" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VIEW_EXTRA_CHARGE_DETAIL}}" VerticalAlignment="Center"/>
+            <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=orderDetailViewWindow}" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" BorderBrush="{x:Null}" Foreground="#FF2387D6">
+                <materialDesign:PackIcon HorizontalAlignment="Center" VerticalContentAlignment="Center" Kind="Close" Foreground="White" Width="50" Height="25" />
+            </Button>
+        </DockPanel>
+        <StackPanel Grid.Row="1">
+            <Border BorderThickness="0 0 0 1" Height="50">
+                <Border.BorderBrush>
+                    <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                    <GeometryDrawing.Geometry>
+                                        <GeometryGroup>
+                                            <RectangleGeometry Rect="0,0,30,30" />
+                                            <RectangleGeometry Rect="30,30,30,30" />
+                                        </GeometryGroup>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Border.BorderBrush>
+                <DockPanel>
+                    <Border BorderThickness="0 0 1 0">
+                        <Border.BorderBrush>
+                            <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                                <DrawingBrush.Drawing>
+                                    <DrawingGroup>
+                                        <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                            <GeometryDrawing.Geometry>
+                                                <GeometryGroup>
+                                                    <RectangleGeometry Rect="0,0,30,30" />
+                                                    <RectangleGeometry Rect="30,30,30,30" />
+                                                </GeometryGroup>
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </Border.BorderBrush>
+                        <DockPanel>
+                            <Label MinWidth="100" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ADD_EXTRA_CHARGE_WINDOW_CODE}}" VerticalContentAlignment="Center"/>
+                            <Label MinWidth="150" VerticalContentAlignment="Center" Content="{Binding OrderDetailCode}" Foreground="Black" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VALIDATE}}"></Label>
+                        </DockPanel>
+                    </Border>
+                    <Border BorderThickness="0 0 1 0" >
+                        <Border.BorderBrush>
+                            <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                                <DrawingBrush.Drawing>
+                                    <DrawingGroup>
+                                        <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                            <GeometryDrawing.Geometry>
+                                                <GeometryGroup>
+                                                    <RectangleGeometry Rect="0,0,30,30" />
+                                                    <RectangleGeometry Rect="30,30,30,30" />
+                                                </GeometryGroup>
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </Border.BorderBrush>
+                        <DockPanel>
+                            <Label MinWidth="100" Margin="5 0 0 0" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VIEW_DETAIL_ORDER_CODE}}" VerticalContentAlignment="Center"/>
+                            <Label MinWidth="150" VerticalContentAlignment="Center" Content="{Binding OrderCode}" Foreground="Black" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VALIDATE}}"></Label>
+                        </DockPanel>
+                    </Border>
+                    <DockPanel>
+                        <Label MinWidth="100" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VIEW_DETAIL_ORDER_TABLE}}" VerticalContentAlignment="Center"/>
+                        <Label MinWidth="150" VerticalContentAlignment="Center" Content="{Binding TableName}" Foreground="Black" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VALIDATE}}"></Label>
+                    </DockPanel>
+                </DockPanel>
+            </Border>
+            <Border BorderThickness="0 0 0 1" Height="50">
+                <Border.BorderBrush>
+                    <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                    <GeometryDrawing.Geometry>
+                                        <GeometryGroup>
+                                            <RectangleGeometry Rect="0,0,30,30" />
+                                            <RectangleGeometry Rect="30,30,30,30" />
+                                        </GeometryGroup>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Border.BorderBrush>
+                <DockPanel>
+                    <Border BorderThickness="0 0 1 0">
+                        <Border.BorderBrush>
+                            <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                                <DrawingBrush.Drawing>
+                                    <DrawingGroup>
+                                        <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                            <GeometryDrawing.Geometry>
+                                                <GeometryGroup>
+                                                    <RectangleGeometry Rect="0,0,30,30" />
+                                                    <RectangleGeometry Rect="30,30,30,30" />
+                                                </GeometryGroup>
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </Border.BorderBrush>
+                        <DockPanel>
+                            <Label MinWidth="100" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ADD_EXTRA_CHARGE_WINDOW_NAME}}" VerticalContentAlignment="Center"/>
+                            <Label MinWidth="150" VerticalContentAlignment="Center" Content="{Binding FoodName}" Foreground="Black" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VALIDATE}}"></Label>
+                        </DockPanel>
+                    </Border>
+                    <Border BorderThickness="0 0 1 0">
+                        <Border.BorderBrush>
+                            <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                                <DrawingBrush.Drawing>
+                                    <DrawingGroup>
+                                        <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                            <GeometryDrawing.Geometry>
+                                                <GeometryGroup>
+                                                    <RectangleGeometry Rect="0,0,30,30" />
+                                                    <RectangleGeometry Rect="30,30,30,30" />
+                                                </GeometryGroup>
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </Border.BorderBrush>
+                        <DockPanel>
+                            <Label MinWidth="100" Margin="5 0 0 0" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_QUANTITY_FILTER}}" VerticalContentAlignment="Center"/>
+                            <Label MinWidth="150" VerticalContentAlignment="Center" Content="{Binding Quantity}" Foreground="Black" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VALIDATE}}"></Label>
+                        </DockPanel>
+                    </Border>
+                    <DockPanel>
+                        <Label MinWidth="100" Margin="5 0 0 0" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VIEW_DETAIL_ORDER_UNIT_AMOUNT}}" VerticalContentAlignment="Center"/>
+                        <Label MinWidth="150" VerticalContentAlignment="Center" Content="{Binding UnitPriceString}" Foreground="Black" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VALIDATE}}"></Label>
+                    </DockPanel>
+                </DockPanel>
+            </Border>
+            <Border BorderThickness="0 0 0 1" Height="50">
+                <Border.BorderBrush>
+                    <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                    <GeometryDrawing.Geometry>
+                                        <GeometryGroup>
+                                            <RectangleGeometry Rect="0,0,30,30" />
+                                            <RectangleGeometry Rect="30,30,30,30" />
+                                        </GeometryGroup>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Border.BorderBrush>
+                <DockPanel>
+                    <Border BorderThickness="0 0 1 0">
+                        <Border.BorderBrush>
+                            <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                                <DrawingBrush.Drawing>
+                                    <DrawingGroup>
+                                        <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                            <GeometryDrawing.Geometry>
+                                                <GeometryGroup>
+                                                    <RectangleGeometry Rect="0,0,30,30" />
+                                                    <RectangleGeometry Rect="30,30,30,30" />
+                                                </GeometryGroup>
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </Border.BorderBrush>
+                        <DockPanel>
+                            <Label MinWidth="80" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_STAFF_CALL}}" VerticalContentAlignment="Center"/>
+                            <Label MinWidth="145" VerticalContentAlignment="Center" Content="{Binding EmployeeName}" Foreground="Black" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VALIDATE}}"></Label>
+                        </DockPanel>
+                    </Border>
+                    <Border BorderThickness="0 0 1 0">
+                        <Border.BorderBrush>
+                            <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                                <DrawingBrush.Drawing>
+                                    <DrawingGroup>
+                                        <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                            <GeometryDrawing.Geometry>
+                                                <GeometryGroup>
+                                                    <RectangleGeometry Rect="0,0,30,30" />
+                                                    <RectangleGeometry Rect="30,30,30,30" />
+                                                </GeometryGroup>
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </Border.BorderBrush>
+                        <DockPanel>
+                            <Label MinWidth="80" Margin="5 0 0 0" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_CALL_TIME}}" VerticalContentAlignment="Center"/>
+                            <Label MinWidth="150" VerticalContentAlignment="Center" Content="{Binding CreateAt}" Foreground="Black" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VALIDATE}}"></Label>
+                        </DockPanel>
+                    </Border>
+                    <DockPanel>
+                        <Label MinWidth="80" Margin="5 0 0 0" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_STATUS_FILTER}}" VerticalContentAlignment="Center"/>
+                        <Label MinWidth="120" VerticalContentAlignment="Center" Content="{Binding Status}" Foreground="Black" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VALIDATE}}"></Label>
+                    </DockPanel>
+                </DockPanel>
+            </Border>
+            <Border BorderThickness="0 0 0 1" Height="50">
+                <Border.BorderBrush>
+                    <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                    <GeometryDrawing.Geometry>
+                                        <GeometryGroup>
+                                            <RectangleGeometry Rect="0,0,30,30" />
+                                            <RectangleGeometry Rect="30,30,30,30" />
+                                        </GeometryGroup>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Border.BorderBrush>
+                <DockPanel>
+                    <Border BorderThickness="0 0 1 0"  Visibility="{Binding TotalQuantityVisibility}">
+                        <Border.BorderBrush>
+                            <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                                <DrawingBrush.Drawing>
+                                    <DrawingGroup>
+                                        <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                            <GeometryDrawing.Geometry>
+                                                <GeometryGroup>
+                                                    <RectangleGeometry Rect="0,0,30,30" />
+                                                    <RectangleGeometry Rect="30,30,30,30" />
+                                                </GeometryGroup>
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </Border.BorderBrush>
+                        <DockPanel>
+                            <Label  MinWidth="100" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_TOTAL_QUANLITY}}" VerticalContentAlignment="Center"/>
+                            <Label MinWidth="140" VerticalContentAlignment="Center" Content="{Binding TotalQuantity}" Foreground="Black" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VALIDATE}}"></Label>
+                        </DockPanel>
+                    </Border>
+                    <Border BorderThickness="0 0 1 0" Visibility="{Binding ReturnQuantityVisibility}">
+                        <Border.BorderBrush>
+                            <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                                <DrawingBrush.Drawing>
+                                    <DrawingGroup>
+                                        <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                            <GeometryDrawing.Geometry>
+                                                <GeometryGroup>
+                                                    <RectangleGeometry Rect="0,0,30,30" />
+                                                    <RectangleGeometry Rect="30,30,30,30" />
+                                                </GeometryGroup>
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </Border.BorderBrush>
+                        <DockPanel>
+                            <Label  MinWidth="100" Margin="5 0 0 0" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_AMOUNT_PAY}}" VerticalContentAlignment="Center"/>
+                            <Label  MinWidth="150" VerticalContentAlignment="Center" Content="{Binding ReturnQuantity}" Foreground="Black" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VALIDATE}}"></Label>
+                        </DockPanel>
+                    </Border>
+                    <DockPanel>
+                        <Label MinWidth="100" Margin="5 0 0 0" Content="Tổng tiền:" VerticalContentAlignment="Center"/>
+                        <Label MinWidth="150" VerticalContentAlignment="Center" Content="{Binding TotalPrice}" Foreground="Black" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VALIDATE}}"></Label>
+                    </DockPanel>
+                </DockPanel>
+            </Border>
+
+            <Border BorderThickness="0 0 0 1" MinHeight="80">
+                <Border.BorderBrush>
+                    <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                    <GeometryDrawing.Geometry>
+                                        <GeometryGroup>
+                                            <RectangleGeometry Rect="0,0,30,30" />
+                                            <RectangleGeometry Rect="30,30,30,30" />
+                                        </GeometryGroup>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Border.BorderBrush>
+                <DockPanel>
+                    <Border BorderThickness="0 0 1 0" MinHeight="80">
+                        <Border.BorderBrush>
+                            <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                                <DrawingBrush.Drawing>
+                                    <DrawingGroup>
+                                        <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                            <GeometryDrawing.Geometry>
+                                                <GeometryGroup>
+                                                    <RectangleGeometry Rect="0,0,30,30" />
+                                                    <RectangleGeometry Rect="30,30,30,30" />
+                                                </GeometryGroup>
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </Border.BorderBrush>
+                        <Label MinWidth="80" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_NOTE_FILTER}}" VerticalContentAlignment="Center"/>
+                    </Border>
+                    <TextBlock TextWrapping="Wrap" MinWidth="180" Text="{Binding Note}" Foreground="Black" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VALIDATE}}"></TextBlock>
+                </DockPanel>
+            </Border>
+            <Border BorderThickness="0 0 0 1" Height="80"  Visibility="{Binding CancelReasonVisibility}">
+                <Border.BorderBrush>
+                    <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                    <GeometryDrawing.Geometry>
+                                        <GeometryGroup>
+                                            <RectangleGeometry Rect="0,0,30,30" />
+                                            <RectangleGeometry Rect="30,30,30,30" />
+                                        </GeometryGroup>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Border.BorderBrush>
+                <DockPanel Margin=" 0 5 5 5">
+                    <Label MinWidth="80" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_REASON_CANCELING}}" VerticalContentAlignment="Center"/>
+                    <TextBlock TextWrapping="Wrap" MinWidth="180" Text="{Binding CancelReason}" Foreground="Black" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VALIDATE}}"></TextBlock>
+                </DockPanel>
+            </Border>
+        </StackPanel>
+        <DockPanel Background="{StaticResource GrayBackgroundBrush}" Grid.Row="2">
+            <Button Margin="0 0 10 0" VerticalAlignment="Center" Style="{StaticResource BoderButtonClose}" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=orderDetailViewWindow}" Height="40" Width="120" HorizontalAlignment="Right" BorderBrush="{StaticResource MainLine}">
+            </Button>
+        </DockPanel>
+    </Grid>
+</Window>

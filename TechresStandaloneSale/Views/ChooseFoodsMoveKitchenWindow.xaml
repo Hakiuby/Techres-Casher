@@ -1,0 +1,109 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.ChooseFoodsMoveKitchenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:select ="clr-namespace:TechresStandaloneSale.Helpers"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Name="chooseFoodsMoveKitchenWindow"
+        Height="650" Width="1024">
+    <Window.Resources>
+        <BitmapImage x:Key="logo" UriSource="/TechresStandaloneSale;component/Resources/Images/white_logo.png" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Background="{StaticResource MainBrush}">
+            <Image Margin="10 0 0 0" Width="40" Height="40"  Grid.Column="0" Source="{StaticResource logo}" Stretch="Uniform" VerticalAlignment="Stretch"/>
+            <Label Foreground="White" Content="{Binding ToKitchen}" VerticalAlignment="Center" FontSize="{StaticResource fontSizeLabelHeader}"/>
+            <Button Click="Button_Click" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" BorderBrush="{x:Null}" Foreground="#FF2387D6">
+                <materialDesign:PackIcon HorizontalAlignment="Center" VerticalContentAlignment="Center" Kind="Close" Foreground="White" Width="50" Height="25" />
+            </Button>
+        </DockPanel>
+        <TextBlock Grid.Row="1" Margin="20 0 0 0" VerticalAlignment="Center" Text="{Binding Note}" Foreground="Blue" FontSize="{StaticResource fontSizeFifteen}"></TextBlock>
+        <DataGrid Margin="10" Background="White" Name="listData" Grid.Row="2" BorderThickness="1 1 1 0" ItemsSource="{Binding FoodList}"
+                              AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" >
+            <DataGrid.BorderBrush>
+                <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                    <DrawingBrush.Drawing>
+                        <DrawingGroup>
+                            <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                <GeometryDrawing.Geometry>
+                                    <GeometryGroup>
+                                        <RectangleGeometry Rect="0,0,30,30" />
+                                        <RectangleGeometry Rect="30,30,30,30" />
+                                    </GeometryGroup>
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+                        </DrawingGroup>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </DataGrid.BorderBrush>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <CheckBox IsChecked="{Binding Path=DataContext.IsCheckAllSelected, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type DataGrid}}}" Name="checkAll" HorizontalAlignment="Center" 
+                                                 Command="{Binding Path=DataContext.IsCheckAllSelectedCommand, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" />
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox Name="checkItem" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}" Command="{Binding Path=DataContext.IsCheckCommand, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" ></CheckBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" IsReadOnly="True">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock  Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_CREAT_BOOKING_NAME_OF_FOOD}}" TextWrapping="Wrap" ></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Center" Text="{Binding Name}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" IsReadOnly="True">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_MOVE_FOOD_KITCHEN_PLACE_GROUP_FOOD}}" TextWrapping="WrapWithOverflow" Margin="0 0 0 0" ></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{Binding CategoryTypeName}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="3" Background="{StaticResource GrayBackgroundBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--<StackPanel>
+                <TextBlock Text="Mỗi món chỉ được chế biến ở một bếp" FontSize="{StaticResource fontSizeFifteen}" Height="30"></TextBlock>
+                <Button Style="{StaticResource BoderButtonAgree}">
+                    <TextBlock Text="Hướng dẫn"></TextBlock>
+                </Button>
+            </StackPanel>-->
+            <Button Grid.Column="2" Style="{StaticResource BoderButtonClose}" Height="40" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=chooseFoodsMoveKitchenWindow}">
+
+            </Button>
+            <Button Grid.Column="3" Style="{StaticResource BoderButtonAgree}" Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=chooseFoodsMoveKitchenWindow}">
+
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

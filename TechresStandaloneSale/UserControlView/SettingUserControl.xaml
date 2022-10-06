@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="TechresStandaloneSale.UserControlView.SettingUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TechresStandaloneSale.UserControlView"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:helps="clr-namespace:TechresStandaloneSale.Helpers"
+             xmlns:l ="clr-namespace:TechresStandaloneSale.Loading"
+             Background="{StaticResource GrayBackgroupBrush}"
+             BorderBrush="{StaticResource LineListViewBrush}"
+             BorderThickness="0.5"
+            Name="setingUC"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BitmapImage x:Key="logo" UriSource="/TechresStandaloneSale;component/Resources/Images/white_logo.png" />
+    </UserControl.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" 
+                                   CommandParameter="{Binding ElementName=setingUC}"></i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="230"/>
+                    <ColumnDefinition Width="0.8*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" BorderBrush="{StaticResource MainLine}" BorderThickness="0 0 2 0">
+                    <StackPanel Grid.Column="0" Grid.Row="1" Margin="0 0 2 0" Background="White">
+                        <Button Height="50" Command="{Binding GeneralSettingWindowCommand}" CommandParameter="{Binding ElementName=setingUC}" Background="{Binding GeneralSettingBackground,UpdateSourceTrigger=PropertyChanged}">
+                            <DockPanel>
+                                <materialDesign:PackIcon Kind="Settings" Foreground="{Binding GeneralSettingForeground,UpdateSourceTrigger=PropertyChanged}" Height="30" Width="45" />
+                                <TextBlock VerticalAlignment="Center" Width="auto" FontSize="{StaticResource fontSize}" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_GENERAL_SETTING_TITLE}}" Foreground="{Binding GeneralSettingForeground,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                            </DockPanel>
+                        </Button>
+                        <Button Visibility="{Binding PrintVisibility}" Height="50" Command="{Binding PrintConfigWindowCommand}" CommandParameter="{Binding ElementName=setingUC}" Background="{Binding PrintConfigBackground,UpdateSourceTrigger=PropertyChanged}">
+                            <DockPanel >
+                                <materialDesign:PackIcon Kind="Printer" Foreground="{Binding PrintConfigForeground,UpdateSourceTrigger=PropertyChanged}" Height="30" Width="45" />
+                                <TextBlock VerticalAlignment="Center" Width="auto" FontSize="{StaticResource fontSize}" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_TITLE}}" Foreground="{Binding PrintConfigForeground,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                            </DockPanel>
+                        </Button>
+                    <Button Visibility="{Binding SencondaySceenVisibility}" Height="50" Command="{Binding SencondaySceenWindowCommand}" CommandParameter="{Binding ElementName=setingUC}" Background="{Binding SencondaySceenBackground,UpdateSourceTrigger=PropertyChanged}">
+                        <DockPanel Margin="24 0 0 0">
+                            <materialDesign:PackIcon Kind="DesktopMacDashboard" Foreground="{Binding SencondaySceenForeground,UpdateSourceTrigger=PropertyChanged}" Height="30" Width="45"/>
+                            <TextBlock VerticalAlignment="Center" Width="auto" FontSize="{StaticResource fontSize}" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_TITLE_2}}" Foreground="{Binding SencondaySceenForeground,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                        </DockPanel>
+                    </Button>
+                </StackPanel>
+                </Border>
+                <Grid Grid.Column="1" Background="White">
+                    <ContentControl Name="ContentSetting" Background="{DynamicResource MainBrush}" >
+                    </ContentControl>
+                </Grid>
+            </Grid>
+        </Grid>
+</UserControl>

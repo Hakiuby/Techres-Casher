@@ -1,0 +1,85 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.ReturnBeerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:select ="clr-namespace:TechresStandaloneSale.Helpers"
+        Name="ReturnBeer"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        mc:Ignorable="d" Background="{DynamicResource  MaterialDesignBody}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Icon="logo.ico"
+        WindowStartupLocation="CenterScreen"
+        BorderThickness="0.75"
+        BorderBrush="{StaticResource LineListViewBrush}"
+        Height="260" Width="500">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Background="{StaticResource MainBrush}">
+            <Label Foreground="White" Content="XÁC NHẬN TRẢ BIA" FontSize="{StaticResource fontSizeHeader}" VerticalAlignment="Center" FontWeight="SemiBold"/>
+            <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=ReturnBeer}"
+                    Margin="0 0 0 0" HorizontalAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0"
+                    Background="Transparent" BorderBrush="{x:Null}" Foreground="#FF2387D6">
+                <materialDesign:PackIcon HorizontalAlignment="Center" VerticalContentAlignment="Center" Kind="Close" Foreground="White" Width="50" Height="25" />
+            </Button>
+        </DockPanel>
+        <Grid Grid.Row="1">
+            <StackPanel>
+                <DockPanel Margin="0,5,5,5" Height="40">
+                    <Label Width="80" VerticalContentAlignment="Center" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_QUANTITY}}"/>
+                    <Label VerticalContentAlignment="Center"  MinWidth="30" Content="(*)" Foreground="Red" ToolTip="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_VALIDATE}}"></Label>
+                    <DockPanel HorizontalAlignment="Right">
+                        <Button Margin="0 0 5 0" BorderBrush="{StaticResource RedGGBrush}" BorderThickness="1" Command="{Binding SubQuantityCommand}"
+                                CommandParameter="{Binding ElementName=ReturnBeer}" HorizontalAlignment="Right" Background="White" Foreground="{StaticResource RedGGBrush}"
+                                Height="35" Width="35" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                                ToolTip="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_SUB_QUANTIRY_TOOTIP}}">
+                            <materialDesign:PackIcon materialDesign:ShadowAssist.ShadowDepth="Depth0" Kind="Remove" Height="30" Width="30" />
+                        </Button>
+                        <TextBox InputScope="Number"  BorderThickness="0" Background="{StaticResource GrayBackgroundBrush}" select:SelectAllFocusBehavior.Enable="True" Height="40"
+                                 VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  BorderBrush="{StaticResource MainBrush}"
+                                 HorizontalAlignment="Right" Name="tbQuantity" Width="100" MaxLength="3" Text="{Binding QuantityReturn,UpdateSourceTrigger=PropertyChanged}"
+                                 PreviewKeyDown="tbQuantity_PreviewKeyDown" PreviewTextInput="tbQuantity_PreviewTextInput" TextChanged="tbQuantity_TextChanged">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="TextChanged">
+                                    <i:InvokeCommandAction Command="{Binding TextChangeQuantityCommand}" CommandParameter="{Binding}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBox>
+                        <Button Margin="5 0 0 0 " BorderBrush="{StaticResource GreenGGBrush}" BorderThickness="1" Command="{Binding AddQuantityCommand}"
+                                CommandParameter="{Binding ElementName=ReturnBeer}" HorizontalAlignment="Right" Background="White"
+                                Foreground="{StaticResource GreenGGBrush}" Height="35" Width="35" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                                ToolTip="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_ADD_QUANTIRY_TOOTIP}}">
+                            <materialDesign:PackIcon materialDesign:ShadowAssist.ShadowDepth="Depth0" Kind="Add" Height="30" Width="30" />
+                        </Button>
+                    </DockPanel>
+                </DockPanel>
+                <DockPanel Margin="0,5,5,5">
+                    <Label Width="108" VerticalContentAlignment="Center" Content="Lý do"/>
+                    <!-- Dat -->
+                    <TextBox  Style="{StaticResource TextBoxCornerRadius}" BorderThickness="0" Background="{StaticResource GrayBackgroundBrush}" BorderBrush="{StaticResource MainBrush}"
+                              TextWrapping="Wrap" Padding="5 5 0 0" select:SelectAllFocusBehavior.Enable="True" VerticalContentAlignment="Top" Height="100" AcceptsReturn="True"
+                              VerticalScrollBarVisibility="Auto" Text="{Binding Note, UpdateSourceTrigger=PropertyChanged}"  Tag="Nhập lý do" />
+                </DockPanel>
+            </StackPanel>
+        </Grid>
+        <DockPanel Grid.Row="2" Background="{StaticResource GrayBackgroundBrush}">
+            <DockPanel HorizontalAlignment="Right">
+                <Button Style="{StaticResource BoderButtonClose}" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=ReturnBeer}" Height="40" Margin="15 0 0 0"/>
+                <Button Style="{StaticResource BoderButtonAgree}" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=ReturnBeer}" Height="40" Margin="15 0 10 0" HorizontalAlignment="Right"/>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</Window>

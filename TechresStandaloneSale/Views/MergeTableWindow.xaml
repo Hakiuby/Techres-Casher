@@ -1,0 +1,134 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.MergeTableWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views"
+        xmlns:helps ="clr-namespace:TechresStandaloneSale.Helpers"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="{StaticResource fontSize}"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Width="900" Height="600"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{StaticResource Roboto-Regular}"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+         Icon="logo.ico"
+        Name="mergeTb"
+        WindowStartupLocation="CenterScreen"
+        BorderThickness="0.5"
+        BorderBrush="{StaticResource LineListViewBrush}">
+    <Window.Resources>
+        <BitmapImage x:Key="logo" UriSource="/TechresStandaloneSale;component/Resources/Images/white_logo.png" />
+        <BitmapImage x:Key="ic_check" UriSource="/TechresStandaloneSale;component/Resources/Images/icon_check.jpg" />
+        <BitmapImage x:Key="line_choose_table" UriSource="/TechresStandaloneSale;component/Resources/Images/line_choose_table.png" />
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="F4" Command="{Binding AddCommand}"  CommandParameter="{Binding ElementName=mergeTb}"></KeyBinding>
+        <KeyBinding Key="Esc" Command="{Binding CloseCommand}"  CommandParameter="{Binding ElementName=mergeTb}"></KeyBinding>
+    </Window.InputBindings>
+    <Grid>
+        <Grid Background="{StaticResource GrayBackgroupBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0" Background="{StaticResource MainBrush}">
+                <!--<Image Margin="10 0 0 0" Width="40" Height="40"  Grid.Column="0" Source="{StaticResource logo}" Stretch="Uniform" VerticalAlignment="Stretch"/>-->
+                <Label  Margin="10 0 0 0" Foreground="White" Content="{Binding Title}" FontSize="{StaticResource fontSizeHeader}" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                <Button Command="{Binding CloseCommand}"  CommandParameter="{Binding ElementName=mergeTb}" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" BorderBrush="{x:Null}" Foreground="#FF2387D6">
+                    <materialDesign:PackIcon HorizontalAlignment="Center" VerticalContentAlignment="Center" Kind="Close" Foreground="White" Width="50" Height="40" />
+                </Button>
+            </DockPanel>
+            <DockPanel  Grid.Row="1" Background="{StaticResource GrayBackgroundBrush}">
+                <Label FontFamily="roboto" FontWeight="DemiBold" Margin="10 0 0 0" VerticalContentAlignment="Center" FontSize="{StaticResource fontSizeEightTeen}" Foreground="{StaticResource ColorForegroundBrush}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ALL_RESTAURANT}}"></Label>
+                <Label FontFamily="roboto" FontWeight="DemiBold"  VerticalContentAlignment="Center"  FontSize="{StaticResource fontSizeEightTeen}" Foreground="{StaticResource BlueBackgroundBrush}" Content="{Binding TotalArea}"></Label>
+                <Label FontFamily="roboto" FontWeight="DemiBold"  VerticalContentAlignment="Center"  FontSize="{StaticResource fontSizeEightTeen}" Foreground="Black" Content="-"></Label>
+                <Label FontFamily="roboto" FontWeight="DemiBold" VerticalContentAlignment="Center"  FontSize="{StaticResource fontSizeEightTeen}"  Foreground="{StaticResource MainBrush}"  Content="{Binding TotalTable}"></Label>
+            </DockPanel>
+            <Grid Margin="0" Background="White" Grid.Row="2" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                    <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding AreaList}" Name="areas">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment"  Value="Left" />
+                                <Setter Property="Foreground" Value="Black"></Setter>
+                                <Setter Property="Height" Value="50"></Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Button HorizontalContentAlignment="Left" FontSize="{StaticResource fontSize}" Width="{Binding ElementName=areas,Path=ActualWidth}" Margin="5 0" Height="40" Background="Transparent" Command="{Binding Path=DataContext.BtnAreaCommand, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ListView}}}" CommandParameter="{Binding}">
+                                    <DockPanel>
+                                        <Image Source="{Binding ImageCheck}" Margin="5 0 5 0" Width="15" Height="15"></Image>
+                                        <TextBlock Background="Transparent" Text="{Binding AreaString}" Foreground="Black"></TextBlock>
+                                    </DockPanel>
+                                </Button>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+                <Image Grid.Column="1" Source="{StaticResource line_choose_table}"></Image>
+                    <ListBox Margin="10"  Grid.Column="2" Background="White" Name="TblItemsControl" ItemsSource="{Binding TableList}" >
+                        <ListBox.ItemContainerStyle>
+                            <Style>
+                                <Style.Triggers>
+                                    <Trigger Property="Control.IsMouseOver" Value="True">
+                                        <Setter Property="Control.Background" Value="Transparent" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel IsItemsHost="True" Orientation="Horizontal"  />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="5">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseLeftButtonUp">
+                                            <i:InvokeCommandAction Command="{Binding Path=DataContext.AddTableCommand, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}"></i:InvokeCommandAction>
+                                        </i:EventTrigger>
+                                        <i:EventTrigger EventName="MouseRightButtonDown">
+                                            <i:InvokeCommandAction Command="{Binding Path=DataContext.CancelTableCommand, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}"></i:InvokeCommandAction>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Image Name="LinkImage" Source="{Binding LinkImage}" Height="85" Width="85" >
+                                    </Image>
+                                    <Image Name="CheckImage" Visibility="{Binding CheckVisibility}" Source ="{StaticResource ic_check}" Height="20" Width="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,10,0"></Image>
+                                    <Label  Name="TableName" Content="{Binding TableNameString}" FontSize="{StaticResource fontSizeLabelHeader}" VerticalContentAlignment="Center" Foreground="{StaticResource ColorForegroundBrush}" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+            </Grid>
+
+            <Grid Grid.Row="3" Background="{StaticResource GrayBackgroundBrush}">
+                <DockPanel Margin="10 0" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource BoderButtonClose}" Height="40" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=mergeTb}" Margin="15 0" >
+                    </Button>
+                    <Button Style="{StaticResource BoderButtonAgree}" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=mergeTb}" Height="40" HorizontalAlignment="Right">
+                    </Button>
+                </DockPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

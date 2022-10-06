@@ -1,0 +1,110 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.DebtCustomerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views"
+        xmlns:select ="clr-namespace:TechresStandaloneSale.Helpers"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        TextElement.FontFamily="{StaticResource Roboto-Regular}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="White"
+        BorderThickness="1"
+        BorderBrush="{StaticResource LineListViewBrush}"
+        Foreground="Black"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Name="debtCustomerWindow"
+        Icon="logo.ico"
+        Title="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_EXPENSE_WINDOW_COUPON}}"
+        Width="800"
+        Height="500">
+    <Window.Resources>
+        <Color x:Key="MainColor">#FBBC05</Color>
+        <BitmapImage x:Key="logo" UriSource="/TechresStandaloneSale;component/Resources/Images/white_logo.png" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Background="{StaticResource MainBrush}">
+            <Image Margin="10 0 0 0" Width="40" Height="40" Grid.Column="0" Source="{StaticResource logo}" Stretch="Uniform" VerticalAlignment="Stretch"/>
+            <Label Foreground="White" FontSize="{StaticResource fontSizeHeader}" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_MENU_LIST_CUSTOMER_DEBIT_ORDER}}" VerticalAlignment="Center" FontWeight="SemiBold"/>
+            <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=debtCustomerWindow}" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" BorderBrush="{x:Null}" Foreground="#FF2387D6">
+                <materialDesign:PackIcon HorizontalAlignment="Center" VerticalContentAlignment="Center" Kind="Close" Foreground="White" Width="50" Height="25" />
+            </Button>
+        </DockPanel>
+        <DockPanel Name="DCP" Grid.Row="1">
+            <DockPanel  Margin="5,5,5,0">
+                <DataGrid SelectionMode="Single" GridLinesVisibility="None" Background="White"  Name="ListPaymentReason"  Grid.Row="1" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5" ItemsSource="{Binding OrderDebtList,UpdateSourceTrigger=PropertyChanged}" 
+                            AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="True" >
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn  Width="50" IsReadOnly="True">
+                            <DataGridTemplateColumn.Header>
+                                <CheckBox Command="{Binding DataContext.CheckAllCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" FontSize="{StaticResource fontSize}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"></CheckBox>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate >
+                                <DataTemplate>
+                                    <CheckBox Visibility="{Binding ShowCheckBox}" IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}" Command="{Binding DataContext.CheckCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" FontSize="{StaticResource fontSize}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"></CheckBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn  Width="0.1*" IsReadOnly="True" x:Name="code">
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_LIST_ORDER_CODE}}" FontSize="{StaticResource fontSize}" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate >
+                                <DataTemplate>
+                                    <TextBlock FontSize="{StaticResource fontSize}" HorizontalAlignment="Center" Text="{Binding OrderId}" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="0.2*" IsReadOnly="True"  x:Name="quantity">
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock  HorizontalAlignment="Center" Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_ORDER_AMOUNT}}"  FontSize="{StaticResource fontSize}" TextWrapping="Wrap" Foreground="Black"></TextBlock>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" Text="{Binding TotalAmountString}" Margin=" 10 0 0 0" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="120" IsReadOnly="True">
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock  HorizontalAlignment="Center" Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_LIST_STATUS}}"  FontSize="{StaticResource fontSize}" TextWrapping="WrapWithOverflow" Foreground="Black" />
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="{StaticResource fontSize}"  HorizontalAlignment="Left" Text="{Binding StatusPaidString}" Margin=" 10 0 0 0" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </DockPanel>
+        <StackPanel Grid.Row="2" Background="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="1"  VerticalAlignment="Bottom" Height="45" Grid.ColumnSpan="2">
+                    <DockPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Button Style="{StaticResource BoderButtonClose}"  Height="{StaticResource ButtonHeight}" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=debtCustomerWindow}" />
+                        <Button Style="{StaticResource BoderButtonAgree}" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=debtCustomerWindow}" Height="{StaticResource ButtonHeight}" Margin="15 0" HorizontalAlignment="Right"/>
+                    </DockPanel>
+                      </DockPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,336 @@
+﻿<UserControl x:Class="TechresStandaloneSale.UserControlView.PrintSettingUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:TechresStandaloneSale.UserControlView"
+             xmlns:helps="clr-namespace:TechresStandaloneSale.Helpers"
+             mc:Ignorable="d" 
+             Background="White"
+             Name="printSetting"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Border BorderBrush="{StaticResource MainLine}" BorderThickness="0.5">
+                <DockPanel>
+                    <Label FontSize="{StaticResource fontSizeLabelHeader}" Foreground="Black" Height="55"
+               VerticalContentAlignment="Center" Content="{x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_TITLE}"></Label>
+                    <Button HorizontalAlignment="Right" VerticalAlignment="Center" Height="40" Width="120" Margin="0 0 5 0" Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=printSetting}" Background="White" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5">
+                        <DockPanel>
+                            <materialDesign:PackIcon Kind="ContentSave" Foreground="{StaticResource MainBrush}" Height="25" Width="25" ></materialDesign:PackIcon>
+                            <Label Height="30" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_SAVE}}" FontSize="{StaticResource fontSize}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+                        </DockPanel>
+                    </Button>
+                </DockPanel>
+            </Border>
+        </Border>
+        <ScrollViewer Grid.Row="1" CanContentScroll="True">
+            <StackPanel  Height="300" Visibility="{Binding PrintCasherVisibility}">
+                <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_FOR_CASHIER}}" FontSize="{StaticResource fontSizeHeader}" Foreground="Black" VerticalAlignment="Center" Margin="0 10 0 0" ></Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RECEIPT_PRINT}}" FontSize="{StaticResource fontSize}" Height="50" Background="White" Grid.Column="0" BorderThickness="0" VerticalContentAlignment="Center" Margin="20 0 0 0 "></Label>
+                    <ToggleButton x:Name="isBill" Grid.Column="1" IsChecked="{Binding BillChecked}" Style="{StaticResource MaterialDesignSwitchAccentToggleButton}" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_ON_OFF}}" Command="{Binding IsBillCommand}" CommandParameter="{Binding ElementName=isBill}" Background="{StaticResource MainBrush}"/>
+                    <ComboBox Grid.Column="2" Visibility="{Binding PrintBillVisibility}" SelectedItem="{Binding PrintBillItem}"  ItemsSource="{Binding PrintBill, Mode=OneWay}"
+                       FontSize="16" BorderBrush="{StaticResource MainLine}" Background="White" VerticalAlignment="Center" MinWidth="130" Height="40"  Margin="10 0 10 0" BorderThickness="1" Foreground="Black">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Padding="3" Text="{Binding PrintName}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox Grid.Column="3" Visibility="{Binding PrintBillVisibility}" SelectedItem="{Binding SizeBillItem}"  ItemsSource="{Binding SizeBill, Mode=OneWay}"
+                       FontSize="16" BorderBrush="{StaticResource MainLine}" Background="White"  VerticalAlignment="Center" MinWidth="130" Height="40"  Margin="0 0 10 0" BorderThickness="1" Foreground="Black">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Padding="3" Text="{Binding Content}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Grid.Column="4" Height="50" Margin="5" Visibility="{Binding PrintBillVisibility}" Command="{Binding PreviewBillCommand}" CommandParameter="{Binding ElementName=printSetting}" Background="White" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5">
+                        <DockPanel>
+                            <materialDesign:PackIcon Kind="Eye" Foreground="{StaticResource MainBrush}" Height="25" Width="25" ></materialDesign:PackIcon>
+                            <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_EYE}}" FontSize="{StaticResource fontSize}"></Label>
+                        </DockPanel>
+                    </Button>
+                    <Button Grid.Column="5" Height="50" Margin="5" Visibility="{Binding PrintBillVisibility}" Command="{Binding PrintTestBillCommand}" CommandParameter="{Binding ElementName=printSetting}" Background="White" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5">
+                        <DockPanel>
+                            <materialDesign:PackIcon Kind="Printer" Foreground="{StaticResource MainBrush}" Height="25" Width="25" ></materialDesign:PackIcon>
+                            <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_TEST}}" FontSize="{StaticResource fontSize}"></Label>
+                        </DockPanel>
+                    </Button>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_BARCODE_PRINT_CHECK_IN}}" Height="50" FontSize="{StaticResource fontSize}" Background="White" Grid.Column="0" VerticalContentAlignment="Center" Margin="20 0 0 0 "></Label>
+                    <ToggleButton x:Name="isQRCodeCheckin" Grid.Column="1" IsChecked="{Binding QRCodeChecked}" Style="{StaticResource MaterialDesignSwitchDarkToggleButton}" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_ON_OFF}}" Command="{Binding IsQRCodeCommand}" CommandParameter="{Binding ElementName=isQRCodeCheckin}" Background="{StaticResource MainBrush}"/>
+                    <ComboBox  Grid.Column="2" Visibility="{Binding PrintQRCodeVisibility}" SelectedItem="{Binding PrintQRCodeItem}"  ItemsSource="{Binding PrintQRCode, Mode=OneWay}"
+                       FontSize="16" BorderBrush="{StaticResource MainLine}" Background="White" VerticalAlignment="Center" MinWidth="130" Height="40"  Margin="10 0 10 0" BorderThickness="1" Foreground="Black">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Padding="3" Text="{Binding PrintName}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox Grid.Column="3" Visibility="{Binding PrintQRCodeVisibility}" SelectedItem="{Binding SizeQRCodeItem}"  ItemsSource="{Binding SizeQRCode, Mode=OneWay}"
+                       FontSize="16" BorderBrush="{StaticResource MainLine}" Background="White"  VerticalAlignment="Center" MinWidth="130" Height="40"  Margin="0 0 10 0" BorderThickness="1" Foreground="Black">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Padding="3" Text="{Binding Content}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Grid.Column="4" Height="50" Margin="5" Visibility="{Binding PrintQRCodeVisibility}" Command="{Binding PreviewQRCodeCommand}" CommandParameter="{Binding ElementName=printSetting}" Background="White" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5">
+                        <DockPanel>
+                            <materialDesign:PackIcon Kind="Eye" Foreground="{StaticResource MainBrush}" Height="25" Width="25" ></materialDesign:PackIcon>
+                            <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_EYE}}" FontSize="{StaticResource fontSize}"></Label>
+                        </DockPanel>
+                    </Button>
+                    <Button Grid.Column="5" Height="50" Margin="5" Visibility="{Binding PrintQRCodeVisibility}" Command="{Binding PrintTestQRCodeCommand}" CommandParameter="{Binding ElementName=printSetting}" Background="White" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5">
+                        <DockPanel>
+                            <materialDesign:PackIcon Kind="Printer" Foreground="{StaticResource MainBrush}" Height="25" Width="25" ></materialDesign:PackIcon>
+                            <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_TEST}}" FontSize="{StaticResource fontSize}"></Label>
+                        </DockPanel>
+                    </Button>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_BARCODE_PRINT_BRANCH}}" Height="50" FontSize="{StaticResource fontSize}" Background="White" Grid.Column="0" VerticalContentAlignment="Center" Margin="20 0 0 0 "></Label>
+                    <ToggleButton x:Name="isQRCodeBranch" Grid.Column="1" IsChecked="{Binding BranchQRCodeChecked}" Style="{StaticResource MaterialDesignSwitchDarkToggleButton}" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_ON_OFF}}" Command="{Binding IsBranchQRCodeCommand}" CommandParameter="{Binding ElementName=isQRCodeBranch}" Background="{StaticResource MainBrush}"/>
+                    <ComboBox  Grid.Column="2" Visibility="{Binding PrintBranchQRCodeVisibility}" SelectedItem="{Binding PrintBranchQRCodeItem}"  ItemsSource="{Binding PrintBranchQRCode, Mode=OneWay}"
+                       FontSize="16" BorderBrush="{StaticResource MainLine}" Background="White" VerticalAlignment="Center" MinWidth="130" Height="40"  Margin="10 0 10 0" BorderThickness="1" Foreground="Black">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Padding="3" Text="{Binding PrintName}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox Grid.Column="3" Visibility="{Binding PrintBranchQRCodeVisibility}" SelectedItem="{Binding SizeBranchQRCodeItem}"  ItemsSource="{Binding SizeBranchQRCode, Mode=OneWay}"
+                       FontSize="16" BorderBrush="{StaticResource MainLine}" Background="White"  VerticalAlignment="Center" MinWidth="130" Height="40"  Margin="0 0 10 0" BorderThickness="1" Foreground="Black">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Padding="3" Text="{Binding Content}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Grid.Column="4" Height="50" Margin="5" Visibility="{Binding PrintBranchQRCodeVisibility}" Command="{Binding PreviewBranchQRCodeCommand}" CommandParameter="{Binding ElementName=printSetting}" Background="White" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5">
+                        <DockPanel>
+                            <materialDesign:PackIcon Kind="Eye" Foreground="{StaticResource MainBrush}" Height="25" Width="25" ></materialDesign:PackIcon>
+                            <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_EYE}}" FontSize="{StaticResource fontSize}"></Label>
+                        </DockPanel>
+                    </Button>
+                    <Button Grid.Column="5"  Height="50" Margin="5" Visibility="{Binding PrintBranchQRCodeVisibility}" Command="{Binding PrintTestBranchQRCodeCommand}" CommandParameter="{Binding ElementName=printSetting}" Background="White" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5">
+                        <DockPanel>
+                            <materialDesign:PackIcon Kind="Printer" Foreground="{StaticResource MainBrush}" Height="25" Width="25" ></materialDesign:PackIcon>
+                            <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_TEST}}" FontSize="{StaticResource fontSize}"></Label>
+                        </DockPanel>
+                    </Button>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_BARCODE_PRINT_EMPLOYEE}}" Height="50" FontSize="{StaticResource fontSize}" Background="White" Grid.Column="0" VerticalContentAlignment="Center" Margin="20 0 0 0 "></Label>
+                    <ToggleButton x:Name="isQRCodeEmployee" Grid.Column="1" IsChecked="{Binding EmployeeQRCodeChecked}" Style="{StaticResource MaterialDesignSwitchDarkToggleButton}" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_ON_OFF}}" Command="{Binding IsEmployeeQRCodeCommand}" CommandParameter="{Binding ElementName=isQRCodeEmployee}" Background="{StaticResource MainBrush}"/>
+                    <ComboBox  Grid.Column="2" Visibility="{Binding PrintEmployeeQRCodeVisibility}" SelectedItem="{Binding PrintEmployeeQRCodeItem}"  ItemsSource="{Binding PrintEmployeeQRCode, Mode=OneWay}"
+                       FontSize="16" BorderBrush="{StaticResource MainLine}" Background="White" VerticalAlignment="Center" MinWidth="130" Height="40"  Margin="10 0 10 0" BorderThickness="1" Foreground="Black">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Padding="3" Text="{Binding PrintName}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox Grid.Column="3" Visibility="{Binding PrintEmployeeQRCodeVisibility}"  SelectedItem="{Binding SizeEmployeeQRCodeItem}"  ItemsSource="{Binding SizeEmployeeQRCode, Mode=OneWay}"
+                       FontSize="16" BorderBrush="{StaticResource MainLine}" Background="White"  VerticalAlignment="Center" MinWidth="130" Height="40"  Margin="0 0 10 0" BorderThickness="1" Foreground="Black">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Padding="3" Text="{Binding Content}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Grid.Column="4" Height="50" Margin="5" Visibility="{Binding PrintEmployeeQRCodeVisibility}" Command="{Binding PreviewEmployeeQRCodeCommand}" CommandParameter="{Binding ElementName=printSetting}" Background="White" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5">
+                        <DockPanel>
+                            <materialDesign:PackIcon Kind="Eye" Foreground="{StaticResource MainBrush}" Height="25" Width="25" ></materialDesign:PackIcon>
+                            <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_EYE}}" FontSize="{StaticResource fontSize}"></Label>
+                        </DockPanel>
+                    </Button>
+                    <Button Grid.Column="5"  Height="50" Margin="5" Visibility="{Binding PrintEmployeeQRCodeVisibility}" Command="{Binding PrintTestEmployeeQRCodeCommand}" CommandParameter="{Binding ElementName=printSetting}" Background="White" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5">
+                        <DockPanel>
+                            <materialDesign:PackIcon Kind="Printer" Foreground="{StaticResource MainBrush}" Height="25" Width="25" ></materialDesign:PackIcon>
+                            <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_TEST}}" FontSize="{StaticResource fontSize}"></Label>
+                        </DockPanel>
+                    </Button>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_AQUARIUM_PRINT}}" Height="50" FontSize="{StaticResource fontSize}" Background="White" Grid.Column="0" VerticalContentAlignment="Center" Margin="20 0 0 0 "></Label>
+                    <ToggleButton x:Name="isFrinkTank" Grid.Column="1" IsChecked="{Binding FishTankChecked}" Style="{StaticResource MaterialDesignSwitchDarkToggleButton}" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_ON_OFF}}" Command="{Binding IsFishTankCommand}" CommandParameter="{Binding ElementName=isFrinkTank}" Background="{StaticResource MainBrush}"/>
+                    <ComboBox  Grid.Column="2" Visibility="{Binding PrintFishTankVisibility}" SelectedItem="{Binding PrintFishTankItem}"  ItemsSource="{Binding PrintFishTank, Mode=OneWay}"
+                       FontSize="16" BorderBrush="{StaticResource MainLine}" Background="White" VerticalAlignment="Center" MinWidth="130" Height="40"  Margin="10 0 10 0" BorderThickness="1" Foreground="Black">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Padding="3" Text="{Binding PrintName}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox Grid.Column="3" Visibility="{Binding PrintFishTankVisibility}"  SelectedItem="{Binding SizeFishTankItem}"  ItemsSource="{Binding SizeFishTank, Mode=OneWay}"
+                       FontSize="16" BorderBrush="{StaticResource MainLine}" Background="White"  VerticalAlignment="Center" MinWidth="130" Height="40"  Margin="0 0 10 0" BorderThickness="1" Foreground="Black">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Padding="3" Text="{Binding Content}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Grid.Column="4" Height="50" Margin="5" Visibility="{Binding PrintFishTankVisibility}" Command="{Binding PreviewFishTankCommand}" CommandParameter="{Binding ElementName=printSetting}" Background="White" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5">
+                        <DockPanel>
+                            <materialDesign:PackIcon Kind="Eye" Foreground="{StaticResource MainBrush}" Height="25" Width="25" ></materialDesign:PackIcon>
+                            <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_EYE}}" FontSize="{StaticResource fontSize}"></Label>
+                        </DockPanel>
+                    </Button>
+                    <Button Grid.Column="5" Height="50" Margin="5" Visibility="{Binding PrintFishTankVisibility}" Command="{Binding PrintTestFishTankCommand}" CommandParameter="{Binding ElementName=printSetting}" Background="White" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5">
+                        <DockPanel>
+                            <materialDesign:PackIcon Kind="Printer" Foreground="{StaticResource MainBrush}" Height="25" Width="25" ></materialDesign:PackIcon>
+                            <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_TEST}}" FontSize="{StaticResource fontSize}"></Label>
+                        </DockPanel>
+                    </Button>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_STAMP}}" Height="50" FontSize="{StaticResource fontSize}" Background="White" Grid.Column="0" VerticalContentAlignment="Center" Margin="20 0 0 0 "></Label>
+                    <ToggleButton x:Name="isPrintStamp" Grid.Column="1" IsChecked="{Binding StampPrintChecked}" Style="{StaticResource MaterialDesignSwitchDarkToggleButton}" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_ON_OFF}}" Command="{Binding IsFishTankCommand}" CommandParameter="{Binding ElementName=isFrinkTank}" Background="{StaticResource MainBrush}"/>
+                    <ComboBox  Grid.Column="2" Visibility="{Binding PrintFishTankVisibility}" SelectedItem="{Binding PrintFishTankItem}"  ItemsSource="{Binding PrintFishTank, Mode=OneWay}"
+                       FontSize="16" BorderBrush="{StaticResource MainLine}" Background="White" VerticalAlignment="Center" MinWidth="130" Height="40"  Margin="10 0 10 0" BorderThickness="1" Foreground="Black">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Padding="3" Text="{Binding PrintName}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox Grid.Column="3" Visibility="{Binding PrintFishTankVisibility}"  SelectedItem="{Binding SizeFishTankItem}"  ItemsSource="{Binding SizeFishTank, Mode=OneWay}"
+                       FontSize="16" BorderBrush="{StaticResource MainLine}" Background="White"  VerticalAlignment="Center" MinWidth="130" Height="40"  Margin="0 0 10 0" BorderThickness="1" Foreground="Black">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Padding="3" Text="{Binding Content}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Grid.Column="4" Height="50" Margin="5" Visibility="{Binding PrintFishTankVisibility}" Command="{Binding PreviewFishTankCommand}" CommandParameter="{Binding ElementName=printSetting}" Background="White" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5">
+                        <DockPanel>
+                            <materialDesign:PackIcon Kind="Eye" Foreground="{StaticResource MainBrush}" Height="25" Width="25" ></materialDesign:PackIcon>
+                            <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_EYE}}" FontSize="{StaticResource fontSize}"></Label>
+                        </DockPanel>
+                    </Button>
+                    <Button Grid.Column="5" Height="50" Margin="5" Visibility="{Binding PrintFishTankVisibility}" Command="{Binding PrintTestFishTankCommand}" CommandParameter="{Binding ElementName=printSetting}" Background="White" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5">
+                        <DockPanel>
+                            <materialDesign:PackIcon Kind="Printer" Foreground="{StaticResource MainBrush}" Height="25" Width="25" ></materialDesign:PackIcon>
+                            <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_TEST}}" FontSize="{StaticResource fontSize}"></Label>
+                        </DockPanel>
+                    </Button>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+        <Border BorderBrush="{StaticResource BlackBackground}" BorderThickness="0 0.1 0 0" Margin="0 10 0 0" Grid.Row="2">
+            <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_FOR_CHEF}}" FontSize="{StaticResource fontSizeHeader}" Foreground="Black" Margin="0 10 0 0"></Label>
+        </Border>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" CanContentScroll="True" Margin="0,0,0,30" Grid.Row="3" Visibility="{Binding KitchentPrintVisibility}" >
+            <ItemsControl  ItemsSource="{Binding Path=DataContext.RestaurantKitchenList, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ScrollViewer}} , Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Name="TblItemsControl">
+                <ItemsControl.ItemTemplate>
+
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="120"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Content="{Binding Name}" FontSize="{StaticResource fontSize}" Height="50" Background="Transparent"  BorderThickness="0" VerticalContentAlignment="Center" Margin="20 0 0 0 "></Label>
+                            <ToggleButton Grid.Column="1" Command="{Binding Path=DataContext.IsCheckCommand, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ScrollViewer}}}" CommandParameter="{Binding}" x:Name="isBBQ"  IsChecked="{Binding IsHavePrinter, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignSwitchDarkToggleButton}" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_ON_OFF}}" Background="{StaticResource MainBrush}"/>
+                            <ComboBox  Grid.Column="2" Visibility="{Binding IsHavePrinterVisibility, UpdateSourceTrigger=PropertyChanged}"  SelectedItem="{Binding PrinterNameItem, UpdateSourceTrigger=PropertyChanged}"  ItemsSource="{Binding Path=DataContext.PrinterNameList, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ScrollViewer}} , Mode=OneWay}"   FontSize="{StaticResource fontSizeFifteen}" BorderBrush="{StaticResource MainLine}" Background="Transparent"  VerticalAlignment="Center" MinWidth="120" Height="40"  Margin="10 0 10 0" BorderThickness="1" Foreground="Black">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Padding="3" Text="{Binding PrintName}"></TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox Grid.Column="3" Visibility="{Binding IsHavePrinterVisibility, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding PrinterPaperSizeItem, UpdateSourceTrigger=PropertyChanged}"  ItemsSource="{Binding Path=DataContext.PrinterPaperSizeList, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ScrollViewer}} , Mode=OneWay}"  FontSize="{StaticResource fontSizeFifteen}" BorderBrush="{StaticResource MainLine}" Background="Transparent"  VerticalAlignment="Center" MinWidth="120" Height="40" Margin="0 0 10 0" BorderThickness="1" Foreground="Black">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Padding="3" Text="{Binding Content}"></TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Button Grid.Column="4" Visibility="{Binding IsHavePrinterVisibility, UpdateSourceTrigger=PropertyChanged}"  Height="50" Margin="5" Command="{Binding Path=DataContext.PreviewCommand, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ScrollViewer}}}" CommandParameter="{Binding}" Background="White" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5">
+                                <DockPanel>
+                                    <materialDesign:PackIcon Kind="Eye" Foreground="{StaticResource MainBrush}" Height="25" Width="25" ></materialDesign:PackIcon>
+                                    <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_EYE}}" FontSize="{StaticResource fontSize}"></Label>
+                                </DockPanel>
+                            </Button>
+                            <Button Grid.Column="5" Visibility="{Binding IsHavePrinterVisibility, UpdateSourceTrigger=PropertyChanged}" Height="50" Margin="5" Command="{Binding Path=DataContext.PrintTestCommand, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ScrollViewer}}}" CommandParameter="{Binding}"  Background="White" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5">
+                                <DockPanel>
+                                    <materialDesign:PackIcon Kind="Printer" Foreground="{StaticResource MainBrush}" Height="25" Width="25" ></materialDesign:PackIcon>
+                                    <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SETTING_PRINT_TEST}}" FontSize="{StaticResource fontSize}"></Label>
+                                </DockPanel>
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

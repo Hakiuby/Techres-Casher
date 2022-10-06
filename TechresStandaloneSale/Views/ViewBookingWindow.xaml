@@ -1,0 +1,290 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.ViewBookingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:helps ="clr-namespace:TechresStandaloneSale.Helpers"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views"
+                    TextElement.FontFamily="{StaticResource Roboto-Regular}"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="{StaticResource fontSize}"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="White"
+        BorderThickness="1"
+        BorderBrush="{StaticResource LineListViewBrush}"
+        Foreground="Black"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Name="bookingWindowPopup"
+        Title="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VIEW_BOOKING_WINDOWN}}"
+         Icon="logo.ico"
+        Width="1000">
+    <Window.Resources>
+        <BitmapImage x:Key="logo" UriSource="/TechresStandaloneSale;component/Resources/Images/white_logo.png" />
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="Esc" Command="{Binding CloseCommand}"  CommandParameter="{Binding ElementName=bookingWindowPopup}"></KeyBinding>
+    </Window.InputBindings>
+    <Grid Background="{StaticResource GrayLBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Margin="0 0 0 0" Background="{StaticResource MainBrush}">
+            
+            <Image  Margin="5 0 0 0" Width="40" Height="40"  Grid.Column="0" Source="{StaticResource logo}" Stretch="Uniform" VerticalAlignment="Stretch"/>
+            <Label Foreground="White" FontFamily="{StaticResource Roboto-Regular}" Content="{Binding ContentView}" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold"/>
+            <Button Click="Button_Click" Margin="5 0 0 0" HorizontalAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" BorderBrush="{x:Null}" Foreground="#FF2387D6">
+                <materialDesign:PackIcon HorizontalAlignment="Center" VerticalContentAlignment="Center" Kind="Close" Foreground="White" Width="50" Height="25" />
+            </Button>
+        </DockPanel>
+        <Border Background="White" Grid.Row="1" BorderThickness="0.75" BorderBrush="{StaticResource LineListViewBrush}" Margin="5">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" >
+            <StackPanel Orientation="Vertical">
+                <Border  Height="50" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0 1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0.5 0">
+                            <DockPanel HorizontalAlignment="Left" Margin="10 0 0 0">
+                                    <Label FontSize="{StaticResource fontSize}" Foreground="Black" VerticalAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VIEW_BOOKING_TODATE}}" ></Label> 
+                                    <TextBlock VerticalAlignment="Center" Foreground="Black" Text="{Binding BookingTime}" Name="TimeArrive" FontSize="{StaticResource fontSize}"/>
+                            </DockPanel>
+                        </Border>
+                        <Border Grid.Column="1" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0.5 0">
+                            <DockPanel HorizontalAlignment="Center">
+                                    <Label FontSize="14" Foreground="Black" VerticalAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VIEW_BOOKING_NUMBER_OF_CUSTOMER}}" ></Label> 
+                                    <TextBlock VerticalAlignment="Center" Foreground="Black" Padding="5 0 0 0" FontWeight="DemiBold" Text="{Binding SlotNumber}" FontSize="{StaticResource fontSizeHeader}" x:Name="QuantityPerson"></TextBlock>
+                                    <TextBlock VerticalAlignment="Center" Foreground="Black" Padding="5 0 0 0" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VIEW_BOOKING_PEOPLE}}" FontSize="{StaticResource fontSize}" ></TextBlock> 
+                                </DockPanel>
+                        </Border>
+                        <Border Grid.Column="2" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0.5 0">
+                            <DockPanel HorizontalAlignment="Center">
+                                    <Label FontSize="14" Foreground="Black"  VerticalAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VIEW_BOOKING_DATE}}" ></Label> 
+                                    <TextBlock  VerticalAlignment="Center" IsEnabled="False" Padding="5 0 0 0" Text="{Binding CreatedAt}" FontSize="14" ></TextBlock>
+                            </DockPanel>
+                        </Border>
+                        <Border Grid.Column="3" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0.5 0">
+                            <DockPanel HorizontalAlignment="Left" Margin="10 0 0 0">
+                                    <Label FontSize="14" Foreground="Black" VerticalAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_STATUS_FILTER}}" ></Label> 
+                                    <TextBlock VerticalAlignment="Center" TextWrapping="WrapWithOverflow" IsEnabled="False" Padding="5 0 0 0" Text="{Binding Status}" FontSize="14"></TextBlock>
+                            </DockPanel>
+                        </Border>
+                    </Grid>
+                </Border>
+                    <Border  Height="50" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0 1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0.5 0">
+                                <DockPanel Margin="10 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <Label FontSize="14" Foreground="Black"  VerticalAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING_NAME}}" ></Label> 
+                                    <TextBlock VerticalAlignment="Center" IsEnabled="False" Text="{Binding  NameCustomer}" FontSize="14"></TextBlock>
+                                  
+                                </DockPanel>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0.5 0">
+                                <DockPanel Margin="10 0 0 0" HorizontalAlignment="Left">
+                                    <Label FontSize="14" Foreground="Black" VerticalAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING_PHONE_NUMBER}}" ></Label> 
+                                    <TextBlock VerticalAlignment="Center"  IsEnabled="False" Padding="5 0 0 0" Text="{Binding  PhoneCustomer}" FontSize="14"></TextBlock>
+                                </DockPanel>
+                            </Border>
+                            <Border Grid.Column="2" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0.5 0">
+                                <DockPanel Margin="10 0 0 0" HorizontalAlignment="Left">
+                                    <Label FontSize="14" Foreground="Black" VerticalAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_AREA}}" ></Label>
+                                    <TextBlock VerticalAlignment="Center"  IsEnabled="False" Padding="5 0 0 0" Text="{Binding  Area}" FontSize="14"></TextBlock>
+                                </DockPanel>
+                            </Border>
+                            <Border Grid.Column="3" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0.5 0">
+                                <DockPanel Margin="10 0 0 0" HorizontalAlignment="Left">
+                                    <Label FontSize="14" Foreground="Black" VerticalAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VIEW_DETAIL_ORDER_TABLE}}" ></Label>
+                                    <TextBlock VerticalAlignment="Center"  IsEnabled="False" Padding="5 0 0 0" Text="{Binding  Table}" FontSize="14"></TextBlock>
+                                </DockPanel>
+                            </Border>
+                        </Grid>
+                    </Border>
+                   
+
+              
+                    <DockPanel  Height="300" Margin="5 0 5 0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="110"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_CREAT_BOOKING_ORDER_REQUIRED}}" FontSize="{StaticResource fontSize}" TextWrapping="WrapWithOverflow"></TextBlock>
+                            <Border Grid.Column="1" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="1 0 0 0">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition Height="30"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <DataGrid BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="1" SelectionMode="Single" GridLinesVisibility="None" Background="White"  Name="GrData"  Grid.Row="0" ItemsSource="{Binding RequestFoodList}" 
+                AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="True" >
+                                        <DataGrid.Columns>
+                                            <DataGridTemplateColumn Width="0.3*" IsReadOnly="True" x:Name="foodName">
+                                                <DataGridTemplateColumn.Header>
+                                                    <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_CREAT_BOOKING_NAME_OF_FOOD}}" FontSize="{StaticResource fontSize}"  TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                                </DataGridTemplateColumn.Header>
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Margin="10 0 5 0" FontSize="{StaticResource fontSize}" HorizontalAlignment="Left" Text="{Binding Name}" VerticalAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Width="0.2*" IsReadOnly="True"  x:Name="price">
+                                                <DataGridTemplateColumn.Header>
+                                                    <TextBlock  HorizontalAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_CREAT_BOOKING_PICRE}}"  FontSize="{StaticResource fontSize}" TextWrapping="Wrap" Foreground="Black"></TextBlock>
+                                                </DataGridTemplateColumn.Header>
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" Text="{Binding PriceString}" Margin=" 10 0 0 0" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Width="0.1*" IsReadOnly="True" x:Name="quantity">
+                                                <DataGridTemplateColumn.Header>
+                                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_CREAT_BOOKING_QUANTITY}}"  FontSize="{StaticResource fontSize}" TextWrapping="WrapWithOverflow" Foreground="Black" />
+                                                </DataGridTemplateColumn.Header>
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock  FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" Text="{Binding Quantity}"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Width="0.2*" IsReadOnly="True" x:Name="Amount">
+                                                <DataGridTemplateColumn.Header>
+                                                    <TextBlock  HorizontalAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_CREAT_BOOKING_BY_MONEY}}"  FontSize="{StaticResource fontSize}" TextWrapping="WrapWithOverflow" Foreground="Black" />
+                                                </DataGridTemplateColumn.Header>
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock  FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" Text="{Binding TotalAmountString}"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <Grid Grid.Row="1" VerticalAlignment="Center">
+                                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                            <Grid Width="{Binding ElementName=foodName,Path=ActualWidth}">
+                                                <TextBlock Margin="15 0 0 0" VerticalAlignment="Center" Foreground="Black"  Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_CREAT_BOOKING_TOTAL}}" FontFamily="{StaticResource Roboto-Regular}"></TextBlock>
+                                            </Grid>
+                                            <Grid Width="{Binding ElementName=price,Path=ActualWidth}">
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"  Text="{Binding FoodQuantity}" FontFamily="{StaticResource Roboto-Regular}"></TextBlock>
+                                            </Grid>
+                                            <Grid Width="{Binding ElementName=quantity,Path=ActualWidth}">
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"  Text="{Binding TotalQuantity}" FontFamily="{StaticResource Roboto-Regular}"></TextBlock>
+                                            </Grid>
+                                            <Grid  Width="{Binding ElementName=Amount,Path=ActualWidth}">
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"  Text="{Binding TotalAmount}" FontFamily="{StaticResource Roboto-Regular}"></TextBlock>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                        </DockPanel>
+
+                    <Border BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 1 0 0" Height="80">
+                        <DockPanel>
+                            <Label Width="110" FontSize="{StaticResource fontSize}" Foreground="Black" VerticalContentAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_CREAT_BOOKING_ORTHER_REQUIREMENTS}}" ></Label> 
+                            <Border BorderBrush="{StaticResource MainLine}" Margin="5 0 0 0" BorderThickness="1 0 0 0">
+                                <TextBlock HorizontalAlignment="Left" Padding="5" VerticalAlignment="Center" Height="80" Text="{Binding OtherRequest}"  TextWrapping="Wrap"></TextBlock>
+                            </Border>
+                        </DockPanel>
+                </Border>
+                    <Border BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 1 0 0">
+                        <DockPanel>
+                            <TextBlock Width="110"  FontSize="14" VerticalAlignment="Center" TextWrapping="Wrap"  Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_CREAT_BOOKING_NOTE_FOR_COOK}}" Padding="5 0 0 0"></TextBlock> 
+                            <Border  Margin="5 0 0 0" BorderBrush="{StaticResource MainLine}" BorderThickness="1 0 0 0">
+                                <TextBlock HorizontalAlignment="Left" Padding="5" FontSize="14" Height="80" VerticalAlignment="Center" Text="{Binding Note}"></TextBlock>
+                    </Border>
+                        </DockPanel>
+                    </Border>
+                    <Border BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 1 0 0">
+                        <DockPanel Margin="5 0 5 0" Height="50">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0.5 0">
+                                    <DockPanel >
+                                        <Label HorizontalAlignment="Left" FontSize="{StaticResource fontSize}" Foreground="Black" VerticalAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_CREAT_BOOKING_DEPOSITS}}" ></Label> 
+                                        <TextBlock HorizontalAlignment="Right"  VerticalAlignment="Center"  Padding="5 0 10 0" Text="{Binding DepositString}" FontSize="{StaticResource fontSize}"></TextBlock>
+                                    </DockPanel>
+                                </Border>
+                                <Border Grid.Column="1" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0.5 0">
+                                    <DockPanel>
+                                        <Label HorizontalAlignment="Left" FontSize="{StaticResource fontSize}" VerticalAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_CREAT_BOOKING_FORM_OF_RESERVATION}}" ></Label> 
+                                        <TextBlock HorizontalAlignment="Right" Padding="5 0 10 0" VerticalAlignment="Center" Text="{Binding BookingTypeString}" FontSize="{StaticResource fontSize}"></TextBlock>
+                                    </DockPanel>
+                                </Border>
+                                <DockPanel Grid.Column="2" Visibility="{Binding EmployeeVisibility}">
+                                    <Label  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{StaticResource fontSize}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_EMPLOYEE_FILTER}}" ></Label> 
+                                    <TextBlock HorizontalAlignment="Right" Padding="5 0 10 0" VerticalAlignment="Center" Text="{Binding EmployeeName}" FontSize="{StaticResource fontSize}"></TextBlock>
+                                    </DockPanel>
+                            </Grid>
+                        </DockPanel>
+                    </Border>
+                    <Border BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 1 0 0">
+                        <DockPanel Visibility="{Binding ReturnDepositVisibility}" Margin="5 0 5 0" Height="50" >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0.5 0.5">
+                                    <DockPanel >
+                                        <Label HorizontalAlignment="Left" FontSize="{StaticResource fontSize}" Foreground="Black" VerticalAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VIEW_BOOKING_PRICE}}" ></Label>
+                                        <TextBlock HorizontalAlignment="Right"  VerticalAlignment="Center"  Padding="5 0 10 0" Text="{Binding ReturnDepositString}" FontSize="{StaticResource fontSize}"></TextBlock>
+                                    </DockPanel>
+                                </Border>
+                                <Border Grid.Column="1" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0.5 0.5">
+                                    <DockPanel>
+                                        <Label HorizontalAlignment="Left" FontSize="{StaticResource fontSize}" VerticalAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VIEW_BOOKING_RETURNDATE}}" ></Label>
+                                        <TextBlock HorizontalAlignment="Right" Padding="5 0 10 0" VerticalAlignment="Center" Text="{Binding ReturnDepositTime}" FontSize="{StaticResource fontSize}"></TextBlock>
+                                    </DockPanel>
+                                </Border>
+                                <Border Grid.Column="2" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0 0.5">
+                                </Border>
+                            </Grid>
+                        </DockPanel>
+                    </Border>
+
+                </StackPanel>
+        </ScrollViewer>
+        </Border>
+        <StackPanel Background="White" Grid.Row="2">
+            <DockPanel  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 5 10 0">
+                <StackPanel Margin="0 0 5 0" Orientation="Horizontal" DockPanel.Dock="Right">
+                    <Button  Style="{StaticResource BoderButtonClose}"
+                    Margin="30 0 0 0" Click="Button_Click"
+                    FontSize="{StaticResource fontSize}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_EXPENSE_CLOSE_UPCASE}}" HorizontalAlignment="Right" 
+                    VerticalAlignment="Center" Width="{StaticResource ButtonWidth}" Height="{StaticResource ButtonHeight}"               
+                    Background="White" Foreground="White" 
+                    materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                    BorderThickness="1" BorderBrush="{StaticResource MainBrush}"/>
+                </StackPanel>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</Window>

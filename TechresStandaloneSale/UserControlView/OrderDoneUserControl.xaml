@@ -1,0 +1,190 @@
+﻿<UserControl x:Class="TechresStandaloneSale.UserControlView.OrderDoneUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:helps="clr-namespace:TechresStandaloneSale.Helpers"
+                xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:TechresStandaloneSale.UserControlView"
+          xmlns:l ="clr-namespace:TechresStandaloneSale.Loading"
+             Background="White"
+             mc:Ignorable="d"
+             Name="orderDoneUC"
+               d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Color x:Key="mainColor">#FF09A2CF</Color>
+        <Color x:Key="RowColor">#b3e6ff</Color>
+        <SolidColorBrush x:Key="DtColor" Color="{DynamicResource RowColor}"/>
+        <SolidColorBrush x:Key="MainColor" Color="{DynamicResource mainColor}" />
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Margin" Value="5 0 0 0" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <DockPanel Name="DCP" Margin="5 5 5 0">
+            <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5"
+                      Foreground="Black"   x:Name="lvOrderDone" ItemsSource="{Binding ItemsOrderDone}"
+                      Background="White"  ScrollViewer.CanContentScroll="True" CanUserReorderColumns="False"
+                      CanUserResizeColumns="False" CanUserResizeRows="False"
+                              HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" SelectionMode="Single"> <!-- Dat -->
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn x:Name="OrderCodeText" Width="0.75*">
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_ORDER_CODE}}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}"  Foreground="Black"></TextBlock>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding OrderCode}" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn x:Name="Table" Width="*">
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_TABLE}}" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}" Foreground="Black"></TextBlock>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TableName}" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn x:Name="Employee" Width="*">
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_LIST_EMPLOYEE}}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}" Foreground="Black"></TextBlock>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Employee.Name}" Foreground="Black" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn x:Name="Provisional" Width="*">
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_LIST_PROVISIONAL}}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}" Foreground="Black"></TextBlock>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding AmountString}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}" TextWrapping="WrapWithOverflow"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn x:Name="VAT" Width="0.8*">
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_LIST_VAT}}" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}" TextWrapping="WrapWithOverflow"></TextBlock>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding AmountVatString}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}" TextWrapping="WrapWithOverflow"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn x:Name="Discount" Width="0.8*">
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_LIST_DISCOUNT}}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}" TextWrapping="Wrap" Foreground="Black"></TextBlock>
+                            <!--<TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_LIST_DISCOUNT}}" TextWrapping="Wrap" Foreground="Black"></TextBlock>-->
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DiscountPercent}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn x:Name="Total" Width="*">
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_LIST_TOTAL_MONEY}}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}" TextWrapping="Wrap" Foreground="Black"></TextBlock>
+                            <!--<TextBlock Text="Tổng tiền" TextWrapping="Wrap" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}"></TextBlock>-->
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TotalAmountString}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}" TextWrapping="WrapWithOverflow"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn x:Name="CreateAt" Width="*">
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_LIST_DATE_CREATED}}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}" TextWrapping="Wrap" Foreground="Black"></TextBlock>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding CreatedAt}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}" TextWrapping="Wrap" Foreground="Black"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn x:Name="UpdateAt" Width="*" >
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_LIST_FINISHED}}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}" TextWrapping="Wrap" Foreground="Black"></TextBlock>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding UpdatedAt}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}" TextWrapping="Wrap" Foreground="Black"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn x:Name="Status" Width="*" >
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_LIST_STATUS}}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}" TextWrapping="Wrap" Foreground="Black"></TextBlock>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding OrderStatusString}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}" TextWrapping="Wrap" Foreground="Black"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn  x:Name="Function" Width="155">
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_LIST_FUNCTION}}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource fontSize}" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel HorizontalAlignment="Stretch">
+                                    <Button Margin="5 0 0 0" Visibility="{Binding BtnActiveVATVisibility}" Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" Height="30" Width="30" Padding="4" FontSize="10" Foreground="{StaticResource RedGGBrush}" Background="White" BorderBrush="{StaticResource RedGGBrush}" BorderThickness="1" Command="{Binding Path=DataContext.BtnActiveVatCommand, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"  ToolTip="Thêm VAT cho đơn hàng.">
+                                        <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource RedGGBrush}" Kind="Check"/>
+                                    </Button>
+                                    <Button Margin="5 0 0 0" Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" Height="30" Width="30" Padding="4" FontSize="10" Foreground="{StaticResource BlueGGBrush}" Background="White" BorderBrush="{StaticResource BlueGGBrush}" BorderThickness="1" Command="{Binding Path=DataContext.BtnViewOrder, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"  ToolTip="Xem chi tiết đơn hàng">
+                                        <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource BlueGGBrush}" Kind="Eye"/>
+                                    </Button>
+                                    <Button Margin="10 0 0 0" Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" Height="30" Width="30" Padding="4" FontSize="10" Foreground="{StaticResource GreenGGBrush}"  Background="White" BorderBrush="{StaticResource OrangeBrush}" BorderThickness="1" Command="{Binding Path=DataContext.BtnPrintOrder, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"  ToolTip="In hóa đơn đơn hàng">
+                                        <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource OrangeBrush}" Kind="Printer"/>
+                                    </Button>
+                                    <Button Margin="5 0 0 0" Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" Height="30" Width="30" Padding="4" FontSize="10" Foreground="{StaticResource MainColor}"  Background="White" BorderBrush="{StaticResource GreenGGBrush}" BorderThickness="1" Command="{Binding Path=DataContext.BtnHistoryActivityOrder, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"  ToolTip="Lịch sử gọi món">
+                                        <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="{DynamicResource GreenGGBrush}" Kind="History"/>
+                                    </Button>
+                                </DockPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+        <!-- Dat -->
+        <DockPanel Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="30">
+            <Button Margin="5" Command="{Binding PageDoubleLeft}" CommandParameter="{Binding ElementName=orderDoneUC}"
+                    IsEnabled="{Binding IsFirstEnabled}">
+                <materialDesign:PackIcon Kind="ChevronDoubleLeft"/>
+            </Button>
+            <Button Margin="5" Command="{Binding PageLeft}" CommandParameter="{Binding ElementName=orderDoneUC}"
+                    IsEnabled="{Binding IsPreviousEnabled}">
+                <materialDesign:PackIcon Kind="ChevronLeft" />
+            </Button>
+            <Label Content="{Binding PageContent}" Margin="5 0 5 0"></Label>
+            <Button Margin="5" Command="{Binding PageRight}" CommandParameter="{Binding ElementName=orderDoneUC}"
+                    IsEnabled="{Binding IsNextEnabled}">
+                <materialDesign:PackIcon Kind="ChevronRight" />
+            </Button>
+            <Button Margin="5" Command="{Binding PageDoubleRight}" CommandParameter="{Binding ElementName=orderDoneUC}"
+                    IsEnabled="{Binding IsLastEnabled}">
+                <materialDesign:PackIcon Kind="ChevronDoubleRight"/>
+            </Button>
+        </DockPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="TechresStandaloneSale.UserControlView.ReportRevenue.SearchDayUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TechresStandaloneSale.UserControlView.ReportRevenue"
+             xmlns:helps="clr-namespace:TechresStandaloneSale.Helpers"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel HorizontalAlignment="Center" VerticalAlignment="Top">
+        <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SEARCH_DAY}}" VerticalAlignment="Center" FontSize="{StaticResource fontSize}" Foreground="Black"></Label>
+        <Border Margin="5 0 0 0" Height="40" MinWidth="200" BorderBrush="{StaticResource MainLine}"  BorderThickness="0">
+            <StackPanel  Orientation="Horizontal">
+                <DatePicker SelectedDate="{Binding DateTimeInput, UpdateSourceTrigger=PropertyChanged}" Background="{StaticResource GrayBackgroundBrush}" Template="{StaticResource SpecialDatePicker}" Tag="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_REPORT_ADDITION_FEE_SEARCH_DATE_HINT}}" Margin="5 0 0 0" DisplayDateStart="{Binding DisplayDateStart}" VerticalContentAlignment="Center" FontSize="{StaticResource fontSize}" Foreground="Black" Width="200" Name="DayTimeText" Height="40">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectedDateChanged">
+                            <i:InvokeCommandAction Command="{Binding SelectionDayChangedCommand}" CommandParameter="{Binding ElementName=DayTimeText}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </DatePicker>
+            </StackPanel>
+        </Border>
+    </DockPanel>
+</UserControl>

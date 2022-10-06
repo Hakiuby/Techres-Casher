@@ -1,0 +1,93 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.ReturnBookingListEndWorkingSessionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views"
+        xmlns:helps="clr-namespace:TechresStandaloneSale.Helpers"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+         Icon="logo.ico"
+        WindowStartupLocation="CenterScreen"
+        BorderThickness="0.5"
+        BorderBrush="{StaticResource LineListViewBrush}"
+        Title="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RETURN_LIST_OF_DESCRIPTION_STATIONS}}"
+        Name="orderListEndWorkingSessionWindow"
+        Height="600" Width="1000">
+    <Window.Resources>
+        <Color x:Key="MainColor">#FBBC05</Color>
+        <BitmapImage x:Key="logo" UriSource="/TechresStandaloneSale;component/Resources/Images/white_logo.png" />
+    </Window.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Background="{StaticResource MainBrush}" >
+            <Label Margin="10 0 0 0"  FontSize="{StaticResource fontSizeLabelHeader}" Foreground="White" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RETURN_LIST_OF_DESCRIPTION_STATIONS}}" VerticalAlignment="Center"/>
+            <Button FontSize="20" Click="Button_Click" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" BorderBrush="{x:Null}" Foreground="#FF2387D6">
+                <materialDesign:PackIcon HorizontalAlignment="Center" VerticalContentAlignment="Center" Kind="Close" Foreground="White" Width="50" Height="40" />
+            </Button>
+        </DockPanel>
+        <DockPanel Name="DCP" Grid.Row="1" Background="{StaticResource GrayBackgroupBrush}">
+            <!-- Đạt -->
+            <DataGrid AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserAddRows="False" CanUserDeleteRows="True"  CanUserReorderColumns="False"
+                          Foreground="Black"  Grid.Column="1" Grid.Row="0" Name="lvBooking" ItemsSource="{Binding BookingItems}" Background="White"  ScrollViewer.CanContentScroll="True" 
+                              HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="0.5*">
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_BOOKING_CODE}}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{StaticResource fontSize}"></TextBlock>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding BookingCode}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{StaticResource fontSize}"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="1*">
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING_CUSTOMER}}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{StaticResource fontSize}"></TextBlock>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding CustomerName}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{StaticResource fontSize}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="1*">
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_BOOKING_TIME_SELECTION}}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{StaticResource fontSize}"></TextBlock>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding BookingTime}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{StaticResource fontSize}"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="1*">
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_BOOKING_PAYMENTS_OF_DEPOSITS}}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{StaticResource fontSize}"></TextBlock>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding AmountString}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{StaticResource fontSize}"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+        </DockPanel>
+    </Grid>
+</Window>

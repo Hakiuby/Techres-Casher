@@ -1,0 +1,452 @@
+﻿<UserControl x:Class="TechresStandaloneSale.UserControlView.OrderDetailUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:cb ="clr-namespace:TechresStandaloneSale.UserControlView.ComboBox"
+             xmlns:helps ="clr-namespace:TechresStandaloneSale.Helpers"
+             xmlns:l ="clr-namespace:TechresStandaloneSale.Loading"
+             mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800"
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+             TextElement.Foreground="Black"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="{StaticResource fontSize}"
+             Name="orderDetailUC"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{StaticResource Roboto-Regular}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedUserControlCommand}" 
+                                   CommandParameter="{Binding ElementName=orderDetailUC}"></i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.InputBindings>
+        <KeyBinding Key="F3" Command="{Binding CancelCustomerCommand}" CommandParameter="{Binding ElementName=orderDetailUC}"></KeyBinding>
+        <KeyBinding Key="F4" Command="{Binding SaveCustomerCommand}" CommandParameter="{Binding ElementName=orderDetailUC}"></KeyBinding>
+    </UserControl.InputBindings>
+    <UserControl.Resources>
+        <Style x:Key="detailStyle" TargetType="ToggleButton" BasedOn="{StaticResource MaterialDesignFlatToggleButton}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="#ffc107"/>
+        </Style>
+        <BitmapImage x:Key="ic_print" UriSource="../Resources/Images/print-bill.png"/>
+        <BitmapImage x:Key="ic_money" UriSource="../Resources/Images/request-payment.png"/>
+        <BitmapImage x:Key="ic_bill" UriSource="../Resources/Images/locked-bill.png"/>
+    </UserControl.Resources>
+    <l:AdornedControl x:Name="LoadingAdorner" IsAdornerVisible="{Binding Path=DialogHostOpen,UpdateSourceTrigger=PropertyChanged}">
+        <l:AdornedControl.AdornerContent>
+            <l:LoadingWait></l:LoadingWait>
+        </l:AdornedControl.AdornerContent>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                <ColumnDefinition Width="0.7*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0"  BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 5 0">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.4*"></RowDefinition>
+                        <RowDefinition Height="0.6*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <StackPanel>
+                            <DockPanel Height="50" VerticalAlignment="Center" Background="{StaticResource GrayBackgroupBrush}">
+                                <materialDesign:PackIcon Margin="10 0 10 0" Kind="CreditCard" Height="35" Width="35" VerticalAlignment="Center"></materialDesign:PackIcon>
+                                <TextBlock FontSize="{StaticResource fontSizeHeader}" VerticalAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_CUSTOMER}}"></TextBlock>
+                            </DockPanel>
+                            <!--<Grid Margin="5 10 0 5" Height="40">
+                                --><!--<Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="120"/>
+                                </Grid.ColumnDefinitions>-->
+                                <!--<cb:ComboBoxCustomer Grid.Column="0"></cb:ComboBoxCustomer>-->
+                                <!--<Button Command="{Binding AddCustomerCommand}" CommandParameter="{Binding ElementName=orderDetailUC}" Grid.Column="1"  Background="{StaticResource MainBrush}" FontSize="{StaticResource fontSize}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ADD}}"  Height="40" Style="{StaticResource BtnPaymentMethod}">
+                                </Button>--><!--
+                            </Grid>-->
+                            <StackPanel Margin="5 10 5 5">
+                                <DockPanel Height="40">
+                                    <Label Foreground="Black" VerticalContentAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING_NAME}}"></Label>
+                                    <Label Foreground="Black" VerticalContentAlignment="Center" Content="{Binding CustomerName}" HorizontalContentAlignment="Right"></Label>
+                                </DockPanel>
+                                <DockPanel Height="40">
+                                    <Label Foreground="Black" VerticalContentAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_CUSTOMER_PHONE_NUMBER}}"></Label>
+                                    <Label Foreground="Black" VerticalContentAlignment="Center" Content="{Binding CustomerPhone}" HorizontalContentAlignment="Right"></Label>
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Foreground="Black" VerticalContentAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_CUSTOMER_ADDRESS}}"></Label>
+                                    <TextBlock Foreground="Black" Margin="10 10 0 0" MinHeight="50" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Text="{Binding CustomerAddress}" HorizontalAlignment="Right"></TextBlock>
+                                </DockPanel>
+                            </StackPanel>
+                        </StackPanel>
+                        <DockPanel  Margin="5 10 5 5" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                            <Button ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_F3}}" Style="{StaticResource BoderButtonCancelCheck}" Visibility="{Binding CancelCustomerVisibility}" Command="{Binding CancelCustomerCommand}" CommandParameter="{Binding ElementName=orderDetailUC}"  BorderThickness="0" BorderBrush="{StaticResource LineListViewBrush}" Background="White" Height="Auto" Margin="5 0 0 0">
+                                <Button.InputBindings>
+                                    <KeyBinding Key="F3" Command="{Binding CancelCustomerCommand}" CommandParameter="{Binding ElementName=orderDetailUC}"></KeyBinding>
+                                </Button.InputBindings>
+                            </Button>
+                        </DockPanel>
+                    </Grid>
+
+                    <StackPanel Grid.Row="1">
+                        <DockPanel Height="50" VerticalAlignment="Center" Background="{StaticResource GrayBackgroupBrush}">
+                            <materialDesign:PackIcon Margin="10 0 10 0" Kind="Gift" Height="35" Width="35" VerticalAlignment="Center"></materialDesign:PackIcon>
+                            <TextBlock TextWrapping="WrapWithOverflow"  FontSize="{StaticResource fontSizeHeader}" VerticalAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_PROMOTIONS}}"></TextBlock>
+                        </DockPanel>
+                        <DockPanel>
+                            <ListBox ItemsSource="{Binding PromotionList}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsEnabled="{Binding IsEnabledPromotion}" IsChecked="{Binding IsApplyPromotion, Mode=TwoWay}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked">
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.CheckPromotionCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}"
+                                                  CommandParameter="{Binding}" ></i:InvokeCommandAction>
+                                                </i:EventTrigger>
+                                                <i:EventTrigger EventName="Unchecked">
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.UnCheckPromotionCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}"
+                                                  CommandParameter="{Binding}"></i:InvokeCommandAction>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding Name}" FontSize="{StaticResource fontSize}" Foreground="{StaticResource BlueGGBrush}"></TextBlock>
+                                                <TextBlock Text="{Binding Description}" FontSize="{StaticResource fontSizeMini}" FontFamily="{StaticResource Roboto-Italic}" Foreground="{StaticResource MainLine}" TextWrapping="WrapWithOverflow" FontStyle="Italic"></TextBlock>
+                                            </StackPanel>
+                                        </CheckBox>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </DockPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="0.5*"></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition Height="0.3*"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0" Background="{StaticResource GrayBackgroupBrush}">
+                    <Button Command="{Binding BackUC}"  CommandParameter="{Binding ElementName=orderDetailUC}" VerticalContentAlignment="Center" Background="{StaticResource GrayBackgroupBrush}" Height="35" Width="35"  HorizontalAlignment="Left" Margin="10 0 0 0" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="1">
+                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="ChevronDoubleLeft" Foreground="Black" Width="25" Height="25" />
+                    </Button>
+                    <TextBlock Margin="10 0 0 0" VerticalAlignment="Center" FontSize="{StaticResource fontSizeHeader}" Text="{Binding OrderCode}"></TextBlock>
+                    <TextBlock Margin="10 0 20 0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="{StaticResource fontSizeHeader}" Text="{Binding CreateTime}" ></TextBlock>
+                </DockPanel>
+                <DataGrid Margin="5" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="1" SelectionMode="Single" GridLinesVisibility="None" Background="White"  Name="GrData"  Grid.Row="1" ItemsSource="{Binding Bills}" 
+                AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="True" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="0.3*" IsReadOnly="True" x:Name="code">
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_FOOD_NAME}}"  TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="10 5 5 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" FontSize="{StaticResource fontSize}" HorizontalAlignment="Left" 
+                                                   Text="{Binding Name}" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" 
+                                                   Foreground="{Binding ColorStatus}"></TextBlock>
+                                        <ToggleButton Visibility="{Binding visibilityShowDetail}" Width="42" Height="42"  Click="ToggleButton_Click" 
+                                                      Grid.Column="1" Style="{StaticResource detailStyle}">
+                                            <ToggleButton.Content>
+                                                <materialDesign:PackIcon Kind="ArrowDownThick" />
+                                            </ToggleButton.Content>
+                                            <materialDesign:ToggleButtonAssist.OnContent>
+                                                <materialDesign:PackIcon Kind="ArrowUpThick" />
+                                            </materialDesign:ToggleButtonAssist.OnContent>
+                                        </ToggleButton>
+                                        <!--<TextBlock FontSize="11" HorizontalAlignment="Left" Foreground="Black" Margin="0 5 0 0" 
+                                                   FontFamily="{StaticResource Roboto-Italic}" 
+                                                   TextWrapping="Wrap" Text="{Binding Note}"/>
+                                        <TextBlock FontSize="9" HorizontalAlignment="Left" Foreground="{StaticResource GrayDarkBackgroundBrush}" 
+                                                   FontFamily="{StaticResource Roboto-Italic}" TextWrapping="Wrap" 
+                                                   Text="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor}, Path=DataContext.ConvertNameAdditionFood}"/>-->
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="0.2*" IsReadOnly="True"  x:Name="quantity">
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock  HorizontalAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_UNIT_AMOUNT}}" TextWrapping="Wrap" Foreground="Black"></TextBlock>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" Text="{Binding UnitPriceFormat}" Margin=" 10 0 0 0" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="0.1*" IsReadOnly="True" x:Name="totalQuantity">
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_QUANTITY}}" TextWrapping="WrapWithOverflow" Foreground="Black" />
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock  FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" Text="{Binding Quantity}"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="0.2*" IsReadOnly="True">
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock  HorizontalAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_TOTAL_AMOUNT}}" TextWrapping="WrapWithOverflow" Foreground="Black" />
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock FontSize="{StaticResource fontSize}" HorizontalAlignment="Center" Text="{Binding TotalPriceFormat}"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                        <TextBlock Visibility="{Binding PurchasePointVisibility}" FontSize="{StaticResource fontSizeMini}"  HorizontalAlignment="Center" Text="{Binding PurchasePointString}"  VerticalAlignment="Bottom" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="0.1*" IsReadOnly="True">
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock  HorizontalAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_LIST_STATUS}}" TextWrapping="WrapWithOverflow" Foreground="Black" />
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" Text="{Binding OrderDetailStatusString}"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="0.1*" IsReadOnly="True">
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock  HorizontalAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_LIST_FUNCTION}}" TextWrapping="WrapWithOverflow" Foreground="Black" />
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"  Width="30" Height="30" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VIEW_DETAIL_ORDER_FOOD_DETAIL}}" BorderBrush="{StaticResource BlueGGBrush}" Margin="10,0,0,0" Command="{Binding Path=DataContext.BtnViewOrderDetail, RelativeSource={RelativeSource FindAncestor,
+                                                    AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" Background="White">
+                                            <materialDesign:PackIcon Kind="Eye" Foreground="{StaticResource BlueGGBrush}" Background="White" Width="20" Height="20"/>
+                                        </Button>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                    <DataGrid.RowDetailsTemplate >
+                        <DataTemplate>
+                            <StackPanel>
+                                <ItemsControl  ItemsSource="{Binding OrderDetailAdditions,UpdateSourceTrigger=PropertyChanged}" Grid.IsSharedSizeScope="False" Margin="12 0 12 0">
+                                    <ItemsControl.ItemTemplate >
+                                        <DataTemplate>
+                                            <Border BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0 0">
+                                                <Grid Margin="0 0 0 0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="0.3*"/>
+                                                        <ColumnDefinition Width="0.2*"/>
+                                                        <ColumnDefinition Width="0.1*"/>
+                                                        <ColumnDefinition Width="0.2*"/>
+                                                        <ColumnDefinition Width="0.1*"/>
+                                                        <ColumnDefinition Width="0.1*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid Grid.Column="0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <!--<TextBlock Grid.Column="0" Margin="0 0 0 0" Visibility="{Binding QuantityVisibilityOnlyView}" InputScope="Number" InputMethod.InputScope="Number" FontFamily="{StaticResource Roboto-Italic}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="11" Foreground="Black" Background="White" Text="{Binding Quantity,UpdateSourceTrigger=PropertyChanged,StringFormat={}+{0}}"/>-->
+                                                        <TextBlock Grid.Column="1" Margin="0 0 0 0" Text="{Binding FoodNameAdditionPrintBill1}" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="11" FontFamily="{StaticResource Roboto-Italic}"/>
+                                                    </Grid>
+                                                    <TextBlock Grid.Column="1" FontSize="13"  HorizontalAlignment="Center" Text="{Binding UnitPriceFormat}" FontFamily="{StaticResource Roboto-Italic}" Margin=" 10 0 0 0" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                                    <TextBlock Grid.Column="2" FontSize="13"  HorizontalAlignment="Center" Text="{Binding Quantity}" FontFamily="{StaticResource Roboto-Italic}" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                                    <TextBlock Grid.Column="3" FontSize="13" HorizontalAlignment="Center" Text="{Binding TotalPriceFormat}" FontFamily="{StaticResource Roboto-Italic}" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="Black"></TextBlock>
+                                                </Grid>
+                                                
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <ItemsControl  ItemsSource="{Binding OrderDetailPromotion,UpdateSourceTrigger=PropertyChanged}" Grid.IsSharedSizeScope="False" Margin="12 0 12 0">
+                                    <ItemsControl.ItemTemplate >
+                                        <DataTemplate>
+                                            <Border BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0 0">
+                                                <Grid Margin="0 0 0 2">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="0.4*"/>
+                                                        <ColumnDefinition Width="0.3*"/>
+                                                        <ColumnDefinition Width="0.3*"/>
+                                                        <ColumnDefinition Width="130"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid Grid.Column="0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <TextBlock Grid.Column="0" Margin="0 0 0 0" Visibility="{Binding QuantityVisibilityOnlyView}" InputScope="Number" InputMethod.InputScope="Number" FontFamily="{StaticResource Roboto-Light}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="11" Foreground="Black" Background="White" Text="{Binding Quantity,UpdateSourceTrigger=PropertyChanged,StringFormat={}+{0}}"/>
+                                                        <TextBlock Grid.Column="1" Margin="0 0 0 0" Text="{Binding FoodNamePromotion}" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="11" FontFamily="{StaticResource Roboto-Light}"/>
+                                                    </Grid>
+                                                    <Border Grid.Column="1" CornerRadius="15" Visibility="{Binding QuantityVisibility}"
+                                                                    Width="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor}, Path=DataContext.widthButton}"
+                                                                    Height="23" Background="{StaticResource GrayBackgroupBrush}">
+                                                    </Border>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <ItemsControl ItemsSource="{Binding OrderDetailCombo,UpdateSourceTrigger=PropertyChanged}" Grid.IsSharedSizeScope="True" Margin="12 0 12 0">
+                                    <ItemsControl.ItemTemplate >
+                                        <DataTemplate >
+                                            <Border BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0 0.2">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="0.4*"/>
+                                                        <ColumnDefinition Width="0.3*"/>
+                                                        <ColumnDefinition Width="0.3*"/>
+                                                        <ColumnDefinition Width="130"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <DockPanel Grid.Column="0">
+                                                        <TextBlock Visibility="{Binding VisibilityCancel}" Foreground="#6fa9dc" Margin="10 0 0 0" Text="{Binding FoodNameCombo}" VerticalAlignment="Center" FontSize="11"/>
+                                                        <TextBlock Visibility="{Binding VisibilityCancel1}" Foreground="Red" Margin="10 0 0 0" Text="{Binding FoodNameCombo}" VerticalAlignment="Center" FontSize="15">
+                                                            <TextBlock.TextDecorations>
+                                                                <TextDecoration Location="Strikethrough">
+                                                                    <TextDecoration.Pen>
+                                                                        <Pen Brush="Red" />
+                                                                    </TextDecoration.Pen>
+                                                                </TextDecoration>
+                                                            </TextBlock.TextDecorations>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+                </DataGrid>
+
+                <Border BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="1" Background="{StaticResource GrayBackgroupBrush}" Grid.Row="2">
+                </Border>
+                <StackPanel Grid.Row="3">
+                    <Grid VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Bottom">
+                            <!--<DockPanel Height="30" Margin="0 10 0 0 ">
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" FontSize="{StaticResource fontSizeHeader}" FontWeight="Regular" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_POINT}}" ></TextBlock>
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 10 0" FontSize="{StaticResource fontSizeHeader}" FontWeight="Regular" Text="{Binding Point}" HorizontalAlignment="Right"></TextBlock>
+                            </DockPanel>-->
+                            <DockPanel Height="30" Margin="0 10 0 0 ">
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" FontSize="{StaticResource fontSizeHeader}" FontWeight="Regular" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VIEW_DETAIL_ORDER_POINT_ADDED}}" ></TextBlock>
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 10 0" FontSize="{StaticResource fontSizeHeader}" FontWeight="Regular" Text="{Binding AddPoint}" HorizontalAlignment="Right"></TextBlock>
+                            </DockPanel>
+                            <DockPanel Height="30" Margin="0 10 0 0 ">
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" FontSize="{StaticResource fontSizeHeader}" FontWeight="Regular" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VIEW_DETAIL_ORDER_ALO_POINT}}" ></TextBlock>
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 10 0" FontSize="{StaticResource fontSizeHeader}" FontWeight="Regular" Text="{Binding AloPoint}" HorizontalAlignment="Right"></TextBlock>
+                            </DockPanel>
+                            <DockPanel Height="30" Margin="0 10 0 0 ">
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" FontSize="{StaticResource fontSizeHeader}" FontWeight="Regular" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VIEW_DETAIL_ACCUMULATE_POINT}}" ></TextBlock>
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 10 0" FontSize="{StaticResource fontSizeHeader}" FontWeight="Regular" Text="{Binding AccumulatePoint}" HorizontalAlignment="Right"></TextBlock>
+                            </DockPanel>
+                            <DockPanel Height="30" Margin="0 10 0 0 ">
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" FontSize="{StaticResource fontSizeHeader}" FontWeight="Regular" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VIEW_DETAIL_ORDER_PROMOTION_POINT}}" ></TextBlock>
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 10 0" FontSize="{StaticResource fontSizeHeader}" FontWeight="Regular" Text="{Binding PromotionPoint}" HorizontalAlignment="Right"></TextBlock>
+                            </DockPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <DockPanel Height="30" Margin="0 10 0 0 ">
+                                <TextBlock VerticalAlignment="Center" Foreground="Black" Margin="10 0 0 0" FontSize="{StaticResource fontSizeHeader}" FontWeight="Bold" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_TOTAL_PRICE}}" ></TextBlock>
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 10 0" FontSize="{StaticResource fontSizeTwenty}" FontWeight="Bold" Text="{Binding Amount}" HorizontalAlignment="Right"></TextBlock>
+                            </DockPanel>
+                            <DockPanel VerticalAlignment="Center" Visibility="{Binding PromotionVisibility}" Height="40" Margin="0 10 0 0 ">
+                                <Button Command="{Binding CancelPromotionCommand}" CommandParameter="{Binding ElementName=orderDetailUC}" Height="30"  Margin="10 0 0 0" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0.5" Width="30">
+                                    <Button.Content>
+                                        <DockPanel>
+                                            <materialDesign:PackIcon Foreground="Red" Kind="Close"></materialDesign:PackIcon>
+                                        </DockPanel>
+                                    </Button.Content>
+                                </Button>
+                                <StackPanel>
+                                    <TextBlock Foreground="{StaticResource BlueGGBrush}" VerticalAlignment="Center" Margin="10 0 10 0" FontSize="{StaticResource fontSizeHeader}" Text="{Binding PromotionContent}"></TextBlock>
+                                    <TextBlock Margin="10 0 10 0" Text="{Binding PromotionNote}" Foreground="{StaticResource LineListViewBrush}" FontSize="{StaticResource fontSizeMini}" FontFamily="{StaticResource Roboto-Italic}"></TextBlock>
+                                </StackPanel>
+                                <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 0 10 0" Text="{Binding PromotionAmount}" FontSize="{StaticResource fontSizeHeader}"></TextBlock>
+                            </DockPanel>
+                            <DockPanel Height="30" Margin="0 10 0 0 " Visibility="{Binding VatVisibility}" >
+                                <CheckBox VerticalAlignment="Center" Margin="10 0 0 0" Command="{Binding CheckedVATCommand}" CommandParameter="{Binding ElementName=orderDetailUC}" FontSize="{StaticResource fontSize}" IsChecked="{Binding IsVat,UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VAT}}" >
+                                </CheckBox>
+                                <!--<TextBlock VerticalAlignment="Center" Margin="10 0 0 0" FontSize="{StaticResource fontSizeHeader}" Text="{Binding VAT}" HorizontalAlignment="Left"></TextBlock>-->
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 10 0" FontSize="{StaticResource fontSizeHeader}"  Text="{Binding VATAmount}" HorizontalAlignment="Right"></TextBlock>
+                            </DockPanel>
+                            <DockPanel Height="30" Margin="0 10 0 0 " Visibility="{Binding BookingVisibility}">
+                                <CheckBox VerticalAlignment="Center" Margin="10 0 0 0" Command="{Binding CheckedBookingCommand}" CommandParameter="{Binding ElementName=orderDetailUC}" FontSize="{StaticResource fontSize}" IsChecked="{Binding IsBooking,UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_END_WORKING_SESION_RETURN_DESPOSIT}}" >
+                                </CheckBox>
+                                <!--<TextBlock VerticalAlignment="Center" Margin="10 0 0 0" FontSize="{StaticResource fontSize}" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_END_WORKING_SESION_RETURN_DESPOSIT}}" HorizontalAlignment="Left"></TextBlock>-->
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 10 0" FontSize="{StaticResource fontSizeHeader}"  Text="{Binding ReturnDepositAmount}" HorizontalAlignment="Right"></TextBlock>
+                            </DockPanel>
+                            <DockPanel Height="30" Margin="0 10 0 0 ">
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" FontSize="{StaticResource fontSizeHeader}" FontWeight="Bold" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_DISCOUNT}}" ></TextBlock>
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 10 0" FontSize="{StaticResource fontSizeHeader}" FontWeight="Bold" Text="{Binding DiscountAmount}" HorizontalAlignment="Right"></TextBlock>
+                            </DockPanel>
+                            <DockPanel Height="30" Margin="0 10 0 0 ">
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" FontSize="{StaticResource fontSizeHeader}" FontWeight="Bold" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_TOTAL_AMOUNT}}" ></TextBlock>
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 10 0" FontSize="{StaticResource fontSizeTwenty}" FontWeight="Bold" Text="{Binding TotalAmount}" HorizontalAlignment="Right"></TextBlock>
+                            </DockPanel>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+                <Border Grid.Row="4" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 1" Background="White">
+                    <DockPanel VerticalAlignment="Center" Margin="0 0 0 0 ">
+                        <TextBlock VerticalAlignment="Center" Margin="10 0 0 0"  FontSize="{StaticResource fontSizeHeader}" FontWeight="Bold" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_AMOUNT_PAID}}" ></TextBlock>
+                        <TextBlock VerticalAlignment="Center" Margin="10 0 10 0" FontSize="{StaticResource fontSizeTwenty}" FontWeight="Bold" Text="{Binding PaidAmount}" HorizontalAlignment="Right"></TextBlock>
+                    </DockPanel>
+                </Border>
+                <DockPanel Grid.Row="5" Background="{StaticResource GrayBackgroupBrush}">
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                        <Button  BorderThickness="0" Height="40" BorderBrush="{StaticResource LineListViewBrush}" Command="{Binding BackUC}"  CommandParameter="{Binding ElementName=orderDetailUC}" Background="{StaticResource ColorForegroundBrush}"  DockPanel.Dock="Left" Margin="5 0 0 0">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon VerticalAlignment="Center" Foreground="White" Kind="ChevronLeft" Width="30" Height="30"/>
+                                <Label FontSize="{StaticResource fontSize}" FontWeight="DemiBold" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RETURN}}" Foreground="White" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                        <DockPanel HorizontalAlignment="Right">
+                            <Button Width="130" Visibility="{Binding PrintVisibility}" IsEnabled="{Binding IsEnablePrint,UpdateSourceTrigger=PropertyChanged}"  Command="{Binding PrintBillCommand}" CommandParameter="{Binding ElementName=orderDetailUC}"  BorderThickness="0" BorderBrush="{StaticResource LineListViewBrush}" Background="{StaticResource BlueBackgroundBrush}" Height="40" HorizontalAlignment="Right" Margin="10 0 0 0">
+                                <StackPanel Orientation="Horizontal">
+                                    <!--<Image Source="{StaticResource ic_print}" VerticalAlignment="Center" Width="20" Height="20"/>-->
+                                    <Label FontSize="14" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_PRINT_BILL_TITLE}}" Foreground="White"/>
+                                </StackPanel>
+                            </Button>
+                            <Button Width="130" Visibility="{Binding ConfirmPaymentVisibility}"  IsEnabled="{Binding IsEnableConfirmPayment,UpdateSourceTrigger=PropertyChanged}"  Command="{Binding PrintTempBill}" CommandParameter="{Binding ElementName=orderDetailUC}"  BorderThickness="0" BorderBrush="{StaticResource LineListViewBrush}" Background="{StaticResource MainBrush}" Height="40" HorizontalAlignment="Right" Margin="10 0 0 0">
+                                <StackPanel Orientation="Horizontal">
+                                    <!--<Image Source="{StaticResource ic_bill}" VerticalAlignment="Center" Width="20" Height="20"/>-->
+                                    <Label FontSize="14" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_COLLECT_COMPLETE_ORDER}}" Foreground="White"/>
+                                </StackPanel>
+                            </Button>
+                            <Button  Width="130" Visibility="{Binding PaymentVisibility}" IsEnabled="{Binding IsEnablePayment,UpdateSourceTrigger=PropertyChanged}"  Command="{Binding BillAndPayment}" CommandParameter="{Binding ElementName=orderDetailUC}"  BorderThickness="0" BorderBrush="{StaticResource LineListViewBrush}" Background="{StaticResource BlueBackgroundBrush}" Height="40"  Margin="10 0 0 0">
+                                <Button.Content>
+                                    <TextBlock  FontSize="14" TextAlignment="Center" TextWrapping="WrapWithOverflow" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_COLLECT_MONEY_AND_PRINT_ORDER}}" Foreground="White"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Width="130" Visibility="{Binding PaymentVisibility}"  IsEnabled="{Binding IsEnablePayment,UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" BorderBrush="{StaticResource LineListViewBrush}" Command="{Binding PaymentClick}" CommandParameter="{Binding ElementName=orderDetailUC}" Background="{StaticResource GreenBackgroundBrush}" Height="40"  MinWidth="120" Margin="10 0 5 0">
+                                <StackPanel Orientation="Horizontal">
+                                    <!--<Image Source="{StaticResource ic_money}" VerticalAlignment="Center" Width="20" Height="20"/>-->
+                                    <Label FontSize="14" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_COLLECT_MONEY}}" Foreground="White"/>
+                                </StackPanel>
+                            </Button>
+                        </DockPanel>
+                    </DockPanel>
+                </DockPanel>
+            </Grid>
+        </Grid>
+    </l:AdornedControl>
+</UserControl>
+ 

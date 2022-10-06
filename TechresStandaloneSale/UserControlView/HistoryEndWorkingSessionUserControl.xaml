@@ -1,0 +1,279 @@
+﻿<UserControl x:Class="TechresStandaloneSale.UserControlView.HistoryEndWorkingSessionUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:helps="clr-namespace:TechresStandaloneSale.Helpers"
+             xmlns:l ="clr-namespace:TechresStandaloneSale.Loading"
+             xmlns:local="clr-namespace:TechresStandaloneSale.UserControlView"
+             mc:Ignorable="d" 
+             Loaded="UserControl_Loaded"
+             Name="historyEndWorkingEndSessionUC"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Color x:Key="mainColor">#FF09A2CF</Color>
+        <Color x:Key="RowColor">#b3e6ff</Color>
+        <SolidColorBrush x:Key="DtColor" Color="{DynamicResource RowColor}"/>
+        <SolidColorBrush x:Key="MainColor" Color="{DynamicResource mainColor}" />
+    </UserControl.Resources>
+    <l:AdornedControl x:Name="LoadingAdorner" IsAdornerVisible="{Binding Path=DialogHostOpen,UpdateSourceTrigger=PropertyChanged}">
+        <l:AdornedControl.AdornerContent>
+            <l:LoadingWait></l:LoadingWait>
+        </l:AdornedControl.AdornerContent>
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="130"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Style="{StaticResource LabelHeader}" Content="{Binding TitleContent}" ></Label>
+                <!--<Button Grid.Column="1" Margin="0 0 10 0" IsEnabled="False" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_END_WORKING_SESION_VIEW_TOOTIP}}" Style="{StaticResource btnExport}" Command="{Binding ExportCommand}"  CommandParameter="{Binding ElementName=historyEndWorkingEndSessionUC}">
+                </Button>-->
+            </Grid>
+            <Border Height="50" Grid.Row="1" VerticalAlignment="Center"  BorderBrush="{StaticResource GrayBackgroupBrush}" BorderThickness="0 1 0 1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Visibility="{Binding BrandVisibility}" VerticalAlignment="Center" Grid.Column="0"  Margin="5,0,0,0">
+                        <Label  VerticalContentAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_BRAND}}"  FontSize="{StaticResource fontSize}" ></Label>
+                        <ComboBox Name="brandId" Margin="0" Height="40" HorizontalContentAlignment="Center" Background="{StaticResource GrayBackgroupBrush}"
+                          SelectedItem="{Binding BrandItem}"
+                          Padding="5,0,0,0" 
+                          VerticalContentAlignment="Center"  
+                            BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0"  ItemsSource="{Binding BrandList}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding SelectionChangedBrandCommand}" CommandParameter="{Binding ElementName=historyEndWorkingEndSessionUC}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Padding="3" Text="{Binding Name}"></TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </DockPanel>
+                    <DockPanel Visibility="{Binding BranchVisibility}" VerticalAlignment="Center" Grid.Column="1"  Margin="5,0,0,0">
+                        <Label  VerticalContentAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_BRANCH}}"  FontSize="{StaticResource fontSize}" ></Label>
+                        <ComboBox  Name="branchId" Margin="0" Height="40" HorizontalContentAlignment="Center"
+                          SelectedItem="{Binding BranchItem}"
+                          Padding="5,0,0,0" 
+                          VerticalContentAlignment="Center"  Background="{StaticResource GrayBackgroundBrush}"
+                            BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0" ItemsSource="{Binding BranchList}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding ElementName=historyEndWorkingEndSessionUC}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Padding="3" Text="{Binding Name}"></TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </DockPanel>
+                    <DockPanel Grid.Column="2"  VerticalAlignment="Center" Margin="0,0,0,0" >
+                        <DockPanel >
+                            <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_FROM_DATE_FILTER}}" FontSize="14" HorizontalAlignment="Right"  VerticalAlignment="Center" Foreground="Black"></Label>
+                            <DatePicker Template ="{StaticResource SpecialDatePicker}" Height="40" MouseLeftButtonUp="FromDate_MouseLeftButtonUp" Background="{StaticResource GrayBackgroundBrush}"  BorderBrush="{StaticResource LineListViewBrush}" MinWidth="150" BorderThickness="0"   Padding="5 0 5 0"  SelectedDate="{Binding DateTimeFromInput}" Name="FromDate" Margin="10 0 10 0" VerticalAlignment="Center" FontSize="14" materialDesign:HintAssist.Hint="Chọn ngày cần xem" VerticalContentAlignment="Center">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectedDateChanged">
+                                        <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding ElementName=historyEndWorkingEndSessionUC}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </DatePicker>
+                        </DockPanel>
+                    </DockPanel>
+                    <DockPanel Grid.Column="3" x:Name="todate" VerticalAlignment="Center" Margin="5,0,5,0">
+                        <DockPanel >
+                            <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_TO_DATE_FILTER}}" FontSize="14" HorizontalAlignment="Right"  VerticalAlignment="Center" Foreground="Black"></Label>
+                            <DatePicker Template ="{StaticResource SpecialDatePicker}" MouseLeftButtonUp="ToDate_MouseLeftButtonUp"   BorderBrush="{StaticResource LineListViewBrush}" MinWidth="150" BorderThickness="0" Background="{StaticResource GrayBackgroundBrush}"  Padding="5 0 5 0"  SelectedDate="{Binding DateTimeToInput}" Name="ToDate" Height="40" Margin="10 0 10 0" VerticalAlignment="Center" FontSize="14" VerticalContentAlignment="Center">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectedDateChanged">
+                                        <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding ElementName=historyEndWorkingEndSessionUC}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </DatePicker>
+                        </DockPanel>
+                    </DockPanel>
+                    <DockPanel Grid.Column="4" MaxWidth="600" VerticalAlignment="Center" Margin="5,0,10,0" >
+                        <Label Content="Tìm kiếm:" FontSize="14" Foreground="Black" VerticalContentAlignment="Center"></Label>
+                        <TextBox Style="{StaticResource SearchTextBox}" Name="txtFilter" Height="40" Background="{StaticResource GrayBackgroundBrush}" TextWrapping="WrapWithOverflow" TextChanged="txtFilter_TextChanged" VerticalContentAlignment="Center" BorderBrush="{StaticResource LineListViewBrush}" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_TO_SEARCH_END_WORKING_SESSION}}" BorderThickness="0"></TextBox>
+                    </DockPanel>
+                </Grid>
+            </Border>
+            <DockPanel Name="DCP" Grid.Row="2" >
+                <DockPanel  Margin="5">
+                    <DataGrid SelectionMode="Single" GridLinesVisibility="None" Background="White"  Name="historyEndWorkingSession"  Grid.Row="1" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5" ItemsSource="{Binding HistoryEndWorkingSessionLists}" 
+                            AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="True" >
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn  Width="0.1*" IsReadOnly="True">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_END_WORKING_SESION_LIST_CODE}}" TextWrapping="WrapWithOverflow" TextAlignment="Center"></TextBlock>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate >
+                                    <DataTemplate>
+                                        <TextBlock FontSize="{StaticResource fontSize}" HorizontalAlignment="Center" Text="{Binding Code}" VerticalAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn  Width="0.1*" IsReadOnly="True">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_END_WORKING_SESION_LIST_EMPLOYEE_NAME_OPEN}}" TextAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate >
+                                    <DataTemplate>
+                                        <TextBlock FontSize="{StaticResource fontSize}" HorizontalAlignment="Center" Text="{Binding OpenEmployeeName}" VerticalAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="0.1*" IsReadOnly="True">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock  HorizontalAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_END_WORKING_SESION_LIST_EMPLOYEE_NAME_CLOSE}}" TextAlignment="Center" TextWrapping="Wrap"></TextBlock>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DockPanel>
+                                            <TextBlock   FontSize="{StaticResource fontSize}"  HorizontalAlignment="Left" Text="{Binding CloseEmployeeName}" Margin=" 10 0 0 0" VerticalAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="0.1*" IsReadOnly="True">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_END_WORKING_SESION_LIST_TIME_OPEN}}" TextWrapping="WrapWithOverflow" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock  FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" Text="{Binding OpenTime}"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="0.1*" IsReadOnly="True">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock  HorizontalAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_END_WORKING_SESION_LIST_TIME_CLOSE}}" TextWrapping="WrapWithOverflow" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock  FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" Text="{Binding CloseTime}"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="0.1*" IsReadOnly="True" x:Name="totalQuantity">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_END_WORKING_SESION_LIST_MONEY_OPEN}}" TextWrapping="WrapWithOverflow" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock  FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" Text="{Binding BeforeCashString}"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="0.1*" IsReadOnly="True">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock  HorizontalAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_END_WORKING_SESION_TOTAL_MONEY_REVENUE}}" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock  FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" Text="{Binding InAmountString}"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="0.1*" IsReadOnly="True">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock  HorizontalAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_END_WORKING_SESION_TOTAL_MONEY_EXPENDITURE}}" TextWrapping="WrapWithOverflow" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock  FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" Text="{Binding OutAmountString}"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+                                    </DataTemplate> 
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="0.12*" IsReadOnly="True">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock  HorizontalAlignment="Center" TextAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_END_WORKING_SESION_LIST_MONEY_SYSTEM}}" TextWrapping="WrapWithOverflow" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center"  FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" Text="{Binding CashAmountString}"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="0.12*" IsReadOnly="True">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock  HorizontalAlignment="Center" TextAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_END_WORKING_SESION_LIST_MONEY_SYSTEM_RECEIVE}}" TextWrapping="WrapWithOverflow" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center"  FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" Text="{Binding CashAmountInShiftString}"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="0.12*" IsReadOnly="True">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock TextAlignment="Center" HorizontalAlignment="Center" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_END_WORKING_SESION_LIST_MONEY_IN_SAFE}}" TextWrapping="WrapWithOverflow" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" Text="{Binding RealAmountString}"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="0.12*" IsReadOnly="True">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock  HorizontalAlignment="Center" TextAlignment="Center"  Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_END_WORKING_SESION_LIST_MONEY_IN_SAFE_DIFFERENCE}}" TextWrapping="WrapWithOverflow" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" Text="{Binding DifferenceAmountString}"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="120" IsReadOnly="True">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock  HorizontalAlignment="Center" Text="XEM CHI TIẾT " TextWrapping="WrapWithOverflow" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button  Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" Height="30" Width="30" Padding="4" FontSize="10" Foreground="White" Background="White" BorderBrush="{StaticResource GreenGGBrush}" BorderThickness="1" Command="{Binding Path=DataContext.ViewCommand, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_END_WORKING_SESION_VIEW_TOOTIP}}">
+                                            <materialDesign:PackIcon VerticalAlignment="Center" Foreground="{StaticResource GreenGGBrush}" Kind="Eye"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </DockPanel>
+            <DockPanel Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25">
+                <Button Margin="5" CommandParameter="{Binding ElementName=historyEndWorkingEndSessionUC}" Command="{Binding PageDoubleLeft}">
+                    <materialDesign:PackIcon Kind="ChevronDoubleLeft"/> 
+                </Button>
+                <Button Margin="5" CommandParameter="{Binding ElementName=historyEndWorkingEndSessionUC}" Command="{Binding PageLeft}">
+                    <materialDesign:PackIcon Kind="ChevronLeft"/>
+                </Button>
+                <Label Content="{Binding PageContent}" Margin="5 0 5 0"></Label>
+                <Button Margin="5" Command="{Binding PageRight}" CommandParameter="{Binding ElementName=historyEndWorkingEndSessionUC}">
+                    <materialDesign:PackIcon Kind="ChevronRight"/>
+                </Button>
+                <Button Margin="5" CommandParameter="{Binding ElementName=historyEndWorkingEndSessionUC}" Command="{Binding PageDoubleRight}">
+                    <materialDesign:PackIcon Kind="ChevronDoubleRight"/>
+                </Button>
+            </DockPanel>
+        </Grid>
+    </l:AdornedControl>
+</UserControl>

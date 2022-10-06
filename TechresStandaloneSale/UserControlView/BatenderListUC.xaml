@@ -1,0 +1,275 @@
+﻿<UserControl x:Class="TechresStandaloneSale.UserControlView.BatenderListUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TechresStandaloneSale.UserControlView"
+             xmlns:helps="clr-namespace:TechresStandaloneSale.Helpers"
+            xmlns:l ="clr-namespace:TechresStandaloneSale.Loading"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BitmapImage x:Key="return-food-backgound" UriSource="../Resources/Images/return-food-backgound.png"/>
+        <BitmapImage x:Key="cooking-backgound" UriSource="../Resources/Images/cooking-backgound.png"/>
+        <BitmapImage x:Key="H-Line" UriSource="../Resources/Images/H-Line.png"/>
+
+    </UserControl.Resources>
+    <Grid  Name="ListViewContent">
+            <Grid.RowDefinitions>
+                <!--<RowDefinition Height="auto"></RowDefinition>-->
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--<DockPanel Margin="0 5 0 5" Grid.Row="0" Background="White" >
+                <ItemsControl  ItemsSource="{Binding ItemsCategory}" HorizontalAlignment="Right" Margin="5 5 5 5">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Background="{Binding ColorBackground}" Width="auto" Padding="5 0 5 0" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0.75" HorizontalContentAlignment="Center" Height="35" Foreground="{Binding ColorForeground}"  Command="{Binding Path=DataContext.BtnCategories, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}">
+                                <Button.Content>
+                                    <TextBlock Text="{Binding Name}" TextWrapping="WrapWithOverflow" FontSize="{StaticResource fontSizeMini}"></TextBlock>
+                                </Button.Content>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>-->
+
+            <!--</DockPanel>-->
+            <DockPanel Grid.Row="1" Name="DCP" Background="White">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Grid.Column="0" LastChildFill="True">
+                    <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5 5 5 0" Width="230" DockPanel.Dock="Top" Height="65"  Content="{Binding WaitingContent}" HorizontalAlignment="Center" Foreground="White"
+                                FontSize="{StaticResource fontSizeFifteen}" VerticalAlignment="Top" Padding="0 0 0 10" FontWeight="Bold" FontFamily="roboto">
+                        <Label.Background>
+                            <ImageBrush ImageSource="{StaticResource cooking-backgound}"></ImageBrush>
+                        </Label.Background>
+                    </Label>
+                    <DataGrid SelectionMode="Single" GridLinesVisibility="None" Background="White"  Name="lvFoodPending"  Grid.Row="1" BorderBrush="{StaticResource MainLine}" BorderThickness="0" ItemsSource="{Binding ItemsPendings, UpdateSourceTrigger=PropertyChanged}" 
+                            AutoGenerateColumns="False" RowDetailsVisibilityMode="Visible"  CanUserAddRows="False" CanUserDeleteRows="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="True" >
+                            
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn  Width="0.5*" IsReadOnly="True" x:Name="code">
+                                    <DataGridTemplateColumn.Header>
+                                        <TextBlock TextWrapping="WrapWithOverflow" FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}"  Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_BATENDER_LIST_NAME}}" Foreground="{StaticResource ColorForegroundBrush}" />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate >
+                                        <DataTemplate>
+                                        <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}" TextWrapping="WrapWithOverflow" Margin="5 0 0 0" VerticalAlignment="Center" Text="{Binding FoodNameString}" Foreground="Black" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="0.45*" IsReadOnly="True"  x:Name="name">
+                                    <DataGridTemplateColumn.Header>
+                                    <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}"  TextWrapping="WrapWithOverflow" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_TABLE}}" Foreground="{StaticResource ColorForegroundBrush}" />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                        <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" Text="{Binding TableName}" VerticalAlignment="Center" Foreground="Black" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="0.45*" IsReadOnly="True">
+                                    <DataGridTemplateColumn.Header>
+                                    <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}"  TextWrapping="WrapWithOverflow" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_QUANTITY}}" Foreground="{StaticResource ColorForegroundBrush}" />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                        <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}"  TextWrapping="WrapWithOverflow" Text="{Binding Quantity}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="0.55*" IsReadOnly="True">
+                                    <DataGridTemplateColumn.Header>
+                                    <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}"  TextWrapping="WrapWithOverflow" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_BATENDER_LIST_NOTE}}" Foreground="{StaticResource ColorForegroundBrush}" />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                        <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}"  TextWrapping="WrapWithOverflow" Text="{Binding Note}"  VerticalAlignment="Center" Foreground="Red" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="0.5*" IsReadOnly="True">
+                                    <DataGridTemplateColumn.Header>
+                                    <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}"  TextWrapping="WrapWithOverflow" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_EMPLOYEES_NAME}}" Foreground="{StaticResource ColorForegroundBrush}" />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                        <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}"  TextWrapping="WrapWithOverflow" Text="{Binding EmployeeName}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"  />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="0.35*" IsReadOnly="True">
+                                    <DataGridTemplateColumn.Header>
+                                    <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}"  TextWrapping="WrapWithOverflow" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_BATENDER_LIST_TIME}}" Foreground="{StaticResource ColorForegroundBrush}"  />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                        <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}"  TextWrapping="WrapWithOverflow" Text="{Binding CreatedAtHour}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="140" IsReadOnly="True">
+                                    <DataGridTemplateColumn.Header>
+                                    <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}"  TextWrapping="WrapWithOverflow" Text="" Foreground="{StaticResource ColorForegroundBrush}"  />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <DockPanel>
+                                            <Button Style="{StaticResource BtnItemOrderDetail}" Padding="5 0 5 0" Margin="5 0 5 0" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0" Height="25"  Width="60"  FontSize="12" Foreground="White"  Background="{StaticResource MainBrush}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding Path=DataContext.WaitingChangeStatus, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"  Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_COOKING_START1}}" Visibility="{Binding BtnVisibility}"/>
+                                            <Button Style="{StaticResource BtnItemOrderDetail}" HorizontalAlignment="Right" Margin="0 0 5 0" Padding="5 0 5 0" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0" Height="25" Width="60" FontSize="12"  Foreground="White" Background="{StaticResource RedBackgroundeBrush}" Command="{Binding Path=DataContext.WaitingOutService, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"  Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_BAR_OUTSTOCK}}" Visibility="{Binding BtnCancelVisibility}" />
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                            <DataGrid.RowDetailsTemplate>
+                                <DataTemplate>
+                                    <ItemsControl
+                                    ItemsSource="{Binding OrderDetailAdditions}"
+                                    Grid.IsSharedSizeScope="True"
+                                    Margin="12 0 12 0">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <DockPanel>
+                                                    <TextBlock Margin="10 0 0 0" Text="{Binding FoodNameValue}" FontSize="{StaticResource fontSizeMini}" FontFamily="{StaticResource Roboto-Italic}"></TextBlock>
+                                                </DockPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </DataGrid.RowDetailsTemplate>
+                        </DataGrid>
+                    </DockPanel>
+
+                    <GridSplitter Width="1" HorizontalContentAlignment="Left">
+                    <GridSplitter.Background>
+                        <ImageBrush ImageSource="{StaticResource H-Line}"></ImageBrush>
+                    </GridSplitter.Background>
+                    </GridSplitter>
+                    <DockPanel Grid.Column="1">
+                    <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5 5 5 0" Width="230" DockPanel.Dock="Top" Height="65"  Content="{Binding WaitingConfirmContent}"  HorizontalAlignment="Center" Foreground="White"
+                                FontSize="{StaticResource fontSizeFifteen}" VerticalAlignment="Top" FontWeight="Bold" FontFamily="roboto" Padding="0 0 0 10" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="{StaticResource return-food-backgound}"></ImageBrush>
+                        </Label.Background>
+                    </Label>
+                   
+                        <DataGrid   SelectionMode="Single" GridLinesVisibility="None" Background="White"  Name="lvFoodWaitingConfirm"  Grid.Row="1" BorderBrush="{StaticResource MainLine}" BorderThickness="0.5" ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" 
+                            AutoGenerateColumns="False" CanUserAddRows="False" RowDetailsVisibilityMode="Visible" CanUserDeleteRows="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="True" >
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn  Width="0.5*" IsReadOnly="True">
+                                    <DataGridTemplateColumn.Header>
+                                    <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}" TextWrapping="WrapWithOverflow" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_BATENDER_LIST_NAME}}" Foreground="{StaticResource ColorForegroundBrush}" />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate >
+                                        <DataTemplate>
+                                        <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}" TextWrapping="WrapWithOverflow" Margin="5 0 0 0" VerticalAlignment="Center" Text="{Binding FoodNameString}" Foreground="Black" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="0.25*" IsReadOnly="True" >
+                                    <DataGridTemplateColumn.Header>
+                                    <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}" TextWrapping="WrapWithOverflow" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_TABLE}}" Foreground="{StaticResource ColorForegroundBrush}" />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                        <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" Text="{Binding TableName}" VerticalAlignment="Center" Foreground="Black" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="0.45*" IsReadOnly="True">
+                                    <DataGridTemplateColumn.Header>
+                                    <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}" TextWrapping="WrapWithOverflow" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_QUANTITY}}" Foreground="{StaticResource ColorForegroundBrush}" />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                        <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}" TextWrapping="WrapWithOverflow" Text="{Binding CurrentQuantity}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="0.45*" IsReadOnly="True">
+                                    <DataGridTemplateColumn.Header>
+                                    <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}" TextWrapping="WrapWithOverflow" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_RETURN_QUANTITY}}" Foreground="{StaticResource ColorForegroundBrush}" />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                        <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}" TextWrapping="WrapWithOverflow" Text="{Binding RefundQuantityDrink}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="0.55*" IsReadOnly="True">
+                                    <DataGridTemplateColumn.Header>
+                                    <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}" TextWrapping="WrapWithOverflow" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_BATENDER_LIST_NOTE}}" Foreground="{StaticResource ColorForegroundBrush}" />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                        <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}" TextWrapping="WrapWithOverflow" Text="{Binding Note}"  VerticalAlignment="Center" Foreground="Red" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="0.5*" IsReadOnly="True">
+                                    <DataGridTemplateColumn.Header>
+                                    <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}" TextWrapping="WrapWithOverflow" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_EMPLOYEES_NAME}}" Foreground="{StaticResource ColorForegroundBrush}" />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                        <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}" TextWrapping="WrapWithOverflow" Text="{Binding EmployeeName}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"  />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="0.35*" IsReadOnly="True">
+                                    <DataGridTemplateColumn.Header>
+                                    <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}" TextWrapping="WrapWithOverflow" Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_BAR_TIME_IN}}" Foreground="{StaticResource ColorForegroundBrush}"  />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                        <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor},Path=DataContext.fontsize}" TextWrapping="WrapWithOverflow" Text="{Binding CreateAtCheckOrderDetailStatus}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="140" IsReadOnly="True">
+                                    <DataGridTemplateColumn.Header>
+                                    <TextBlock TextWrapping="WrapWithOverflow" Text="" Foreground="{StaticResource ColorForegroundBrush}"  />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <DockPanel>
+                                            <Button Style="{StaticResource BtnItemOrderDetail}" HorizontalAlignment="Right" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0" Width="60" Height="25"  Padding="5 0 5 0" FontSize="10" Foreground="White" Background="{StaticResource MainBrush}" Command="{Binding Path=DataContext.CookingFinish, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_YES_CONTENT}}" Visibility="{Binding BtnVisibility}"/>
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                            <DataGrid.RowDetailsTemplate>
+                                <DataTemplate>
+                                    <ItemsControl
+                                    ItemsSource="{Binding OrderDetailAdditions}"
+                                    Grid.IsSharedSizeScope="True"
+                                    Margin="12 0 12 0">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <DockPanel>
+                                                    <TextBlock Margin="10 0 0 0" Text="{Binding FoodNameValue}" FontSize="{StaticResource fontSizeMini}" FontFamily="{StaticResource Roboto-Italic}"></TextBlock>
+                                                </DockPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </DataGrid.RowDetailsTemplate>
+                        </DataGrid>
+                    </DockPanel>
+                </Grid>
+            </DockPanel>
+        </Grid>
+</UserControl>

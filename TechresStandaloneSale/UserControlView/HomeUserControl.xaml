@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="TechresStandaloneSale.UserControlView.HomeUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views"
+        xmlns:helps ="clr-namespace:TechresStandaloneSale.Helpers"
+        xmlns:l ="clr-namespace:TechresStandaloneSale.Loading"
+        mc:Ignorable="d"
+     Height="Auto" Width="Auto"
+     HorizontalAlignment="Stretch"
+     TextElement.Foreground="Black"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="{StaticResource fontSize}"
+     Name="homeUC"
+     DataContext="{StaticResource homeVM}"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Loaded="MainWindow_Loaded"
+             Background="{StaticResource GrayLBrush}"
+     FontFamily="{StaticResource Roboto-Regular}">
+    <UserControl.Resources>
+        <BitmapImage x:Key="icon-refresh" UriSource="../Resources/Images/icon-refresh.png"/>
+    </UserControl.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedUCCommand}" 
+                                   CommandParameter="{Binding ElementName=homeUC}"></i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <l:AdornedControl x:Name="LoadingAdorner" IsAdornerVisible="{Binding DialogHostOpen}">
+        <l:AdornedControl.AdornerContent>
+            <l:LoadingWait></l:LoadingWait>
+        </l:AdornedControl.AdornerContent>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid  Grid.Row="0" Background="{StaticResource GrayBackgroundBrush}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button Margin="20 0 0 0" Width="150" HorizontalContentAlignment="Center" Click="Button_Click" Height="40" Grid.Column="0" CommandParameter="{Binding ElementName=homeUC}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_PENDING}}"  Command="{Binding BtnOpening}"
+                             FontSize="{StaticResource fontSize}" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center"  BorderThickness="0"  Foreground="White"  Background="{Binding PendingBackground}">
+                </Button>
+
+                <Button Click="Button_Click_3"  Width="150" Padding="20 0 20 0" Height="40" Grid.Column="1" CommandParameter="{Binding ElementName=homeUC}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_ONLINE}}"  Command="{Binding BtnOnline}"
+                             FontSize="{StaticResource fontSize}" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" BorderThickness="0"  Foreground="White"  Background="{Binding OnlineBackground}">
+                </Button>
+                <Button Click="Button_Click_4" Width="150"  Padding="20 0 20 0" Height="40" Grid.Column="2" CommandParameter="{Binding ElementName=homeUC}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_BOOKING}}"  Command="{Binding BtnBooking}"
+                             FontSize="{StaticResource fontSize}" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" BorderThickness="0 0.5 0.5 0.5"  Foreground="White" BorderBrush="{StaticResource LineListViewBrush}"  Background="{Binding BookingBackground}">
+                </Button>
+                <Button  Click="Button_Click_1"  Width="150" Padding="20 0 20 0" Grid.Column="3" CommandParameter="{Binding ElementName=homeUC}" Command="{Binding BtnDone}"  Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_DONE}}" FontSize="{StaticResource fontSize}" 
+                             HorizontalAlignment="Left" VerticalAlignment="Center"  Height="40" BorderThickness="0" Foreground="White"  Background="{Binding HistoryBackground}">
+                </Button>
+                <TextBox  Padding="5 0 0 0" Style="{StaticResource SearchTextBox}"
+                          Margin="20 0 20 0" Visibility="{Binding TextBoxSearch}"
+                         Name="SearchText" 
+                         KeyUp="SearchText_KeyUp"
+                         Background="{StaticResource GrayDarkBackgroundBrush}" 
+                         FontSize="{StaticResource fontSize}"
+                         Grid.Column="4"
+                         Tag="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SEARCH_ORDER_TAG}}" 
+                         VerticalAlignment="Center" 
+                         VerticalContentAlignment="Center"
+                         Foreground="Black"
+                         Text="{Binding searchText}"
+                         BorderThickness="0.5"
+                         BorderBrush="{StaticResource LineListViewBrush}"
+                         Height="40" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <i:InvokeCommandAction Command="{Binding TextChangeCommand}" CommandParameter="{Binding ElementName=homeUC}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+                <DatePicker Height="40" Margin="0 0 5 0" Visibility="{Binding DateTimeVisibility}" SelectedDate="{Binding DatetimeInput}" DisplayDateEnd="{Binding DatetimeDisplayDateEnd}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="5" Template="{StaticResource SpecialDatePicker}"  Padding="5 0 0 0"  FontSize="{StaticResource fontSize}" MinWidth="250" 
+                                VerticalContentAlignment="Center" Background="{StaticResource GrayDarkBackgroundBrush}" Foreground="{StaticResource ColorForegroundBrush}" Name="DayTimeText">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="CalendarClosed">
+                            <i:InvokeCommandAction Command="{Binding SelectionDateChangedCommand}" CommandParameter="{Binding ElementName=homeUC}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </DatePicker>
+                <!--<Button Grid.Column="4" Margin="5 0 0 0 " Click="Button_Click_2" BorderThickness="1" Foreground="{Binding ListForeground}" BorderBrush="{Binding ListBorderBrush}"  Background="{Binding ListBackground}"
+                        MinWidth="150" Width="Auto" Height="35" Command="{Binding BtnList}"  CommandParameter="{Binding ElementName=homeUC}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <materialDesign:PackIcon  VerticalAlignment="Center"  Kind="ViewList" Foreground="Black" />
+                            <Label HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST}}"/>
+                        </StackPanel>
+                    </Button>-->
+                <Button Style="{StaticResource BtnRefresh}" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_REFRESH_DATA}}" Visibility="{Binding RefreshVisibility}" Command="{Binding RefreshCommand}" BorderThickness="0 0.5 0.5 0.5" Grid.Column="5" Margin="0 0 20 0 " Name="refresh"
+                         BorderBrush="{StaticResource LineListViewBrush}" Background="{StaticResource GrayLBrush}" Height="40" Width="40" CommandParameter="{Binding ElementName=refresh}">
+                    <Image Source="{StaticResource icon-refresh}" Height="40" Width="40"></Image>
+                </Button>
+            </Grid>
+            <DockPanel Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                <ContentControl Name="ContentOrder" />
+            </DockPanel>
+        </Grid>
+    </l:AdornedControl>
+</UserControl>

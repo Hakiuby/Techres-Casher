@@ -1,0 +1,2301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DEE04EAD-6189-4A35-9AB5-14B78FC7EDCD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TechresStandaloneSale</RootNamespace>
+    <AssemblyName>TechresStandaloneSale</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>E:\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <TargetCulture>en-US</TargetCulture>
+    <PublisherName>TechresOrder</PublisherName>
+    <MinimumRequiredVersion>1.1.1.1</MinimumRequiredVersion>
+    <TrustUrlParameters>true</TrustUrlParameters>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>2.1.1.2</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <IntermediateOutputPath>C:\Users\ADMINI~1\AppData\Local\Temp\vsAB48.tmp\Debug\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <IntermediateOutputPath>C:\Users\ADMINI~1\AppData\Local\Temp\vsAB48.tmp\Release\</IntermediateOutputPath>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>TechresStandaloneSale.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>3ADC59705D9D6E28B793230E1D25180A6E4528A1</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>TechresStandaloneSale_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <IntermediateOutputPath>C:\Users\ADMINI~1\AppData\Local\Temp\vsAB48.tmp\x86\Debug\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <IntermediateOutputPath>C:\Users\ADMINI~1\AppData\Local\Temp\vsAB48.tmp\x86\Release\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.Core.3.2.0\lib\net45\Caliburn.Micro.dll</HintPath>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Platform, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Platform.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net46\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Mvvm, Version=19.2.0.0, Culture=neutral, PublicKeyToken=382ad28f6ae31f30, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpressMvvm.19.2.3\lib\net452\DevExpress.Mvvm.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Mvvm.UI, Version=19.2.0.0, Culture=neutral, PublicKeyToken=382ad28f6ae31f30, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpressMvvm.19.2.3\lib\net452\DevExpress.Mvvm.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Dragablz, Version=0.0.3.203, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dragablz.0.0.3.203\lib\net45\Dragablz.dll</HintPath>
+    </Reference>
+    <Reference Include="Elasticsearch.Net, Version=7.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Elasticsearch.Net.7.3.0\lib\net461\Elasticsearch.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="EngineIoClientDotNet, Version=0.9.22.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EngineIoClientDotNet.0.9.22\lib\net45\EngineIoClientDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=5.5.2.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.5.5.2\lib\net45\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="FFImageLoading, Version=2.4.11.982, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.FFImageLoading.2.4.11.982\lib\netstandard1.0\FFImageLoading.dll</HintPath>
+    </Reference>
+    <Reference Include="FFImageLoading.Platform, Version=2.4.11.982, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.FFImageLoading.2.4.11.982\lib\netstandard1.0\FFImageLoading.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.52.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.52.0\lib\net45\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Ikc5.TypeLibrary, Version=1.0.0.10, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ikc5.TypeLibrary.1.0.0.10\lib\net451\Ikc5.TypeLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QrCode.Net.0.4.0.0\lib\net45\Gma.QrCodeNet.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.5.1.1345, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.5.1\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.3.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.3.6\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Maps.MapControl.WPF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Maps.MapControl.WPF.1.0.0.3\lib\net40-Client\Microsoft.Maps.MapControl.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Toolkit, Version=6.0.0.0, Culture=neutral, PublicKeyToken=4aff67a105548ee2, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Toolkit.6.0.0\lib\netstandard2.0\Microsoft.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="MultiSelectCombobox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MultiSelectCombobox.1.0.7\lib\portable-net4+sl4+wp7+win8\MultiSelectCombobox.dll</HintPath>
+    </Reference>
+    <Reference Include="Nest, Version=7.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>..\packages\NEST.7.3.0\lib\net461\Nest.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Mef.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Mef.6.3.0\lib\net45\Prism.Mef.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="QRCoder, Version=1.3.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.3.6\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.6.9.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.6.9\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpMemoryCache, Version=1.0.1.20336, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpMemoryCache.1.0.1\lib\SharpMemoryCache.dll</HintPath>
+    </Reference>
+    <Reference Include="SocketIOClient, Version=3.0.6.0, Culture=neutral, PublicKeyToken=c9a3629195a82104, processorArchitecture=MSIL">
+      <HintPath>..\packages\SocketIOClient.3.0.6\lib\netstandard2.0\SocketIOClient.dll</HintPath>
+    </Reference>
+    <Reference Include="SocketIOClient.Newtonsoft.Json, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SocketIOClient.Newtonsoft.Json.3.0.0\lib\netstandard2.0\SocketIOClient.Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SocketIoClientDotNet, Version=0.9.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SocketIoClientDotNet.0.9.13\lib\net45\SocketIoClientDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.4.5.0\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.Net.WebSockets, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.WebSockets.4.3.0\lib\net46\System.Net.WebSockets.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Reactive, Version=5.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.5.0.0\lib\netstandard2.0\System.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-XAML.2.2.5\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.4.7.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.4.7.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.6.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=6.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.6.0.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Channels, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Channels.4.7.0\lib\netstandard2.0\System.Threading.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Controls.Input.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Themes.IG.Wpf.1.0.0\lib\net40\System.Windows.Controls.Input.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Themes.IG.Wpf.1.0.0\lib\net40\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Ribbon" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="TestStack.White, Version=0.13.0.0, Culture=neutral, PublicKeyToken=2672efbf3e161801, processorArchitecture=MSIL">
+      <HintPath>..\packages\TestStack.White.0.13.3\lib\net40\TestStack.White.dll</HintPath>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="Unity.Abstractions, Version=5.11.6.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.7\lib\net46\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.8.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.7\lib\net46\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="websocket-sharp, Version=1.0.1.0, Culture=neutral, PublicKeyToken=5660b08a1845a91e, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebSocketSharp-netstandard.1.0.1\lib\net45\websocket-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Websocket.Client, Version=4.3.0.0, Culture=neutral, PublicKeyToken=ae648c6d12f59b1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Websocket.Client.4.3.21\lib\netstandard2.0\Websocket.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSocket4Net, Version=0.14.1.0, Culture=neutral, PublicKeyToken=eb4e154b696bf72a, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebSocket4Net.0.14.1\lib\net45\WebSocket4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infragistics.Themes.IG.Wpf.1.0.0\lib\net40\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.2.3.4.267\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.2.3.4.267\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.2.3.4.267\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.8.1\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.8.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.8.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.8.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.8.1\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="BroadCast\BroadCastClient.cs" />
+    <Compile Include="BroadCast\BroadCastResponseModel.cs" />
+    <Compile Include="Helpers\AdditionEnum.cs" />
+    <Compile Include="Helpers\AdditionFeeEnum.cs" />
+    <Compile Include="Helpers\BookingStatusEnum.cs" />
+    <Compile Include="Helpers\BookingTypeEnum.cs" />
+    <Compile Include="Helpers\BranchTypeEnum.cs" />
+    <Compile Include="Helpers\BranchTypeOption.cs" />
+    <Compile Include="Helpers\CategoryTypeEnum.cs" />
+    <Compile Include="Helpers\DateFixerConverter.cs" />
+    <Compile Include="Helpers\FunctionCallApi.cs" />
+    <Compile Include="Helpers\HistoryPrintEnum.cs" />
+    <Compile Include="Helpers\OrderSessionStatusEnum.cs" />
+    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Helpers\DiscountEnum.cs" />
+    <Compile Include="Helpers\DownloadManager.cs" />
+    <Compile Include="Helpers\EmployeeAdvancedSalaryEnum.cs" />
+    <Compile Include="Helpers\FoodComboEnum.cs" />
+    <Compile Include="Helpers\HomeButtonEnum.cs" />
+    <Compile Include="Helpers\LimitEnum.cs" />
+    <Compile Include="Helpers\OrderDetailButtonEnum.cs" />
+    <Compile Include="Helpers\OrderDetailStatusEnum.cs" />
+    <Compile Include="Helpers\OrderMethodEnum.cs" />
+    <Compile Include="Helpers\PaidEnum.cs" />
+    <Compile Include="Helpers\ProjectIdEnum.cs" />
+    <Compile Include="Helpers\ReportFoodButtonEnum.cs" />
+    <Compile Include="Helpers\ReportRevenueButtonEnum.cs" />
+    <Compile Include="Helpers\ResponseEnum.cs" />
+    <Compile Include="Helpers\SizePrintEnum.cs" />
+    <Compile Include="Helpers\SocketIOManager.cs" />
+    <Compile Include="Helpers\StatusEnum.cs" />
+    <Compile Include="Helpers\TableStatusEnum.cs" />
+    <Compile Include="Helpers\ExpenseTypeEnum.cs" />
+    <Compile Include="Helpers\LinkCallApi.cs" />
+    <Compile Include="Helpers\MessageValue.cs" />
+    <Compile Include="Helpers\MoneyEnum.cs" />
+    <Compile Include="Helpers\OrderStatusEnum.cs" />
+    <Compile Include="Helpers\PaymentMethodEnum.cs" />
+    <Compile Include="Helpers\PrintBill.cs" />
+    <Compile Include="Helpers\PrintConfig.cs" />
+    <Compile Include="Helpers\QREncodingOptions.cs" />
+    <Compile Include="Helpers\AdditionFeeStatusEnum.cs" />
+    <Compile Include="Helpers\ReportTypeEnum.cs" />
+    <Compile Include="Helpers\SelectAllFocusBehavior.cs" />
+    <Compile Include="Helpers\TaskBarLocation.cs" />
+    <Compile Include="Helpers\TechresEnum.cs" />
+    <Compile Include="Helpers\UploadTypeEnum.cs" />
+    <Compile Include="Helpers\UserManagerEnum.cs" />
+    <Compile Include="Helpers\Utils.cs" />
+    <Compile Include="Helpers\WarehouseTypeEnum.cs" />
+    <Compile Include="Helpers\WebImageFallBackBehaviour.cs" />
+    <Compile Include="Helpers\WriteLog.cs" />
+    <Compile Include="Interfaces\AsyncCommand.cs" />
+    <Compile Include="Interfaces\IAsyncCommand.cs" />
+    <Compile Include="Interfaces\ICacheService.cs" />
+    <Compile Include="Interfaces\IErrorLogger.cs" />
+    <Compile Include="Interfaces\TaskUtilities.cs" />
+    <Compile Include="Loading\AdornedControl.cs" />
+    <Compile Include="Loading\AdornerPlacement.cs" />
+    <Compile Include="Loading\FrameworkElementAdorner.cs" />
+    <Compile Include="Loading\LoadingWait.xaml.cs">
+      <DependentUpon>LoadingWait.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BaseRealtimeModel.cs" />
+    <Compile Include="Models\CardOrderItem.cs" />
+    <Compile Include="Models\ComboFoodWrapper.cs" />
+    <Compile Include="Models\DebtCustomerConfirm.cs" />
+    <Compile Include="Models\FoodItemMenu.cs" />
+    <Compile Include="Models\FoodModel.cs" />
+    <Compile Include="Models\FoodPromotion.cs" />
+    <Compile Include="Models\NotificationRealTime.cs" />
+    <Compile Include="Models\OrderDetailPrintResponse.cs" />
+    <Compile Include="Models\OrderDetailsRealTime.cs" />
+    <Compile Include="Models\PaymentMethodModel.cs" />
+    <Compile Include="Models\Printer.cs" />
+    <Compile Include="Models\Request\AddFoodOrder.cs" />
+    <Compile Include="Models\Request\AddRestaurantExtraWrapper.cs" />
+    <Compile Include="Models\Request\CallApiWrapper.cs" />
+    <Compile Include="Models\Request\CancelRestaurantExtraWrapper.cs" />
+    <Compile Include="Models\Request\CreateOrderSessionWrapper.cs" />
+    <Compile Include="Models\Request\CreateSpecialFoodWrapper.cs" />
+    <Compile Include="Models\Request\LoginNodeWrapper.cs" />
+    <Compile Include="Models\Request\PrivilegeGroupWrapper.cs" />
+    <Compile Include="Models\Request\PrivilegeWrapper.cs" />
+    <Compile Include="Models\Request\ReturnBeerWrapper.cs" />
+    <Compile Include="Models\Request\UpdateFoodIsOutStockWrapper.cs" />
+    <Compile Include="Models\Request\UpdateFoodKitchenWrapper.cs" />
+    <Compile Include="Models\Request\UpdatePrinterKitchenWrapper.cs" />
+    <Compile Include="Models\Response\AdditionFeeResponse.cs" />
+    <Compile Include="Models\Area.cs" />
+    <Compile Include="Models\Booking.cs" />
+    <Compile Include="Models\BookingSession.cs" />
+    <Compile Include="Models\Branch.cs" />
+    <Compile Include="Models\CancelFood.cs" />
+    <Compile Include="Models\CancelReason.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Permission.cs" />
+    <Compile Include="Models\Chart.cs" />
+    <Compile Include="Models\ChartFood.cs" />
+    <Compile Include="Models\OrderSession.cs" />
+    <Compile Include="Models\CustomerTopUpHistory.cs" />
+    <Compile Include="Models\FoodMenuItem.cs" />
+    <Compile Include="Models\Kitchen.cs" />
+    <Compile Include="Models\Money.cs" />
+    <Compile Include="Models\OrderDetailAddition.cs" />
+    <Compile Include="Models\OrderDetailReatime.cs" />
+    <Compile Include="Models\OrderRealTime.cs" />
+    <Compile Include="Models\Privilege.cs" />
+    <Compile Include="Models\ReportRevenueArea.cs" />
+    <Compile Include="Models\Request\AdditionFeeWrapper.cs" />
+    <Compile Include="Models\Request\AddvanedSalaryWrapper.cs" />
+    <Compile Include="Models\Request\AssignOrderToCustomerWrapper.cs" />
+    <Compile Include="Models\Request\AssignOrderToPromotionWrapper.cs" />
+    <Compile Include="Models\Request\ConfirmAdditionFeeWrapper.cs" />
+    <Compile Include="Models\Request\ArrangeTableWrapper.cs" />
+    <Compile Include="Models\Request\CreateNoteOrderDetailWrapper.cs" />
+    <Compile Include="Models\Request\CustomerDebitWrapper.cs" />
+    <Compile Include="Models\Request\EditBookingWrapper.cs" />
+    <Compile Include="Models\Request\BranchIdWrapper.cs" />
+    <Compile Include="Models\Request\PaymentMethodWrapper.cs" />
+    <Compile Include="Models\Request\PaymentReasonWrapper.cs" />
+    <Compile Include="Models\Request\RejectReasonWrapper.cs" />
+    <Compile Include="Models\Request\RestaurantBudgetWrapper.cs" />
+    <Compile Include="Models\Request\RestaurantTopUpCardWrapper.cs" />
+    <Compile Include="Models\Request\SalaryTableWrapper.cs" />
+    <Compile Include="Models\Request\SettingLayoutWrapper.cs" />
+    <Compile Include="Models\Request\StartBookingWrapper.cs" />
+    <Compile Include="Models\Request\StockTakingWrapper.cs" />
+    <Compile Include="Models\Request\UpdatePaymentSlipWrapper.cs" />
+    <Compile Include="Models\Request\UpdateShippingWrapper.cs" />
+    <Compile Include="Models\Request\UploadImagesFoodWrapper.cs" />
+    <Compile Include="Models\Response\ActivityLogListResponse.cs" />
+    <Compile Include="Models\Response\BookingListResponse.cs" />
+    <Compile Include="Models\Response\BookingResonCancelResponse.cs" />
+    <Compile Include="Models\Response\BookingSessionResponse.cs" />
+    <Compile Include="Models\Response\BrandResponse.cs" />
+    <Compile Include="Models\Response\CancelReasonResponse.cs" />
+    <Compile Include="Models\Response\ConfigNodeResponse.cs" />
+    <Compile Include="Models\Response\CreateSpecialFoodResponse.cs" />
+    <Compile Include="Models\Response\CustomerDebtResponse.cs" />
+    <Compile Include="Models\Response\CustomerTopUpHistoryResponse.cs" />
+    <Compile Include="Models\Response\DebitResponse.cs" />
+    <Compile Include="Models\Response\EmployeeMainAdminResponse.cs" />
+    <Compile Include="Models\Response\ExtraChargeResponse.cs" />
+    <Compile Include="Models\Response\FoodComboResponse.cs" />
+    <Compile Include="Models\Response\FormServiceResponse.cs" />
+    <Compile Include="Models\Response\HistoryPrintResponse.cs" />
+    <Compile Include="Models\Response\KitchenResponse.cs" />
+    <Compile Include="Models\Response\LongResponse.cs" />
+    <Compile Include="Models\Response\OpenTableByIdResponse.cs" />
+    <Compile Include="Models\Response\OutOfFood.cs" />
+    <Compile Include="Models\Response\OutOfFoodResponse.cs" />
+    <Compile Include="Models\Response\PrivateAdvertsResponse.cs" />
+    <Compile Include="Models\Response\PromotionResponse.cs" />
+    <Compile Include="Models\Response\ReportEmployeeResponse.cs" />
+    <Compile Include="Models\Response\ResponseFood.cs" />
+    <Compile Include="Models\Response\RestaurantExtraResponse.cs" />
+    <Compile Include="Models\Response\RestaurantTopUpCardResponse.cs" />
+    <Compile Include="Models\Response\RevenueAreaReportResponse.cs" />
+    <Compile Include="Models\Response\RevenuePaymentMethodResponse.cs" />
+    <Compile Include="Models\Response\RevenueSysthesisReportResponse.cs" />
+    <Compile Include="Models\Response\TopUpCardResponse.cs" />
+    <Compile Include="Models\Response\UpdateImageResponse.cs" />
+    <Compile Include="Models\Response\EmployeeAdvancedSalaryResponse.cs" />
+    <Compile Include="Models\Response\EmployeeResponses.cs" />
+    <Compile Include="Models\Response\ManageAdditionFeeResponse.cs" />
+    <Compile Include="Models\Response\ManageFloatResponse.cs" />
+    <Compile Include="Models\MaterialWarehouse.cs" />
+    <Compile Include="Models\Request\CreateTableWrapper.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Debit.cs" />
+    <Compile Include="Models\DetailFood.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Food.cs" />
+    <Compile Include="Models\BillResponse.cs" />
+    <Compile Include="Models\FoodRequest.cs" />
+    <Compile Include="Models\FoodUsing.cs" />
+    <Compile Include="Models\GiftFood.cs" />
+    <Compile Include="Models\MergeTable.cs" />
+    <Compile Include="Models\BasicModel.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
+    <Compile Include="Models\RankEmployee.cs" />
+    <Compile Include="Models\ReportRevenueCashier.cs" />
+    <Compile Include="Models\Request\AddFoodOrderWrapper.cs" />
+    <Compile Include="Models\Request\CancelFoodWrapper.cs" />
+    <Compile Include="Models\Request\ChangeApprovedDrinkWrapper.cs" />
+    <Compile Include="Models\Request\ChangePasswordWrapper.cs" />
+    <Compile Include="Models\Request\ChangeSatusOrderDetailWrapper.cs" />
+    <Compile Include="Models\Request\CompleteOrderWrapper.cs" />
+    <Compile Include="Models\Request\CreateBookingWrapper.cs" />
+    <Compile Include="Models\Request\CreateOrderWrapper.cs" />
+    <Compile Include="Models\Request\CustomerRegisterWrapper.cs" />
+    <Compile Include="Models\Request\CustomerSlotNumberWrapper.cs" />
+    <Compile Include="Models\Request\DebitEmployeeWrapper.cs" />
+    <Compile Include="Models\Request\DeviceConfigWrapper.cs" />
+    <Compile Include="Models\Request\DiscountWrapper.cs" />
+    <Compile Include="Models\Request\FindCustomerWrapper.cs" />
+    <Compile Include="Models\Request\ForgetPasswordWrapper.cs" />
+    <Compile Include="Models\Request\IsPrintSendFoodCookWrapper.cs" />
+    <Compile Include="Models\Request\LoginWrapper.cs" />
+    <Compile Include="Models\Request\MoveFoodWrapper.cs" />
+    <Compile Include="Models\Request\OpenSessionWrapper.cs" />
+    <Compile Include="Models\Request\ReceiveDepositWrapper.cs" />
+    <Compile Include="Models\Request\ReturnDepositWrapper.cs" />
+    <Compile Include="Models\Request\RevenueFinishWorkingSessionWrapper.cs" />
+    <Compile Include="Models\Request\TableMergeWrapper.cs" />
+    <Compile Include="Models\Request\TableMoveWrapper.cs" />
+    <Compile Include="Models\Request\UpdateAreaWrapper.cs" />
+    <Compile Include="Models\Request\UpdateTableWrapper.cs" />
+    <Compile Include="Models\Request\VATWrapper.cs" />
+    <Compile Include="Models\Request\VerifyPasswordWrapper.cs" />
+    <Compile Include="Models\Request\WorkingSessionWrapper.cs" />
+    <Compile Include="Models\ActivityLog.cs" />
+    <Compile Include="Models\Response\ActivityLogResponse.cs" />
+    <Compile Include="Models\Response\AreaResponse.cs" />
+    <Compile Include="Models\Response\BaseResponse.cs" />
+    <Compile Include="Models\Response\BookingResponse.cs" />
+    <Compile Include="Models\Response\BranchesResponse.cs" />
+    <Compile Include="Models\Response\BranchResponse.cs" />
+    <Compile Include="Models\Response\CategoryResponse.cs" />
+    <Compile Include="Models\Response\ChartResponse.cs" />
+    <Compile Include="Models\Response\ConfigResponse.cs" />
+    <Compile Include="Models\Response\CreateOrderResponse.cs" />
+    <Compile Include="Models\Response\CustomerRegisterResponse.cs" />
+    <Compile Include="Models\Response\ReportFoodResponse.cs" />
+    <Compile Include="Models\Response\EmployeeDetailResponse.cs" />
+    <Compile Include="Models\Response\FoodResponses.cs" />
+    <Compile Include="Models\Response\GiftFoodResponse.cs" />
+    <Compile Include="Models\Response\HistoryEndWorkingSessionResponse.cs" />
+    <Compile Include="Models\Response\ManageRoleResponse.cs" />
+    <Compile Include="Models\Response\MergeTableResponse.cs" />
+    <Compile Include="Models\Response\OrderItemResponse.cs" />
+    <Compile Include="Models\Response\OrderDetailListResponse.cs" />
+    <Compile Include="Models\Response\OrderDetailResponse.cs" />
+    <Compile Include="Models\Response\OrderNoteDetailResponse.cs" />
+    <Compile Include="Models\Response\OrderResponse.cs" />
+    <Compile Include="Models\Response\OrderResponses.cs" />
+    <Compile Include="Models\Response\PaymentReasonResponse.cs" />
+    <Compile Include="Models\Response\RestaurantBudgetResponse.cs" />
+    <Compile Include="Models\Response\RestaurantResponse.cs" />
+    <Compile Include="Models\Response\SingleOrderDetailResponse.cs" />
+    <Compile Include="Models\Response\SysthesisReportOrdersResponse.cs" />
+    <Compile Include="Models\Response\TableResponse.cs" />
+    <Compile Include="Models\Response\UserNodeResponse.cs" />
+    <Compile Include="Models\Response\UserResponse.cs" />
+    <Compile Include="Models\Response\WarehouseSession.cs" />
+    <Compile Include="Models\Response\WorkingSessionResponse.cs" />
+    <Compile Include="Models\Restaurant.cs" />
+    <Compile Include="Models\RestaurantTopUpCard.cs" />
+    <Compile Include="Models\RevenueFinishWorkingSessionResponse.cs" />
+    <Compile Include="Models\EmployeeRole.cs" />
+    <Compile Include="Models\SalaryLevel.cs" />
+    <Compile Include="Models\Setting.cs" />
+    <Compile Include="Models\StoreProcedureListResult.cs" />
+    <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Models\Table.cs" />
+    <Compile Include="Models\TableItem.cs" />
+    <Compile Include="Models\TopUpCard.cs" />
+    <Compile Include="Models\Unit.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Version.cs" />
+    <Compile Include="Models\WorkingSession.cs" />
+    <Compile Include="Resources\AutoCompleteTextBox.cs" />
+    <Compile Include="Resources\TimeControl.xaml.cs">
+      <DependentUpon>TimeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ActivityLogClient.cs" />
+    <Compile Include="Services\AreasClient.cs" />
+    <Compile Include="Services\BaseClient.cs" />
+    <Compile Include="Services\BookingClient.cs" />
+    <Compile Include="Services\BranchClient.cs" />
+    <Compile Include="Services\BrandClient.cs" />
+    <Compile Include="Services\CategoriesClient.cs" />
+    <Compile Include="Services\CustomerClient.cs" />
+    <Compile Include="Services\DeviceClient.cs" />
+    <Compile Include="Services\EmployeeClient.cs" />
+    <Compile Include="Services\FoodsClient.cs" />
+    <Compile Include="Services\HistoryPrintClient.cs" />
+    <Compile Include="Services\KitchenClient.cs" />
+    <Compile Include="Services\NotificationClient.cs" />
+    <Compile Include="Services\OrderDetailsClient.cs" />
+    <Compile Include="Services\OrdersClient.cs" />
+    <Compile Include="Services\OutOfFoodClient.cs" />
+    <Compile Include="Services\PasswordClient.cs" />
+    <Compile Include="Services\PromotionClient.cs" />
+    <Compile Include="Services\ReportClient.cs" />
+    <Compile Include="Services\RestaurantClient.cs" />
+    <Compile Include="Services\RestaurantExtraClient.cs" />
+    <Compile Include="Services\SecondScreenClient.cs" />
+    <Compile Include="Services\SettingClient.cs" />
+    <Compile Include="Services\SyncClient.cs" />
+    <Compile Include="Services\TablesClient.cs" />
+    <Compile Include="Services\TopUpCardClient.cs" />
+    <Compile Include="Services\UserClient.cs" />
+    <Compile Include="Services\UserNodeClient.cs" />
+    <Compile Include="Services\VersionClient.cs" />
+    <Compile Include="Services\AdditionFeeClient.cs" />
+    <Compile Include="Services\WorkingSessionClient.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Template\Bill.xaml.cs">
+      <DependentUpon>Bill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\Bill58MM.xaml.cs">
+      <DependentUpon>Bill58MM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\BillTmp.xaml.cs">
+      <DependentUpon>BillTmp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\BillTmp58MM.xaml.cs">
+      <DependentUpon>BillTmp58MM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\Booking.xaml.cs">
+      <DependentUpon>Booking.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\Booking58MM.xaml.cs">
+      <DependentUpon>Booking58MM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\FoodBill.xaml.cs">
+      <DependentUpon>FoodBill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\FoodBill58MM.xaml.cs">
+      <DependentUpon>FoodBill58MM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\MoveFoodBill.xaml.cs">
+      <DependentUpon>MoveFoodBill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\MoveFoodBill58MM.xaml.cs">
+      <DependentUpon>MoveFoodBill58MM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PrintFoodCook.xaml.cs">
+      <DependentUpon>PrintFoodCook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PrintFoodCook58MM.xaml.cs">
+      <DependentUpon>PrintFoodCook58MM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PrintQrCode.xaml.cs">
+      <DependentUpon>PrintQrCode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PrintQrCode58MM.xaml.cs">
+      <DependentUpon>PrintQrCode58MM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PrintQrCodeCheckIn.xaml.cs">
+      <DependentUpon>PrintQrCodeCheckIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PrintQrCodeCheckIn58MM.xaml.cs">
+      <DependentUpon>PrintQrCodeCheckIn58MM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PrintQrCodeOfManager.xaml.cs">
+      <DependentUpon>PrintQrCodeOfManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PrintQrCodeOfManager58MM.xaml.cs">
+      <DependentUpon>PrintQrCodeOfManager58MM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PrintTmpSalaryEmployee.xaml.cs">
+      <DependentUpon>PrintTmpSalaryEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PrintTmpSalaryEmployee58MM.xaml.cs">
+      <DependentUpon>PrintTmpSalaryEmployee58MM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PrintViewTallying.xaml.cs">
+      <DependentUpon>PrintViewTallying.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PrintViewTallying58MM.xaml.cs">
+      <DependentUpon>PrintViewTallying58MM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\BasicSecondUserControl.xaml.cs">
+      <DependentUpon>BasicSecondUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\BatenderListUC.xaml.cs">
+      <DependentUpon>BatenderListUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\BatenderUC.xaml.cs">
+      <DependentUpon>BatenderUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\CardOrderUserControl.xaml.cs">
+      <DependentUpon>CardOrderUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ComboBox\ComboBoxFood.xaml.cs">
+      <DependentUpon>ComboBoxFood.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ComboBox\TextBlockShow.xaml.cs">
+      <DependentUpon>TextBlockShow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ConfirmDepositBookingUserControl.xaml.cs">
+      <DependentUpon>ConfirmDepositBookingUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\CreateOrderSecondUserControl.xaml.cs">
+      <DependentUpon>CreateOrderSecondUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\CreateOrderTakeAwayNew.xaml.cs">
+      <DependentUpon>CreateOrderTakeAwayNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\CreateOrderTakeAwayUserControl.xaml.cs">
+      <DependentUpon>CreateOrderTakeAwayUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\DrinkOutStockUC.xaml.cs">
+      <DependentUpon>DrinkOutStockUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\EmployeeAdvancedSalaryUserControl.xaml.cs">
+      <DependentUpon>EmployeeAdvancedSalaryUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ExpenseCashierUserControl.xaml.cs">
+      <DependentUpon>ExpenseCashierUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\FoodOutStockUC.xaml.cs">
+      <DependentUpon>FoodOutStockUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\FoodsBannerUserControl.xaml.cs">
+      <DependentUpon>FoodsBannerUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\HistoryBatenderDetailUserControl.xaml.cs">
+      <DependentUpon>HistoryBatenderDetailUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\HistoryInputMoneyCustomerUserControl.xaml.cs">
+      <DependentUpon>HistoryInputMoneyCustomerUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\HistoryPrintManagerUC.xaml.cs">
+      <DependentUpon>HistoryPrintManagerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ListDebtCustomerUserControl.xaml.cs">
+      <DependentUpon>ListDebtCustomerUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\MoveListFoodsUserControl.xaml.cs">
+      <DependentUpon>MoveListFoodsUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\NotificationUserControl.xaml.cs">
+      <DependentUpon>NotificationUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\OrderOnlineUserControl.xaml.cs">
+      <DependentUpon>OrderOnlineUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\QRCodeRegistrationCustomerUserControl.xaml.cs">
+      <DependentUpon>QRCodeRegistrationCustomerUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\CookUserControll.xaml.cs">
+      <DependentUpon>CookUserControll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\CreateOrder\CreateOrderUserControl.xaml.cs">
+      <DependentUpon>CreateOrderUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\DomainRestaurantUC.xaml.cs">
+      <DependentUpon>DomainRestaurantUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\FoodingUserControl.xaml.cs">
+      <DependentUpon>FoodingUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\HistoryDebitUserControl.xaml.cs">
+      <DependentUpon>HistoryDebitUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\HistoryEndWorkingSessionUserControl.xaml.cs">
+      <DependentUpon>HistoryEndWorkingSessionUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\HistoryLogUserControl.xaml.cs">
+      <DependentUpon>HistoryLogUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\HomeUserControl.xaml.cs">
+      <DependentUpon>HomeUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\IpAddressRestaurantUserControl.xaml.cs">
+      <DependentUpon>IpAddressRestaurantUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ListBookingUC.xaml.cs">
+      <DependentUpon>ListBookingUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\HistoryOrderDetailUserControl.xaml.cs">
+      <DependentUpon>HistoryOrderDetailUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ComboBox\ComboBoxCustomer.xaml.cs">
+      <DependentUpon>ComboBoxCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ComboBox\ComboBoxEmployee.xaml.cs">
+      <DependentUpon>ComboBoxEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ComboBox\ComboBoxSupplier.xaml.cs">
+      <DependentUpon>ComboBoxSupplier.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ComboBox\TextboxOther.xaml.cs">
+      <DependentUpon>TextboxOther.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\NoteListUC.xaml.cs">
+      <DependentUpon>NoteListUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\OrderDetailUserControl.xaml.cs">
+      <DependentUpon>OrderDetailUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\OrderDoneUserControl.xaml.cs">
+      <DependentUpon>OrderDoneUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\OrderListUserControlDetailAdmin.xaml.cs">
+      <DependentUpon>OrderListUserControlDetailAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\QRCodeBranchCheckInUserControl.xaml.cs">
+      <DependentUpon>QRCodeBranchCheckInUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ReportCustomerSlot\ReportCustomerSlotUserControl.xaml.cs">
+      <DependentUpon>ReportCustomerSlotUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ReportDiscount\ReportDiscountUC.xaml.cs">
+      <DependentUpon>ReportDiscountUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ReportEmployee\ReportEmployeeUserControl.xaml.cs">
+      <DependentUpon>ReportEmployeeUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ReportFood\ReportFoodUserControl.xaml.cs">
+      <DependentUpon>ReportFoodUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ReportGiftFood\ReportGiftFoodUC.xaml.cs">
+      <DependentUpon>ReportGiftFoodUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ReportOrder\ReportOrderUC.xaml.cs">
+      <DependentUpon>ReportOrderUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ReportRevenueArea\ReportRevenueAreaUC.xaml.cs">
+      <DependentUpon>ReportRevenueAreaUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ReportRevenueOrderMethod\ReportRevenueOrderMethodUC.xaml.cs">
+      <DependentUpon>ReportRevenueOrderMethodUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ReportRevenuePaymentMethod\ReportRevenuePaymentMethodUC.xaml.cs">
+      <DependentUpon>ReportRevenuePaymentMethodUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ReportRevenueRankEmployee\ReportRevenueRankEmployeeUC.xaml.cs">
+      <DependentUpon>ReportRevenueRankEmployeeUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ReportRevenue\ReportRevenueUserControl.xaml.cs">
+      <DependentUpon>ReportRevenueUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ReportRevenue\SearchDayUC.xaml.cs">
+      <DependentUpon>SearchDayUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ReportRevenue\SearchMonthUC.xaml.cs">
+      <DependentUpon>SearchMonthUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ReportRevenue\SearchThreeYearUC.xaml.cs">
+      <DependentUpon>SearchThreeYearUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ReportRevenue\SearchWeekUC.xaml.cs">
+      <DependentUpon>SearchWeekUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ReportRevenue\SearchYearUC.xaml.cs">
+      <DependentUpon>SearchYearUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ReportSysthesisRevenue\ReportSysthesisRevenueUC.xaml.cs">
+      <DependentUpon>ReportSysthesisRevenueUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\ReportVAT\ReportVATUC.xaml.cs">
+      <DependentUpon>ReportVATUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\RevenueFinishWorkingSessionUserControl.xaml.cs">
+      <DependentUpon>RevenueFinishWorkingSessionUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\RevenueFinishWorkingSessionUserControlNewVersion.xaml.cs">
+      <DependentUpon>RevenueFinishWorkingSessionUserControlNewVersion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\SencondaryScreenUserControl.xaml.cs">
+      <DependentUpon>SencondaryScreenUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\SettingUserControl.xaml.cs">
+      <DependentUpon>SettingUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\SettingS\GeneralSettingUserControl.xaml.cs">
+      <DependentUpon>GeneralSettingUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AdditionFoodViewModel.cs" />
+    <Compile Include="ViewModels\BatenderViewModel.cs" />
+    <Compile Include="ViewModels\BookingListEndWorkingSessionViewModel.cs" />
+    <Compile Include="ViewModels\Booking\ChooseFoodBookingViewModel.cs" />
+    <Compile Include="ViewModels\Booking\ManageBookingViewModel.cs" />
+    <Compile Include="UserControlView\PrintSettingUserControl.xaml.cs">
+      <DependentUpon>PrintSettingUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\WorkingSessionUserControl.xaml.cs">
+      <DependentUpon>WorkingSessionUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ActivityLogViewModel.cs" />
+    <Compile Include="ViewModels\ActivityOrderViewModel.cs" />
+    <Compile Include="ViewModels\ChooseFoodsMoveKitchenViewModel.cs" />
+    <Compile Include="ViewModels\ChooseKitchenViewModel.cs" />
+    <Compile Include="ViewModels\CreateOrderTakeAwayViewModel.cs" />
+    <Compile Include="ViewModels\CreateRestaurantExtraViewModel.cs" />
+    <Compile Include="ViewModels\CustomerDebitOrderViewModel.cs" />
+    <Compile Include="ViewModels\DebtOrderCustomerViewModel.cs" />
+    <Compile Include="ViewModels\Dialogs\ConfirmActiveVATViewModel.cs" />
+    <Compile Include="ViewModels\Dialogs\ConfirmMoveTableViewModel.cs" />
+    <Compile Include="ViewModels\HistoryInputMoneyCustomerViewModel.cs" />
+    <Compile Include="ViewModels\HistoryPrintManagerViewModel.cs" />
+    <Compile Include="ViewModels\InputMoneyCustomerViewModel.cs" />
+    <Compile Include="ViewModels\ListDebtCustomerViewModel.cs" />
+    <Compile Include="ViewModels\MainSecondViewModel.cs" />
+    <Compile Include="ViewModels\ManageCustomerViewModel.cs" />
+    <Compile Include="ViewModels\Booking\ReceviceDepositBookingViewModel.cs" />
+    <Compile Include="ViewModels\Booking\ReturnDepositBookingViewModel.cs" />
+    <Compile Include="ViewModels\Booking\ViewBookingViewModel.cs" />
+    <Compile Include="ViewModels\CancelReasonFoodViewModel.cs" />
+    <Compile Include="ViewModels\DetailEmployeeRoleViewModel.cs" />
+    <Compile Include="ViewModels\ExpenseCashierViewModel.cs" />
+    <Compile Include="ViewModels\CreateEmployeeOfManager\UserInfomationViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeAdcancedSalaryViewModel.cs" />
+    <Compile Include="ViewModels\ExpenseReceiptViewViewModel.cs" />
+    <Compile Include="Helpers\NotificationMessage.cs" />
+    <Compile Include="ViewModels\MoveListFoodsViewModel.cs" />
+    <Compile Include="ViewModels\NotificationViewModel.cs" />
+    <Compile Include="ViewModels\PaymentShipEndWorkingSessionViewModel.cs" />
+    <Compile Include="ViewModels\PreviewPrintViewModels.cs" />
+    <Compile Include="ViewModels\QRCodeRegistrationCustomerViewModel.cs" />
+    <Compile Include="ViewModels\ConfirmViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Booking\BookingViewModel.cs" />
+    <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModels\CookViewModel.cs" />
+    <Compile Include="ViewModels\CreateDiscountViewModel.cs" />
+    <Compile Include="ViewModels\CreateEmployeeOfManager\DetailEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\CreateFoodOtherViewModel.cs" />
+    <Compile Include="ViewModels\ManageNoteOrderDetailViewModel.cs" />
+    <Compile Include="ViewModels\CreateOrderViewModel.cs" />
+    <Compile Include="ViewModels\CreateSlotCustomerTableViewModel.cs" />
+    <Compile Include="ViewModels\DebitOrderEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\EndWorkingSessionViewModel.cs" />
+    <Compile Include="ViewModels\ForgetPasswordViewModel.cs" />
+    <Compile Include="ViewModels\HistoryDebitViewModel.cs" />
+    <Compile Include="ViewModels\HistoryEndWorkingSessionViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MergeTableViewModel.cs" />
+    <Compile Include="ViewModels\MoveFoodViewModel.cs" />
+    <Compile Include="ViewModels\NetWorkSaleViewModel.cs" />
+    <Compile Include="ViewModels\NoteFoodViewModel.cs" />
+    <Compile Include="ViewModels\NoteListViewModel.cs" />
+    <Compile Include="ViewModels\NoteViewModel.cs" />
+    <Compile Include="ViewModels\OpenWorkingSessionViewModel.cs" />
+    <Compile Include="ViewModels\OrderDetailViewModel.cs" />
+    <Compile Include="ViewModels\OrderDetailViewViewModel.cs" />
+    <Compile Include="ViewModels\OrderListDetailAdminViewModel.cs" />
+    <Compile Include="ViewModels\OrderListEndWorkingSessionViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewViewModel.cs" />
+    <Compile Include="ViewModels\PaymentOrderViewModel.cs" />
+    <Compile Include="ViewModels\PrintConfigViewModel.cs" />
+    <Compile Include="ViewModels\QRCodeBranchCheckInViewModel.cs" />
+    <Compile Include="ViewModels\Report CustomerSlot\ReportCustomerSlotViewmodel.cs" />
+    <Compile Include="ViewModels\ReportEmployee\ReportEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\ReportFood\ReportFoodViewModel.cs" />
+    <Compile Include="ViewModels\ReportGiftFood\ReportGiftFoodViewModel.cs" />
+    <Compile Include="ViewModels\ReportRevenueViewModel.cs" />
+    <Compile Include="ViewModels\ResonCancelBookingViewModel.cs" />
+    <Compile Include="ViewModels\ReturnBeerViewModel.cs" />
+    <Compile Include="ViewModels\ReturnBookingListEndWorkingSessionViewModel.cs" />
+    <Compile Include="ViewModels\RevenueFinishWorkingSessionViewModel.cs" />
+    <Compile Include="ViewModels\Setting\SettingCardOrderTimeCount.cs" />
+    <Compile Include="ViewModels\Setting\SettingGeneralViewModel.cs" />
+    <Compile Include="ViewModels\Setting\SettingViewModel.cs" />
+    <Compile Include="ViewModels\TableDiagramViewModel.cs" />
+    <Compile Include="ViewModels\TableViewModel.cs" />
+    <Compile Include="ViewModels\VerifyForgotPasswordViewModel.cs" />
+    <Compile Include="ViewModels\Warehouse\ManagePaymentSlipViewModel.cs" />
+    <Compile Include="ViewModels\Warehouse\ManageReceiptViewModel.cs" />
+    <Compile Include="Views\ActivityWindow.xaml.cs">
+      <DependentUpon>ActivityWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdditionFoodWindow.xaml.cs">
+      <DependentUpon>AdditionFoodWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChooseFoodsMoveKitchenWindow.xaml.cs">
+      <DependentUpon>ChooseFoodsMoveKitchenWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChooseKitchenWindow.xaml.cs">
+      <DependentUpon>ChooseKitchenWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateRestaurantExtraWindow.xaml.cs">
+      <DependentUpon>CreateRestaurantExtraWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomerDebitOrderWindow.xaml.cs">
+      <DependentUpon>CustomerDebitOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DebtCustomerWindow.xaml.cs">
+      <DependentUpon>DebtCustomerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\ConfirmActiveVATWindow.xaml.cs">
+      <DependentUpon>ConfirmActiveVATWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\ConfirmMoveTableWindow.xaml.cs">
+      <DependentUpon>ConfirmMoveTableWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\MessageCreateCustomerWindow.xaml.cs">
+      <DependentUpon>MessageCreateCustomerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GiftFoodTakeAwayPopup.xaml.cs">
+      <DependentUpon>GiftFoodTakeAwayPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HistoryPrinManagerWindow.xaml.cs">
+      <DependentUpon>HistoryPrinManagerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InputMoneyCustomerWindow.xaml.cs">
+      <DependentUpon>InputMoneyCustomerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainSecondWindow.xaml.cs">
+      <DependentUpon>MainSecondWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManageCustomerWindow.xaml.cs">
+      <DependentUpon>ManageCustomerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BookingListEndWorkingSessionWindow.xaml.cs">
+      <DependentUpon>BookingListEndWorkingSessionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BookingWindowPopup.xaml.cs">
+      <DependentUpon>BookingWindowPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CancelReasonFoodWindow.xaml.cs">
+      <DependentUpon>CancelReasonFoodWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChangePasswordPopup.xaml.cs">
+      <DependentUpon>ChangePasswordPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateDiscountWindow.xaml.cs">
+      <DependentUpon>CreateDiscountWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateEmployeeOfManager\DetailEmployeeWindow.xaml.cs">
+      <DependentUpon>DetailEmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateFoodOtherWindow.xaml.cs">
+      <DependentUpon>CreateFoodOtherWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateNoteOrderDetailWindow.xaml.cs">
+      <DependentUpon>CreateNoteOrderDetailWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateSlotCustomerTableWindow.xaml.cs">
+      <DependentUpon>CreateSlotCustomerTableWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExpenseReceiptViewWindow.xaml.cs">
+      <DependentUpon>ExpenseReceiptViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HistoryEndWorkingSessionViewWindow.xaml.cs">
+      <DependentUpon>HistoryEndWorkingSessionViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HistoryLogViewWindow.xaml.cs">
+      <DependentUpon>HistoryLogViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DebitOrderEmployeeWindow.xaml.cs">
+      <DependentUpon>DebitOrderEmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\ConfirmDeleteWindow.xaml.cs">
+      <DependentUpon>ConfirmDeleteWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\MessageNotificationWindow.xaml.cs">
+      <DependentUpon>MessageNotificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DownloadWindow.xaml.cs">
+      <DependentUpon>DownloadWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EndWorkingSessionWindow.xaml.cs">
+      <DependentUpon>EndWorkingSessionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ForgetPasswordWindow.xaml.cs">
+      <DependentUpon>ForgetPasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManagePaymentSlipWindow.xaml.cs">
+      <DependentUpon>ManagePaymentSlipWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManageReceiptWindow.xaml.cs">
+      <DependentUpon>ManageReceiptWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MergeTableWindow.xaml.cs">
+      <DependentUpon>MergeTableWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MoveFoodWindow.xaml.cs">
+      <DependentUpon>MoveFoodWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NetWorkSaleWindow.xaml.cs">
+      <DependentUpon>NetWorkSaleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NoteFoodWindow.xaml.cs">
+      <DependentUpon>NoteFoodWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NotificationForgotPassword.xaml.cs">
+      <DependentUpon>NotificationForgotPassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NotificationView\ErrorNotificationWindow.xaml.cs">
+      <DependentUpon>ErrorNotificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NotificationView\InfomationNotificationWindow.xaml.cs">
+      <DependentUpon>InfomationNotificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NotificationView\ListNotificationWindow.xaml.cs">
+      <DependentUpon>ListNotificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NotificationView\SuccessNotificationWindow.xaml.cs">
+      <DependentUpon>SuccessNotificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NotificationView\WarningNotificationWindow.xaml.cs">
+      <DependentUpon>WarningNotificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OpenWorkingSessionWindow.xaml.cs">
+      <DependentUpon>OpenWorkingSessionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderDetailExtraChargeViewWindow.xaml.cs">
+      <DependentUpon>OrderDetailExtraChargeViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderDetailViewWindow.xaml.cs">
+      <DependentUpon>OrderDetailViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderFoodBookingWindow.xaml.cs">
+      <DependentUpon>OrderFoodBookingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderListEndWorkingSessionWindow.xaml.cs">
+      <DependentUpon>OrderListEndWorkingSessionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderViewWindow.xaml.cs">
+      <DependentUpon>OrderViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PaymentOrderWindow.xaml.cs">
+      <DependentUpon>PaymentOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PaymentShipEndWorkingSessionWindow.xaml.cs">
+      <DependentUpon>PaymentShipEndWorkingSessionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PreviewPrintViewWindow.xaml.cs">
+      <DependentUpon>PreviewPrintViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReceiptEndWorkingSessionWindow.xaml.cs">
+      <DependentUpon>ReceiptEndWorkingSessionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReceviceDepositBookingWindow.xaml.cs">
+      <DependentUpon>ReceviceDepositBookingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ResonCancelBookingWindow.xaml.cs">
+      <DependentUpon>ResonCancelBookingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReturnBeerWindow.xaml.cs" />
+    <Compile Include="Views\ReturnBookingListEndWorkingSessionWindow.xaml.cs">
+      <DependentUpon>ReturnBookingListEndWorkingSessionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReturnDepositBookingWindow.xaml.cs">
+      <DependentUpon>ReturnDepositBookingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SaleDialogWindow.xaml.cs">
+      <DependentUpon>SaleDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShiftActivityReport.xaml.cs">
+      <DependentUpon>ShiftActivityReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TableDiagramWindow.xaml.cs">
+      <DependentUpon>TableDiagramWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TableOrderWindow.xaml.cs">
+      <DependentUpon>TableOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateVersion.xaml.cs">
+      <DependentUpon>UpdateVersion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VerifyForgotPasswordWindow.xaml.cs">
+      <DependentUpon>VerifyForgotPasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewBookingWindow.xaml.cs">
+      <DependentUpon>ViewBookingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Loading\LoadingWait.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\TimeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceXaml\MainResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Template\Bill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\Bill58MM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\BillTmp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\BillTmp58MM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\Booking.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\Booking58MM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\FoodBill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\FoodBill58MM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\MoveFoodBill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\MoveFoodBill58MM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\PrintFoodCook.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\PrintFoodCook58MM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\PrintQrCode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\PrintQrCode58MM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\PrintQrCodeCheckIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\PrintQrCodeCheckIn58MM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\PrintQrCodeOfManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\PrintQrCodeOfManager58MM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\PrintTmpSalaryEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\PrintTmpSalaryEmployee58MM.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Template\PrintViewTallying.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\PrintViewTallying58MM.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControlView\BasicSecondUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControlView\BatenderListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\BatenderUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\CardOrderUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ComboBox\ComboBoxFood.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControlView\ComboBox\TextBlockShow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ConfirmDepositBookingUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\CreateOrderSecondUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControlView\CreateOrderTakeAwayNew.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\CreateOrderTakeAwayUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\DrinkOutStockUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControlView\EmployeeAdvancedSalaryUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ExpenseCashierUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\FoodOutStockUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\FoodsBannerUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\HistoryBatenderDetailUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\HistoryInputMoneyCustomerUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\HistoryPrintManagerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ListDebtCustomerUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\MoveListFoodsUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControlView\NotificationUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\OrderOnlineUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\QRCodeRegistrationCustomerUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\CookUserControll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\CreateOrder\CreateOrderUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\DomainRestaurantUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\FoodingUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\HistoryDebitUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\HistoryEndWorkingSessionUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\HistoryLogUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\HomeUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControlView\IpAddressRestaurantUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ListBookingUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControlView\HistoryOrderDetailUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ComboBox\ComboBoxCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ComboBox\ComboBoxEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ComboBox\ComboBoxSupplier.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ComboBox\TextboxOther.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\NoteListUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControlView\OrderDetailUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControlView\OrderDoneUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControlView\OrderListUserControlDetailAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\PrintSettingUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\QRCodeBranchCheckInUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ReportCustomerSlot\ReportCustomerSlotUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControlView\ReportDiscount\ReportDiscountUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ReportEmployee\ReportEmployeeUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ReportFood\ReportFoodUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ReportGiftFood\ReportGiftFoodUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ReportOrder\ReportOrderUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ReportRevenueArea\ReportRevenueAreaUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ReportRevenueOrderMethod\ReportRevenueOrderMethodUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ReportRevenuePaymentMethod\ReportRevenuePaymentMethodUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ReportRevenueRankEmployee\ReportRevenueRankEmployeeUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControlView\ReportRevenue\ReportRevenueUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ReportRevenue\SearchDayUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ReportRevenue\SearchMonthUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ReportRevenue\SearchThreeYearUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ReportRevenue\SearchWeekUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ReportRevenue\SearchYearUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ReportSysthesisRevenue\ReportSysthesisRevenueUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\ReportVAT\ReportVATUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\RevenueFinishWorkingSessionUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\RevenueFinishWorkingSessionUserControlNewVersion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\SencondaryScreenUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\SettingUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\SettingS\GeneralSettingUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\WorkingSessionUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ActivityWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdditionFoodWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChooseFoodsMoveKitchenWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChooseKitchenWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateRestaurantExtraWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomerDebitOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DebtCustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\ConfirmActiveVATWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\ConfirmMoveTableWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\MessageCreateCustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GiftFoodTakeAwayPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HistoryPrinManagerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InputMoneyCustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainSecondWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ManageCustomerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BookingListEndWorkingSessionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BookingWindowPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CancelReasonFoodWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChangePasswordPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreateDiscountWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateEmployeeOfManager\DetailEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateFoodOtherWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateNoteOrderDetailWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateSlotCustomerTableWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExpenseReceiptViewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HistoryEndWorkingSessionViewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HistoryLogViewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DebitOrderEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\ConfirmDeleteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\MessageNotificationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DownloadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EndWorkingSessionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ForgetPasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ManagePaymentSlipWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ManageReceiptWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MergeTableWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MoveFoodWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NetWorkSaleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NoteFoodWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NotificationForgotPassword.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NotificationView\ErrorNotificationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NotificationView\InfomationNotificationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NotificationView\ListNotificationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NotificationView\SuccessNotificationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NotificationView\WarningNotificationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OpenWorkingSessionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrderDetailExtraChargeViewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrderDetailViewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrderFoodBookingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrderListEndWorkingSessionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrderViewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PaymentOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PaymentShipEndWorkingSessionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PreviewPrintViewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReceiptEndWorkingSessionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReceviceDepositBookingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ResonCancelBookingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReturnBeerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ReturnBookingListEndWorkingSessionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReturnDepositBookingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SaleDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShiftActivityReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TableDiagramWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TableOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateVersion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VerifyForgotPasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewBookingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="Resources\Fonts\Roboto-Italic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto-Light.ttf" />
+    <Resource Include="Resources\Fonts\Roboto-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ic_drawer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ic_plus_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ic_calcul.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ic_print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ic_eyes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ic_receipt_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ic_check.png" />
+    <Resource Include="Resources\Images\ic_printq.png" />
+    <Resource Include="Resources\Images\ic_save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ic_more_q.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ic_bill.png" />
+    <Resource Include="Resources\Images\ic_money.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ic_status_yelow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ic-loupe.png" />
+    <Resource Include="Resources\Images\table_pending.png" />
+    <Resource Include="Resources\Images\ic-upload.png" />
+    <Resource Include="Resources\Images\logo_loading.png" />
+    <Resource Include="logo.ico" />
+    <Resource Include="Resources\Images\ic-cash.png" />
+    <Resource Include="Resources\Images\ic-dinner.png" />
+    <Resource Include="Resources\Images\ic-vat-white.png" />
+    <Resource Include="Resources\Images\ic-vat.png" />
+    <Resource Include="Resources\Images\ic-wine-glass.png" />
+    <Resource Include="Resources\Images\ic-food-white.png" />
+    <Resource Include="Resources\Images\ic-food.png" />
+    <Resource Include="Resources\Images\ic-grape-white.png" />
+    <Resource Include="Resources\Images\ic-grape.png" />
+    <Resource Include="Resources\Images\ic-lobster-white.png" />
+    <Resource Include="Resources\Images\Ic-lobster.png" />
+    <Resource Include="Resources\Images\hot-food-bowl.png" />
+    <Resource Include="Resources\Images\ic-allocation.png" />
+    <Resource Include="Resources\Images\ic-bbq-white.png" />
+    <Resource Include="Resources\Images\ic-bbq.png" />
+    <Resource Include="Resources\Images\ic-cocktail-white.png" />
+    <Resource Include="Resources\Images\ic-cocktail.png" />
+    <Resource Include="Resources\Images\ic-plus-main.png" />
+    <Resource Include="Resources\Images\ic-down-arrow-green.png" />
+    <Resource Include="Resources\Images\ic-down-arrow.png" />
+    <Resource Include="Resources\Images\ic_close.png" />
+    <Resource Include="Resources\Images\ic_cancel.png" />
+    <Resource Include="Resources\Images\password.png" />
+    <Resource Include="Resources\Images\user_name.png" />
+    <Resource Include="Resources\Images\white_logo.png" />
+    <Resource Include="Resources\Images\logo.png" />
+    <Resource Include="Views\CreateEmployeeOfManager\logo.ico" />
+    <Resource Include="Views\logo.ico" />
+    <Resource Include="Views\Dialogs\logo.ico" />
+    <Resource Include="Resources\Images\moc_thu_tien.png" />
+    <Resource Include="Resources\Images\table_ic_booking.png" />
+    <Resource Include="Resources\Images\table_ic_closed.png" />
+    <Resource Include="Resources\Images\table_ic_opening.png" />
+    <Resource Include="Resources\Images\icon_gitf.png" />
+    <Resource Include="Resources\Images\icon_check.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\banner_main_second.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\banner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\avatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\techres.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ic_close_check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\CheckMark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\line_method_payment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\right-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\price-tag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\shape.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon-revenue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon-arrow-down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon-timer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\fast-time.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\locked-bill.png" />
+    <Resource Include="Resources\Images\more-action.png" />
+    <Resource Include="Resources\Images\print-bill.png" />
+    <Resource Include="Resources\Images\request-payment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon-account.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\number-people-gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\number-people.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\table-request-payment.png" />
+    <Resource Include="Resources\Images\table-waiting-payemt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\pending.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bg-online.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\complete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon-refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bgroup-online.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bg-complete.png" />
+    <Resource Include="Resources\Images\bg-pending.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon-create-take-away.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon-menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\line_choose_table.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon-closed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon-gift.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon-note.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\btn_add_food.png" />
+    <Resource Include="Resources\Images\dot-active.png" />
+    <Resource Include="Resources\Images\dot-inactive.png" />
+    <Resource Include="Resources\Images\history.png" />
+    <Resource Include="Resources\Images\icon-calendar.png" />
+    <Resource Include="Resources\Images\icon-create-order.png" />
+    <Resource Include="Resources\Images\icon-drink-active.png" />
+    <Resource Include="Resources\Images\icon-drink.png" />
+    <Resource Include="Resources\Images\icon-food-deactive.png" />
+    <Resource Include="Resources\Images\icon-food.png" />
+    <Resource Include="Resources\Images\icon-other-active.png" />
+    <Resource Include="Resources\Images\icon-other.png" />
+    <Resource Include="Resources\Images\icon-view.png" />
+    <Resource Include="Resources\Images\ic_bottom_order_item.png" />
+    <Resource Include="Resources\Images\line-select-food.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\line_create-order-choose-food.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon-sent-chef.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon-save-continue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon-payment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon-checked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\done-active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\done.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\cooking-backgound.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\return-food-backgound.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\H-Line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon-forgot-pass.png" />
+    <Resource Include="Resources\Images\icon-online-active.png" />
+    <Resource Include="Resources\Images\icon-online.png" />
+    <Resource Include="Resources\Images\icon-password.png" />
+    <Resource Include="Resources\Images\icon-restaurant-active.png" />
+    <Resource Include="Resources\Images\icon-restaurant.png" />
+    <Resource Include="Resources\Images\icon-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bg-login-windows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ic-online-gray.png" />
+    <Resource Include="Resources\Images\ic-restaurant-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\horizontal_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bg-btn-offline-login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bg_btn_online_login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon-discount.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\check_mark_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ic-close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ic-warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ic-booking-payment.png" />
+    <Resource Include="Resources\Images\ic-booking-pending.png" />
+    <Resource Include="Resources\Images\ic-booking-watting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\out_of_stock_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\out_of_stock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageAdv\1.png" />
+    <Resource Include="ImageAdv\2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\food-default.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('..\packages\System.Text.Json.6.0.2\build\System.Text.Json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Text.Json.6.0.2\build\System.Text.Json.targets'))" />
+  </Target>
+  <Import Project="..\packages\System.Text.Json.6.0.2\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.2\build\System.Text.Json.targets')" />
+</Project>

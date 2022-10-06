@@ -1,0 +1,79 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.CustomerDebitOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views"
+        xmlns:cb ="clr-namespace:TechresStandaloneSale.UserControlView.ComboBox"
+        xmlns:select ="clr-namespace:TechresStandaloneSale.Helpers"
+        xmlns:l ="clr-namespace:TechresStandaloneSale.Loading"  
+        Foreground="Black"
+        FontSize="16"
+        BorderBrush="{StaticResource LineListViewBrush}"
+        BorderThickness="1"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Name="debitOrderEmployee"
+        Icon="logo.ico"
+        Title="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_ORDER_DEBIT_CUSTOMER}}" Height="400" Width="800">
+    <Window.Resources>
+        <BitmapImage x:Key="logo" UriSource="/TechresStandaloneSale;component/Resources/Images/white_logo.png" />
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="F4" Command="{Binding AddCommand}"  CommandParameter="{Binding ElementName=debitOrderEmployee}"></KeyBinding>
+        <KeyBinding Key="Esc" Command="{Binding CloseCommand}"  CommandParameter="{Binding ElementName=debitOrderEmployee}"></KeyBinding>
+    </Window.InputBindings>
+    <l:AdornedControl x:Name="LoadingAdorner" IsAdornerVisible="{Binding Path=DialogHostOpen,UpdateSourceTrigger=PropertyChanged}">
+        <l:AdornedControl.AdornerContent>
+            <l:LoadingWait></l:LoadingWait>
+        </l:AdornedControl.AdornerContent>
+        <Grid Background="{StaticResource GrayBackgroundBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0">
+                <DockPanel.Background>
+                    <SolidColorBrush Color="{DynamicResource MainColor}"/>
+                </DockPanel.Background>
+                <!--<Image Margin="10 0 0 0" Width="40" Height="40"  Grid.Column="0" Source="{StaticResource logo}" Stretch="Uniform" VerticalAlignment="Stretch"/>-->
+                <Label Foreground="White" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_ORDER_DEBIT_CUSTOMER}}" FontSize="20" VerticalAlignment="Center"/>
+                <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=debitOrderEmployee}" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" BorderBrush="{x:Null}" Foreground="#FF2387D6">
+                    <materialDesign:PackIcon HorizontalAlignment="Center" VerticalContentAlignment="Center" Kind="Close" Foreground="White" Width="50" Height="25" />
+                </Button>
+            </DockPanel>
+            <Border Grid.Row="1" BorderBrush="{StaticResource LineListViewBrush}" Background="White" BorderThickness="1" Margin="5">
+                <Grid >
+                    <StackPanel>
+                        <DockPanel Margin="0,10,5,5" Height="50" VerticalAlignment="Center">
+                            <Label MinWidth="150" VerticalContentAlignment="Center" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_VIEW_DETAIL_ORDER_CODE}}"/>
+                            <TextBlock MinWidth="175" FontWeight="DemiBold" VerticalAlignment="Center"  FontSize="18" Text="{Binding CodeOrder}"></TextBlock>
+                            <Label MinWidth="150" VerticalContentAlignment="Center" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_EXPENSE_WINDOW_MONEY_PAYMENT}}"/>
+                            <TextBlock VerticalAlignment="Center" MinWidth="175" FontWeight="DemiBold" FontSize="18" Text="{Binding TotalAmount}"></TextBlock>
+                        </DockPanel>
+                        <DockPanel Margin="0,10,5,5">
+                            <Label MinWidth="150" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_CUSTOMER_FITER}}"/>
+                            <cb:ComboBoxCustomer></cb:ComboBoxCustomer>
+                        </DockPanel>
+                        <TextBlock Height="30" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold" Width="500" Text="{Binding CustomerInfor}"></TextBlock>
+                        <DockPanel Margin="0,10,5,5">
+                            <Label MinWidth="150" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_NOTE_FILTER}}"/>
+                            <TextBox select:SelectAllFocusBehavior.Enable="True"   VerticalContentAlignment="Top" VerticalAlignment="Top"  Height="90" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+                            Padding="3" Text="{Binding Note, UpdateSourceTrigger=PropertyChanged}" BorderBrush="{StaticResource LineListViewBrush}"
+                    Name="address" BorderThickness="1" Tag="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_NOTE_INPUT_DEBIT}}" />
+                        </DockPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <StackPanel Background="{StaticResource GrayLBrush}" Grid.Row="2">
+                <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5 0">
+                    <Button  Height="40" VerticalAlignment="Center" Style="{StaticResource BoderButtonClose}" Margin="10,0,0,0" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=debitOrderEmployee}"  Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <Button VerticalAlignment="Center" Style="{StaticResource BoderButtonAgree}" Command="{Binding AddCommand}" Margin="10 0 10 0" CommandParameter="{Binding ElementName=debitOrderEmployee}"  Foreground="White" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_SETTING_PRINT_SAVE}}" Height="40"/>
+
+                </DockPanel>
+            </StackPanel>
+        </Grid>
+    </l:AdornedControl>
+</Window>

@@ -1,0 +1,1503 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:help="clr-namespace:TechresStandaloneSale.Helpers"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <!--Image Fails Behavios-->
+    <BitmapImage UriSource="pack://application:,,,/Resources/Images/icon-food.png" x:Key="img_Fallback"/>
+    <!--Define Font Size -->
+    <sys:Double x:Key="fontSizeHeaderMain">14</sys:Double>
+    <sys:Double x:Key="fontSizeLabelHeader">14</sys:Double>
+    <sys:Double x:Key="fontSizeTwenty">20</sys:Double>
+    <sys:Double x:Key="fontSizeTwentyFive">25</sys:Double>
+    <sys:Double x:Key="fontSizeHeader">17</sys:Double>
+    <sys:Double x:Key="fontSizeEightTeen">18</sys:Double>
+    <sys:Double x:Key="fontSizeSixTeen">16</sys:Double>
+    <sys:Double x:Key="fontSizeFifteen">15</sys:Double>
+    <sys:Double x:Key="fontSize">14</sys:Double>
+    <sys:Double x:Key="fontSizeMini">13</sys:Double>
+    <sys:Double x:Key="fontSizeSmall">12</sys:Double>
+    
+    
+    <help:DateFixerConverter x:Key="DateFixer"></help:DateFixerConverter>
+    <FontFamily x:Key="Roboto-Italic">/Resources/Fonts/#Roboto Italic</FontFamily>
+    <FontFamily x:Key="Roboto-Light">/Resources/Fonts/#Roboto Light</FontFamily>
+    <FontFamily x:Key="Roboto-Regular">/Resources/Fonts/#Roboto Regular</FontFamily>
+    
+    <!--Define dimen width height button-->
+    <sys:Double x:Key="ButtonWidth">120</sys:Double>
+    <sys:Double x:Key="ButtonHeight">35</sys:Double>
+    
+    
+    <Style x:Key="SimpleListBoxItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border
+           Name="Border"
+           Padding="3"
+           SnapsToDevicePixels="true">
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource LineListViewBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="40" />
+            </Grid.ColumnDefinitions>
+            <Border
+                  x:Name="Border" 
+                  Grid.ColumnSpan="2"
+                  CornerRadius="20"
+                  Background="{StaticResource GrayBackgroundBrush}"
+                  BorderBrush="{StaticResource ColorForegroundBrush}"
+                  BorderThickness="0" />
+            <Border 
+                  Grid.Column="0"
+                  CornerRadius="20" 
+                  Margin="1" 
+                  Background="Transparent" 
+                  BorderBrush="#FF97A0A5"
+                  BorderThickness="0" />
+            <Image HorizontalAlignment="Center"  Grid.Column="1"  Margin="0 0 10 0"  x:Name="Arrow"    VerticalAlignment="Center" Source="/Resources/Images/icon-arrow-down.png" Height="15" Width="15" />
+        </Grid>
+
+    </ControlTemplate>
+    <ControlTemplate x:Key="ComboBoxTextBox" TargetType="{x:Type TextBox}">
+        <Border x:Name="PART_ContentHost" Focusable="False" Background="{StaticResource GrayBackgroundBrush}" />
+    </ControlTemplate>
+    <Style x:Key="{x:Type CheckBox}" TargetType="CheckBox">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="FontFamily" Value="{DynamicResource MetroFontRegular}"/>
+        <!--<Setter Property="FocusVisualStyle" Value="{StaticResource CheckBoxFocusVisual}"/>-->
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <BulletDecorator Background="Transparent">
+                        <BulletDecorator.Bullet>
+                            <Border x:Name="Border"
+        Width="20"
+        Height="20"
+        CornerRadius="3"
+        Background="White"
+        BorderBrush="{StaticResource LineListViewBrush}"
+        BorderThickness="0.75">
+                                <Canvas>
+                                    <Image x:Name="CheckMark"
+                Canvas.Bottom="0"
+                Width="20"
+                Height="20"
+                Source="/Resources/Images/CheckMark.png"/>
+                                </Canvas>
+                            </Border>
+                        </BulletDecorator.Bullet>
+                        <ContentPresenter Margin="8,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" RecognizesAccessKey="True"/>
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="false">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="Transparent" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{StaticResource ColorForegroundBrush}"/>
+                            <Setter TargetName="Border" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+        <Setter Property="MinWidth" Value="120"/>
+        <Setter Property="MinHeight" Value="20"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Padding" Value="5 0 5 0"/>
+        <Setter Property="ScrollViewer.Background" Value="{StaticResource GrayBackgroundBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}" >
+                    <Grid>
+                        <ToggleButton 
+                            Name="ToggleButton" 
+                            Template="{StaticResource ComboBoxToggleButton}" 
+                            Grid.Column="2" 
+                            Focusable="false"
+                            IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+                            Background="{TemplateBinding Background}"
+                            ClickMode="Press">
+                        </ToggleButton>
+                        <ContentPresenter Name="ContentSite" IsHitTestVisible="False"  Content="{TemplateBinding SelectionBoxItem}"
+                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                            Margin="3,3,23,3"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"/>
+                        <TextBox x:Name="PART_EditableTextBox"
+                            Style="{x:Null}" 
+                            Template="{StaticResource ComboBoxTextBox}" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            Margin="10,3,23,3"
+                            Focusable="True" 
+                            TextWrapping="WrapWithOverflow"
+                            Background="Transparent"
+                            Foreground="Black"
+                            Visibility="Hidden"
+                            IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                        <Popup 
+                            Name="Popup"
+                            Placement="Bottom"
+                            IsOpen="{TemplateBinding IsDropDownOpen}"
+                            AllowsTransparency="True" 
+                            Focusable="False"
+                            PopupAnimation="Slide">
+
+                            <Grid Name="DropDown"
+                              SnapsToDevicePixels="True"                
+                              MinWidth="{TemplateBinding ActualWidth}"
+                              MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                <Border 
+                                x:Name="DropDownBorder"
+                                Background="White"
+                                CornerRadius="10"
+                                BorderThickness="0.5"
+                                BorderBrush="{StaticResource ColorForegroundBrush}"/>
+                                <ScrollViewer Margin="4" SnapsToDevicePixels="True">
+                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                </ScrollViewer>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasItems" Value="false">
+                            <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{StaticResource ColorForegroundBrush}"/>
+                            <Setter Property="Background" Value="{StaticResource GrayBackgroundBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsGrouping" Value="true">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                        </Trigger>
+                        <Trigger SourceName="Popup" Property="Popup.AllowsTransparency" Value="true">
+                            <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="10"/>
+                            <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0"/>
+                        </Trigger>
+                        <Trigger Property="IsEditable"  Value="true">
+                            <Setter Property="IsTabStop" Value="false"/>
+                            <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="{x:Type ComboBoxItem}" TargetType="{x:Type ComboBoxItem}">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                    <Border Name="Border"
+                              Padding="5"
+                              SnapsToDevicePixels="true">
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsHighlighted" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="#d6d6d4"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" Value="Red" />
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="{x:Type Control}" x:Key="DatePickerTextBoxStyle">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="Black"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="{x:Type DatePickerTextBox}" >
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <TextBox x:Name="PART_TextBox"
+                             Text="{Binding Path=SelectedDate, StringFormat='dd/MM/yyyy', RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" Style="{StaticResource DatePickerTextBoxStyle}" >
+                    </TextBox>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style  BasedOn="{x:Null}" TargetType="{x:Type TextBox}" x:Key="TextBoxTime">
+        <Setter Property="Background" Value="{StaticResource GrayBackgroundBrush}" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="TextBlock.Foreground" Value="{StaticResource ColorForegroundBrush}"/>
+        <Setter Property="TextBlock.FontSize" Value="{StaticResource fontSize}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border CornerRadius="20" Background="{StaticResource GrayBackgroundBrush}"  BorderThickness="0" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="30"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBox BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="0" Background="Transparent"  x:Name="contentPresenter" Text="{TemplateBinding Text}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            </TextBox>
+                            <Image Grid.Column="1" HorizontalAlignment="Right" Source="/Resources/Images/fast-time.png" Height="20" Width="20" Margin="0 0 10 0" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style  BasedOn="{x:Null}" TargetType="{x:Type Label}" x:Key="LabelTime">
+        <Setter Property="Background" Value="{StaticResource GrayBackgroundBrush}" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="TextBlock.Foreground" Value="{StaticResource ColorForegroundBrush}"/>
+        <Setter Property="TextBlock.FontSize" Value="{StaticResource fontSize}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Label}">
+                    <Border CornerRadius="20" Background="{StaticResource GrayBackgroundBrush}"  BorderThickness="0" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="30"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter Grid.Column="0" x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Image Grid.Column="1" HorizontalAlignment="Right" Source="/Resources/Images/fast-time.png" Height="20" Width="20" Margin="0 0 10 0" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="BoderButtonGiftFood">
+        <Setter Property="Background" Value="{StaticResource BlueGGBrush}" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="TextBlock.Foreground" Value="White"/>
+        <Setter Property="TextBlock.FontSize" Value="{StaticResource fontSize}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="20" Background="{TemplateBinding Background}"  BorderBrush="{TemplateBinding Background}" BorderThickness="0.5" >
+                        <ContentPresenter MinWidth="100" x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="BoderButtonComplete">
+        <Setter Property="Background" Value="{StaticResource BlueGGBrush}" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="TextBlock.Foreground" Value="White"/>
+        <Setter Property="TextBlock.FontSize" Value="{StaticResource fontSize}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="4" Background="{StaticResource BlueGGBrush}"  BorderBrush="{StaticResource BlueGGBrush}" BorderThickness="1" >
+                        <ContentPresenter Width="100" x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{Binding Source={x:Static help:MessageValue.MESSAGE_FROM_COMPLETE}}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="BoderButtonCancel">
+        <Setter Property="Background" Value="{StaticResource RedGGBrush}" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="TextBlock.Foreground" Value="White"/>
+        <Setter Property="TextBlock.FontSize" Value="{StaticResource fontSize}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="4" Background="{StaticResource RedGGBrush}"  BorderBrush="{StaticResource RedGGBrush}" BorderThickness="1" >
+                        <ContentPresenter Width="100" x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{Binding Source={x:Static help:MessageValue.MESSAGE_FROM_CLOSE}}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="BoderButtonUpdate">
+        <Setter Property="Background" Value="{StaticResource MainBrush}" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="TextBlock.Foreground" Value="White"/>
+        <Setter Property="TextBlock.FontSize" Value="{StaticResource fontSize}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="15" Background="{StaticResource MainBrush}"  BorderBrush="{StaticResource MainBrush}" BorderThickness="1" >
+                        <ContentPresenter Width="100" x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="Cập nhật" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="BoderButtonAgreeAndPayment">
+        <Setter Property="Background" Value="{StaticResource MainBrush}" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="TextBlock.Foreground" Value="White"/>
+        <Setter Property="TextBlock.FontSize" Value="{StaticResource fontSize}"/>
+        <Setter Property="Width" Value="130"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="20" Background="{StaticResource MainBrush}"  BorderBrush="{StaticResource MainBrush}" BorderThickness="1" >
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image Source="/Resources/Images/icon-save.png" Height="15" Width="15" />
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{Binding Source={x:Static help:MessageValue.MESSAGE_FROM_SAVE_PAYMENT}}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="5 0 0 0" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="BoderButtonAgreeAndReiceive">
+        <Setter Property="Background" Value="{StaticResource MainBrush}" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="TextBlock.Foreground" Value="White"/>
+        <Setter Property="TextBlock.FontSize" Value="{StaticResource fontSize}"/>
+        <Setter Property="Width" Value="{StaticResource ButtonWidth}"/>
+        <Setter Property="Height" Value="{StaticResource ButtonHeight}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="20" Background="{StaticResource MainBrush}"  BorderBrush="{StaticResource MainBrush}" BorderThickness="1" >
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image Source="/Resources/Images/icon-save.png" Height="15" Width="15" />
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{Binding Source={x:Static help:MessageValue.MESSAGE_FROM_SAVE_REICEIVE}}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="5 0 0 0" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="BoderButtonAgree">
+        <Setter Property="Background" Value="{StaticResource MainBrush}" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="TextBlock.Foreground" Value="White"/>
+        <Setter Property="TextBlock.FontSize" Value="{StaticResource fontSize}"/>
+        <Setter Property="Width" Value="{StaticResource ButtonWidth}"/>
+        <Setter Property="Height" Value="{StaticResource ButtonHeight}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="20" Background="{StaticResource MainBrush}"  BorderBrush="{StaticResource MainBrush}" BorderThickness="1" >
+                        <DockPanel  VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image  Source="/Resources/Images/icon-save.png" Height="15" Width="15" />
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{Binding Source={x:Static help:MessageValue.MESSAGE_FROM_SAVE}}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="5 0 0 0" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </DockPanel>
+                      </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="BoderButtonPrint">
+        <Setter Property="Background" Value="{StaticResource BlueBackgroundBrush}" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="TextBlock.Foreground" Value="White"/>
+        <Setter Property="TextBlock.FontSize" Value="{StaticResource fontSize}"/>
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="20" Background="{StaticResource BlueBackgroundBrush}"  BorderThickness="0" >
+                        <DockPanel  VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image  Source="/Resources/Images/printer.png" Height="15" Width="15" />
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="5 0 0 0" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="BoderButtonAgreeCheck">
+        <Setter Property="Background" Value="{StaticResource MainBrush}" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="TextBlock.Foreground" Value="White"/>
+        <Setter Property="TextBlock.FontSize" Value="{StaticResource fontSize}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="1" Background="Transparent" Width="40" Height="40" BorderBrush="{StaticResource GreenGGBrush}" BorderThickness="0.5" >
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image  Source="/Resources/Images/icon_check.jpg" Height="30" Width="30" />
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="BoderButtonCancelCheck">
+        <Setter Property="Background" Value="{StaticResource MainBrush}" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="TextBlock.Foreground" Value="White"/>
+        <Setter Property="TextBlock.FontSize" Value="{StaticResource fontSize}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="1" Background="Transparent" Width="40" Height="40" BorderBrush="{StaticResource RedGGBrush}" BorderThickness="0" >
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image  Source="/Resources/Images/ic_close_check.png" Height="30" Width="30" />
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="BoderButtonAgreeAndAdd">
+        <Setter Property="Background" Value="{StaticResource BlueGGBrush}" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="TextBlock.Foreground" Value="White"/>
+        <Setter Property="TextBlock.FontSize" Value="{StaticResource fontSize}"/>
+        <Setter Property="Width" Value="{StaticResource ButtonWidth}"/>
+        <Setter Property="Height" Value="{StaticResource ButtonHeight}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="20" Background="{StaticResource GreenBackgroundBrush}"  BorderBrush="{StaticResource GreenBackgroundBrush}" BorderThickness="0.5" >
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image  Source="/Resources/Images/icon-save-continue.png" Height="15" Width="15" />
+                            <ContentPresenter Margin="5 0 0 0"  x:Name="contentPresenter" ContentTemplate="{Binding Source={x:Static help:MessageValue.MESSAGE_FROM_SAVE_COPY}}" Content="{Binding Source={x:Static help:MessageValue.MESSAGE_FROM_SAVE_COPY}}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="BoderButtonPaymentOrder">
+        <Setter Property="Background" Value="{StaticResource BlueGGBrush}" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="TextBlock.Foreground" Value="White"/>
+        <Setter Property="TextBlock.FontSize" Value="{StaticResource fontSize}"/>
+        <Setter Property="Width" Value="{StaticResource ButtonWidth}"/>
+        <Setter Property="Height" Value="{StaticResource ButtonHeight}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="20" Background="{StaticResource BlueBackgroundBrush}"  BorderBrush="{StaticResource BlueBackgroundBrush}" BorderThickness="0.5" >
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image  Source="/Resources/Images/icon-payment.png" Height="15" Width="15" />
+                            <ContentPresenter Margin="5 0 0 0" x:Name="contentPresenter" ContentTemplate="{Binding Source={x:Static help:MessageValue.MESSAGE_FROM_PAYMENT}}" Content="{Binding Source={x:Static help:MessageValue.MESSAGE_FROM_PAYMENT}}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="BoderButtonAgreeGreen">
+        <Setter Property="Background" Value="{StaticResource MainBrush}" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="4" Background="{StaticResource MainBrush}"  BorderBrush="{StaticResource MainBrush}" BorderThickness="1" >
+                        <ContentPresenter Width="100" x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="BoderButtonAddFood">
+        <Setter Property="Background" Value="{StaticResource MainBrush}" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="20" Background="{StaticResource MainBrush}"  BorderBrush="{StaticResource MainBrush}" BorderThickness="1" >
+                        <ContentPresenter Width="100" x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="BoderButtonLogin">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="20" Background="{StaticResource MainBrush}" BorderThickness="0" >
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="BoderButtonClose">
+        <Setter Property="Background" Value="{StaticResource RedBackgroundeBrush}" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="TextBlock.Foreground" Value="White"/>
+        <Setter Property="TextBlock.FontSize" Value="{StaticResource fontSize}"/>
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="20" Background="{StaticResource RedBackgroundeBrush}"  BorderThickness="0" >
+                        <DockPanel  VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image  Source="/Resources/Images/cancel.png" Height="15" Width="15" />
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{Binding Source={x:Static help:MessageValue.MESSAGE_FROM_CANCEL}}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="10 0 0 0" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ReportButton" TargetType="{x:Type Button}">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="15" BorderBrush="{StaticResource BlueBackgroundBrush}" BorderThickness="0" Background="{TemplateBinding Background}">
+                            <TextBlock Text="{TemplateBinding Button.Content}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+    <Style x:Key="ListBoxItemContainer" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Background" Value="White"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="DarkViolet"/>
+                <Setter Property="Foreground" Value="DarkViolet"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="AutoCompleteTextBox" TargetType="{x:Type TextBoxBase}">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="{StaticResource LineListViewBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Margin" Value="3"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                    <Border x:Name="root" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" Background="{TemplateBinding Background}"/>
+                            <Popup x:Name="PART_Popup"  MaxHeight="400" MinHeight="20"
+    							    AllowsTransparency="true" 
+    							    Placement="Bottom" Width="{Binding ElementName=PART_ContentHost, Path=ActualWidth}"
+    							    IsOpen="True">
+                                <ListBox BorderBrush="Black" Background="White" BorderThickness="1" MinHeight="20" x:Name="PART_ItemList" MaxHeight="400"
+    								    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+    								    VerticalContentAlignment="Stretch" 
+    								    HorizontalContentAlignment="Stretch"
+    								    KeyboardNavigation.DirectionalNavigation="Contained" >
+
+                                </ListBox>
+                            </Popup>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <BorderGapMaskConverter x:Key="BorderGapMaskConverter"/>
+    <Style x:Key="GroupBox" TargetType="{x:Type GroupBox}">
+        <Setter Property="BorderBrush" Value="#383838" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type GroupBox}">
+                    <Grid SnapsToDevicePixels="true">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="6" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="6" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="6" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="4" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="Transparent" Background="{TemplateBinding Background}" />
+                        <Border Name="Header" Padding="3,1,3,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+                            <ContentPresenter ContentSource="Header" RecognizesAccessKey="true" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </Border>
+                        <ContentPresenter Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <Border Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="4"  BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                            <Border.OpacityMask>
+                                <MultiBinding Converter="{StaticResource BorderGapMaskConverter}" ConverterParameter="7">
+                                    <Binding ElementName="Header" Path="ActualWidth" />
+                                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}" />
+                                    <Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}" />
+                                </MultiBinding>
+                            </Border.OpacityMask>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <ControlTemplate  x:Key="SpecialDatePicker" TargetType="DatePicker">
+        <Border BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Control.Padding}" CornerRadius="20" BorderBrush="{StaticResource LineListViewBrush}" Background="{TemplateBinding Background}">
+            <Grid Name="PART_Root" HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <SolidColorBrush x:Key="DisabledBrush" Color="{StaticResource GrayBackgroup}"></SolidColorBrush>
+                    <ControlTemplate TargetType="Button" x:Key="DropDownButtonTemplate">
+                        <Grid>
+                            <Grid Background="Transparent" Width="25" Height="25" FlowDirection="LeftToRight" Margin="0,0,5,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Image  Source="/Resources/Images/icon-calendar.png" Height="24" Width="24" />
+                            </Grid>
+                        </Grid>
+                    </ControlTemplate>
+                </Grid.Resources>
+                <Button Foreground="{TemplateBinding TextElement.Foreground}" Name="PART_Button" Width="20" Margin="2,0,10,0" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Grid.Column="1" Grid.Row="0">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <Grid Background="Transparent" Width="25" Height="25" FlowDirection="LeftToRight" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Image  Source="/Resources/Images/icon-calendar.png" Height="24" Width="24" />
+                                </Grid>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <!-- THIS LINE :: Notice the binding for Text -->
+                <DatePickerTextBox IsReadOnly="True" Text="{Binding RelativeSource={RelativeSource AncestorType=DatePicker},Path=Text,Converter={StaticResource DateFixer}}" Foreground="{TemplateBinding TextElement.Foreground}" HorizontalContentAlignment="Center" Background="{TemplateBinding Background}"  VerticalContentAlignment="Stretch" Name="PART_TextBox" Grid.Column="0" Grid.Row="0" xml:space="preserve"></DatePickerTextBox>
+                <Grid Name="PART_DisabledVisual" Opacity="0"  IsHitTestVisible="False" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Rectangle RadiusX="1" RadiusY="1" Fill="{StaticResource GrayBackgroundBrush}" Grid.Column="0" Grid.Row="0" />
+                    <Rectangle RadiusX="1" RadiusY="1" Fill="{StaticResource GrayBackgroundBrush}" Width="20" Height="20" Margin="3,0,3,0" Grid.Column="1" Grid.Row="0" />
+                    <Popup Placement="Bottom" StaysOpen="False" AllowsTransparency="True" Name="PART_Popup" />
+                </Grid>
+            </Grid>
+        </Border>
+    </ControlTemplate>
+    <Style x:Key="TextBoxCornerRadius" TargetType="{x:Type TextBox}">
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid>
+                        <Border CornerRadius="15" x:Name="Bd" Height="{TemplateBinding Height}" BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        </Border>
+                        <ScrollViewer x:Name="PART_ContentHost" Margin="5 0 5 0" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Label Margin="6,0,6,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                               Visibility="Collapsed" Foreground="Gray" FontFamily="{StaticResource Roboto-Regular}"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                            <!--<Setter Property="Visibility" TargetName="btnCloseTextbox" Value="Collapsed"/>-->
+                        </MultiTrigger>
+
+
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="0.75"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource LineListViewBrush}"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="TextBoxLineDoc" TargetType="{x:Type TextBox}">
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid>
+                        <Border x:Name="Bd" Height="{TemplateBinding Height}" BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <Border.BorderBrush>
+                                <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                                    <DrawingBrush.Drawing>
+                                        <DrawingGroup>
+                                            <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                                <GeometryDrawing.Geometry>
+                                                    <GeometryGroup>
+                                                        <RectangleGeometry Rect="0,0,30,30" />
+                                                        <RectangleGeometry Rect="30,30,30,30" />
+                                                    </GeometryGroup>
+                                                </GeometryDrawing.Geometry>
+                                            </GeometryDrawing>
+                                        </DrawingGroup>
+                                    </DrawingBrush.Drawing>
+                                </DrawingBrush>
+                            </Border.BorderBrush>
+                        </Border>
+                        <ScrollViewer x:Name="PART_ContentHost" Margin="5 0 5 0" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Label Margin="6,0,6,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                               Visibility="Collapsed" Foreground="Gray" FontFamily="{StaticResource Roboto-Regular}"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                            <!--<Setter Property="Visibility" TargetName="btnCloseTextbox" Value="Collapsed"/>-->
+                        </MultiTrigger>
+
+
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="0.75"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource LineListViewBrush}"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+  
+
+    <Style x:Key="{x:Type TextBox}" TargetType="{x:Type TextBox}">
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid>
+                        <Border x:Name="Bd" CornerRadius="20" Height="{TemplateBinding Height}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}" SnapsToDevicePixels="True"/>
+                        <ScrollViewer x:Name="PART_ContentHost" Margin="5 0 5 0" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Label Margin="6,0,6,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                               Visibility="Collapsed" Foreground="Gray" FontFamily="{StaticResource Roboto-Regular}"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                            <!--<Setter Property="Visibility" TargetName="btnCloseTextbox" Value="Collapsed"/>-->
+                        </MultiTrigger>
+
+
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="0.75"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource LineListViewBrush}"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SearchTextBoxCreateOrder" TargetType="{x:Type TextBox}">
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid>
+                        <Border x:Name="Bd" CornerRadius="20" Height="{TemplateBinding Height}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}" SnapsToDevicePixels="True"/>
+                        <ScrollViewer x:Name="PART_ContentHost" Margin="5 0 5 0" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Label Margin="6,0,6,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                               Visibility="Collapsed" Foreground="Black" FontFamily="{StaticResource Roboto-Regular}"/>
+                        <!--<Image Margin="5 0 10 0" Source="/Resources/Images/ic-loupe.png" Height="18" Width="18"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="Right"></Image>-->
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                            <!--<Setter Property="Visibility" TargetName="btnCloseTextbox" Value="Collapsed"/>-->
+                        </MultiTrigger>
+
+
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="0.75"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource LineListViewBrush}"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="SearchTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid>
+                        <Border x:Name="Bd" CornerRadius="20" Height="{TemplateBinding Height}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}" SnapsToDevicePixels="True"/>
+                        <ScrollViewer x:Name="PART_ContentHost" Margin="5 0 5 0" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Label Margin="6,0,6,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                               Visibility="Collapsed" Foreground="Gray" FontFamily="{StaticResource Roboto-Regular}"/>
+                        <Image Margin="5 0 10 0" Source="/Resources/Images/search.png" Height="18" Width="18"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="Right"></Image>
+
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                            <!--<Setter Property="Visibility" TargetName="btnCloseTextbox" Value="Collapsed"/>-->
+                        </MultiTrigger>
+
+
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="0.75"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource LineListViewBrush}"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="{x:Type DataGridCell}" TargetType="{x:Type DataGridCell}">
+        <Setter Property="BorderThickness" Value="0,0,0.5,0.5"/>
+        <Setter Property="FontSize" Value="{StaticResource fontSizeSixTeen}"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                    <DrawingBrush.Drawing>
+                        <DrawingGroup>
+                            <GeometryDrawing Brush="{StaticResource ColorForegroundBrush}">
+                                <GeometryDrawing.Geometry>
+                                    <GeometryGroup>
+                                        <RectangleGeometry Rect="0,0,30,30" />
+                                        <RectangleGeometry Rect="30,30,30,30" />
+                                    </GeometryGroup>
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+                        </DrawingGroup>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="MinHeight" Value="45"></Setter>
+        <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource SkyBlueBackgroundBrush}"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="BorderThickness" Value="0,0,0.5,0.5"/>
+                <Setter Property="FontSize" Value="{StaticResource fontSizeSixTeen}"/>
+                <Setter Property="BorderBrush">
+                    <Setter.Value>
+                        <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <GeometryDrawing Brush="{StaticResource ColorForegroundBrush}">
+                                        <GeometryDrawing.Geometry>
+                                            <GeometryGroup>
+                                                <RectangleGeometry Rect="0,0,30,30" />
+                                                <RectangleGeometry Rect="30,30,30,30" />
+                                            </GeometryGroup>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DataGridCook" TargetType="{x:Type DataGridCell}">
+        <Setter Property="BorderThickness" Value="0,0.25,0,0"/>
+        <Setter Property="TextElement.FontFamily" Value="{StaticResource Roboto-Regular}"/>
+        <Setter Property="TextElement.Foreground" Value="Black"/>
+        <Setter Property="MinHeight" Value="45"></Setter>
+        <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                    <DrawingBrush.Drawing>
+                        <DrawingGroup>
+                            <GeometryDrawing Brush="{StaticResource ColorForegroundBrush}">
+                                <GeometryDrawing.Geometry>
+                                    <GeometryGroup>
+                                        <RectangleGeometry Rect="0,0,30,30" />
+                                        <RectangleGeometry Rect="30,30,30,30" />
+                                    </GeometryGroup>
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+                        </DrawingGroup>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource GrayLBrush}"/>
+
+            </Trigger>
+
+        </Style.Triggers>
+
+    </Style>
+    <Style x:Key="{x:Type DataGridRow}" TargetType="{x:Type DataGridRow}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+    </Style>
+    <Style x:Key="DataGridColumnHeaderNoBorder" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Background" Value="{StaticResource GrayBackgroundBrush}"></Setter>
+        <Setter Property="MinHeight" Value="45"></Setter>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="{StaticResource ColorForegroundBrush}"/>
+        <Setter Property="FontWeight" Value="DemiBold"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="{StaticResource fontSizeSixTeen}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="5 0 5 0"/>
+    </Style>
+    
+    <Style x:Key="{x:Type DataGridColumnHeader}" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Background" Value="{StaticResource GrayBackgroundBrush}"></Setter>
+        <Setter Property="MinHeight" Value="45"></Setter>
+        <Setter Property="BorderThickness" Value="0.5,0.5,0,0"/>
+        <Setter Property="Foreground" Value="{StaticResource ColorForegroundBrush}"/>
+        <Setter Property="FontWeight" Value="DemiBold"/>
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                    <DrawingBrush.Drawing>
+                        <DrawingGroup>
+                            <GeometryDrawing Brush="{StaticResource ColorForegroundBrush}">
+                                <GeometryDrawing.Geometry>
+                                    <GeometryGroup>
+                                        <RectangleGeometry Rect="0,0,30,30" />
+                                        <RectangleGeometry Rect="30,30,30,30" />
+                                    </GeometryGroup>
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+                        </DrawingGroup>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="{StaticResource fontSizeSixTeen}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="5 0 5 0"/>
+    </Style>
+    <Style x:Key="LabelHeader" TargetType="{x:Type Label}">
+        <Setter Property="Margin" Value="30 0 10 0"></Setter>
+        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="TextElement.FontFamily" Value="{StaticResource Roboto-Regular}"/>
+        <Setter Property="TextElement.FontSize" Value="{StaticResource fontSizeLabelHeader}"/>
+        <Setter Property="TextElement.FontWeight" Value="Bold"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+    <Style x:Key="BtnPaymentMethod"  TargetType="{x:Type Button}">
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource fontSizeEightTeen}"></Setter>
+        <Setter Property="Margin" Value="10 0 10 0"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border  Height="{TemplateBinding Height}" CornerRadius="20" Background="{TemplateBinding Background}">
+                        <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Transparent"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="BtnItemOrderDetail"  TargetType="{x:Type Button}">
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource fontSizeEightTeen}"></Setter>
+        <Setter Property="Margin" Value="10 0 10 0"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border  Height="{TemplateBinding Height}" CornerRadius="15" Background="{TemplateBinding Background}">
+                        <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Transparent"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="BtnRefresh"  TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource fontSizeFifteen}"></Setter>
+        <Setter Property="Margin" Value="10 0 10 0"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border  Height="40" CornerRadius="20" Background="{TemplateBinding Background}">
+                        <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Transparent"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="BtnMoney"  TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource fontSizeFifteen}"></Setter>
+        <Setter Property="Margin" Value="10 0 10 0"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border  Height="50" CornerRadius="10" Background="{TemplateBinding Background}">
+                        <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Transparent"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="btnImport"  TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Width" Value="110"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource fontSize}"></Setter>
+        <Setter Property="Margin" Value="10 0 10 0"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border  Height="40" Background="{StaticResource GrayDarkBackgroundBrush}" CornerRadius="20" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0">
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image  Source="/Resources/Images/ic-upload.png" Height="20" Width="25" />
+                            <TextBlock x:Name="contentPresenter" Margin="5 0 0 0" Text="IMPORT"/>
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Transparent"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="btnExport"  TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Width" Value="110"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource fontSize}"></Setter>
+        <Setter Property="Margin" Value="10 0 10 0"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border  Height="40" Background="{StaticResource BlueBackgroundBrush}" CornerRadius="20" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0">
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image  Source="/Resources/Images/ic-down-arrow.png" Height="20" Width="20" />
+                            <TextBlock VerticalAlignment="Center"  x:Name="contentPresenter" Margin="5 0 0 0" Text="EXPORT"/>
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Transparent"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="btnAdd"  TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Width" Value="130"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource fontSize}"></Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border  Height="40" Background="{StaticResource MainBrush}" CornerRadius="20" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0">
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image  Source="/Resources/Images/ic_plus_white.png" Height="20" Width="20" />
+                            <TextBlock VerticalAlignment="Center" x:Name="contentPresenter" Margin="5 0 0 0" Text="{Binding Source={x:Static help:MessageValue.MESSAGE_FROM_ADD}}"/>
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Transparent"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="btnSave"  TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Width" Value="110"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource fontSize}"></Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border  Height="35" Background="White" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="1">
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image  Source="/Resources/Images/ic_save.png" Height="30" Width="30" />
+                            <TextBlock x:Name="contentPresenter" VerticalAlignment="Center" Margin="5 0 0 0" Text="{Binding Source={x:Static help:MessageValue.MESSAGE_FROM_SAVE}}"/>
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Transparent"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="btnChoose"  TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="AliceBlue" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Width" Value="155"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource fontSize}"></Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border  Height="35" Background="White" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="1">
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image  Source="/Resources/Images/ic-book.png" Width="20" />-->
+                            <TextBlock x:Name="contentPresenter" Margin="5 0 0 0" VerticalAlignment="Center" Text="{Binding Source={x:Static help:MessageValue.MESSAGE_FROM_CHOOSE_TAKE_AWAY_BUTTON}}"/>
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="AliceBlue"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="btnAssign"  TargetType="{x:Type Button}">
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Width" Value="125"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource fontSize}"></Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border  Height="40" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0.75">
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image  Source="/Resources/Images/ic_plus_white.png" Width="20" />
+                            <TextBlock x:Name="contentPresenter" Margin="5 0 0 0" VerticalAlignment="Center" Text="{Binding Source={x:Static help:MessageValue.MESSAGE_FROM_ASSIGN_FOOD_BUTTON}}"/>
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="AliceBlue"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="{x:Type TreeViewItem}">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Padding" Value="3"></Setter>
+    </Style>
+    <!-- Image, Icon -->
+    <DrawingImage x:Key="DoneReturnBeerIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+                <GeometryDrawing Geometry="F1 M64,64z M0,0z M53,34L58.241,34C61.109,34 63.683,31.918 63.972,29.064 64.303,25.789 61.711,23 58.5,23L39.17,23C37.546,23 36.089,21.784 36.005,20.161 35.914,18.431 37.29,17 39,17L44.241,17C47.109,17 49.683,14.918 49.972,12.064 50.303,8.789 47.711,6 44.5,6L33,6 25.5,6 10.5,6C7.462,6,5,8.462,5,11.5L5,11.5C5,14.538,7.462,17,10.5,17L14,17C15.105,17,16,17.895,16,19L16,19C16,20.105,15.105,21,14,21L6.712,21C4.365,21 2.259,22.704 2.023,25.038 1.752,27.718 3.873,30 6.5,30L12.83,30C14.454,30 15.911,31.216 15.995,32.839 16.086,34.569 14.71,36 13,36L9.712,36C7.365,36 5.259,37.704 5.023,40.038 4.753,42.718 6.873,45 9.5,45L13.893,45C14.889,45 15.813,45.681 15.973,46.664 16.176,47.917 15.215,49 14,49L9.712,49C7.365,49 5.259,50.704 5.023,53.038 4.752,55.718 6.873,58 9.5,58L31.5,58C31.586,58 31.666,57.979 31.75,57.975 31.834,57.982 31.914,58 32,58L49.386,58C51.056,58 52.581,56.878 52.923,55.243 53.392,52.998 51.668,51 49.5,51L44.107,51C43.111,51 42.187,50.319 42.027,49.336 41.824,48.083 42.785,47 44,47L56.288,47C58.635,47 60.741,45.296 60.977,42.961 61.247,40.282 59.127,38 56.5,38L53.107,38C52.111,38 51.187,37.319 51.027,36.336 50.824,35.083 51.785,34 53,34z">
+                    <GeometryDrawing.Brush>
+                        <RadialGradientBrush Center="33,32" RadiusX="28.609" RadiusY="28.609" GradientOrigin="33,32" MappingMode="Absolute" SpreadMethod="Reflect" Opacity="1">
+                            <GradientStop Color="#FFAFEEFF" Offset="0" />
+                            <GradientStop Color="#FFBBF1FF" Offset="0.193" />
+                            <GradientStop Color="#FFD7F8FF" Offset="0.703" />
+                            <GradientStop Color="#FFE1FAFF" Offset="1" />
+                        </RadialGradientBrush>
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+                <GeometryDrawing Geometry="F1 M64,64z M0,0z M51.964,15.036L25.482,41.518 12.036,28.036C10.655,26.655,8.417,26.655,7.036,28.036L7.036,28.036C5.655,29.417,5.655,31.655,7.036,33.036L22.856,48.891C24.307,50.342,26.659,50.342,28.11,48.891L56.965,20.036C58.346,18.655,58.346,16.417,56.965,15.036L56.965,15.036C55.584,13.655,53.345,13.655,51.964,15.036z">
+                    <GeometryDrawing.Brush>
+                        <LinearGradientBrush StartPoint="32,14" EndPoint="32,49.979" MappingMode="Absolute" SpreadMethod="Reflect" Opacity="1">
+                            <GradientStop Color="#FF42D778" Offset="0" />
+                            <GradientStop Color="#FF3DCA76" Offset="0.428" />
+                            <GradientStop Color="#FF34B171" Offset="1" />
+                        </LinearGradientBrush>
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    <DrawingImage x:Key="icon_beer_bottles_by_VexelsDrawingImage">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V1200 H1200 V0 H0 Z">
+                <DrawingGroup Opacity="1">
+                    <DrawingGroup Opacity="1">
+                        <GeometryDrawing Brush="#FFFBAD17" Geometry="F1 M1200,1200z M0,0z M539.515,648.178L539.515,440.034C539.515,403.772,504.639,374.376,461.616,374.376L435.502,109.456 316.89,109.456 290.776,374.376C247.754,374.376,212.878,403.772,212.878,440.034L212.878,648.178" />
+                    </DrawingGroup>
+                    <DrawingGroup Opacity="1">
+                        <GeometryDrawing Brush="#FFFBAD17" Geometry="F1 M1200,1200z M0,0z M817.875,648.178L817.875,440.034C817.875,403.772,782.999,374.376,739.977,374.376L713.863,109.456 595.251,109.456 569.137,374.376C526.115,374.376,491.239,403.772,491.239,440.034L491.239,648.178" />
+                    </DrawingGroup>
+                    <DrawingGroup Opacity="1">
+                        <GeometryDrawing Brush="#FFFBAD17" Geometry="F1 M1200,1200z M0,0z M1096.235,648.178L1096.235,440.034C1096.235,403.772,1061.359,374.376,1018.337,374.376L992.223,109.456 873.611,109.456 847.497,374.376C804.475,374.376,769.599,403.772,769.599,440.034L769.599,648.178" />
+                    </DrawingGroup>
+                    <DrawingGroup Opacity="1">
+                        <DrawingGroup Opacity="1">
+                            <DrawingGroup Opacity="1">
+                                <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M295.573,156.832C295.566,156.832,295.559,156.832,295.552,156.832L254.319,156.696C250.27,156.682 247.001,153.395 247.015,149.349 247.029,145.311 250.306,142.045 254.34,142.045 254.347,142.045 254.354,142.045 254.361,142.045L295.594,142.181C299.643,142.195 302.912,145.486 302.898,149.531 302.884,153.57 299.608,156.832 295.573,156.832z" />
+                            </DrawingGroup>
+                            <DrawingGroup Opacity="1">
+                                <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M295.573,253.806C295.544,253.806 295.509,253.806 295.473,253.806 279.191,253.584 262.996,253.452 246.843,253.32L244.776,253.302C240.727,253.27 237.472,249.961 237.508,245.916 237.544,241.892 240.813,238.652 244.833,238.652 244.854,238.652 244.876,238.652 244.89,238.652L246.957,238.67C263.138,238.802 279.363,238.938 295.673,239.156 299.715,239.21 302.955,242.536 302.898,246.581 302.841,250.59 299.572,253.806 295.573,253.806z" />
+                            </DrawingGroup>
+                            <DrawingGroup Opacity="1">
+                                <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M302.777,350.83C302.727,350.83 302.67,350.83 302.612,350.826 280.343,350.329 257.673,350.003 235.24,349.864 231.191,349.839 227.929,346.538 227.958,342.492 227.987,338.465 231.256,335.213 235.283,335.213 235.297,335.213 235.312,335.213 235.326,335.213 257.846,335.352 280.594,335.678 302.942,336.182 306.984,336.271 310.189,339.623 310.103,343.668 310.009,347.657 306.747,350.83 302.777,350.83z" />
+                            </DrawingGroup>
+                            <DrawingGroup Opacity="1">
+                                <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M222.707,448.802C200.044,448.802 177.174,448.637 154.183,448.308 150.141,448.251 146.908,444.924 146.965,440.879 147.022,436.834 150.32,433.418 154.398,433.657 209.91,434.455 264.778,434.29 317.5,433.153 321.721,433.353 324.897,436.279 324.983,440.321 325.069,444.366 321.857,447.714 317.815,447.804 286.753,448.469 254.948,448.802 222.707,448.802z" />
+                            </DrawingGroup>
+                            <DrawingGroup Opacity="1">
+                                <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M230.797,545.411C205.287,545.411 179.72,545.293 154.218,545.053 150.176,545.014 146.928,541.705 146.964,537.66 147,533.636 150.276,530.403 154.289,530.403 154.31,530.403 154.332,530.403 154.361,530.403 213.7,530.954 273.425,530.861 331.892,530.128 335.762,530.192 339.253,533.318 339.31,537.36 339.36,541.405 336.119,544.728 332.078,544.778 298.628,545.2 264.763,545.411 230.797,545.411z" />
+                            </DrawingGroup>
+                        </DrawingGroup>
+                        <DrawingGroup Opacity="1">
+                            <DrawingGroup Opacity="1">
+                                <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M198.377,744.978C198.284,744.978 198.184,744.978 198.091,744.974 163.131,743.643 128.065,742.531 93.856,741.665 89.814,741.565 86.617,738.203 86.717,734.157 86.817,730.108 90.029,726.835 94.228,727.021 128.494,727.887 163.625,728.999 198.649,730.33 202.691,730.484 205.846,733.885 205.688,737.931 205.538,741.881 202.29,744.978 198.377,744.978z" />
+                            </DrawingGroup>
+                            <DrawingGroup Opacity="1">
+                                <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M196.696,797.954C196.574,797.954 196.453,797.95 196.331,797.947 161.443,796.23 126.984,795.043 93.906,794.42 89.857,794.341 86.645,791.001 86.717,786.955 86.796,782.917 90.051,779.64 94.178,779.769 127.406,780.399 162.015,781.59 197.047,783.31 201.089,783.51 204.208,786.948 204.007,790.989 203.814,794.907 200.573,797.954 196.696,797.954z" />
+                            </DrawingGroup>
+                        </DrawingGroup>
+                        <DrawingGroup Opacity="1">
+                            <DrawingGroup Opacity="1">
+                                <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M198.377,937.853C198.284,937.853 198.184,937.853 198.091,937.849 163.038,936.518 127.964,935.41 93.856,934.544 89.814,934.444 86.617,931.082 86.717,927.036 86.817,923.055 90.079,919.897 94.042,919.897 94.099,919.897 94.164,919.897 94.228,919.901 128.401,920.763 163.532,921.875 198.649,923.206 202.691,923.36 205.846,926.761 205.688,930.807 205.538,934.752 202.29,937.853 198.377,937.853z" />
+                            </DrawingGroup>
+                            <DrawingGroup Opacity="1">
+                                <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M196.696,990.829C196.574,990.829 196.453,990.825 196.331,990.822 161.436,989.109 126.977,987.921 93.906,987.295 89.857,987.216 86.638,983.876 86.717,979.83 86.796,975.792 90.051,972.623 94.178,972.644 127.399,973.274 162.008,974.468 197.047,976.185 201.089,976.385 204.208,979.823 204.007,983.861 203.814,987.782 200.573,990.829 196.696,990.829z" />
+                            </DrawingGroup>
+                        </DrawingGroup>
+                        <DrawingGroup Opacity="1">
+                            <GeometryDrawing Geometry="F1 M1200,1200z M0,0z M600.003,662.624">
+                                <GeometryDrawing.Pen>
+                                    <Pen Brush="#FF3D2B0F" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Round" MiterLimit="10" />
+                                </GeometryDrawing.Pen>
+                            </GeometryDrawing>
+                        </DrawingGroup>
+                        <DrawingGroup Opacity="1">
+                            <GeometryDrawing Geometry="F1 M1200,1200z M0,0z M600.003,832.429">
+                                <GeometryDrawing.Pen>
+                                    <Pen Brush="#FF3D2B0F" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Round" MiterLimit="10" />
+                                </GeometryDrawing.Pen>
+                            </GeometryDrawing>
+                        </DrawingGroup>
+                        <DrawingGroup Opacity="1">
+                            <GeometryDrawing Geometry="F1 M1200,1200z M0,0z M600.003,662.624">
+                                <GeometryDrawing.Pen>
+                                    <Pen Brush="#FF3D2B0F" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Round" MiterLimit="10" />
+                                </GeometryDrawing.Pen>
+                            </GeometryDrawing>
+                        </DrawingGroup>
+                        <DrawingGroup Opacity="1">
+                            <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M480.915,655.505C476.866,655.505,473.59,652.225,473.59,648.18L473.59,440.035C473.59,407.869 441.928,381.701 403.013,381.701 399.243,381.701 396.095,378.843 395.723,375.095L370.263,116.783 264.927,116.783 239.46,375.095C239.088,378.843 235.94,381.701 232.17,381.701 193.254,381.701 161.6,407.869 161.6,440.035L161.6,648.179C161.6,652.224 158.324,655.504 154.275,655.504 150.226,655.504 146.95,652.224 146.95,648.179L146.95,440.035C146.95,401.71,181.616,370.191,225.511,367.272L250.999,108.738C251.371,104.99,254.519,102.132,258.289,102.132L376.903,102.132C380.673,102.132,383.821,104.99,384.192,108.738L409.673,367.272C453.567,370.187,488.241,401.709,488.241,440.035L488.241,648.179C488.241,652.225,484.964,655.505,480.915,655.505z" />
+                        </DrawingGroup>
+                        <DrawingGroup Opacity="1">
+                            <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M404.522,116.782L230.669,116.782C212.256,116.782 197.276,101.802 197.276,83.393 197.276,64.98 212.256,50 230.669,50L404.523,50C422.929,50 437.909,64.98 437.909,83.393 437.908,101.803 422.928,116.782 404.522,116.782z M230.669,64.651C220.332,64.651 211.927,73.06 211.927,83.393 211.927,93.726 220.332,102.132 230.669,102.132L404.523,102.132C414.853,102.132 423.258,93.727 423.258,83.393 423.258,73.059 414.853,64.651 404.523,64.651L230.669,64.651z" />
+                        </DrawingGroup>
+                        <DrawingGroup Opacity="1">
+                            <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M771.101,447.36C767.052,447.36 763.776,444.08 763.776,440.035 763.776,407.869 732.121,381.701 693.206,381.701 689.436,381.701 686.288,378.843 685.916,375.095L659.798,110.176C659.397,106.149 662.345,102.565 666.372,102.168 670.492,101.746 673.983,104.718 674.377,108.739L699.865,367.273C743.759,370.192 778.426,401.71 778.426,440.036 778.426,444.08 775.15,447.36 771.101,447.36z" />
+                        </DrawingGroup>
+                        <DrawingGroup Opacity="1">
+                            <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M771.101,655.505C767.052,655.505,763.776,652.225,763.776,648.18L763.776,440.035C763.776,435.99 767.052,432.71 771.101,432.71 775.15,432.71 778.426,435.99 778.426,440.035L778.426,648.179C778.426,652.225,775.15,655.505,771.101,655.505z" />
+                        </DrawingGroup>
+                        <DrawingGroup Opacity="1">
+                            <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M694.708,116.782L520.854,116.782C502.448,116.782 487.468,101.802 487.468,83.393 487.468,64.98 502.448,50 520.854,50L694.708,50C713.121,50 728.101,64.98 728.101,83.393 728.1,101.803 713.121,116.782 694.708,116.782z M520.854,64.651C510.524,64.651 502.119,73.06 502.119,83.393 502.119,93.726 510.524,102.132 520.854,102.132L694.708,102.132C705.045,102.132 713.45,93.727 713.45,83.393 713.45,73.059 705.045,64.651 694.708,64.651L520.854,64.651z" />
+                        </DrawingGroup>
+                        <DrawingGroup Opacity="1">
+                            <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M1045.734,447.36C1041.685,447.36 1038.409,444.08 1038.409,440.035 1038.409,407.869 1006.747,381.701 967.832,381.701 964.062,381.701 960.914,378.843 960.542,375.095L934.431,110.176C934.03,106.149 936.978,102.565 941.005,102.168 945.147,101.746 948.616,104.718 949.01,108.739L974.491,367.273C1018.385,370.188 1053.059,401.71 1053.059,440.036 1053.059,444.08 1049.783,447.36 1045.734,447.36z" />
+                        </DrawingGroup>
+                        <DrawingGroup Opacity="1">
+                            <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M1045.734,655.505C1041.685,655.505,1038.409,652.225,1038.409,648.18L1038.409,440.035C1038.409,435.99 1041.685,432.71 1045.734,432.71 1049.783,432.71 1053.059,435.99 1053.059,440.035L1053.059,648.179C1053.059,652.225,1049.783,655.505,1045.734,655.505z" />
+                        </DrawingGroup>
+                        <DrawingGroup Opacity="1">
+                            <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M969.341,116.782L795.487,116.782C777.074,116.782 762.094,101.802 762.094,83.393 762.094,64.98 777.074,50 795.487,50L969.341,50C987.747,50 1002.727,64.98 1002.727,83.393 1002.727,101.803 987.747,116.782 969.341,116.782z M795.487,64.651C785.15,64.651 776.745,73.06 776.745,83.393 776.745,93.726 785.15,102.132 795.487,102.132L969.341,102.132C979.671,102.132 988.076,93.727 988.076,83.393 988.076,73.059 979.671,64.651 969.341,64.651L795.487,64.651z" />
+                        </DrawingGroup>
+                        <DrawingGroup Opacity="1">
+                            <GeometryDrawing Geometry="F1 M1200,1200z M0,0z M600.003,832.429">
+                                <GeometryDrawing.Pen>
+                                    <Pen Brush="#FF3D2B0F" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Round" MiterLimit="10" />
+                                </GeometryDrawing.Pen>
+                            </GeometryDrawing>
+                        </DrawingGroup>
+                        <DrawingGroup Opacity="1">
+                            <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M1052.222,1075.753L147.787,1075.753C114.115,1075.753,86.717,1048.358,86.717,1014.686L86.717,707.365C86.717,670.692,116.555,640.855,153.231,640.855L1046.778,640.855C1083.447,640.855,1113.285,670.693,1113.285,707.365L1113.285,1014.687C1113.285,1048.358,1085.894,1075.753,1052.222,1075.753z M153.231,655.505C124.631,655.505,101.367,678.768,101.367,707.365L101.367,1014.687C101.367,1040.283,122.191,1061.103,147.787,1061.103L1052.222,1061.103C1077.81,1061.103,1098.634,1040.282,1098.634,1014.687L1098.634,707.365C1098.634,678.769,1075.371,655.505,1046.778,655.505L153.231,655.505z" />
+                        </DrawingGroup>
+                        <DrawingGroup Opacity="1">
+                            <DrawingGroup Opacity="1">
+                                <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M567.002,1150L127.635,1150C123.586,1150 120.31,1146.724 120.31,1142.675 120.31,1138.626 123.586,1135.35 127.635,1135.35L567.001,1135.35C571.05,1135.35 574.326,1138.626 574.326,1142.675 574.327,1146.724 571.051,1150 567.002,1150z" />
+                            </DrawingGroup>
+                            <DrawingGroup Opacity="1">
+                                <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M802.619,1150L653.231,1150C649.182,1150 645.906,1146.724 645.906,1142.675 645.906,1138.626 649.182,1135.35 653.231,1135.35L802.619,1135.35C806.668,1135.35 809.944,1138.626 809.944,1142.675 809.945,1146.724 806.668,1150 802.619,1150z" />
+                            </DrawingGroup>
+                        </DrawingGroup>
+                        <DrawingGroup Opacity="1">
+                            <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M1105.96,867.226L94.042,867.226C89.993,867.226 86.717,863.946 86.717,859.901 86.717,855.856 89.993,852.576 94.042,852.576L1105.96,852.576C1110.009,852.576 1113.285,855.856 1113.285,859.901 1113.285,863.946 1110.009,867.226 1105.96,867.226z" />
+                        </DrawingGroup>
+                        <DrawingGroup Opacity="1">
+                            <DrawingGroup Opacity="1">
+                                <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M937.429,794.445L931.756,794.445C917.163,794.445,905.288,782.57,905.288,767.977L905.288,762.308C905.288,747.715,917.163,735.843,931.756,735.843L937.429,735.843C952.022,735.843,963.89,747.714,963.89,762.308L963.89,767.977C963.89,782.57,952.022,794.445,937.429,794.445z M931.756,750.494C925.239,750.494,919.938,755.795,919.938,762.308L919.938,767.977C919.938,774.494,925.239,779.795,931.756,779.795L937.429,779.795C943.939,779.795,949.24,774.494,949.24,767.977L949.24,762.308C949.24,755.795,943.939,750.494,937.429,750.494L931.756,750.494z" />
+                            </DrawingGroup>
+                            <DrawingGroup Opacity="1">
+                                <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M937.429,999.317L931.756,999.317C917.163,999.317,905.288,987.442,905.288,972.849L905.288,967.18C905.288,952.587,917.163,940.715,931.756,940.715L937.429,940.715C952.022,940.715,963.89,952.586,963.89,967.18L963.89,972.849C963.89,987.442,952.022,999.317,937.429,999.317z M931.756,955.365C925.239,955.365,919.938,960.666,919.938,967.179L919.938,972.848C919.938,979.365,925.239,984.666,931.756,984.666L937.429,984.666C943.939,984.666,949.24,979.365,949.24,972.848L949.24,967.179C949.24,960.666,943.939,955.365,937.429,955.365L931.756,955.365z" />
+                            </DrawingGroup>
+                            <DrawingGroup Opacity="1">
+                                <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M268.254,794.445L262.581,794.445C247.988,794.445,236.113,782.57,236.113,767.977L236.113,762.308C236.113,747.715,247.988,735.843,262.581,735.843L268.254,735.843C282.847,735.843,294.715,747.714,294.715,762.308L294.715,767.977C294.715,782.57,282.847,794.445,268.254,794.445z M262.581,750.494C256.064,750.494,250.763,755.795,250.763,762.308L250.763,767.977C250.763,774.494,256.064,779.795,262.581,779.795L268.254,779.795C274.764,779.795,280.065,774.494,280.065,767.977L280.065,762.308C280.065,755.795,274.764,750.494,268.254,750.494L262.581,750.494z" />
+                            </DrawingGroup>
+                            <DrawingGroup Opacity="1">
+                                <GeometryDrawing Brush="#FF3D2B0F" Geometry="F1 M1200,1200z M0,0z M268.254,999.317L262.581,999.317C247.988,999.317,236.113,987.442,236.113,972.849L236.113,967.18C236.113,952.587,247.988,940.715,262.581,940.715L268.254,940.715C282.847,940.715,294.715,952.586,294.715,967.18L294.715,972.849C294.715,987.442,282.847,999.317,268.254,999.317z M262.581,955.365C256.064,955.365,250.763,960.666,250.763,967.179L250.763,972.848C250.763,979.365,256.064,984.666,262.581,984.666L268.254,984.666C274.764,984.666,280.065,979.365,280.065,972.848L280.065,967.179C280.065,960.666,274.764,955.365,268.254,955.365L262.581,955.365z" />
+                            </DrawingGroup>
+                        </DrawingGroup>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

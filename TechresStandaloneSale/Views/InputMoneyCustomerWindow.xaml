@@ -1,0 +1,124 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.InputMoneyCustomerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views"
+           xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:select ="clr-namespace:TechresStandaloneSale.Helpers"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontFamily="{StaticResource Roboto-Regular}"
+        xmlns:helps ="clr-namespace:TechresStandaloneSale.Helpers"
+        TextElement.FontSize="14"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Width="1000" Height="650" 
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Icon="logo.ico"
+        BorderThickness="0.75"
+        BorderBrush="{StaticResource LineListViewBrush}"
+        WindowStartupLocation="CenterScreen"
+        Name="inputMoneyCustomerWindow">
+    <Window.InputBindings>
+        <KeyBinding Key="F4" Command="{Binding SaveCommand}"  CommandParameter="{Binding ElementName=inputMoneyCustomerWindow}"></KeyBinding>
+        <KeyBinding Key="Esc" Command="{Binding CloseCommand}"  CommandParameter="{Binding ElementName=inputMoneyCustomerWindow}"></KeyBinding>
+    </Window.InputBindings>
+    <Window.Resources>
+        <BitmapImage x:Key="logo" UriSource="/TechresStandaloneSale;component/Resources/Images/white_logo.png" />
+        <BitmapImage x:Key="ic_check" UriSource="/TechresStandaloneSale;component/Resources/Images/icon_check.jpg" />
+        <BitmapImage x:Key="ic-loupe" UriSource="/TechresStandaloneSale;component/Resources/Images/ic-loupe.png" />
+    </Window.Resources>
+    <Grid Background="{StaticResource GrayLBrush}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Background="{StaticResource MainBrush}" >
+            <!--<Image Margin="5 0 0 0" Width="40" Height="40"  Grid.Column="0" Source="{StaticResource logo}" Stretch="Uniform" VerticalAlignment="Stretch"/>-->
+            <Label Margin="10 0 0 0" FontFamily="{StaticResource Roboto-Regular}" Foreground="White" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_INPUT_MONEY_CUSTOMER_TITLE}}"  FontSize="{StaticResource fontSizeHeader}"  VerticalAlignment="Center" FontWeight="DemiBold"/>
+            <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=inputMoneyCustomerWindow}" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" BorderBrush="{x:Null}" Foreground="#FF2387D6">
+                <materialDesign:PackIcon HorizontalAlignment="Center" VerticalContentAlignment="Center" Kind="Close" Foreground="White" Width="50" Height="40" />
+            </Button>
+        </DockPanel>
+        <Border  Grid.Row="1" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0.5" Margin="5" Background="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0 0.5">
+                    <DockPanel  HorizontalAlignment="Center">
+                        <Label Width="auto" VerticalContentAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_CUSTOMER_PHONE_NUMBER_INPUT_MONEY}}"></Label>
+                        <Grid>
+                            <TextBox Margin="10 0  160 0" Width="500" select:SelectAllFocusBehavior.Enable="True" Background="{StaticResource GrayBackgroundBrush}" Padding="3 0 0 0" VerticalContentAlignment="Center" Tag="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_CREAT_BOOKING_PHONE_CUSTOMER_NUMBER_HINT}}" HorizontalAlignment="Center" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0" Text="{Binding CustomerPhone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="40" VerticalAlignment="Center">
+                                <TextBox.InputBindings>
+                                    <KeyBinding Key="Enter" Command="{Binding SearchCustomerPhoneCommand}"  CommandParameter="{Binding ElementName=inputMoneyCustomerWindow}"></KeyBinding>
+                                </TextBox.InputBindings>
+                            </TextBox>
+                            <Button Command="{Binding SearchCustomerPhoneCommand}" Background="Transparent" CommandParameter="{Binding ElementName=inputMoneyCustomerWindow}" Width="25" Height="25" HorizontalAlignment="Right" Margin="10 0  170 0">
+                                <Image Source="{StaticResource ic-loupe}" ></Image>
+                            </Button>
+                        </Grid>
+                    </DockPanel>
+                </Border>
+                <Border Grid.Row="1" Visibility="{Binding CustomerInforVisibility}" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0 0.5">
+                    <Label  Width="600" Height="50" FontWeight="Bold" FontSize="{StaticResource fontSizeFifteen}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding CustomerInfor}"></Label>
+                </Border>
+                <ListBox Grid.Row="2" Name="TblItemsControl" ItemsSource="{Binding TopUpCardList,IsAsync=True }" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.ItemContainerStyle>
+                        <Style>
+                            <Style.Triggers>
+                                <Trigger Property="Control.IsMouseOver" Value="True">
+                                    <Setter Property="Control.Background" Value="Transparent" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel IsItemsHost="True" Orientation="Horizontal"  />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button MinWidth="150"  Command="{Binding Path=DataContext.ChooseMoneyCommand, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}" Margin="0 5 5 5" Grid.Column="0" Grid.Row="0" Height="60" BorderBrush="{StaticResource MainBrush}"  BorderThickness="1"  Background="#FFEEEEEE" >
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseRightButtonUp">
+                                            <i:InvokeCommandAction Command="{Binding Path=DataContext.UnChooseMoneyCommand, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ListBox}}}"></i:InvokeCommandAction>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Button.Content>
+                                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding AmountString}" FontSize="{StaticResource fontSizeLabelHeader}"></TextBlock>
+                                            <TextBlock Text="{Binding BonusAmountString}" FontStyle="Italic" FontSize="{StaticResource fontSize}"></TextBlock>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                                <Image Name="CheckImage" Visibility="{Binding CheckVisibility}" Source ="{StaticResource ic_check}" Height="20" Width="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,10,0"></Image>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </Grid>
+        </Border>
+        <DockPanel Background="{StaticResource GrayBackgroupBrush}" Grid.Row="2">
+            <DockPanel HorizontalAlignment="Right" Margin="0 0 10 0">
+                <Button Height="40" Style="{StaticResource BoderButtonClose}" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=inputMoneyCustomerWindow}" Margin="15 0" Width="120">
+                </Button>
+                <Button Height="40" Style="{StaticResource BoderButtonAgree}" Command="{Binding AddCommand}" VerticalContentAlignment="Center" CommandParameter="{Binding ElementName=inputMoneyCustomerWindow}" HorizontalAlignment="Right" Width="120">
+                </Button>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</Window>

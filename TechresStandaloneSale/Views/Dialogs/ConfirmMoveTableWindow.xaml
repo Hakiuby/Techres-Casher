@@ -1,0 +1,73 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.Dialogs.ConfirmMoveTableWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views.Dialogs"
+        TextElement.FontWeight="Regular"
+       xmlns:select ="clr-namespace:TechresStandaloneSale.Helpers"
+        TextElement.FontSize="14"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        mc:Ignorable="d" Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+          Icon="logo.ico"
+        WindowStartupLocation="CenterScreen"
+        BorderThickness="0.75"
+        BorderBrush="{StaticResource LineListViewBrush}"
+        Name="confirmMoveTableWindow"
+        Height="250" Width="400">
+    <Window.Resources>
+        <Color x:Key="MainColor">#FBBC05</Color>
+        <BitmapImage x:Key="logo" UriSource="/TechresStandaloneSale;component/Resources/Images/white_logo.png" />
+        <BitmapImage x:Key="closeTableLogo" UriSource="/TechresStandaloneSale;component/Resources/Images/table_ic_closed.png" />
+        <BitmapImage x:Key="openTableLogo" UriSource="/TechresStandaloneSale;component/Resources/Images/table_ic_opening.png" />
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="F4" Command="{Binding AddCommand}"  CommandParameter="{Binding ElementName=confirmMoveTableWindow}"></KeyBinding>
+        <KeyBinding Key="Esc" Command="{Binding NoCommand}"  CommandParameter="{Binding ElementName=confirmMoveTableWindow}"></KeyBinding>
+    </Window.InputBindings>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Background="{StaticResource MainBrush}">
+            <!--<Image Margin="3 0 0 0" Width="40" Height="40"  Grid.Column="0" Source="{StaticResource logo}" Stretch="Uniform" VerticalAlignment="Stretch"/>-->
+            <Label Foreground="White" FontSize="{StaticResource fontSizeHeader}" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_NOTIFICATION_CONFIRM_CHANGE_TABLE}}" VerticalAlignment="Center" FontWeight="SemiBold">
+            </Label>
+            <Button  Command="{Binding NoCommand}" CommandParameter="{Binding ElementName=confirmMoveTableWindow}" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" BorderBrush="{x:Null}" Foreground="#FF2387D6">
+                <materialDesign:PackIcon HorizontalAlignment="Center" VerticalContentAlignment="Center" Kind="Close" Foreground="White" Width="50"  Height="30" />
+            </Button>
+        </DockPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image Name="LinkImage" Source="{StaticResource openTableLogo}" Height="85" Width="85" >
+            </Image>
+            <Label Name="TableName" Content="{Binding TableContent1}" FontSize="{StaticResource fontSizeLabelHeader}" VerticalContentAlignment="Center" Foreground="White" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+            <materialDesign:PackIcon Grid.Column="1" Kind="ArrowRight" Height="35" Foreground="{StaticResource MainBrush}" Width="35" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Image Grid.Column="2" Source="{StaticResource closeTableLogo}" Height="85" Width="85" >
+            </Image>
+            <Label Grid.Column="2" Content="{Binding TableContent2}" FontSize="{StaticResource fontSizeLabelHeader}" VerticalContentAlignment="Center" Foreground="White" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+
+        </Grid>
+        <DockPanel Background="{StaticResource GrayBackgroundBrush}" Grid.Row="2">
+            <DockPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Button Style="{StaticResource BoderButtonClose}" Height="40" Command="{Binding NoCommand}" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_TABLE_CANCLE}}" Foreground="White" Background="White" CommandParameter="{Binding ElementName=confirmMoveTableWindow}" Margin="15 0" BorderThickness="1" BorderBrush="{StaticResource LineListViewBrush}" Width="120">
+                </Button>
+                <Button Style="{StaticResource BoderButtonAgree }" Margin="0 0 10 0" Command="{Binding YesCommand}" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_TABLE_AGREE}}" VerticalContentAlignment="Center" Foreground="White" Name="yes" Background="{StaticResource MainBrush}" CommandParameter="{Binding ElementName=confirmMoveTableWindow}" BorderThickness="1" BorderBrush="{StaticResource MainBrush}" Height="40" HorizontalAlignment="Right" Width="120">
+                </Button>
+            </DockPanel>
+           
+        </DockPanel>
+    </Grid>
+</Window>

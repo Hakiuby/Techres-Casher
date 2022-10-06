@@ -1,0 +1,53 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.HistoryEndWorkingSessionViewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:select ="clr-namespace:TechresStandaloneSale.Helpers"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views"
+        xmlns:uc ="clr-namespace:TechresStandaloneSale.UserControlView"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Icon="logo.ico"
+        BorderThickness="0.75"
+        Name="historyEndWorkingSession"
+        ResizeMode="NoResize"
+        WindowState="Maximized"
+        WindowStyle="None" 
+        WindowStartupLocation="CenterScreen"
+        Height="700" Width="1100">
+    <Window.Resources>
+        <Color x:Key="MainColor">#FBBC05</Color>
+        <BitmapImage x:Key="logo" UriSource="/TechresStandaloneSale;component/Resources/Images/white_logo.png" />
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="Esc" Command="{Binding CloseCommand}"  CommandParameter="{Binding ElementName=historyEndWorkingSession}"></KeyBinding>
+    </Window.InputBindings>
+    <Grid Background="{StaticResource GrayBackgroupBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Background="{StaticResource MainBrush}" >
+            <!--<Image Margin="10 0 0 0" Width="40" Height="40" Grid.Column="0" Source="{StaticResource logo}" Stretch="Uniform" VerticalAlignment="Stretch"/>-->
+            <Label Margin="10 0 0 0" Foreground="White" FontSize="{StaticResource fontSizeHeader}" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_HISTORY_END_WORKING_SESSION_VIEW_TITLE}}" VerticalAlignment="Center" FontWeight="SemiBold"/>
+            <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=historyEndWorkingSession}" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
+                <materialDesign:PackIcon HorizontalAlignment="Center" VerticalContentAlignment="Center" Kind="Close" Foreground="White" Width="50" Height="40" />
+            </Button>
+        </DockPanel>
+        <Grid Grid.Row="1" Background="White">
+            <uc:RevenueFinishWorkingSessionUserControl Grid.Column="0"></uc:RevenueFinishWorkingSessionUserControl>
+        </Grid>
+        <DockPanel Grid.Row="2"  Background="{StaticResource GrayLBrush}">
+            <Button Style="{StaticResource BoderButtonClose}" Height="40" HorizontalAlignment="Right"  VerticalAlignment="Center" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=historyEndWorkingSession}" Margin="0 0 20 0"  Background="White"/>
+        </DockPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,488 @@
+﻿<UserControl x:Class="TechresStandaloneSale.UserControlView.RevenueFinishWorkingSessionUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:TechresStandaloneSale.UserControlView"
+             xmlns:helps ="clr-namespace:TechresStandaloneSale.Helpers"
+             xmlns:l ="clr-namespace:TechresStandaloneSale.Loading"
+             xmlns:select ="clr-namespace:TechresStandaloneSale.Helpers"
+             mc:Ignorable="d" 
+             Background="White"
+             FontFamily="Roboto"
+             Name="revenueFinishWorkingSessionUC"
+
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="FontMoney" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+        </Style>
+        <BorderGapMaskConverter x:Key="BorderGapMaskConverter"/>
+        <Style TargetType="{x:Type GroupBox}">
+            <Setter Property="BorderBrush" Value="#383838" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GroupBox}">
+                        <Grid SnapsToDevicePixels="true">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="6" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="6" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="6" />
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="4" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="Transparent" Background="{TemplateBinding Background}" />
+                            <Border Name="Header" Padding="3,1,3,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+                                <ContentPresenter ContentSource="Header" RecognizesAccessKey="true" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </Border>
+                            <ContentPresenter Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            <Border Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="4"  BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                                <Border.OpacityMask>
+                                    <MultiBinding Converter="{StaticResource BorderGapMaskConverter}" ConverterParameter="7">
+                                        <Binding ElementName="Header" Path="ActualWidth" />
+                                        <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}" />
+                                        <Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}" />
+                                    </MultiBinding>
+                                </Border.OpacityMask>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <l:AdornedControl x:Name="LoadingAdorner" IsAdornerVisible="{Binding Path=DialogHostOpen,UpdateSourceTrigger=PropertyChanged}">
+        <l:AdornedControl.AdornerContent>
+            <l:LoadingWait></l:LoadingWait>
+        </l:AdornedControl.AdornerContent>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Border BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0 0.5">
+                <DockPanel  Grid.Row="0" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding WorkingSessionTitle}" FontSize="{StaticResource fontSizeFifteen}" Margin="10 0 0 0" HorizontalAlignment="Left" ></TextBlock>
+                    <TextBlock Text="{Binding CheckInTitle}" FontSize="{StaticResource fontSize}" Margin="10 0 10 0"  HorizontalAlignment="Right" ></TextBlock>
+                </DockPanel>
+            </Border>
+            <Grid Grid.Row="1" Margin="0 0 0 5">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="1.3*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <GroupBox  BorderThickness="0.6" Margin="5 5 0 0" Style="{x:Null}" BorderBrush="Gray">
+                            <GroupBox.Header>
+                                <TextBlock Text="TIỀN CỌC" FontSize="14" FontWeight="DemiBold"/>
+                            </GroupBox.Header>
+                            <StackPanel Margin="5 5 5 0">
+                                <DockPanel>
+                                    <TextBlock Text="Đặt cọc" FontWeight="DemiBold" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding DepositAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                    <!--HashCode-->
+                                </DockPanel>
+                                <StackPanel Margin=" 10 10 0 0">
+                                    <DockPanel>
+                                        <TextBlock Text="Tiền mặt : " HorizontalAlignment="Left"/>
+                                        <TextBlock Text="{Binding DepositCashAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        <!--HashCode-->
+                                    </DockPanel>
+                                </StackPanel>
+
+                                <StackPanel Margin=" 10 5 0 0">
+                                    <DockPanel>
+                                        <TextBlock Text="Cà Thẻ : " HorizontalAlignment="Left"/>
+                                        <TextBlock Text="{Binding DepositBankAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        <!--HashCode-->
+                                    </DockPanel>
+                                </StackPanel>
+
+                                <StackPanel Margin=" 10 5 0 0">
+                                    <DockPanel>
+                                        <TextBlock Text="Chuyển khoản : " HorizontalAlignment="Left"/>
+                                        <TextBlock Text="{Binding DepositTransferAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        <!--HashCode-->
+                                    </DockPanel>
+                                </StackPanel>
+                                <Button  HorizontalAlignment="Right"  Background="Transparent" BorderBrush="Transparent" Command="{Binding BookingDepositViewCommand}" CommandParameter="{Binding ElementName=endWorkingSessionWindow}">
+                                    <TextBlock Text="Xem chi tiết" Foreground="LightGray"/>
+                                </Button>
+
+                                <DockPanel>
+                                    <TextBlock Text="Trả cọc : " FontWeight="DemiBold" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding ReturnDepositAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                    <!--HashCode-->
+                                </DockPanel>
+                                <StackPanel Margin=" 10 5 0 0">
+                                    <DockPanel>
+                                        <TextBlock Text="Tiền mặt : " HorizontalAlignment="Left"/>
+                                        <TextBlock Text="{Binding ReturnDepositCashAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        <!--HashCode-->
+                                    </DockPanel>
+                                </StackPanel>
+                                <StackPanel Margin=" 10 5 0 0">
+                                    <DockPanel>
+                                        <TextBlock Text="Chuyển khoản : " HorizontalAlignment="Left"/>
+                                        <TextBlock Text="{Binding ReturnDepositTransferAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        <!--HashCode-->
+                                    </DockPanel>
+                                </StackPanel>
+                                <Button  HorizontalAlignment="Right"  Background="Transparent" BorderBrush="Transparent" Command="{Binding BookingReturnDepositViewCommand}" CommandParameter="{Binding ElementName=endWorkingSessionWindow}">
+                                    <TextBlock Text="Xem chi tiết" Foreground="LightGray"/>
+                                </Button>
+                            </StackPanel>
+                        </GroupBox>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <GroupBox  BorderThickness="0.6" Margin="5 5 0 0" Style="{x:Null}" BorderBrush="Gray">
+                            <GroupBox.Header>
+                                <TextBlock Text="NẠP THẺ" FontSize="14" FontWeight="DemiBold"/>
+                            </GroupBox.Header>
+                            <StackPanel Margin="5 5 5 0">
+                                <DockPanel>
+                                    <TextBlock Text="Tổng tiền nạp : " FontWeight="DemiBold" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="0" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                    <!--HashCode-->
+                                </DockPanel>
+                                <StackPanel Margin=" 10 10 0 0">
+                                    <DockPanel>
+                                        <TextBlock Text="Tiền mặt : " HorizontalAlignment="Left"/>
+                                        <TextBlock Text="0" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        <!--HashCode-->
+                                    </DockPanel>
+                                </StackPanel>
+
+                                <StackPanel Margin=" 10 10 0 0">
+                                    <DockPanel>
+                                        <TextBlock Text="Cà thẻ : " HorizontalAlignment="Left"/>
+                                        <TextBlock Text="0" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        <!--HashCode-->
+                                    </DockPanel>
+                                </StackPanel>
+
+                                <StackPanel Margin=" 10 10 0 0">
+                                    <DockPanel>
+                                        <TextBlock Text="Chuyển khoản : " HorizontalAlignment="Left"/>
+                                        <TextBlock Text="0" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        <!--HashCode-->
+                                    </DockPanel>
+                                </StackPanel>
+                                <Button HorizontalAlignment="Right" Margin="0 15 0 0" Background="Transparent" BorderBrush="Transparent"  CommandParameter="{Binding ElementName=endWorkingSessionWindow}" >
+                                    <TextBlock Text="Xem chi tiết" Foreground="LightGray" />
+                                </Button>
+                            </StackPanel>
+
+                        </GroupBox>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <GroupBox BorderThickness="0.6" Margin="5 5 0 0" Style="{x:Null}" BorderBrush="Gray">
+                            <GroupBox.Header>
+                                <TextBlock Text="PHIẾU THU" FontSize="14" FontWeight="DemiBold"/>
+                            </GroupBox.Header>
+                            <StackPanel Margin="5 5 5 0">
+                                <DockPanel>
+                                    <TextBlock Text="Tổng phiếu thu : " FontWeight="DemiBold" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding InTotalAmountByAdditionFee}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                    <!--HashCode-->
+                                </DockPanel>
+                                <StackPanel Margin=" 10 10 0 0">
+                                    <DockPanel>
+                                        <TextBlock Text="Tiền mặt : " HorizontalAlignment="Left"/>
+                                        <TextBlock Text="{Binding InCashAmountByAdditionFee}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        <!--HashCode-->
+                                    </DockPanel>
+                                </StackPanel>
+
+                                <StackPanel Margin=" 10 10 0 0">
+                                    <DockPanel>
+                                        <TextBlock Text="Cà thẻ : " HorizontalAlignment="Left"/>
+                                        <TextBlock Text="{Binding InBankkAmountByAdditionFee}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        <!--HashCode-->
+                                    </DockPanel>
+                                </StackPanel>
+
+                                <StackPanel Margin=" 10 10 0 0">
+                                    <DockPanel>
+                                        <TextBlock Text="Chuyển khoản : " HorizontalAlignment="Left"/>
+                                        <TextBlock Text="{Binding InTransferAmountByAdditionFee}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        <!--HashCode-->
+                                    </DockPanel>
+                                </StackPanel>
+                                <Button HorizontalAlignment="Right" Margin="0 15 0 0" Background="Transparent" BorderBrush="Transparent" Command="{Binding ReceiptViewCommand}" CommandParameter="{Binding ElementName=endWorkingSessionWindow}">
+                                    <TextBlock Text="Xem chi tiết" Foreground="LightGray" />
+                                </Button>
+                            </StackPanel>
+
+                        </GroupBox>
+                    </Grid>
+                    <Grid Grid.Column="3">
+                        <GroupBox BorderThickness="0.6" Margin="5 5 5 0" Style="{x:Null}" BorderBrush="Gray">
+                            <GroupBox.Header>
+                                <TextBlock Text="PHIẾU CHI" FontSize="14" FontWeight="DemiBold"/>
+                            </GroupBox.Header>
+                            <StackPanel Margin="5 5 5 0">
+                                <DockPanel>
+                                    <TextBlock Text="Tổng chi : " FontWeight="DemiBold" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding OutTotalAmountByAdditionFee}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                    <!--HashCode-->
+                                </DockPanel>
+                                <StackPanel Margin=" 10 10 0 0">
+                                    <DockPanel>
+                                        <TextBlock Text="Tiền mặt : " HorizontalAlignment="Left"/>
+                                        <TextBlock Text="{Binding OutCashAmountByAdditionFee}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        <!--HashCode-->
+                                    </DockPanel>
+                                </StackPanel>
+
+                                <StackPanel Margin=" 10 10 0 0">
+                                    <DockPanel>
+                                        <TextBlock Text="Chuyển khoản : " HorizontalAlignment="Left"/>
+                                        <TextBlock Text="{Binding OutTransferAmountByAdditionFee}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        <!--HashCode-->
+                                    </DockPanel>
+                                </StackPanel>
+                                <Button HorizontalAlignment="Right" Margin="0 15 0 0" Background="Transparent" BorderBrush="Transparent" Command="{Binding PaymentShipViewCommand}" CommandParameter="{Binding ElementName=endWorkingSessionWindow}">
+                                    <TextBlock Text="Xem chi tiết" Foreground="LightGray"/>
+                                </Button>
+                                <StackPanel Margin="5 5 5 0">
+                                    <DockPanel>
+                                        <TextBlock Text="Tiền típ/tiền thối lại cho khách : " FontWeight="DemiBold" HorizontalAlignment="Left" TextWrapping="Wrap" Width="140"/>
+                                        <TextBlock Text="{Binding TipAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        <!--HashCode-->
+                                    </DockPanel>
+                                </StackPanel>
+                            </StackPanel>
+                           
+
+                        </GroupBox>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1"> 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <GroupBox  FontSize="14" BorderThickness="1" Margin="5 5 0 0" Style="{x:Null}" BorderBrush="Gray">
+                            <GroupBox.Header>
+                                <TextBlock Text="BÁN HÀNG" FontSize="14" FontWeight="DemiBold"/>
+                            </GroupBox.Header>
+                            <StackPanel Margin="5 5 5 0">
+                                <DockPanel>
+                                    <TextBlock Text="Tổng doanh thu : " FontWeight="DemiBold" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                                    <TextBlock Text="{Binding TotalAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                    <!--HashCode-->
+                                </DockPanel>
+                                <!--<StackPanel Margin=" 10 10 0 0">
+                                <DockPanel>
+                                    <TextBlock Text="Tiền mặt" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding TotalCashAmount}" HorizontalAlignment="Right"/>
+                                    -->
+                                <!--HashCode-->
+                                <!--
+                                </DockPanel>
+                            </StackPanel>-->
+                                <StackPanel Margin=" 10 10 0 0">
+                                    <DockPanel>
+                                        <TextBlock Text="Cà thẻ : " HorizontalAlignment="Left"/>
+                                        <TextBlock Text="{Binding BankAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        <!--HashCode-->
+                                    </DockPanel>
+                                </StackPanel>
+
+                                <StackPanel Margin=" 10 10 0 0">
+                                    <DockPanel>
+                                        <TextBlock Text="Chuyển khoản : " HorizontalAlignment="Left"/>
+                                        <TextBlock Text="{Binding TransferAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        <!--HashCode-->
+                                    </DockPanel>
+                                </StackPanel>
+
+                                <StackPanel Margin=" 10 10 0 0">
+                                    <DockPanel>
+                                        <TextBlock Text="Điểm nạp : " HorizontalAlignment="Left"/>
+                                        <TextBlock Text="0" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        <!--HashCode-->
+                                    </DockPanel>
+                                </StackPanel>
+
+                                <StackPanel Margin=" 10 10 0 10">
+                                    <DockPanel>
+                                        <TextBlock Text="Nợ bill : " HorizontalAlignment="Left"/>
+                                        <TextBlock Text="{Binding DebtAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        <!--HashCode-->
+                                    </DockPanel>
+                                </StackPanel>
+                                <Border BorderThickness="0 1 0 0" BorderBrush="Gray">
+                                    <StackPanel Margin=" 10 10 0 0">
+                                        <DockPanel>
+                                            <TextBlock Text="Tiền mặt còn lại : " HorizontalAlignment="Left"/>
+                                            <TextBlock Text="{Binding CashAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                            <!--HashCode-->
+                                        </DockPanel>
+                                    </StackPanel>
+                                </Border>
+                                <Button  HorizontalAlignment="Right" Margin="0 15 0 0" Background="Transparent" BorderBrush="Transparent" Command="{Binding OrderViewCommand}" CommandParameter="{Binding ElementName=endWorkingSessionWindow}">
+                                    <TextBlock Text="Xem chi tiết" Foreground="LightGray"/>
+                                </Button>
+                            </StackPanel>
+
+                        </GroupBox>
+                    </Grid>
+                    <!--done-->
+                    <Grid Grid.Column="1">
+                        <GroupBox FontSize="14" BorderThickness="0.6" Margin="5 5 0 0" Style="{x:Null}" BorderBrush="Gray">
+                            <GroupBox.Header>
+                                <TextBlock Text="TỔNG HỢP" FontSize="14" FontWeight="DemiBold"/>
+                            </GroupBox.Header>
+                            <Grid>
+                                <StackPanel Margin="5 5 5 0" >
+                                    <DockPanel Margin="0 5 0 10">
+                                        <TextBlock Text="Tiền mặt đầu ca : " HorizontalAlignment="Left" FontWeight="DemiBold"/>
+                                        <TextBlock Text="{Binding BeforeAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                    </DockPanel>
+                                    <DockPanel Margin="0 5 0 10">
+                                        <TextBlock Text="Tiền mặt còn lại : " HorizontalAlignment="Left" FontWeight="DemiBold"/>
+                                        <TextBlock Text="{Binding CashAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                    </DockPanel>
+                                    <DockPanel Margin="0 5 0 10">
+                                        <TextBlock Text="Phiếu thu : " HorizontalAlignment="Left" FontWeight="DemiBold"/>
+                                        <TextBlock Text="{Binding InTotalAmountByAdditionFee}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                    </DockPanel>
+
+                                    <DockPanel Margin="0 5 0 10">
+                                        <TextBlock Text="Tiền Cọc : " HorizontalAlignment="Left" FontWeight="DemiBold"/>
+                                        <TextBlock Text="{Binding DepositAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                    </DockPanel>
+                                    <DockPanel Margin="0 5 0 10">
+                                        <TextBlock Text="Tiền nạp thẻ : " HorizontalAlignment="Left" FontWeight="DemiBold"/>
+                                        <TextBlock Text="0" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                    </DockPanel>
+                                    <Border BorderThickness="0 1 0 0" BorderBrush="Gray">
+                                        <DockPanel Margin="0 5 0 10">
+                                            <TextBlock Text="Tổng tiền : " HorizontalAlignment="Left" FontWeight="DemiBold"/>
+                                            <TextBlock Text="{Binding TotalAmountFinal}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                        </DockPanel>
+                                    </Border>
+                                    <DockPanel Margin="0 5 0 10">
+                                        <TextBlock Text="Tiền quỹ để lại : " HorizontalAlignment="Left" FontWeight="DemiBold"/>
+                                        <TextBlock Text="{Binding BeforeAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                    </DockPanel>
+                                    <DockPanel Margin="0 5 0 10">
+                                        <TextBlock Text="Tiền chi : " HorizontalAlignment="Left" FontWeight="DemiBold"/>
+                                        <TextBlock Text="{Binding OutTotalAmountByAdditionFee}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                    </DockPanel>
+                                    <DockPanel Margin="0 5 0 10">
+                                        <TextBlock Text="Tiền típ/tiền thối lại cho khách : " FontWeight="DemiBold" HorizontalAlignment="Left"/>
+                                        <TextBlock Text="{Binding TipAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                    </DockPanel>
+                                    <DockPanel Margin="0 5 0 10">
+                                        <TextBlock Text="Tổng nhận : " HorizontalAlignment="Left" FontWeight="DemiBold"/>
+                                        <TextBlock Text="{Binding TotalReceiptAmountFinal}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                    </DockPanel>
+                                    <DockPanel Margin="0 5 0 10">
+                                        <TextBlock Text="Chênh Lệch : " HorizontalAlignment="Left" FontWeight="DemiBold"/>
+                                        <TextBlock Text="{Binding DifferenceAmount}" HorizontalAlignment="Right" Style="{DynamicResource FontMoney}"/>
+                                    </DockPanel>
+                                    <!--<Button  HorizontalAlignment="Right" Margin="0 15 0 0" Background="Transparent" BorderBrush="Transparent" CommandParameter="{Binding ElementName=endWorkingSessionWindow}">
+                                        <TextBlock Text="Xem chi tiết" Foreground="LightGray"/>
+                                    </Button>-->
+                                </StackPanel>
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <GroupBox FontSize="14" BorderThickness="0.6" Margin="5 5 5 0" Style="{x:Null}" BorderBrush="Gray">
+                            <GroupBox.Header>
+                                <TextBlock Text="CHI TIẾT KIỂM ĐẾM" FontSize="14" FontWeight="DemiBold"/>
+                            </GroupBox.Header>
+                            <Grid Margin="0 5 0 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="10*"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Border Grid.Row="0" BorderThickness="1" BorderBrush="Gray">
+                                    <DataGrid Margin="10" Background="White"  Name="listData"  Grid.Row="1" BorderThickness="1 1 1 0" ItemsSource="{Binding AmountList}" 
+                                            AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" >
+                                        <DataGrid.BorderBrush>
+                                            <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                                                <DrawingBrush.Drawing>
+                                                    <DrawingGroup>
+                                                        <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                                            <GeometryDrawing.Geometry>
+                                                                <GeometryGroup>
+                                                                    <RectangleGeometry Rect="0,0,30,30" />
+                                                                    <RectangleGeometry Rect="30,30,30,30" />
+                                                                </GeometryGroup>
+                                                            </GeometryDrawing.Geometry>
+                                                        </GeometryDrawing>
+                                                    </DrawingGroup>
+                                                </DrawingBrush.Drawing>
+                                            </DrawingBrush>
+                                        </DataGrid.BorderBrush>
+                                        <DataGrid.Columns>
+                                            <DataGridTemplateColumn Width="*" IsReadOnly="True">
+                                                <DataGridTemplateColumn.Header>
+                                                    <TextBlock  Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_DENOMINATION}}" TextWrapping="Wrap" ></TextBlock>
+                                                </DataGridTemplateColumn.Header>
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Center" Text="{Binding Path=DenominationsFormat}" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+
+                                            <DataGridTemplateColumn Width="*"  IsReadOnly="True" >
+                                                <DataGridTemplateColumn.Header>
+                                                    <TextBlock HorizontalAlignment="Center" Text="SL" ></TextBlock>
+                                                </DataGridTemplateColumn.Header>
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{StaticResource fontSizeMini}" Foreground="Black" Text="{Binding Path=Quantity,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat={}{0:0.###}}" ></TextBlock>
+                                                        
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Width="*" IsReadOnly="True">
+                                                <DataGridTemplateColumn.Header>
+                                                    <TextBlock Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_TOTAL_PRICE_TITLE}}" TextWrapping="WrapWithOverflow" Margin="0 0 0 0" ></TextBlock>
+                                                </DataGridTemplateColumn.Header>
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Center"  Text="{Binding AmountFormat,UpdateSourceTrigger=PropertyChanged}" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Border>
+                                <DockPanel Grid.Row="1">
+
+                                    <TextBlock Text="Tổng tiền kiểm đếm : " FontWeight="DemiBold" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding CurrentAmount}" FontWeight="DemiBold" VerticalAlignment="Center"/>
+                                </DockPanel>
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </l:AdornedControl>
+</UserControl>

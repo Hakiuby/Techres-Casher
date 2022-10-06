@@ -1,0 +1,423 @@
+    <Menu Margin="10 0 0 0" Padding="0" Focusable="False" BorderBrush="Transparent" Foreground="Transparent" BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                            <MenuItem>
+                                <MenuItem.Background>
+                                    <SolidColorBrush Color="{DynamicResource MainColor}" />
+                                </MenuItem.Background>
+                                <MenuItem.Header>
+                                    <Image Source="{DynamicResource ic_menu_hamburger}" IsHitTestVisible="False" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                                </MenuItem.Header>
+                            
+                                <MenuItem Visibility="{Binding EmployeeRoleVisibility}" Name="EmployeeRoleList" Background="White" Command="{Binding EmployeeRoleCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="AccountMultiplePlus" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                            <!--<Image Source="{DynamicResource ic_employee_role}" Height="15" Width="15"  />
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_EMPLOYEE_ROLE}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding EmployeeVisibility}" Name="EmployeeList" Background="White" Command="{Binding EmployeeCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="User" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+<Image Source="{DynamicResource ic_employee}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_EMPLOYEE}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding PermissionRoleVisibility}" Name="PermissionRole" Background="White"  Command="{Binding PermissionRoleCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="AccountSwitch" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic_permission_role}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_PERMISSION_EMPLOYEE_ROLE}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding PermissionEmployeeVisibility}" Name="PermissionEmployee" Background="White" Command="{Binding PermissionEmployeeCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="AccountStar" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic_permission_employee}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_PERMISSION_EMPLOYEE}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <!--<MenuItem Background="White" Visibility="{Binding EmployeeMainVisibility}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>-->
+
+                                <MenuItem Background="White" Visibility="{Binding ReportRevenueWorkingSessionVisibility}" Name="ReportRevenueWorkingSession" Command="{Binding ReportFinishWorkingSessionCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="ChartTimeline" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic_chart}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REPORT_WORKING_SESION}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding ReportVATVisibility}" Name="ReportVAT" Background="White"  Command="{Binding ReportVATCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="ChartBar" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic_chart}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REPORT_VAT}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding ReportDiscountVisibility}" Name="ReportDiscount" Background="White"  Command="{Binding ReportDiscountCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="ChartAreaspline" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic_chart}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REPORT_DISCOUNT}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding ReportRevenueVisibility}" Name="ReportFood" Background="White"  Command="{Binding ReportCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="ChartLineStacked" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic_growth}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REPORT_REVENUE}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding ReportRevenueSysthesisVisibility}" Name="ReportSysthesisRevenue" Background="White"  Command="{Binding ReportRevenueSysthesisCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="ChartLineStacked" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic_growth}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REPORT_SYSTHESIS_REVENUE}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding ReportRevenueAreaVisibility}" Name="ReportRevenueArea" Background="White"  Command="{Binding ReportRevenueAreaCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="UserAlert" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REPORT_REVENUE_AREAS}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding ReportRevenueEmployeeVisibility}" Name="ReportRevenueEmployee" Background="White"  Command="{Binding ReportRevenueEmployeeCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="UserAlert" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REPORT_REVENUE_EMPLOYEE}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Background="White" Visibility="{Binding ReportProfitMaterialVisibility}" Name="ReportRevenueItems" Command="{Binding ReportProfitMaterialCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon  Kind="ChartBubble" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic_chart}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_PROFIT_FOOD}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <!--dang them-->
+                                <MenuItem Background="White" Visibility="{Binding ReportProfitMaterialVisibility}" Name="ReportBusinessResult" Command="{Binding ReportBusinessResultCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon  Kind="ChartBubble" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                            <!--<Image Source="{DynamicResource ic_chart}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_REPORT_BUSINESS_RESULT}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Background="White" Visibility="{Binding ReportEmployeeVisibility}" Name="statisticsOfPersonnelAgeUC" Command="{Binding ReportEmployeeCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <!--<Image Source="{DynamicResource ic_chart}" Height="15" Width="15"  />-->
+                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="ChartArc" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_STATISTICS_OF_PERSONNEL}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Background="White" Visibility="{Binding ReportFoodVisibility}"   Command="{Binding ReportCookCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="FoodApple" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic_chart}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REPORT_FOOD}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Background="White" Visibility="{Binding ReportDrinkVisibility}" Name="ReportDrinkAndOther" Command="{Binding ReportDrinkCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <!--<Image Source="{DynamicResource ic_chart}" Height="15" Width="15"  />-->
+                                            <materialDesign:PackIcon Kind="LocalDrink" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REPORT_DRINK}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Background="White"  Visibility="{Binding HistoryDebitVisibility}" Name="historyDebit" Command="{Binding HistoryDebitCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <!--<Image Source="{DynamicResource ic_debit_order}" Height="15" Width="15"/>-->
+                                            <materialDesign:PackIcon Kind="History" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_DEBIT_ORDER}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding ReportGiftFoodVisibility}" Name="ReportGiftFood" Background="White"  Command="{Binding ReportGiftFoodCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Gift" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic_convenience-store}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REPORT_GIFT_FOOD}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding ReportOrderVisibility}" Name="ReportOrder" Background="White"  Command="{Binding ReportOrderCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="ViewList" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic_convenience-store}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REPORT_ORDER}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem  Visibility="{Binding ReportCustomerSlotVisibility}" Name="ReportCustomerSlot" Background="White"  Command="{Binding ReportCustomerSlotCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="AccessPoint" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic_convenience-store}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REPORT_CUSTOMER_SLOT}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem  Visibility="{Binding NoteFoodVisibility}" Background="White"  Command="{Binding NoteListCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="FormatListChecks" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic-service-hobby}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_SERVICE_HOBBY}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding RejectReasonVisibility}" Background="White"  Command="{Binding RejectReasonCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="FormatListCheckbox" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic-note}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REASON_CANCEL_FOOD}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding CategoryVisibility}" Name="Category" Background="White"  Command="{Binding CategoryCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+
+                                            <materialDesign:PackIcon Kind="FormatListBulleted" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic-list}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_FOOD_CATEGORY}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding FoodListVisibility}" Name="FoodList" Background="White"  Command="{Binding FoodListCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="FoodCroissant" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic-dinner}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_FOOD}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+
+                                <MenuItem Visibility="{Binding FoodTakeAwayVisibility}" Name="foodTakeAwayList" Background="White"  Command="{Binding FoodTakeAwayCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <!--<materialDesign:PackIcon Kind="FoodCroissant" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>-->
+
+                                            <Image Source="{DynamicResource ic-dinner}" Height="15" Width="15"  />
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_FOOD_TAKE_AWAY}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+
+                                <MenuItem Visibility="{Binding UnitFoodVisibility}" Name="unitList" Background="White"  Command="{Binding UnitFoodCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="FoodVariant" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic-dinner}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_FOOD_UNIT}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding EditPriceVisibility}" Name="EditPrice" Background="White"  Command="{Binding EditPriceCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <!--<Image Source="{DynamicResource ic-dinner}" Height="15" Width="15"  />-->
+                                            <materialDesign:PackIcon Kind="Money" Height="15" VerticalAlignment="Center" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_FOOD_EDIT_PRICE}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem  Visibility="{Binding BookingVisibility}" Name="Booking" Background="White" Command="{Binding BookingCommand}" CommandParameter="{Binding ElementName=mainWindow}" >
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Book" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                            <!--<Image Source="{DynamicResource ic-grid}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_BOOKING}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding OrderVisibility}" Background="White" Name="OrderList"
+                                      Command="{Binding OrderingListCommand}" 
+                                      CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon  Kind="FormatListNumbered" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic-table}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_ORDER}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Background="White" Visibility="{Binding EmployeeAdvancedSalaryVisibility}" Name="EmployeeAdvancedSalary" Command="{Binding EmployeeAdvancedSalaryLevelCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <!--<Image Source="{DynamicResource ic-tick}" Height="15" Width="15"  />-->
+                                            <materialDesign:PackIcon Kind="Checkbook" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_CONFIRM_SALARY_ADVANCED}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem  Visibility="{Binding HistoryEndWorkingSessionVisibility}" Name="historyEndWorkingSession" Background="White" Command="{Binding HistoryEndWorkingSessionCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Work" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic-note-view}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_VIEW_END_WORKING_SESSION}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding QrCodeBranchVisibility}" Background="White" Name="qrCode" Command="{Binding QRCodeBranchCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="QrcodeScan" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic-qr-code}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_CHECK_IN}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding ExpenseCashierVisibility}" Background="White"  Command="{Binding ExpenseCashierCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="BookPlus" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic-transfer}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_ADDITION_FEE}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Background="White" Visibility="{Binding ReportBalanceMoneyVisibility}" Command="{Binding ReportBalanceMoneyCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="BookLockOpen" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic-cash}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_CASH_FUND}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Background="White" Visibility="{Binding ExpenseVisibility}" Command="{Binding ExpenseCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="BookPlus" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic-transfer}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_ADDITION_FEE}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                        
+                                <MenuItem Visibility="{Binding PaymentReasonListVisibility}" Background="White"  Command="{Binding PaymentReasonCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon VerticalAlignment="Center"  Kind="FormatListBulleted" >
+                                                <materialDesign:PackIcon.Foreground>
+                                                    <SolidColorBrush Color="{DynamicResource MainColor}"/>
+                                                </materialDesign:PackIcon.Foreground>
+                                            </materialDesign:PackIcon>
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_ADDITION_FEE_CATEGORY}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding ReportHistoryLogVisibility}" Background="White" Name="HistoryLog" Command="{Binding HistoryLogCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon VerticalAlignment="Center"  Kind="History" >
+                                                <materialDesign:PackIcon.Foreground>
+                                                    <SolidColorBrush Color="{DynamicResource MainColor}"/>
+                                                </materialDesign:PackIcon.Foreground>
+                                            </materialDesign:PackIcon>
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_LOG}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Background="White" Visibility="{Binding AreaVisibility}" Command="{Binding AreaCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Grid"  VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic-area}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_AREA}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding TableVisibility}" Background="White"  Command="{Binding TableCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <!--<materialDesign:PackIcon Kind="tab" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>-->
+
+                                            <Image Source="{DynamicResource ic-table_list}"  VerticalAlignment="Center" Height="15" Width="15"  />
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_TABLE}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Visibility="{Binding SettingVisibility}" Background="White" Name="Setting" Command="{Binding SettingCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Settings"  VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                            <!--<Image Source="{DynamicResource ic-setting}" Height="15" Width="15"  />-->
+                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_SETTING}}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                            </MenuItem>
+                        </Menu>
+                   

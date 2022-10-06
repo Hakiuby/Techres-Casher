@@ -1,0 +1,83 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.ManageCustomerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views"
+        xmlns:select ="clr-namespace:TechresStandaloneSale.Helpers"
+        mc:Ignorable="d"
+        FontFamily="{StaticResource Roboto-Regular}"
+        Width="700" Height="410"
+        Icon="logo.ico"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        BorderThickness="0.75"
+        BorderBrush="{StaticResource LineListViewBrush}"
+        Name="AddCsmWindow"
+        Title="{Binding Source={x:Static select:MessageValue.MESSAGE_FORM_CUSTOMER_HEADER}}">
+
+    <Window.Resources>
+        <BitmapImage x:Key="logo" UriSource="/TechresStandaloneSale;component/Resources/Images/white_logo.png" />
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="F4" Command="{Binding AddCommand}"  CommandParameter="{Binding ElementName=AddCsmWindow}"></KeyBinding>
+        <KeyBinding Key="Esc" Command="{Binding CloseCommand}"  CommandParameter="{Binding ElementName=AddCsmWindow}"></KeyBinding>
+    </Window.InputBindings>
+    <Grid Background="{StaticResource GrayBackgroupBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0" Background="{StaticResource MainBrush}">
+                <Image Margin="5 0 0 0" Width="40" Height="40"  Grid.Column="0" Source="{StaticResource logo}" Stretch="Uniform" VerticalAlignment="Stretch"/>
+            <Label VerticalContentAlignment="Center" Foreground="White" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FORM_CUSTOMER_HEADER}}" FontSize="{StaticResource fontSizeHeader}" VerticalAlignment="Center"/>
+                <Button  Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=AddCsmWindow}" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
+                    <materialDesign:PackIcon HorizontalAlignment="Center" VerticalContentAlignment="Center" Kind="Close" Foreground="White" Width="50" Height="25" />
+                </Button>
+            </DockPanel>
+            <StackPanel  Grid.Row="1" Background="White">
+                <DockPanel Margin="5 10 5 5 " Height="50">
+                    <Label MinWidth="120" VerticalContentAlignment="Center" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING_NAME}}"  FontSize="{StaticResource fontSize}"/>
+                <TextBox Margin="5 0 5 0"  Padding="5 0 5 0" Background="{StaticResource GrayBackgroundBrush}" BorderThickness="0" select:SelectAllFocusBehavior.Enable="True" MaxLength="30"
+                         Height="40" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" FontSize="{StaticResource fontSize}" 
+                                  VerticalContentAlignment="Center" Name="name" Tag="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_CUSTOMER_NAME_TAG}}">
+                        </TextBox>
+                </DockPanel>
+            <DockPanel Margin="5 0 5 5 " Height="50">
+                <Label MinWidth="120" VerticalContentAlignment="Center" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING_LAST_NAME}}"  FontSize="{StaticResource fontSize}"/>
+                <TextBox  Margin="5 0 5 0"  Padding="5 0 5 0" Background="{StaticResource GrayBackgroundBrush}" BorderThickness="0" select:SelectAllFocusBehavior.Enable="True" Height="40" MaxLength="30"
+                          Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" FontSize="{StaticResource fontSize}" 
+                                  VerticalContentAlignment="Center" Tag="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_CUSTOMER_LASTNAME_TAG}}">
+                </TextBox>
+            </DockPanel>
+            <DockPanel Margin="5" Height="50">
+                    <Label MinWidth="120" VerticalContentAlignment="Center"  Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_CREAT_BOOKING_PHONE_NUMBER}}"  FontSize="{StaticResource fontSize}"/>
+                <TextBox Margin="5 0 5 0"   Padding="5 0 5 0"  Background="{StaticResource GrayBackgroundBrush}" BorderThickness="0" MaxLength="10" PreviewKeyDown="phone_PreviewKeyDown"
+                         select:SelectAllFocusBehavior.Enable="True" Height="40" VerticalContentAlignment="Center" Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" FontSize="{StaticResource fontSize}"
+                    Name="phone" Tag="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_CREAT_BOOKING_PHONE_CUSTOMER_NUMBER_HINT}}" PreviewTextInput="phone_PreviewTextInput">
+                        </TextBox>
+                    </DockPanel>
+                <DockPanel Margin="5" Height="50">
+                    <Label MinWidth="120" VerticalContentAlignment="Center"  Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_ADDRESS_MANAGE_SUPPLIER}}"  FontSize="{StaticResource fontSize}"/>
+                <TextBox Margin="5 0 5 0"   Padding="5 0 5 0"  Background="{StaticResource GrayBackgroundBrush}" BorderThickness="0" MaxLength="255"
+                         select:SelectAllFocusBehavior.Enable="True" Height="40" VerticalContentAlignment="Center" Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" FontSize="{StaticResource fontSize}"
+                    Tag="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_ADDRESS_TAG}}">
+                    </TextBox>
+                </DockPanel>
+               
+            </StackPanel>
+          
+        <DockPanel Background="{StaticResource GrayBackgroundBrush}" Grid.Row="2">
+            <DockPanel  HorizontalAlignment="Right">
+                <Button Margin="0 0 10 0" Style="{StaticResource BoderButtonClose}" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=AddCsmWindow}"  Height="40" HorizontalAlignment="Right" >
+                </Button>
+                <Button Margin="0 0 10 0" Style="{StaticResource BoderButtonAgree}" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=AddCsmWindow}"  Height="40" HorizontalAlignment="Right">
+                </Button>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</Window>

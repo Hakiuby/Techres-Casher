@@ -1,0 +1,98 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.CreateNoteOrderDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views"
+        xmlns:select ="clr-namespace:TechresStandaloneSale.Helpers"
+         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="14"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Width="400" Height="270        "
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Icon="logo.ico"
+        WindowStartupLocation="CenterScreen"
+        BorderThickness="0.5"
+        Name="createNoteOrderDetailWindow">
+    <Window.InputBindings>
+        <KeyBinding Key="F4" Command="{Binding AddCommand}"  CommandParameter="{Binding ElementName=createNoteOrderDetailWindow}"></KeyBinding>
+        <KeyBinding Key="Esc" Command="{Binding CloseCommand}"  CommandParameter="{Binding ElementName=createNoteOrderDetailWindow}"></KeyBinding>
+    </Window.InputBindings>
+    <Window.Resources>
+        <Color x:Key="MainColor">#FBBC05</Color>
+        <BitmapImage x:Key="logo" UriSource="/TechresStandaloneSale;component/Resources/Images/white_logo.png" />
+    </Window.Resources>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <DockPanel Background="{StaticResource MainBrush}" Grid.Row="0">
+            <!--<Image Margin="10 0 0 0" Width="40" Height="40" Grid.Column="0" Source="{StaticResource logo}" Stretch="Uniform" VerticalAlignment="Stretch"/>-->
+            <Label Foreground="White" Content="{Binding ContentTitle}" VerticalAlignment="Center" FontSize="{StaticResource fontSizeHeader}"/>
+            <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=createNoteOrderDetailWindow}" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" BorderBrush="{x:Null}" Foreground="#FF2387D6">
+                <materialDesign:PackIcon HorizontalAlignment="Center" VerticalContentAlignment="Center" Kind="Close" Foreground="White" Width="50" Height="30" />
+            </Button>
+        </DockPanel>
+            <StackPanel Grid.Row="1" Margin="5" Background="White">
+            <DockPanel Visibility="{Binding BrandVisibility}" VerticalAlignment="Center" Height="50"  Margin="0,0,5,5">
+                <Label  VerticalContentAlignment="Center" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_BRAND}}"  FontSize="{StaticResource fontSize}" ></Label>
+                <ComboBox Name="brandId" Margin="0" Height="40" HorizontalContentAlignment="Center" Background="{StaticResource GrayBackgroupBrush}"
+                          SelectedItem="{Binding BrandItem}"
+                          Padding="5,0,0,0" 
+                          VerticalContentAlignment="Center"  
+                            BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0"  ItemsSource="{Binding BrandList}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SelectionChangedBrandCommand}" CommandParameter="{Binding ElementName=createNoteOrderDetailWindow}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Padding="3" Text="{Binding Name}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </DockPanel>
+            <DockPanel Visibility="{Binding BranchVisibility}"  Margin="0,0,5,5" Height="50">
+                        <Label VerticalAlignment="Center" FontSize="{StaticResource fontSize}" MinWidth="90" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_BRAND}}"/>
+                        <Label VerticalAlignment="Center" FontSize="{StaticResource fontSize}" MinWidth="20" Content="(*)" Foreground="Red" ToolTip="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_VALIDATE}}"></Label>
+                        <ComboBox select:SelectAllFocusBehavior.Enable="True"  Height="40"  VerticalAlignment="Center" Name="BranchId" FontSize="16" SelectedItem="{Binding BrandItem}"  Padding="6,0,0,0" VerticalContentAlignment="Center" 
+                                  materialDesign:HintAssist.Hint="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_NOT_BRANCH_TAG}}" BorderBrush="{StaticResource MainBrush}" BorderThickness="1" ItemsSource="{Binding BrandList}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Padding="3" Text="{Binding Name}"></TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </DockPanel>
+                    <DockPanel Margin="0,10,5,5" >
+                        <Label Width="90" Margin="0 5 0 0" Foreground="Black" FontSize="{StaticResource fontSize}" VerticalContentAlignment="Center" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_CONTENT}}"/>
+                        <Label VerticalAlignment="Center" FontSize="16" MinWidth="20" Content="(*)" Foreground="Red" ToolTip="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_VALIDATE}}"></Label>
+                            <TextBox MinHeight="70" MaxHeight="90" Padding="5" select:SelectAllFocusBehavior.Enable="True" Background="{StaticResource GrayBackgroundBrush}" Style="{StaticResource TextBoxCornerRadius}" AcceptsReturn="True" TextWrapping="Wrap"  FontSize="{StaticResource fontSize}" Text="{Binding Content,UpdateSourceTrigger=PropertyChanged}" 
+                                  VerticalContentAlignment="Top" Tag="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_CONTENT_TAG}}" >
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding TextSelectionChangedCommand}" CommandParameter="{Binding ElementName=createNoteOrderDetailWindow}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </TextBox>
+                    </DockPanel>
+                </StackPanel>
+        <DockPanel Background="{StaticResource GrayLBrush}" Grid.Row="3" >
+            <DockPanel  VerticalAlignment="Center" HorizontalAlignment="Right">
+                <Button Style="{StaticResource BoderButtonClose}" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=createNoteOrderDetailWindow}"  Background="White" Height="40"  />
+                <Button Style="{StaticResource BoderButtonAgree}" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=createNoteOrderDetailWindow}"  Margin="10 0" Height="40" HorizontalAlignment="Right" />
+            </DockPanel>
+          </DockPanel>
+    </Grid>
+</Window>
+

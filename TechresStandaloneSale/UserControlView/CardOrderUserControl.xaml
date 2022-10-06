@@ -1,0 +1,277 @@
+﻿<UserControl x:Class="TechresStandaloneSale.UserControlView.CardOrderUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:TechresStandaloneSale.UserControlView"
+             xmlns:helps ="clr-namespace:TechresStandaloneSale.Helpers"
+             xmlns:l="clr-namespace:TechresStandaloneSale.Loading"
+             mc:Ignorable="d"
+             x:Name="cardOrderUC"
+             Background="White"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BitmapImage x:Key="ic_calcul" UriSource="../Resources/Images/ic_calcul.png"/>
+        <BitmapImage x:Key="ic_eyes" UriSource="../Resources/Images/ic_eyes.png"/>
+        <BitmapImage x:Key="ic_more" UriSource="../Resources/Images/more-action.png"/>
+        <BitmapImage x:Key="ic_receipt_black" UriSource="../Resources/Images/ic_receipt_black.png"/>
+        <BitmapImage x:Key="ic_check" UriSource="../Resources/Images/ic_check.png"/>
+        <BitmapImage x:Key="ic_save" UriSource="../Resources/Images/locked-bill.png"/>
+        <BitmapImage x:Key="ic_print" UriSource="../Resources/Images/print-bill.png"/>
+        <BitmapImage x:Key="ic_money" UriSource="../Resources/Images/request-payment.png"/>
+        <BitmapImage x:Key="ic_bill" UriSource="../Resources/Images/locked-bill.png"/>
+        <BitmapImage x:Key="ic_user" UriSource="../Resources/Images/number-people.png"/>
+        <BitmapImage x:Key="icon-timer" UriSource="../Resources/Images/fast-time.png"/>
+        <BitmapImage x:Key="icon-revenue" UriSource="../Resources/Images/icon-revenue.png"/>
+        <Style TargetType="Image">
+            <Setter Property="Width" Value="35" />
+            <Setter Property="Height" Value="35" />
+        </Style>
+    </UserControl.Resources>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="45"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" >
+            <ListBox Margin="10 5 10 5" Name="TblItemsControl" ItemsSource="{Binding Views}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" SelectionChanged="TblItemsControl_SelectionChanged">
+                <ListBox.ItemContainerStyle>
+                    <Style>
+                        <Style.Triggers>
+                            <Trigger Property="Control.IsMouseOver" Value="False">
+                                <Setter Property="Control.Background" Value="Transparent"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate >
+                        <Border Margin="0 5 0 0" Width="{Binding WidthCard}" Height="{Binding HeightCard}" BorderThickness="0.75" BorderBrush="{StaticResource GrayLBrush}">
+                            <Grid Background="White">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <DockPanel Grid.Row="0" Width="Auto" Name="ChangeBackgroup" Background="{Binding ChangeBackgroup}">
+                                    <Label Name="lbOrderCode" Content="{Binding OrderCode}" FontSize="{Binding FontTitle}" FontWeight="DemiBold" VerticalAlignment="Center" Foreground="white" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_CODE_TOOTIP}}"></Label>
+                                    <Label Margin="10 0 0 0" Content="{Binding OrderStatusText}" HorizontalAlignment="Center" Name="lbOrderSatus" FontSize="{Binding FontTitle}" FontWeight="DemiBold" VerticalAlignment="Center" Foreground="white" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_STATUS_TOOTIP}}"></Label>
+                                    <StackPanel ToolTip="{Binding Source={x:Static  helps:MessageValue.MESSAGE_FROM_ORDER_CUSTOMER_SLOT_TOOTIP}}" Orientation="Horizontal" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseLeftButtonUp">
+                                                <i:InvokeCommandAction Command="{Binding Path=DataContext.CustomerSlotCommand, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}"></i:InvokeCommandAction>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button Command="{Binding Path=DataContext.CustomerSlotCommand, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}" BorderThickness="0" VerticalAlignment="Center" BorderBrush="Transparent" Padding="0" Background="{x:Null}">
+                                            <Image Source="{StaticResource ic_user}" Width="20" Height="20"></Image>
+                                        </Button>
+                                        <Label FontSize="{Binding FontTitle}" FontWeight="DemiBold" Content="{Binding CustomerSlot}" Name="lbCustomerSlot" VerticalAlignment="Center" Foreground="white"/>
+                                    </StackPanel>
+                                </DockPanel>
+                                <Grid Grid.Row="1">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseLeftButtonUp">
+                                            <i:InvokeCommandAction Command="{Binding Path=DataContext.MouseEnterCommand, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}"></i:InvokeCommandAction>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="75*"/>
+                                        <RowDefinition Height="55*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60*" />
+                                        <ColumnDefinition Width="110*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.RowSpan="2" Grid.Column="0" VerticalAlignment="Stretch">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseLeftButtonUp">
+                                                <i:InvokeCommandAction  Command="{Binding Path=DataContext.MouseEnterCommand, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}"></i:InvokeCommandAction>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Grid.Background>
+                                            <SolidColorBrush Color="#fff"/>
+                                        </Grid.Background>
+                                        <TextBlock FontWeight="DemiBold"  FontFamily="Roboto" Name="lbTableName" FontSize="{Binding FontNumberTable}" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_TABLE_TOOTIP}}" Foreground="{Binding ChangeBackgroup}" Text="{Binding TableNameString}" Height="Auto" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+                                        <TextBlock Name="lbMegerTable" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_MERGE_TABLE_TOOTIP}}" Text="{Binding MegerTable}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" Margin="0,15,0,5" VerticalAlignment="Bottom"></TextBlock>
+                                        <materialDesign:Badged Visibility="{Binding TotalOrderDetailCustomerRequestVisibility}" BadgeBackground="Red" BadgeForeground="White"  Badge="{Binding TotalOrderDetailCustomerRequest}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="15" Foreground="{Binding ChangeBackgroup}">
+                                        </materialDesign:Badged>
+                                        <materialDesign:PackIcon Visibility="{Binding TotalOrderDetailCustomerRequestVisibility}" Kind="CartOutline" Foreground="{Binding ChangeBackgroup}" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="15"/>
+                                        <Rectangle HorizontalAlignment="Right" VerticalAlignment="Stretch" Fill="{StaticResource GrayLBrush}" Width="0.6"/>
+                                    </Grid>
+                                    <Grid Grid.Row="0" Grid.Column="1">
+                                        <Label Margin="0 0 0 3"   FontFamily="Roboto" FontWeight="DemiBold"  Name="lbCashAmount" Content="{Binding CashAmountString}" Foreground="{Binding ChangeBackgroup}" FontSize="{Binding FontMoney}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
+                                        <Label Visibility="{Binding IsReturnDepositVisibility}" Content="{Binding BookingDepositAmountString}" Margin="0 0 10 0" FontSize="11" VerticalAlignment="Bottom" HorizontalAlignment="Right"></Label>
+                                    </Grid>
+                                    <Rectangle Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Fill="{StaticResource GrayLBrush}" VerticalAlignment="Bottom" Height="0.8"/>
+                                    <DockPanel Grid.Column="1" Grid.Row="1" Margin="10 0">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                            <Image Source="{StaticResource icon-timer}" Width="25" Height="25"></Image>
+                                            <TextBlock Margin="5 0 0 0" VerticalAlignment="Center" Name="lbUsingTime" Text="{Binding UsingTime}" TextWrapping="WrapWithOverflow" Foreground="Gray" FontSize="{Binding FontTime}"></TextBlock>
+                                        </StackPanel>
+                                        <Label Margin="10,8" Width="85" Height="25" HorizontalContentAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0">
+                                            <Image Name="ImageStatus" Source="{Binding ImageStatus}" RenderTransformOrigin="0.857,0.857" Width="25" Height="25"/>
+                                        </Label>
+                                    </DockPanel>
+                                </Grid>
+                                <Border Grid.Row="2" Background="{StaticResource GrayLBrush}" BorderThickness="0 0.65 0 0" BorderBrush="{StaticResource LineListViewBrush}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Button IsEnabled="{Binding BtnSaveIsEnabled}" Command="{Binding Path=DataContext.MouseSaveClick, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}"
+                                                BorderThickness="0 0 0.75 0" BorderBrush="{StaticResource GrayLBrush}"
+                                                Grid.Column="0" VerticalContentAlignment="Center"
+                                                HorizontalContentAlignment="Center"  Name="BillBtn">
+                                            <Image Source="{DynamicResource ic_bill}" Width="25" Height="25"/>
+                                        </Button>
+                                        <Button IsEnabled="{Binding BtnPrintIsEnabled}"
+                                                Command="{Binding Path=DataContext.MousePrintClick, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}"
+                                                Name="btnprint" BorderThickness="0 0 0.75 0"
+                                                BorderBrush="{StaticResource GrayLBrush}" Grid.Column="1"
+                                                VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                                            <!--<Image Source="{DynamicResource ic_print}" />-->
+                                            <Image Source="{DynamicResource ic_print}" Width="25" Height="25"/>
+                                        </Button>
+                                        <Button IsEnabled="{Binding BtnDoneIsEnabled}" Command="{Binding Path=DataContext.MouseDoneClick, RelativeSource= {RelativeSource FindAncestor,
+                                                    AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}" Name="btnDone"
+                                                BorderThickness="0 0 0.75 0" BorderBrush="{StaticResource GrayLBrush}"
+                                                Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                                            <Image Source="{DynamicResource ic_money}" Width="25" Height="25" />
+                                        </Button>
+                                        <Menu Grid.Column="3" Focusable="False" Padding="0 0 10 0" Background="{StaticResource GrayBackgroundBrush}" BorderBrush="Transparent" Foreground="Transparent" BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                                            <MenuItem Width="Auto" MinWidth="60">
+                                                <MenuItem.Header>
+                                                    <Image Margin="0 0 -15 5" Source="{DynamicResource ic_more}" IsHitTestVisible="False" Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </MenuItem.Header>
+                                                <MenuItem Command="{Binding Path=DataContext.HistoryActivityCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}" HorizontalAlignment="Center" Background="White">
+                                                    <MenuItem.Header>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="History">
+                                                                <materialDesign:PackIcon.Foreground>
+                                                                    <SolidColorBrush Color="{DynamicResource MainColor}"/>
+                                                                </materialDesign:PackIcon.Foreground>
+                                                            </materialDesign:PackIcon>
+                                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_HISTORY}}"/>
+                                                        </StackPanel>
+                                                    </MenuItem.Header>
+                                                </MenuItem>
+                                                <MenuItem Visibility="{Binding DebitVisibility}" Name="DebitOrder" Command="{Binding Path=DataContext.DebitCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}" HorizontalAlignment="Center" Background="White">
+                                                    <MenuItem.Header>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="SortDescending">
+                                                                <materialDesign:PackIcon.Foreground>
+                                                                    <SolidColorBrush Color="{DynamicResource MainColor}"/>
+                                                                </materialDesign:PackIcon.Foreground>
+                                                            </materialDesign:PackIcon>
+                                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_DEBIT}}"/>
+                                                        </StackPanel>
+                                                    </MenuItem.Header>
+                                                </MenuItem>
+                                                <!--<MenuItem Visibility="{Binding CustomerDebitVisibility}" Command="{Binding Path=DataContext.CustomerDebitCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}" HorizontalAlignment="Center" Background="White">
+                                                            <MenuItem.Header>
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <materialDesign:PackIcon VerticalAlignment="Center" Kind="AccountMinus">
+                                                                        <materialDesign:PackIcon.Foreground>
+                                                                            <SolidColorBrush Color="{DynamicResource MainColor}"/>
+                                                                        </materialDesign:PackIcon.Foreground>
+                                                                    </materialDesign:PackIcon>
+                                                                    <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_DEBIT_CUSTOMER}}"/>
+                                                                </StackPanel>
+                                                            </MenuItem.Header>
+                                                        </MenuItem>-->
+                                                <MenuItem Visibility="Collapsed" Command="{Binding Path=DataContext.SendFoodCookCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}" HorizontalAlignment="Center" Background="White">
+                                                    <MenuItem.Header>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="ChefHat">
+                                                                <materialDesign:PackIcon.Foreground>
+                                                                    <SolidColorBrush Color="{DynamicResource MainColor}"/>
+                                                                </materialDesign:PackIcon.Foreground>
+                                                            </materialDesign:PackIcon>
+                                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_SEND_BAR_CHEF}}"/>
+                                                        </StackPanel>
+                                                    </MenuItem.Header>
+                                                </MenuItem>
+                                                <MenuItem Name="MoveTable" Visibility="{Binding TableVisibility}" Background="White" Command="{Binding Path=DataContext.MoveTableCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}">
+                                                    <MenuItem.Header>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="MoveResizeVariant">
+                                                                <materialDesign:PackIcon.Foreground>
+                                                                    <SolidColorBrush Color="{DynamicResource MainColor}"/>
+                                                                </materialDesign:PackIcon.Foreground>
+                                                            </materialDesign:PackIcon>
+                                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_MOVE_TABLE}}"/>
+                                                        </StackPanel>
+                                                    </MenuItem.Header>
+                                                </MenuItem>
+                                                <MenuItem Name="MergeTable" Visibility="{Binding TableVisibility}" Background="White" Command="{Binding Path=DataContext.MergeTableCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}">
+                                                    <MenuItem.Header>
+                                                        <StackPanel  Orientation="Horizontal">
+                                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="Add">
+                                                                <materialDesign:PackIcon.Foreground>
+                                                                    <SolidColorBrush Color="{DynamicResource MainColor}"/>
+                                                                </materialDesign:PackIcon.Foreground>
+                                                            </materialDesign:PackIcon>
+                                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_MERGE_TABLE}}"/>
+                                                        </StackPanel>
+                                                    </MenuItem.Header>
+                                                </MenuItem>
+                                                <MenuItem Name="MoveFood" Visibility="{Binding MoveFoodVisibility}" Background="White" Command="{Binding Path=DataContext.MoveFoodCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}">
+                                                    <MenuItem.Header>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="FormatHorizontalAlignCenter">
+                                                                <materialDesign:PackIcon.Foreground>
+                                                                    <SolidColorBrush Color="{DynamicResource MainColor}"/>
+                                                                </materialDesign:PackIcon.Foreground>
+                                                            </materialDesign:PackIcon>
+                                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_MOVE_FOOD}}"/>
+                                                        </StackPanel>
+                                                    </MenuItem.Header>
+                                                </MenuItem>
+                                                <MenuItem Name="CancelTable" Visibility="{Binding TableVisibility}" Background="White" Command="{Binding Path=DataContext.CancelTableCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}">
+                                                    <MenuItem.Header>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="Close">
+                                                                <materialDesign:PackIcon.Foreground>
+                                                                    <SolidColorBrush Color="{DynamicResource MainColor}"/>
+                                                                </materialDesign:PackIcon.Foreground>
+                                                            </materialDesign:PackIcon>
+                                                            <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_CANCEL_TABLE}}"/>
+                                                        </StackPanel>
+                                                    </MenuItem.Header>
+                                                </MenuItem>
+                                            </MenuItem>
+                                            <Separator/>
+                                        </Menu>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <DockPanel Visibility="{Binding RevenueTmpVisibility}" Background="{StaticResource GrayBackgroundBrush}" Grid.Row="1">
+            <DockPanel>
+                <Image Source="{StaticResource icon-revenue}" Height="30" Width="30" Margin="10 0 5 0"></Image>
+                <Label Foreground="{StaticResource BlueBackgroundBrush}" MinWidth="200" VerticalContentAlignment="Center"  FontFamily="roboto" FontWeight="DemiBold" FontSize="{StaticResource fontSizeSixTeen}" Width="auto" HorizontalContentAlignment="Left" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_REVENUE_TMP}}"></Label>
+                <Label Foreground="{StaticResource BlueBackgroundBrush}" VerticalContentAlignment="Center" FontFamily="roboto" FontSize="{StaticResource fontSizeTwentyFive}" FontWeight="Bold" Content="{Binding RevenueTmp}"></Label>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

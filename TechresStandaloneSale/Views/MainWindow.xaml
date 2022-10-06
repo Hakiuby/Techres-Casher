@@ -1,0 +1,634 @@
+﻿<Window  x:Class="TechresStandaloneSale.Views.MainWindow"
+            xmlns:UserControlView="clr-namespace:TechresStandaloneSale.UserControlView"  
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:viewmodel="clr-namespace:TechresStandaloneSale.ViewModels"
+        xmlns:helps="clr-namespace:TechresStandaloneSale.Helpers"
+        xmlns:l ="clr-namespace:TechresStandaloneSale.Loading" 
+        xmlns:i1="http://schemas.microsoft.com/expression/2010/interactions"
+        mc:Ignorable="d"
+        Title="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_TECHRES_SALES}}" 
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        WindowState="Normal"
+        ResizeMode="CanMinimize"
+        
+        WindowStyle="None"
+        ShowInTaskbar="True"
+        Name="mainWindow"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+           Icon="logo.ico">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" 
+                                   CommandParameter="{Binding ElementName=mainWindow}"></i:InvokeCommandAction>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding ItemFinishClick}" 
+                                   CommandParameter="{Binding ElementName=mainWindow}"></i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.Resources>
+        <DrawingImage x:Key="diUndo">
+            <DrawingImage.Drawing>
+                <DrawingGroup>
+                    <GeometryDrawing Brush="White" Geometry="M33.391,279.932l0,-157.728l-33.391,0l0,191.119l17.802,0l0,117.009l33.391,0l0,-71.726l68.51,0l0,71.726l33.392,0l0,-117.009l17.469,0l0,-33.391z"/>
+                    <GeometryDrawing Brush="White" Geometry="M400.791,179.898h-95.91L256,81.668l-48.883,98.229h-95.909h-26.91v33.391h26.91v44.522h128.096v139.13h-41.668v33.391h116.726v-33.391h-41.667V257.811h128.096V213.29h26.91v-33.391H400.791zM244.414,179.898L256,156.618l11.585,23.28H244.414z"/>
+                    <GeometryDrawing Brush="White" Geometry="M478.609,122.204l0,157.728l-137.173,0l0,33.391l17.469,0l0,117.009l33.392,0l0,-71.726l68.51,0l0,71.726l33.391,0l0,-117.009l17.802,0l0,-191.119z"/>
+                </DrawingGroup>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+        <BitmapImage x:Key="ic-dinner" UriSource="../Resources/Images/ic-dinner.png"/>
+        <BitmapImage x:Key="ic_plus_white" UriSource="../Resources/Images/icon-create-take-away.png" />
+        <BitmapImage x:Key="ic_menu_hamburger"  UriSource="../Resources/Images/icon-menu.png" />
+        <BitmapImage x:Key="ic-cash" UriSource="../Resources/Images/ic-cash.png"/>
+        <BitmapImage x:Key="ic-table_list" UriSource="../Resources/Images/table_ic_opening.png"/>
+        <BitmapImage x:Key="ic_create_order" UriSource="../Resources/Images/icon-create-order.png"/>
+        <BooleanToVisibilityConverter x:Key="Converter" />
+        <Style TargetType="Image">
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+        </Style>
+        <Storyboard x:Key="WaitStoryboard">
+            <DoubleAnimation
+            Storyboard.TargetName="Wait"
+            Storyboard.TargetProperty="(TextBlock.RenderTransform).(RotateTransform.Angle)"
+            From="0"
+            To="360"
+            Duration="0:0:2"
+            RepeatBehavior="Forever" />
+        </Storyboard>
+       </Window.Resources>
+    <l:AdornedControl x:Name="LoadingAdorner" IsAdornerVisible="{Binding DialogHostOpen,UpdateSourceTrigger=PropertyChanged}">
+        <l:AdornedControl.AdornerContent>
+            <l:LoadingWait></l:LoadingWait>
+        </l:AdornedControl.AdornerContent>
+        <Grid Background="#d9d9d9" Name="main">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="Header">
+                <Grid Height="40" Grid.Row="0" VerticalAlignment="Top" Background="{StaticResource MainBrush}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="73*"/>
+                        <ColumnDefinition Width="945*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Margin="0 0 0 0" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Left" Grid.ColumnSpan="2">
+                        <Button Name="HomeIc" Command="{Binding GoHomeCommand}" CommandParameter="{Binding ElementName=mainWindow}" Padding="10 0" Background="Transparent" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Home" Foreground="White" Height="35" Width="35"></materialDesign:PackIcon>
+                        </Button>
+                        <Label VerticalAlignment="Center" FontSize="16"  Content="{Binding ContentRestaurant}"  Foreground="White"/>
+                    </StackPanel>
+                    <DockPanel HorizontalAlignment="Right" Grid.Column="1">
+                        <Button Height="40" Width="50" Margin="0 0 10 0" Visibility="{Binding AddOrderVisibility}" Command="{Binding BtnAddOrderCommand}" CommandParameter="{Binding ElementName=mainWindow}" Background="Transparent" BorderThickness="0" VerticalAlignment="Center" Padding="0">
+                            <WrapPanel>
+                                <Image Width="40" Height="30" Source="{DynamicResource diUndo}" />
+                                <!--<materialDesign:PackIcon Kind="Add" Width="40" Height="40"  Foreground="{Binding AddOrderForeground}"></materialDesign:PackIcon>-->
+                                <!--<Label FontSize="18" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5 0 10 0" Foreground="{Binding AddOrderForeground}" Height="Auto" Width="Auto" Padding="0" Content="ORDER TẠI QUÁN"/>-->
+                            </WrapPanel>
+                        </Button>
+                        <Button Margin="0 0 0 0" Height="40" Width="40"  Visibility="{Binding AddOrderTakeAwayVisibility}" Command="{Binding BtnAddOrderTakeAwayCommand}" CommandParameter="{Binding ElementName=mainWindow}" Background="Transparent" BorderThickness="0" VerticalAlignment="Center" Padding="0">
+                            <WrapPanel>
+                                <Image Width="30" Height="30" Source="{DynamicResource ic_plus_white}" />
+                                <!--<materialDesign:PackIcon Kind="Add" Width="40" Height="40"  Foreground="{Binding AddOrderTakeAwayForeground}"></materialDesign:PackIcon>-->
+                                <!--<Label FontSize="18" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5 0 10 0" Foreground="{Binding AddOrderTakeAwayForeground}" Height="Auto" Width="Auto" Padding="0" Content="ORDER MANG VỀ"/>-->
+                            </WrapPanel>
+                        </Button>
+                        <Button Height="40" Width="50"  Margin="0 0 0 0" Visibility="{Binding BatenderVisibility}" Command="{Binding BatenderCommand}" CommandParameter="{Binding ElementName=mainWindow}" Background="{StaticResource MainBrush}" BorderThickness="0" VerticalAlignment="Center"  Padding="0">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <materialDesign:PackIcon Width="30" Height="30"  Kind="LocalBar" Foreground="White" ></materialDesign:PackIcon>
+                                <Label FontSize="18" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5 0 10 0" Foreground="White" Height="Auto" Width="Auto" Padding="0" Content="KHO BIA"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Height="40" Width="50"  Margin="0 0 0 0" Visibility="{Binding ManageHistoryFood}" Command="{Binding ManageHistoryFoodCommand}" CommandParameter="{Binding ElementName=mainWindow}" Background="{StaticResource MainBrush}" BorderThickness="0" VerticalAlignment="Center"  Padding="0">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <materialDesign:PackIcon Width="30" Height="30"  Kind="Clock" Foreground="White" ></materialDesign:PackIcon>
+                            </StackPanel>
+                        </Button>
+                        <Grid Height="50" Width="50" VerticalAlignment="Center">
+                            <Button Margin="0 0 0 0" Command="{Binding NotificationCommand}" CommandParameter="{Binding ElementName=mainWindow}" Background="{StaticResource MainBrush}" BorderThickness="0" VerticalAlignment="Center"  Padding="0">
+                                <Grid Height="50" Margin="0,0,0,0">
+                                    <materialDesign:PackIcon Width="30" Height="40" VerticalAlignment="Center" HorizontalAlignment="Center" Kind="NotificationsActive" Foreground="White" ></materialDesign:PackIcon>
+                                    <materialDesign:Badged Height="20" Width="20" Visibility="{Binding NotificationCountViewVisibility}" Badge="{Binding NotificationCountNotView, UpdateSourceTrigger=PropertyChanged}" BadgeColorZoneMode="PrimaryDark" Foreground="Red" BadgeBackground="Red" BadgeForeground="White" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                    </materialDesign:Badged>
+                                </Grid>
+                            </Button>
+                            <Popup Width="400" Height="500" IsOpen="{Binding NotificationIsOpen}" StaysOpen="False" AllowsTransparency="true" Placement="Bottom">
+                                    <Grid Background="{StaticResource GrayBackgroundBrush}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30"></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition Height="40"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <DockPanel Grid.Row="0" Background="White">
+                                            <Label Foreground="Black"  FontSize="{StaticResource fontSizeFifteen}" FontWeight="DemiBold" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_NOTIFICATION_TITLE}}"></Label>
+                                        </DockPanel>
+                                        <ScrollViewer Name="ScrItem" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Grid.Row="1" Margin="0,2,0,0" >
+                                            <ItemsControl ItemsSource="{Binding NotificationList}" Name="TblItemsControl">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                    <Border  BorderThickness="0 0 0 0.75">
+                                                        <Border.BorderBrush>
+                                                            <DrawingBrush Viewport="0,0,4,4" ViewportUnits="Absolute" TileMode="Tile">
+                                                                <DrawingBrush.Drawing>
+                                                                    <DrawingGroup>
+                                                                        <GeometryDrawing Brush="{StaticResource LineListViewBrush}">
+                                                                            <GeometryDrawing.Geometry>
+                                                                                <GeometryGroup>
+                                                                                    <RectangleGeometry Rect="0,0,30,30" />
+                                                                                    <RectangleGeometry Rect="30,30,30,30" />
+                                                                                </GeometryGroup>
+                                                                            </GeometryDrawing.Geometry>
+                                                                        </GeometryDrawing>
+                                                                    </DrawingGroup>
+                                                                </DrawingBrush.Drawing>
+                                                            </DrawingBrush>
+                                                        </Border.BorderBrush>
+                                                        <StackPanel MinHeight="50" Margin="5">
+                                                            <DockPanel Height="25">
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="30"></ColumnDefinition>
+                                                                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                                                                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <Image Grid.Column="0" Height="20"  Source="{Binding Avatar }"></Image>
+                                                                    <TextBlock Grid.Column="1" Text="{Binding EmployeeName}" FontWeight="DemiBold" FontSize="{StaticResource fontSize}" HorizontalAlignment="Left"></TextBlock>
+                                                                    <TextBlock Grid.Column="2" Text="{Binding CreatedAt}" FontStyle="Italic" FontSize="{StaticResource fontSizeMini}" HorizontalAlignment="Right"></TextBlock>
+                                                                </Grid>
+                                                            </DockPanel>
+                                                            <TextBlock Text="{Binding ActionDetail}" Margin="30 0 0 0"></TextBlock>
+                                                        </StackPanel>
+                                                    </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </ScrollViewer>
+                                    <Button Grid.Row="2" Command="{Binding DataContext.ViewAllCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Popup}}}" CommandParameter="{Binding ElementName=mainWindow}"  Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_NOTIFICATION_SEEN_ALL}}">
+                                        </Button>
+                                    </Grid>
+                            </Popup>
+                        </Grid>
+                        <Button Height="40" Width="40" Margin="0 0 0 0" Visibility="{Binding SyncDataVisibility}" Command="{Binding SyncDataCommand}" CommandParameter="{Binding ElementName=mainWindow}" Background="{StaticResource MainBrush}" BorderThickness="0" VerticalAlignment="Center"  Padding="0">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <materialDesign:PackIcon Width="30" Height="30"  Kind="Sync" Foreground="White" ></materialDesign:PackIcon>
+                            </StackPanel>
+                        </Button>
+                        <Grid MaxWidth="100">
+                            <Menu Name="MainMenu" Margin="10 0 0 0" Padding="0" Focusable="True" Background="{StaticResource GrayBackgroundBrush}"
+                                  MouseEnter="MainMenu_MouseEnter" MouseLeave="MainMenu_MouseLeave"
+                                  BorderBrush="Transparent" Foreground="Transparent" BorderThickness="0"
+                                  VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                                <MenuItem Name="btnMenuMain" Background="{StaticResource MainBrush}">
+                                    <MenuItem.Header>
+                                        <Image Source="{DynamicResource ic_menu_hamburger}" IsHitTestVisible="False" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0 0 0 5" Height="40" Width="40"/>
+                                    </MenuItem.Header>
+                                <!--<MenuItem Visibility="{Binding EmployeeVisibility}" Name="EmployeeList" Background="White" Command="{Binding EmployeeCommand}" CommandParameter="{Binding ElementName=mainWindow}" Click="EmployeeList_Click">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="User" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                <Image Source="{DynamicResource ic_menu_hamburger}" Height="15" Width="15"  />
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_EMPLOYEE}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>-->
+                                   
+                                    <MenuItem Background="White" Visibility="{Binding ReportRevenueWorkingSessionVisibility}" Name="ReportRevenueWorkingSession" Command="{Binding ReportFinishWorkingSessionCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center" Kind="ChartTimeline" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REPORT_WORKING_SESION}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    <MenuItem Visibility="{Binding ReportRevenueVisibility}" Name="ReportRevenue" Background="White"  Command="{Binding ReportRevenueCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center" Kind="ChartLineStacked" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REPORT_REVENUE}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    <!--<MenuItem Background="White" Visibility="{Binding ReportEmployeeVisibility}" Name="statisticsOfPersonnelAgeUC" Command="{Binding ReportEmployeeCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center" Kind="ChartArc" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_STATISTICS_OF_PERSONNEL}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>-->
+                                    <!--<MenuItem  Visibility="{Binding ReportCustomerSlotVisibility}" Name="ReportCustomerSlot" Background="White"  Command="{Binding ReportCustomerSlotCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="AccessPoint" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REPORT_CUSTOMER_SLOT}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>-->
+                                    <MenuItem Background="White" Visibility="{Binding ReportFoodVisibility}" Command="{Binding ReportCookCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="FoodApple" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REPORT_FOOD}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+
+                                    <MenuItem Background="White"  Visibility="{Binding HistoryDebitVisibility}" Name="historyDebit" Command="{Binding HistoryDebitCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="History" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_DEBIT_ORDER}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    <!--<MenuItem Background="White" Visibility="{Binding ExpenseCashierVisibility}" Command="{Binding ListCustomerDebitCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="{DynamicResource ic-cash}" Height="15" Width="15"  />
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_LIST_CUSTOMER_DEBIT_ORDER}}"/>
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>-->
+                                    <MenuItem Visibility="{Binding ReportGiftFoodVisibility}" Name="ReportGiftFood" Background="White"  Command="{Binding ReportGiftFoodCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="Gift" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REPORT_GIFT_FOOD}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                   
+                                            <!--<MenuItem  Visibility="{Binding NoteFoodVisibility}" Background="White"  Command="{Binding NoteListCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                                <MenuItem.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon Kind="FormatListChecks" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                        <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_SERVICE_HOBBY}}" />
+                                                    </StackPanel>
+                                                </MenuItem.Header>
+                                            </MenuItem>-->
+                                        <!--<MenuItem Visibility="{Binding RejectReasonVisibility}" Background="White"  Command="{Binding RejectReasonCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                            <MenuItem.Header>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <materialDesign:PackIcon Kind="FormatListCheckbox" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                    <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_REASON_CANCEL_FOOD}}" />
+                                                </StackPanel>
+                                            </MenuItem.Header>
+                                        </MenuItem>-->
+                                        <!--<MenuItem Visibility="{Binding CategoryVisibility}" Name="Category" Background="White"  Command="{Binding CategoryCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                            <MenuItem.Header>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <materialDesign:PackIcon Kind="FormatListBulleted" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                    <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_FOOD_CATEGORY}}" />
+                                                </StackPanel>
+                                            </MenuItem.Header>
+                                        </MenuItem>-->
+                                        <!--<MenuItem Visibility="{Binding FoodListVisibility}" Name="FoodList" Background="White"  Command="{Binding FoodListCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                            <MenuItem.Header>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <materialDesign:PackIcon Kind="FoodCroissant" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                    <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_FOOD}}" />
+                                                </StackPanel>
+                                            </MenuItem.Header>
+                                        </MenuItem>-->
+                                    <!--<MenuItem Visibility="{Binding FoodListBranchVisibility}" Name="FoodBranchList" Background="White"  Command="{Binding FoodBranchListCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="FoodCroissant" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_FOOD}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>-->
+                                    <!--<MenuItem Visibility="{Binding MoveFoodKitchenVisibility}" Background="White"  Command="{Binding MoveListFoodCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="{DynamicResource ic-dinner}" Height="15" Width="15"  />
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MOVE_FOOD_KITCHEN_PLACE}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>-->
+
+                                    <!--<MenuItem Visibility="{Binding UnitFoodVisibility}" Name="unitList" Background="White"  Command="{Binding UnitFoodCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                            <MenuItem.Header>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <materialDesign:PackIcon Kind="FoodVariant" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                    <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_FOOD_UNIT}}" />
+                                                </StackPanel>
+                                            </MenuItem.Header>
+                                        </MenuItem>-->
+                                    <!--<MenuItem Visibility="{Binding EditPriceVisibility}" Name="EditPrice" Background="White"  Command="{Binding EditPriceCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="Money" Height="15" VerticalAlignment="Center" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_FOOD_EDIT_PRICE}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>-->
+                                    <MenuItem  Visibility="{Binding BookingVisibility}" Name="Booking" Background="White" Command="{Binding BookingCommand}" CommandParameter="{Binding ElementName=mainWindow}" >
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="Book" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_BOOKING}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    <MenuItem Visibility="{Binding OrderVisibility}" Background="White" Name="OrderList" Command="{Binding OrderingListCommand}"  CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon  Kind="FormatListNumbered" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_ORDER}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    <MenuItem Background="White" Visibility="{Binding EmployeeAdvancedSalaryVisibility}" Name="EmployeeAdvancedSalary" Command="{Binding EmployeeAdvancedSalaryLevelCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="Checkbook" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_CONFIRM_SALARY_ADVANCED}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    <MenuItem  Visibility="{Binding HistoryEndWorkingSessionVisibility}" Name="historyEndWorkingSession" Background="White" Command="{Binding HistoryEndWorkingSessionCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="Work" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_VIEW_END_WORKING_SESSION}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    <MenuItem Visibility="{Binding QrCodeBranchVisibility}" Background="White" Name="qrCode" Command="{Binding QRCodeBranchCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="QrcodeScan" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_CHECK_IN}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    <MenuItem Visibility="{Binding QRCodeRegistrationCustomerVisibility}" Background="White" Name="QRCodeRegistrationCustomer" Command="{Binding QRCodeRegistrationCustomerCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="QrcodeScan" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_CREATE_CUSTOMER}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    <MenuItem Background="White" Visibility="{Binding InputMoneyToCardVisibility}" Name="InputMoneyToCard" Command="{Binding InputMoneyToCardCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="Money" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_INPUT_MONEY_TO_CUSTOMER}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    <!--<MenuItem Visibility="{Binding ExpenseVisibility}" Background="White"  Command="{Binding ExpenseCommand}" CommandParameter="{BExpenseCashierCommandinding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="BookPlus" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_ADDITION_FEE}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>-->
+                                    <MenuItem Visibility="{Binding ExpenseCashierVisibility}" Background="White"  Command="{Binding ExpenseCashierCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="BookPlus" VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_ADDITION_FEE}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    <!--<MenuItem Background="White" Visibility="{Binding ReportBalanceMoneyVisibility}" Command="{Binding ReportBalanceMoneyCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="{DynamicResource ic-cash}" Height="15" Width="15"  />
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_CASH_FUND}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>-->
+                                    <!--<MenuItem Visibility="{Binding PaymentReasonListVisibility}" Background="White"  Command="{Binding PaymentReasonCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center"  Kind="FormatListBulleted" >
+                                                    <materialDesign:PackIcon.Foreground>
+                                                        <SolidColorBrush Color="{DynamicResource MainColor}"/>
+                                                    </materialDesign:PackIcon.Foreground>
+                                                </materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_ADDITION_FEE_CATEGORY}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>-->
+                                    <MenuItem Visibility="{Binding ReportHistoryLogVisibility}" Background="White" Name="HistoryLog" Command="{Binding HistoryLogCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center"  Kind="History" >
+                                                    <materialDesign:PackIcon.Foreground>
+                                                        <SolidColorBrush Color="{DynamicResource MainColor}"/>
+                                                    </materialDesign:PackIcon.Foreground>
+                                                </materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_LOG}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    <!--<MenuItem Background="White" Visibility="{Binding AreaVisibility}" Command="{Binding AreaCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="Grid"  VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_AREA}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    <MenuItem Visibility="{Binding TableVisibility}" Background="White"  Command="{Binding TableCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="{DynamicResource ic-table_list}"  VerticalAlignment="Center" Height="15" Width="15"  />
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_TABLE}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>-->
+                                    <MenuItem Visibility="{Binding SettingVisibility}" Background="White" Name="Setting" Command="{Binding SettingCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="Settings"  VerticalAlignment="Center" Height="15" Width="15"  Foreground="{StaticResource MainBrush}"></materialDesign:PackIcon>
+                                                <Label Foreground="Black" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_MENU_SETTING}}" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                </MenuItem>
+                            </Menu>
+                        </Grid>
+
+                        <Menu Name="MenuUser"  Margin="5 0 0 0" Padding="0" Focusable="False" MouseEnter="MenuUser_MouseEnter" MouseLeave="MenuUser_MouseLeave"
+                               BorderBrush="Transparent" Foreground="Transparent" BorderThickness="0" VerticalAlignment="Center">
+                            <MenuItem Name="btnMenuUser" VerticalAlignment="Center" Background="{StaticResource MainBrush}">
+                                <!--<MenuItem.Background>
+                                    <SolidColorBrush Color="{Binding Color2}" />
+                                </MenuItem.Background>-->
+                                <MenuItem.Header>
+                                    <materialDesign:PackIcon VerticalAlignment="Center" Width="40" Height="40" Foreground="White"  Kind="Account" ></materialDesign:PackIcon>
+                                </MenuItem.Header>
+                                <MenuItem Background="White" Command="{Binding ProfileCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon VerticalAlignment="Center" Foreground="{StaticResource MainBrush}" Kind="UserCircle" ></materialDesign:PackIcon>
+                                            <Label Foreground="Black" Content="{Binding EmployeeName}" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Background="White" IsHitTestVisible="False">
+                                    <MenuItem.Header>
+                                        <Rectangle VerticalAlignment="Center" Fill="Gray" HorizontalAlignment="Stretch" Height="1"/>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <!--<MenuItem Background="White" Command="{Binding SupportCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <DockPanel>
+                                            <materialDesign:PackIcon VerticalAlignment="Center"  Kind="Support" Foreground="{StaticResource MainBrush}" ></materialDesign:PackIcon>
+                                            <TextBlock Foreground="Black" Text="Hổ trợ từ xa" >
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>-->
+                                <MenuItem Background="White" Command="{Binding HelpCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <DockPanel>
+                                            <materialDesign:PackIcon VerticalAlignment="Center"  Kind="HelpCircle" Foreground="{StaticResource MainBrush}" ></materialDesign:PackIcon>
+                                            <TextBlock Foreground="Black" Text="Trợ giúp" >
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Background="White" Command="{Binding ChangePasswordCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel  Orientation="Horizontal">
+                                            <materialDesign:PackIcon VerticalAlignment="Center"  Kind="Lock" Foreground="{StaticResource MainBrush}"  ></materialDesign:PackIcon>
+                                            <Label Foreground="Black" Content="Thay đổi mật khẩu" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Background="White" Command="{Binding LogoutCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon VerticalAlignment="Center"  Kind="Export"  Foreground="{StaticResource MainBrush}" ></materialDesign:PackIcon>
+                                            <Label Foreground="Black" Content="Đăng xuất" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                                <MenuItem Command="{Binding ItemFinishClick}" CommandParameter="{Binding ElementName=mainWindow}" Background="White">
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon VerticalAlignment="Center"  Kind="Power"  Foreground="{StaticResource MainBrush}" ></materialDesign:PackIcon>
+                                            <Label Foreground="Black" Content="Kết thúc" />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                            </MenuItem >
+                        </Menu>
+                        <Button Background="{StaticResource MainBrush}"   BorderThickness="0" Margin="5 0 5 0" BorderBrush="White" Height="Auto" Padding="0"
+                        Command="{Binding MinimizeWindowCommand}"
+                            CommandParameter="{Binding ElementName=mainWindow}">
+                            <materialDesign:PackIcon Foreground="White" Kind="WindowMinimize"  Width="40" Height="40"/>
+                        </Button>
+                    </DockPanel>
+                </Grid>
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Style.Triggers >
+                            <DataTrigger Binding="{Binding ElementName=ActiveHeaderAndFooter, Path=IsMouseOver}" Value="false">
+                                <Setter Property="Visibility" Value="{Binding Path=HeaderAndFooterVisibility,UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=ActiveHeaderAndFooter, Path=IsMouseOver}" Value="true">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=Header, Path=IsMouseOver}" Value="true">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=Footer, Path=IsMouseOver}" Value="true">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+            </Grid>
+            <Grid Height="1" Grid.Row="1" x:Name="ActiveHeaderAndFooter" VerticalAlignment="Top">
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=Header, Path=IsMouseOver}" Value="true">
+                                <Setter Property="Background" Value="{StaticResource MainBrush}" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=Footer, Path=IsMouseOver}" Value="true">
+                                <Setter Property="Background" Value="{StaticResource MainBrush}" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=Header, Path=IsMouseOver}" Value="false">
+                                <Setter Property="Background" Value="Transparent" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=Footer, Path=IsMouseOver}" Value="false">
+                                <Setter Property="Background" Value="Transparent" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+            </Grid>
+            <ContentControl Name="ContentCt" Grid.Row="2" Background="{StaticResource MainBrush}"  />
+            <Grid Height="1" Grid.Row="3" x:Name="ActiveHeaderAndFooter2" VerticalAlignment="Bottom">
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=Header, Path=IsMouseOver}" Value="true">
+                                <Setter Property="Background" Value="{StaticResource MainBrush}" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=Footer, Path=IsMouseOver}" Value="true">
+                                <Setter Property="Background" Value="{StaticResource MainBrush}" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=Header, Path=IsMouseOver}" Value="false">
+                                <Setter Property="Background" Value="Transparent" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=Footer, Path=IsMouseOver}" Value="false">
+                                <Setter Property="Background" Value="Transparent" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+            </Grid>
+            <Grid x:Name="Footer" Grid.Row="4" >
+                <Grid Height="40" VerticalAlignment="Bottom" Background="{StaticResource MainBrush}">
+                    <Label VerticalAlignment="Center" MinHeight="35" VerticalContentAlignment="Center" Foreground="White" Content="TECHRES.VN - TRỢ LÝ ĐẮC LỰC CỦA CEO" HorizontalAlignment="Left" Width="Auto"/>
+                    <Label VerticalAlignment="Center" MinHeight="35" VerticalContentAlignment="Center" Foreground="White" Content="{Binding VersionTitle}" HorizontalAlignment="Right" Width="114" Margin="0,-5"/>
+                </Grid>
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=ActiveHeaderAndFooter2, Path=IsMouseOver}" Value="false">
+                                <Setter Property="Visibility" Value="{Binding Path=HeaderAndFooterVisibility,UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=ActiveHeaderAndFooter2, Path=IsMouseOver}" Value="true">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=Header, Path=IsMouseOver}" Value="true">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=Footer, Path=IsMouseOver}" Value="true">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+            </Grid>
+        </Grid>
+    </l:AdornedControl>
+</Window>

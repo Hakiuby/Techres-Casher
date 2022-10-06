@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="TechresStandaloneSale.UserControlView.ComboBox.ComboBoxEmployee"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:select ="clr-namespace:TechresStandaloneSale.Helpers"
+             xmlns:local="clr-namespace:TechresStandaloneSale.UserControlView.ComboBox"
+             mc:Ignorable="d" 
+             Background="White"
+             Name="comboxEmployee"
+             Loaded="comboxEmployee_Loaded"
+             d:DesignHeight="40" d:DesignWidth="800">
+    <Grid HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <!--<ColumnDefinition Width="40"/>-->
+            </Grid.ColumnDefinitions>
+        <TextBox Background="{StaticResource GrayBackgroundBrush}" MouseLeftButtonUp="PART_ContentHost_Employee_PreviewMouseDown" Foreground="Black" Grid.ColumnSpan="2"  Text="{Binding EmployeeText}" Margin="0" TextChanged="PART_ContentHost_Employee_TextChanged" VerticalContentAlignment="Center"
+                              Tag="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_SEARCH_EMPLOYEE_TAG}}" VerticalAlignment="Center" Name="PART_ContentHost_Employee" Padding="6,0,0,0" Height="40" select:SelectAllFocusBehavior.Enable="True" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0">
+            <TextBox.InputBindings>
+                <KeyBinding  Command="{Binding EnterTextBoxEmployeeCommand}"  Key="Enter" CommandParameter="{Binding ElementName=PART_ContentHost_Employee}"></KeyBinding>
+                <KeyBinding  Command="{Binding DownTextBoxEmployeeCommand}"  Key="Down" CommandParameter="{Binding ElementName=PART_ContentHost_Employee}"></KeyBinding>
+                <KeyBinding  Command="{Binding UpTextBoxEmployeeCommand}"  Key="Up" CommandParameter="{Binding ElementName=PART_ContentHost_Employee}"></KeyBinding>
+            </TextBox.InputBindings>
+        </TextBox>
+        <!--<Button Command="{Binding AddEmployeeCommad}" Height="40" CommandParameter="{Binding ElementName=comboxEmployee}" BorderThickness="1" BorderBrush="{StaticResource MainLine}" Background="White" Grid.Column="3" Foreground="Green">
+            <materialDesign:PackIcon Kind="Add" />
+        </Button>-->
+        <Popup x:Name="PART_Popup_Employee" StaysOpen="False"  MaxHeight="400" MinHeight="20" AllowsTransparency="true" Placement="Bottom" Width="{Binding ElementName=PART_ContentHost_Employee, Path=ActualWidth}" IsOpen="{Binding IsOpenPopupEmployee}">
+            <ListBox SelectedIndex="{Binding EmployeeIndex}" SelectedItem="{Binding EmployeeItem}" ItemsSource="{Binding EmployeeList}" BorderBrush="{StaticResource LineListViewBrush}" Background="White" BorderThickness="1" MinHeight="20" x:Name="PART_ItemList_Employee" MaxHeight="400" VerticalContentAlignment="Stretch" 
+    			 HorizontalContentAlignment="Stretch" KeyboardNavigation.DirectionalNavigation="Contained" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Button Foreground="Black" Height="35" Margin="-7" HorizontalContentAlignment="Left" Background="Transparent" Command="{Binding Path=DataContext.BtnAddEmployeeCommand, RelativeSource= {RelativeSource FindAncestor,
+                                            AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}" Content="{Binding NameRoleNameString}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.InputBindings>
+                    <KeyBinding  Command="{Binding EnterEmployeeCommand}"  Key="Enter" CommandParameter="{Binding ElementName=PART_Popup_Employee}"></KeyBinding>
+                </ListBox.InputBindings>
+            </ListBox>
+        </Popup>
+    </Grid>
+</UserControl>

@@ -1,0 +1,73 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.Dialogs.ConfirmDeleteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views.Dialogs"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        mc:Ignorable="d" Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Icon="logo.ico"
+        WindowStartupLocation="CenterScreen"
+        BorderThickness="0.75"
+        Name="confirmDeleteWindow"
+        Title="Xác nhận" Height="230" Width="500">
+    <Window.Resources>
+        <Color x:Key="MainColor">#FBBC05</Color>
+        <BitmapImage x:Key="logo" UriSource="/TechresStandaloneSale;component/Resources/Images/white_logo.png" />
+    </Window.Resources>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <DockPanel  Grid.Row="0" Background="{StaticResource MainBrush}">
+            <!--<Image Margin="3 0 0 0" Width="40" Height="40"  Grid.Column="0" Source="{StaticResource logo}" Stretch="Uniform" VerticalAlignment="Stretch"/>-->
+            <Label Foreground="White" FontSize="{StaticResource fontSizeHeader}" Content="{Binding TitleContent}" VerticalAlignment="Center" FontWeight="SemiBold">
+            </Label>
+            <Button  Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=confirmDeleteWindow}" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" BorderBrush="{x:Null}" Foreground="#FF2387D6">
+                <materialDesign:PackIcon HorizontalAlignment="Center" VerticalContentAlignment="Center" Kind="Close" Foreground="White" Width="50"  Height="25" />
+            </Button>
+        </DockPanel>
+        <TextBlock Text="{Binding ContentConfirm}" Margin="10" Grid.Row="1" MinHeight="70" FontSize="{StaticResource fontSize}" VerticalAlignment="Center" HorizontalAlignment="Center" FontStyle="Normal" TextWrapping="Wrap"  Name="ContentNotification"></TextBlock>
+        <DockPanel Background="{StaticResource GrayBackgroupBrush}" Grid.Row="2">
+            <Button Height="35" Command="{Binding NoCommand}" Content="{Binding NoContent}" Foreground="Red" Background="White" CommandParameter="{Binding ElementName=confirmDeleteWindow}" Margin="15 0" BorderThickness="1" BorderBrush="{StaticResource LineListViewBrush}" DockPanel.Dock="Right" Width="120">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsFocused" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Command="{Binding YesCommand}" Content="{Binding YesContent}" VerticalContentAlignment="Center" Foreground="White" Name="yes" Background="{StaticResource MainBrush}" CommandParameter="{Binding ElementName=confirmDeleteWindow}" BorderThickness="1" BorderBrush="{StaticResource MainBrush}" Height="35" HorizontalAlignment="Right" Width="120">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" ContentTemplate="{TemplateBinding ContentTemplate}" Margin="{TemplateBinding Padding}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsFocused" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#4285F4" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+        </DockPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,152 @@
+﻿<Window x:Class="TechresStandaloneSale.Template.PrintViewTallying"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Template"
+        mc:Ignorable="d"
+          Background="White"
+        WindowState="Maximized"
+         WindowStyle="None"
+        ResizeMode="NoResize"
+        Width="210">
+    <Grid Margin="0,0,0,0" >
+        <FlowDocumentReader Width="210" Height="Auto" Margin=" 10 0 0 0">
+            <FlowDocument Name="billDocument">
+                <Paragraph TextAlignment="Center" >
+                    <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="24" FontWeight="Bold" TextWrapping="WrapWithOverflow" Text="CHI TIẾT KIỂM ĐẾM"></TextBlock>
+                </Paragraph>
+                <Paragraph TextAlignment="Center" >
+                    <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="14" FontStyle="Italic" TextWrapping="WrapWithOverflow" Text="Ngày chốt:"></TextBlock>
+                    <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="14" FontStyle="Italic" TextWrapping="WrapWithOverflow" Name="Day"></TextBlock>
+                </Paragraph>
+                <Paragraph Margin="0">
+                    <Rectangle Fill="Black" Height="1" Width="500" HorizontalAlignment="Left" />
+                    <LineBreak/>
+                </Paragraph>
+                <Paragraph Margin="5 0 0 0">
+                    <DockPanel>
+                        <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="16" VerticalAlignment="Center" Text="Chi nhánh: "></TextBlock>
+                        <TextBlock FontFamily="Times New Roman" TextWrapping="WrapWithOverflow" Foreground="Black" FontSize="16" Name="branch" VerticalAlignment="Center">16/11/2019 13:00</TextBlock>
+                    </DockPanel>
+                </Paragraph>
+                <Paragraph Margin="5 10 0 0">
+                    <DockPanel>
+                        <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="16" VerticalAlignment="Center" Text="Thu ngân: "></TextBlock>
+                        <TextBlock FontFamily="Times New Roman" TextWrapping="WrapWithOverflow" Foreground="Black" FontSize="16" Name="EmployeeName" VerticalAlignment="Center">16/11/2019 13:00</TextBlock>
+                    </DockPanel>
+                </Paragraph>
+
+                <Paragraph Margin="5 10 0 0">
+                    <DockPanel>
+                        <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="16" VerticalAlignment="Center" Text="Tiền quỹ để lại (1): "></TextBlock>
+                        <TextBlock FontFamily="Times New Roman" TextWrapping="WrapWithOverflow" Foreground="Black" FontSize="16" Name="BeginAmount" VerticalAlignment="Center" FontWeight="DemiBold">16/11/2019 13:00</TextBlock>
+                    </DockPanel>
+                </Paragraph>
+                <Paragraph Margin="5 10 0 0">
+                    <DockPanel>
+                        <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="16" VerticalAlignment="Center" Text="Tiền chi (2): "></TextBlock>
+                        <TextBlock FontFamily="Times New Roman" TextWrapping="WrapWithOverflow" Foreground="Black" FontSize="16" Name="SpendingAmountApp" VerticalAlignment="Center" FontWeight="DemiBold">16/11/2019 13:00</TextBlock>
+                    </DockPanel>
+                </Paragraph>
+                <Paragraph Margin="5 10 0 0">
+                    <DockPanel>
+                        <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="16" VerticalAlignment="Center" Text="Tiền típ/trả lại cho khách: "></TextBlock>
+                        <TextBlock FontFamily="Times New Roman" TextWrapping="WrapWithOverflow" Foreground="Black" FontSize="16" Name="TipAmount" VerticalAlignment="Center" FontWeight="DemiBold">16/11/2019 13:00</TextBlock>
+                    </DockPanel>
+                </Paragraph>
+                <Paragraph Margin="5 10 0 0">
+                    <DockPanel>
+                        <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="16" VerticalAlignment="Center" Text="Tổng nhận (3): "></TextBlock>
+                        <TextBlock FontFamily="Times New Roman" TextWrapping="WrapWithOverflow" Foreground="Black" FontSize="16" Name="CurrentAmountApp" VerticalAlignment="Center" FontWeight="DemiBold">16/11/2019 13:00</TextBlock>
+                    </DockPanel>
+                </Paragraph>
+                <Paragraph Margin="5 10 0 0">
+                    <DockPanel>
+                        <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="16" VerticalAlignment="Center" Text="Tổng tiền (1+2+3) : "></TextBlock>
+                        <TextBlock FontFamily="Times New Roman" TextWrapping="WrapWithOverflow" Foreground="Black" FontSize="16" Name="AmountApp" VerticalAlignment="Center" FontWeight="DemiBold">16/11/2019 13:00</TextBlock>
+                    </DockPanel>
+                </Paragraph>
+
+                <Paragraph Margin="5 10 0 0">
+                    <DockPanel>
+                        <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="16" VerticalAlignment="Center" Text="Chênh lệch: " ></TextBlock>
+                        <TextBlock FontFamily="Times New Roman" TextWrapping="WrapWithOverflow" Foreground="Black" FontSize="16" Name="DifferenceAmount" VerticalAlignment="Center" FontWeight="DemiBold">16/11/2019 13:00</TextBlock>
+                    </DockPanel>
+                </Paragraph>
+                <Paragraph>
+                    <Rectangle Fill="Black" Height="1" Width="500" HorizontalAlignment="Left" />
+                    <LineBreak/>
+                </Paragraph>
+                <Table Name="TableRow" BorderBrush="Black" ClearFloaters="None"  BreakColumnBefore="True">
+                    <Table.Resources>
+                        <Style x:Key="headerFooterRowStyle" TargetType="{x:Type TableRowGroup}">
+                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+                            <Setter Property="Foreground" Value="Black"></Setter>
+                        </Style>
+
+                        <Style x:Key="headerFooterRowStyleData" TargetType="{x:Type TableRowGroup}">
+
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Setter Property="Foreground" Value="Black"></Setter>
+                            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+                        </Style>
+                        <Style x:Key="dataRowStyle" TargetType="{x:Type TableRowGroup}">
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="Foreground" Value="Black"></Setter>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+                        </Style>
+                    </Table.Resources>
+                    <Table.Columns>
+                        <TableColumn></TableColumn>
+                        <TableColumn></TableColumn>
+                        <TableColumn></TableColumn>
+                    </Table.Columns>
+                    <TableRowGroup Style="{StaticResource headerFooterRowStyle}">
+                        <TableRow>
+                            <TableCell ColumnSpan="2">
+                                <Paragraph Margin="5 5 5 5">
+                                    <TextBlock Text="Mệnh giá" FontWeight="Bold"></TextBlock>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell  ColumnSpan="1">
+                                <Paragraph Margin="5"  TextAlignment="Center">
+                                    <TextBlock Text="SL" FontWeight="Bold"></TextBlock>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell  ColumnSpan="2">
+                                <Paragraph Margin="5"  TextAlignment="Center">
+                                    <TextBlock Text="Thành tiền" FontWeight="Bold"></TextBlock>
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell ColumnSpan="5">
+                                <Paragraph>
+                                    <Rectangle Fill="Black" Height="1"  Width="500" HorizontalAlignment="Left" />
+
+                                </Paragraph>
+
+                            </TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+                </Table>
+               
+
+                <Paragraph>
+                    <Rectangle Fill="Black" Height="1" Width="500" HorizontalAlignment="Left" />
+                    <LineBreak/>
+                </Paragraph>
+
+                <Paragraph TextAlignment="Left" Margin="5 10 0 0">
+                    <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="16" TextWrapping="WrapWithOverflow" Text="Ký tên: "></TextBlock>
+                </Paragraph>
+                
+            </FlowDocument >
+        </FlowDocumentReader>
+    </Grid>
+</Window>

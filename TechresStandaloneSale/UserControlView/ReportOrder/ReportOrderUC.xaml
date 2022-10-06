@@ -1,0 +1,169 @@
+﻿<UserControl x:Class="TechresStandaloneSale.UserControlView.ReportOrder.ReportOrderUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:TechresStandaloneSale.UserControlView.ReportOrder"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:helps="clr-namespace:TechresStandaloneSale.Helpers"
+             xmlns:l ="clr-namespace:TechresStandaloneSale.Loading"
+             mc:Ignorable="d" 
+             Name="reportOrder"
+             Background="White"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Color x:Key="mainColor">#FF09A2CF</Color>
+        <Color x:Key="RowColor">#b3e6ff</Color>
+        <SolidColorBrush x:Key="DtColor" Color="{DynamicResource RowColor}"/>
+        <SolidColorBrush x:Key="MainColor" Color="{DynamicResource mainColor}"/>
+    </UserControl.Resources>
+    <l:AdornedControl x:Name="LoadingAdorner" IsAdornerVisible="{Binding Path=DialogHostOpen,UpdateSourceTrigger=PropertyChanged}">
+        <l:AdornedControl.AdornerContent>
+            <l:LoadingWait></l:LoadingWait>
+        </l:AdornedControl.AdornerContent>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="130"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontSize="{StaticResource fontSizeLabelHeader}" Content="{Binding ReportContent}" Margin="0,0,0,0"/>
+            </Grid>
+            <DockPanel Name="DCP" Grid.Row="1">
+                <DockPanel Margin="5">
+                    <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False"  Foreground="Black" Margin="5,5,5,0" Grid.Column="1" Grid.Row="0" ItemsSource="{Binding OrderList}" Background="White"  ScrollViewer.CanContentScroll="True" 
+                              ScrollViewer.VerticalScrollBarVisibility="Visible" RenderTransformOrigin="0.5,0.5" x:Name="lvListOrder">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn x:Name="CodeOder"  Width="0.05*">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_ORDER_CODE}}" Foreground="Black" TextWrapping="WrapWithOverflow"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content="{Binding OrderCode}" FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn x:Name="Table" Width="0.05*" >
+                                <DataGridTemplateColumn.Header>
+                                    <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_TABLE}}"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content="{Binding TableName}" FontSize="{StaticResource fontSize}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn x:Name="Employee"  Width="0.1*">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_LIST_EMPLOYEE}}"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Employee.Name}" FontSize="{StaticResource fontSize}" TextWrapping="WrapWithOverflow"  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn x:Name="Vat"  Width="0.05*">
+                                <DataGridTemplateColumn.Header>
+                                    <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_LIST_VAT}}"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Vat}" FontSize="{StaticResource fontSize}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn x:Name="Discount"  Width="0.05*">
+                                <DataGridTemplateColumn.Header>
+                                    <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_LIST_DISCOUNT}}"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content="{Binding DiscountPercent}" FontSize="{StaticResource fontSize}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn x:Name="Revenue"  Width="0.05*">
+                                <DataGridTemplateColumn.Header>
+                                    <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_LIST_TOTAL_MONEY}}"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content="{Binding TotalAmountString}" FontSize="{StaticResource fontSize}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn  Width="0.05*">
+                                <DataGridTemplateColumn.Header>
+                                    <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_LIST_DATE_CREATED}}"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content="{Binding CreatedAt}" FontSize="{StaticResource fontSize}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn  Width="0.05*">
+                                <DataGridTemplateColumn.Header>
+                                    <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_LIST_FINISHED}}"></Label>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content="{Binding UpdatedAt}" FontSize="{StaticResource fontSize}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Right" VerticalAlignment="Stretch" Grid.Row="2">
+                <Button Margin="5" CommandParameter="{Binding ElementName=reportOrder}" Command="{Binding PageDoubleLeft}">
+                    <materialDesign:PackIcon Kind="ChevronDoubleLeft"/>
+                </Button>
+                <Button Margin="5"  CommandParameter="{Binding ElementName=reportOrder}" Command="{Binding PageLeft}">
+                    <materialDesign:PackIcon Kind="ChevronLeft" />
+                </Button>
+                <Label Content="{Binding PageContent}" Margin="5 0 5 0"></Label>
+                <Button Margin="5"  CommandParameter="{Binding ElementName=reportOrder}"  Command="{Binding PageRight}">
+                    <materialDesign:PackIcon Kind="ChevronRight" />
+                </Button>
+                <Button Margin="5" CommandParameter="{Binding ElementName=reportOrder}" Command="{Binding PageDoubleRight}">
+                    <materialDesign:PackIcon Kind="ChevronDoubleRight" />
+                </Button>
+            </DockPanel>
+            <StackPanel VerticalAlignment="Bottom" Grid.Row="3" Margin="0 0 30 0">
+                <Rectangle HorizontalAlignment="Stretch" Fill="LightGray" Height="1.5"/>
+                <DockPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_TOTAL_ODER}}" HorizontalContentAlignment="Right" FontSize="{StaticResource fontSizeHeader}" Foreground="Black"  Width="160"/>
+                        <Label Margin="20 0 0 0" HorizontalContentAlignment="Right" Content="{Binding TotalOrder}" FontSize="{StaticResource fontSizeHeader}" Foreground="Black" Width="200"/>
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_TOTAL_VAT}}" HorizontalContentAlignment="Right" FontSize="{StaticResource fontSizeHeader}" Foreground="Black"  Width="160"/>
+                        <Label Margin="20 0 0 0" HorizontalContentAlignment="Right" Content="{Binding TotalVAT}" FontSize="{StaticResource fontSizeHeader}" Foreground="Black" Width="200"/>
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_TOTAL_DISCOUNT}}" HorizontalContentAlignment="Right" FontSize="{StaticResource fontSizeHeader}" Foreground="Black" Width="160"/>
+                        <Label Margin="20 0 0 0" HorizontalContentAlignment="Right" Content="{Binding TotalDiscount}" FontSize="{StaticResource fontSizeHeader}" Foreground="Black" Width="200"/>
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_TOTAL_REVENUE}}" HorizontalContentAlignment="Right" FontSize="{StaticResource fontSizeHeader}" Foreground="Black" Width="160"/>
+                        <Label Margin="20 0 0 0" HorizontalContentAlignment="Right" Content="{Binding TotalRevenue}" FontSize="{StaticResource fontSizeHeader}" Foreground="Black" Width="200"/>
+                    </StackPanel>
+                </DockPanel>
+            </StackPanel>
+        </Grid>
+    </l:AdornedControl>
+</UserControl>

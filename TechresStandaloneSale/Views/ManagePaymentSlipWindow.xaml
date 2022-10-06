@@ -1,0 +1,192 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.ManagePaymentSlipWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+         xmlns:select ="clr-namespace:TechresStandaloneSale.Helpers"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views"
+        mc:Ignorable="d"
+        TextElement.FontSize="{StaticResource fontSize}"
+         ResizeMode="NoResize"
+        WindowStyle="None"
+        BorderBrush="{StaticResource MainLine}"
+        FontFamily="{StaticResource Roboto-Regular}"
+        BorderThickness="0.5"
+        Icon="logo.ico"
+        Foreground="Black"
+        KeyUp="ManagePaymentSlipWindow_KeyUp"
+        WindowStartupLocation="CenterScreen"
+        Name="managePaymentSlipWindow"
+        Title="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_CREATE_PAYMENT_SLIP}}" Height="550" Width="800">
+    <Window.Resources>
+        <BitmapImage x:Key="logo" UriSource="/TechresStandaloneSale;component/Resources/Images/white_logo.png" />
+    </Window.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"
+                                   CommandParameter="{Binding ElementName=managePaymentSlipWindow}"></i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.InputBindings>
+        <KeyBinding  Key="F4" Command="{Binding AddCommand}"  CommandParameter="{Binding ElementName=managePaymentSlipWindow}"></KeyBinding>
+        <KeyBinding Key="Esc" Command="{Binding CloseCommand}"  CommandParameter="{Binding ElementName=managePaymentSlipWindow}"></KeyBinding>
+
+    </Window.InputBindings>
+    <Grid Background="{StaticResource GrayBackgroupBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Background="{StaticResource MainBrush}">
+            <Image Margin="10 0 0 0" Width="40" Height="40"  Grid.Column="0" Source="{StaticResource logo}" Stretch="Uniform" VerticalAlignment="Stretch"/>
+            <Label Foreground="White" FontSize="{StaticResource fontSizeHeader}" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_CREATE_PAYMENT_SLIP}}" VerticalAlignment="Center" FontWeight="SemiBold"/>
+            <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=managePaymentSlipWindow}" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" BorderBrush="{x:Null}" Foreground="#FF2387D6">
+                <materialDesign:PackIcon HorizontalAlignment="Center" VerticalContentAlignment="Center" Kind="Close" Foreground="White" Width="50" Height="25" />
+            </Button>
+        </DockPanel>
+        <Grid Grid.Row="1" Margin="10 10 10 5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55"></RowDefinition>
+                <RowDefinition Height="0.5*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <DockPanel Background="White" Grid.Row="0">
+                <Label Foreground="Black" FontWeight="Bold" Margin="10 0 5 0"  FontSize="{StaticResource fontSizeLabelHeader}" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_PAYMENT_SLIP_MONEY}}" VerticalAlignment="Center"/>
+                <!-- Dat -->
+                <DockPanel Name="DockBranchItem" Visibility="{Binding BranchVisibility}" Margin="20 0 5 0"  HorizontalAlignment="Right"  Height="50">
+                    <TextBlock VerticalAlignment="Center" FontSize="{StaticResource fontSize}" TextWrapping="Wrap" Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_BRANCH_SHORTCUT_KEYS}}"/>
+                    <ComboBox Name="branchItem" IsEditable="True"  Height="40" Width="300" HorizontalAlignment="Left" Margin="5 0 0 0" VerticalAlignment="Center" FontSize="{StaticResource fontSize}" SelectedItem="{Binding BranchItem}"  Padding="6,0,0,0" VerticalContentAlignment="Center" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="1" ItemsSource="{Binding BranchList}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding ElementName=managePaymentSlipWindow}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Padding="3" Text="{Binding Name}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </DockPanel>
+                <!--<Button Margin="10 0 0 0" Height="35" Width="150" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="1" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_CHOOSE_WAREHOUSE_SESSION}}" FontSize="{StaticResource fontSize}"></Button>-->
+            </DockPanel>
+            <Grid Grid.Row="1">
+                <GroupBox Background="White" Style="{StaticResource GroupBox}"
+                  Foreground="{StaticResource BlueGGBrush}" BorderBrush="{StaticResource LineListViewBrush}"   BorderThickness="1" SnapsToDevicePixels="True">
+                    <GroupBox.Header>
+                        <TextBlock Text="" HorizontalAlignment="Center" FontSize="{StaticResource fontSizeHeader}" Foreground="Black" FontWeight="DemiBold"></TextBlock>
+                    </GroupBox.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="80"></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="100"></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0">
+                            <Grid Height="50">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="0.6*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <DockPanel Grid.Column="0">
+                                    <TextBlock Width="130" Grid.ColumnSpan="1" Foreground="Black" VerticalAlignment="Center" FontSize="{StaticResource fontSize}"  TextWrapping="Wrap" Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_OBJECT_TYPE}}"/>
+                                    <ComboBox Width="150" Visibility="{Binding ObjectTypeVisibility}" Name="objectType" Height="40" Margin="5 0 0 0" Grid.ColumnSpan="1"  Foreground="Black" VerticalAlignment="Center" FontSize="{StaticResource fontSize}" SelectedItem="{Binding ObjectTypeItem}"  Padding="6,0,0,0" VerticalContentAlignment="Center" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="1" ItemsSource="{Binding ObjectTypeList}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding SelectionObjectChangedCommand}" CommandParameter="{Binding ElementName=managePaymentSlipWindow}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Padding="3" Text="{Binding Content}"></TextBlock>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                </DockPanel>
+                                <ContentControl Grid.Column="1"  Margin="5 0 0 0" Grid.ColumnSpan="2" Height="50" Name="ContentPersion"  Background="{DynamicResource MainBrush}"></ContentControl>
+                            </Grid>
+                            <TextBlock Height="30" TextAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="400" Text="{Binding CustomerInfor}"></TextBlock>
+                            <!--<TextBlock TextAlignment="Center" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="400"
+                                       Text="{Binding CustomerInfor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                       Margin="300,0,68,0" RenderTransformOrigin="0.855,0.424"/>-->
+                        </StackPanel>
+                        <DockPanel Grid.Row="1">
+                            <TextBlock Width="130" Grid.ColumnSpan="1" Foreground="Black" VerticalAlignment="Center" FontSize="{StaticResource fontSize}"  TextWrapping="Wrap" Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_PAYMENT_REASON}}"/>
+                            <DockPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition Width="60"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <ComboBox Name="category" Grid.Column="0" Visibility="{Binding CategoryNoteVisibility}" Foreground="Black"  Margin="5 0 0 0" IsReadOnly="True" Height="40"  VerticalAlignment="Center" FontSize="{StaticResource fontSize}" SelectedItem="{Binding CategoryNoteItem}"  Padding="6,0,0,0" VerticalContentAlignment="Center" materialDesign:HintAssist.Hint="Chọn hạng mục thu/chi" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="1" ItemsSource="{Binding CategoryNoteList}">
+                                        <!--<i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="SelectionChanged">
+                                                        <i:InvokeCommandAction Command="{Binding SelectionPaymentReasonChangedCommand}" CommandParameter="{Binding ElementName=managePaymentSlipWindow}"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>-->
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Padding="3" Text="{Binding Name}"></TextBlock>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+
+                                </Grid>
+                            </DockPanel>
+                        </DockPanel>
+                        <DockPanel Grid.Row="2">
+                            <TextBlock Width="130" VerticalAlignment="Center" Foreground="Black" FontSize="{StaticResource fontSize}" Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_REASON_PAYMENT_SLIP}}"/>
+                            <TextBox Name="note"  Style="{StaticResource TextBoxCornerRadius}" BorderThickness="0" Background="{StaticResource GrayBackgroundBrush}"
+                                      BorderBrush="{StaticResource MainBrush}" TextWrapping="Wrap" Padding="5 5 0 0" select:SelectAllFocusBehavior.Enable="True"
+                                      VerticalContentAlignment="Top" Height="100" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
+                                      Text="{Binding Note, UpdateSourceTrigger=PropertyChanged}" Margin="5 0 0 0"
+                                      Tag="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_NOTE_INPUT}}" />
+                            <!--<TextBox MaxLength="50" Background="{StaticResource GrayBackgroundBrush}" select:SelectAllFocusBehavior.Enable="True" Margin="5 0 0 0" VerticalContentAlignment="Top"
+                                     Foreground="Black" VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto" Height="100"
+                                     Padding="3" Text="{Binding Note,UpdateSourceTrigger=PropertyChanged}" BorderBrush="{StaticResource LineListViewBrush}"
+                                     Name="note" BorderThickness="0" Tag="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_REASON_PAYMENT_SLIP_INPUT}}" />-->
+                        </DockPanel>
+                        <DockPanel Grid.Row="3">
+                            <TextBlock  Width="130" Foreground="Black"  FontSize="{StaticResource fontSize}" VerticalAlignment="Center" Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_TOTAL_AMOUNT_RETURN}}"></TextBlock>
+                            <DockPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="130"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Background="{StaticResource GrayBackgroundBrush}" Grid.Column="0" Height="40" Margin="5 0 0 0" Padding="5 0 5 0" MaxLength="12"
+                                             PreviewTextInput="NumberValidationTextBox" select:SelectAllFocusBehavior.Enable="True" BorderBrush="{StaticResource LineListViewBrush}" KeyUp="Amount_KeyUp" VerticalContentAlignment="Center" BorderThickness="0" Name="amount" HorizontalContentAlignment="Right"  Foreground="Black" FontSize="{StaticResource fontSizeHeader}" Text="{Binding WarehouseSessionToTalAmount,UpdateSourceTrigger=PropertyChanged}" FontWeight="DemiBold" PreviewKeyDown="amount_PreviewKeyDown"></TextBox>
+                                    <ComboBox Name="payment" Grid.Column="1" Foreground="Black"  Margin="5 0 0 0" Height="40"  VerticalAlignment="Center" FontSize="{StaticResource fontSize}" SelectedItem="{Binding PaymentTypeItem}"  Padding="6,0,0,0" VerticalContentAlignment="Center" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="1" ItemsSource="{Binding PaymentTypeList}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Padding="3" Text="{Binding Content}"></TextBlock>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                </Grid>
+                            </DockPanel>
+                        </DockPanel>
+                        <CheckBox Margin="10 0 0 0" Grid.Row="4" VerticalAlignment="Center"  VerticalContentAlignment="Center" IsChecked="{Binding IsCheckAccounting}" Name="check" Foreground="Black" FontSize="{StaticResource fontSize}" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_ACCOUNTING_INTO_PAYMENT_SLIP}}"></CheckBox>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2"  Background="White">
+            <DockPanel HorizontalAlignment="Right">
+                <Button Style="{StaticResource BoderButtonClose}" Height="40" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=managePaymentSlipWindow}" Margin="10 0 5 0" >
+                </Button>
+                <!--<Button Visibility="{Binding AddVisibility}" Style="{StaticResource BoderButtonCancel}" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=managePaymentSlipWindow}" Margin="10 0 5 0" Height="40" HorizontalAlignment="Right">
+                </Button>-->
+                <!--<Button Style="{StaticResource BoderButtonAgreeAndPayment}" Height="40" Command="{Binding CompleteCommand}" CommandParameter="{Binding ElementName=managePaymentSlipWindow}"/>-->
+                <Button Style="{StaticResource BoderButtonAgree}" Command="{Binding CompleteCommand}" CommandParameter="{Binding ElementName=managePaymentSlipWindow}"  Height="40" Margin="10 0 10 0"  HorizontalAlignment="Right">
+                </Button>
+            </DockPanel>
+        </Grid>
+
+    </Grid>
+</Window>

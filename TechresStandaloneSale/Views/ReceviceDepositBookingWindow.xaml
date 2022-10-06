@@ -1,0 +1,135 @@
+﻿<Window x:Class="TechresStandaloneSale.Views.ReceviceDepositBookingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Views"
+        xmlns:helps ="clr-namespace:TechresStandaloneSale.Helpers"
+        xmlns:select ="clr-namespace:TechresStandaloneSale.Helpers"
+        mc:Ignorable="d"
+         TextElement.FontWeight="Regular"
+        TextElement.FontFamily="{StaticResource Roboto-Regular}"
+        TextElement.FontSize="{StaticResource fontSize}"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+         Icon="logo.ico"
+        WindowStartupLocation="CenterScreen"
+        BorderThickness="0.5"
+        BorderBrush="{StaticResource LineListViewBrush}"
+        Name="receviceDepositBooking"
+        Title="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING_TITLE}}" Width="500" Height="700">
+    <Window.Resources>
+        <Color x:Key="MainColor">#FBBC05</Color>
+        <BitmapImage x:Key="logo" UriSource="/TechresStandaloneSale;component/Resources/Images/white_logo.png" />
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding AddCommand}"  CommandParameter="{Binding ElementName=receviceDepositBooking}"></KeyBinding>
+        <KeyBinding Key="F4" Command="{Binding AddCommand}"  CommandParameter="{Binding ElementName=receviceDepositBooking}"></KeyBinding>
+        <KeyBinding Key="Enter" Command="{Binding AddCommand}"  CommandParameter="{Binding ElementName=receviceDepositBooking}"></KeyBinding>
+        <KeyBinding Key="Esc" Command="{Binding CloseCommand}"  CommandParameter="{Binding ElementName=receviceDepositBooking}"></KeyBinding>
+    </Window.InputBindings>
+    <Grid Background="{StaticResource GrayBackgroupBrush}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Background="{StaticResource MainBrush}" >
+            <Image Margin="5 0 0 0" Width="40" Height="40"  Grid.Column="0" Source="{StaticResource logo}" Stretch="Uniform" VerticalAlignment="Stretch"/>
+            <Label Foreground="White" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING_CONTENT_TITLE}}"  FontSize="{StaticResource fontSizeHeader}"  VerticalAlignment="Center"/>
+            <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=receviceDepositBooking}" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" BorderBrush="{x:Null}" Foreground="#FF2387D6">
+                <materialDesign:PackIcon HorizontalAlignment="Center" VerticalContentAlignment="Center" Kind="Close" Foreground="White" Width="50" Height="25" />
+            </Button>
+        </DockPanel>
+        <Border Grid.Row="1" Margin="5" Background="White" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="1" >
+            <StackPanel  >
+                <Border BorderBrush="{StaticResource GrayBackgroupBrush}" BorderThickness="0 0 0 1">
+                <DockPanel Margin=" 0 5 5 5" >
+                        <Label Width="90"  VerticalContentAlignment="Center" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING_CODE}}"   />
+                        <Label FontSize="{StaticResource fontSizeFifteen}" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" MinWidth="140" Content="{Binding BookingCode}" FontWeight="Medium" Foreground="Black"></Label>
+                        <Label MinWidth="70" VerticalContentAlignment="Center"  Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_VIEW_DETAIL_ORDER_TABLE}}" />
+                        <Label FontSize="{StaticResource fontSizeFifteen}" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" MinWidth="160" Content="{Binding Tables}" Foreground="Black"  FontWeight="Medium" ></Label>
+                </DockPanel>
+                </Border>
+                <Border BorderBrush="{StaticResource GrayBackgroupBrush}" BorderThickness="0 0 0 1">
+                    <DockPanel Margin=" 0 15 5 5">
+                        <Label MinWidth="170" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING_NAME}}" VerticalContentAlignment="Center"/>
+                        <Label FontSize="{StaticResource fontSizeFifteen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" MinWidth="160" Content="{Binding CustomerName}" Foreground="Black"  FontWeight="Medium" ></Label>
+                    </DockPanel>
+                </Border>
+                <Border BorderBrush="{StaticResource GrayBackgroupBrush}" BorderThickness="0 0 0 1">
+                    <DockPanel Margin=" 0 15 5 5">
+                        <Label MinWidth="170" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING_PHONE_NUMBER}}" VerticalContentAlignment="Center"/>
+                        <Label FontSize="{StaticResource fontSizeFifteen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" MinWidth="160" Content="{Binding CustomerPhone}" Foreground="Black"  FontWeight="Medium"></Label>
+                    </DockPanel>
+                </Border>
+                <Border BorderBrush="{StaticResource GrayBackgroupBrush}" BorderThickness="0 0 0 1">
+                    <DockPanel Margin=" 0 15 5 5">
+                        <Label MinWidth="70" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING_FORMAT}}" VerticalContentAlignment="Center"/>
+                        <Label FontSize="{StaticResource fontSizeFifteen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" MinWidth="160" Content="{Binding BookingTypeString}" Foreground="Black"  FontWeight="Medium"></Label>
+                    </DockPanel>
+                </Border>
+                <Border BorderBrush="{StaticResource GrayBackgroupBrush}" BorderThickness="0 0 0 1">
+                    <DockPanel Margin=" 0 15 5 5" Visibility="{Binding EmployeeVisibility}">
+                        <Label MinWidth="170" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING_EMPLOYEE_BOOK}}" VerticalContentAlignment="Center"/>
+                        <Label FontSize="{StaticResource fontSizeFifteen}" HorizontalContentAlignment="Right" MinWidth="160" VerticalContentAlignment="Center" Content="{Binding EmployeeName}" Foreground="Black"  FontWeight="Medium"></Label>
+                    </DockPanel>
+                </Border>
+                <Border BorderBrush="{StaticResource GrayBackgroupBrush}" BorderThickness="0 0 0 1">
+                    <DockPanel Margin=" 0 15 5 5">
+                        <Label MinWidth="170" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING}}" VerticalContentAlignment="Center"/>
+                        <Label FontSize="{StaticResource fontSizeFifteen}" HorizontalContentAlignment="Right" MinWidth="160" VerticalContentAlignment="Center" Content="{Binding ReceviceDepositMoney}" Foreground="Black"  FontWeight="Medium"></Label>
+                    </DockPanel>
+                </Border>
+                <Border BorderBrush="{StaticResource GrayBackgroupBrush}" BorderThickness="0 0 0 1">
+                    <DockPanel Margin=" 0 15 5 5">
+                        <Label MinWidth="170" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING_MONEY_RETURN}}" VerticalContentAlignment="Center"/>
+                        <Label FontSize="{StaticResource fontSizeFifteen}" HorizontalContentAlignment="Right" MinWidth="160" VerticalContentAlignment="Center" Content="{Binding ReturnDepositMoney}" Foreground="Black"  FontWeight="Medium"></Label>
+                    </DockPanel>
+                </Border>
+                <Border BorderBrush="{StaticResource GrayBackgroupBrush}" BorderThickness="0 0 0 1">
+                    <DockPanel Margin=" 0 15 5 5">
+                        <Label MinWidth="170" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_TOTAL_AMOUNT_BOOKING}}" VerticalContentAlignment="Center"/>
+                        <Label FontSize="{StaticResource fontSizeFifteen}" HorizontalContentAlignment="Right" MinWidth="160" VerticalContentAlignment="Center" Content="{Binding TotalAmount}" Foreground="Black"  FontWeight="Medium"></Label>
+                    </DockPanel>
+                </Border>
+                <Border BorderBrush="{StaticResource GrayBackgroupBrush}" BorderThickness="0 0 0 1">
+                    <DockPanel Margin=" 0 15 5 5">
+                        <Label MinWidth="170"  Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_STATUS_FILTER}}" VerticalContentAlignment="Center"/>
+                        <Label FontSize="{StaticResource fontSizeFifteen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" MinWidth="160" Content="{Binding Status}" Foreground="Black"  FontWeight="Medium"></Label>
+                    </DockPanel>
+                </Border>
+                <DockPanel Margin="0 15 5 5">
+                    <Label MinWidth="100" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING_MONEY}}" VerticalContentAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Height="40" Width="250" FontSize="{StaticResource fontSizeFifteen}" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" 
+                                 Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}" TextChanged="TbPrince_TextChanged" Name="tbPrince" PreviewTextInput='tbPrince_PreviewTextInput' 
+                                 Padding="3" BorderBrush="{StaticResource LineListViewBrush}" MaxLength="12"
+                                 BorderThickness="1" Tag="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING_MONEY_TAG}}" />
+                        <ComboBox select:SelectAllFocusBehavior.Enable="True" IsEditable="True" IsEnabled="False" IsReadOnly="True" Margin="5 0 0 0" Height="40"  VerticalAlignment="Center" FontSize="{StaticResource fontSize}" SelectedItem="{Binding PaymentMethod}"  Padding="6,0,0,0" VerticalContentAlignment="Center" Tag="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ADD_FOOD_WINDOW_UNIT_UNIT}}" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="1" ItemsSource="{Binding PaymentMethodList}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Padding="3" Text="{Binding Content}"></TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                </DockPanel>
+                <!--<Label Margin="100 0 0 0" FontFamily="{StaticResource Roboto-Italic}" Foreground="Red" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING_MONEY_NOTE}}"></Label>-->
+            </StackPanel>
+        </Border>
+        <Grid Grid.Row="2" Background="{StaticResource GrayLBrush}" Margin="0 0 0 0">
+                    <DockPanel  VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource BoderButtonClose}" BorderBrush="{StaticResource MainBrush}" BorderThickness="1" Height="40" Click="Button_Click" Margin="15 0">
+                        </Button>
+                        <Button Style="{StaticResource BoderButtonAgree}" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=receviceDepositBooking}" Height="40" Margin="0 0 10 0" HorizontalAlignment="Right">
+                        </Button>
+                    </DockPanel>
+        </Grid>
+    </Grid>
+</Window>

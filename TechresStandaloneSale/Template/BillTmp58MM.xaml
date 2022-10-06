@@ -1,0 +1,85 @@
+﻿<Window x:Class="TechresStandaloneSale.Template.BillTmp58MM"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Template"
+        mc:Ignorable="d"  Background="White"
+        WindowState="Maximized"
+        Width="210">
+    <Grid Margin="0,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <FlowDocumentReader Width="210" Height="Auto" Margin=" -10 0 0 0">
+            <FlowDocument Name="billDocument">
+                <Paragraph TextAlignment="Center"  Margin="0" >
+                    <TextBlock FontFamily="Times New Roman" Foreground="Black" FontSize="14" FontWeight="Bold" Name="RestaurantName">123ZO</TextBlock>
+                </Paragraph>
+                <Paragraph TextAlignment="Center" Margin="0 5"   FontFamily="Times New Roman">
+                    <TextBlock Name="ModePrint" Foreground="Black" FontSize="14" FontWeight="DemiBold">HÓA ĐƠN TẠM</TextBlock>
+                </Paragraph>
+                <Paragraph TextAlignment="Center" Margin="0 5"   FontFamily="Times New Roman">
+                    <TextBlock Name="RestaurantAddress" TextWrapping="WrapWithOverflow" Foreground="Black" FontSize="10" FontWeight="DemiBold"></TextBlock>
+                </Paragraph>
+                <Paragraph Margin="2 5 0 0"  FontSize="12" FontFamily="Times New Roman">
+                    <DockPanel>
+                        <TextBlock  Foreground="Black">Bàn:</TextBlock>
+                        <TextBlock  Foreground="Black" Name="TableName">206 - #49404</TextBlock>
+                  
+                    </DockPanel>
+                </Paragraph>
+                <Paragraph Margin="2 5 0 0"  FontSize="12" FontFamily="Times New Roman">
+                    <DockPanel>
+                        <TextBlock  Foreground="Black" Margin="0 0 0 0">Số khách: </TextBlock>
+                        <TextBlock  Foreground="Black" Name="CustomerSlot">4</TextBlock>
+                    </DockPanel>
+                </Paragraph>
+                <Paragraph Margin="2 5 0 0" FontSize="12" FontFamily="Times New Roman">
+                    Thu ngân:
+                    <TextBlock Foreground="Black" Name="EmployeeName">Đặng Thành Tâm</TextBlock>
+                </Paragraph>
+                <Paragraph Margin="2 5 0 0" FontSize="12"  FontFamily="Times New Roman">
+                    Nhân viên:
+                    <TextBlock   Foreground="Black" Name="EmployeeSaleName">Đặng Thành Tâm</TextBlock>
+                </Paragraph>
+                <Paragraph Margin="2 5 0 0" FontSize="12"  FontFamily="Times New Roman">
+                    Ngày giờ:
+                    <TextBlock Foreground="Black" Name="ComingTime">18/5/2019</TextBlock>
+                </Paragraph>
+                <Paragraph FontSize="8">
+                    <Rectangle Fill="Black" Height="1" Width="500" HorizontalAlignment="Left" />
+                </Paragraph>
+                <Table Name="TableRow" CellSpacing="0" >
+                    <Table.Resources>
+                        <Style x:Key="headerFooterRowStyle" TargetType="{x:Type TableRowGroup}">
+                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+                            <Setter Property="Foreground" Value="Black"></Setter>
+                        </Style>
+                    </Table.Resources>
+                    <TableRowGroup Style="{StaticResource headerFooterRowStyle}" x:Name="tableRowGroup">
+                        <TableRow>
+                            <TableCell ColumnSpan="3" >
+                                <Paragraph Margin="3" FontWeight="DemiBold" TextAlignment="Center">TÊN MÓN</Paragraph>
+                            </TableCell>
+                            <TableCell ColumnSpan="1">
+                                <Paragraph Margin="3" FontWeight="DemiBold"  TextAlignment="Center">SL</Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell ColumnSpan="4" FontSize="3">
+                                <Paragraph>
+                                    <Rectangle Fill="Black" Height="1"  Width="500" HorizontalAlignment="Left" />
+
+                                </Paragraph>
+
+                            </TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+                </Table>
+            </FlowDocument >
+        </FlowDocumentReader>
+    </Grid>
+</Window>

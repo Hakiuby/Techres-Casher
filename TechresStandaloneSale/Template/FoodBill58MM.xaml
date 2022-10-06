@@ -1,0 +1,66 @@
+﻿<Window x:Class="TechresStandaloneSale.Template.FoodBill58MM"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechresStandaloneSale.Template"
+        mc:Ignorable="d"
+       Background="White"
+        WindowState="Maximized"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        FontSize="18" Height="180" Width="210">
+    <Grid Margin="5">
+        <FlowDocumentPageViewer>
+            <FlowDocument Name="billDocument" ColumnWidth="999999">
+                <BlockUIContainer Margin="5 0">
+                    <DockPanel>
+                        <TextBlock  FontWeight="DemiBold" HorizontalAlignment="Center" Foreground="Black" FontSize="18" Name="ContentFood"></TextBlock>
+                    </DockPanel>
+                </BlockUIContainer>
+                <BlockUIContainer Margin="5 0">
+                    <DockPanel>
+                        <TextBlock Foreground="Black" FontSize="10" FontWeight="DemiBold">Tên món:</TextBlock>
+                        <StackPanel>
+                            <TextBlock  Margin="20 0 0 0" HorizontalAlignment="Left" Foreground="Black" FontSize="14" FontWeight="Normal" Name="FoodName"></TextBlock>
+                            <ListBox Name="AdditionFood">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock  Margin="20 0 0 0" Text="{Binding FoodNameValue}" HorizontalAlignment="Left" Foreground="Black" FontSize="13" FontWeight="Normal" FontStyle="Italic" Name="FoodName"></TextBlock>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </StackPanel>
+
+                    </DockPanel>
+                </BlockUIContainer>
+                <BlockUIContainer Margin="5 5">
+                    <DockPanel VerticalAlignment="Center">
+                        <TextBlock Foreground="Black" FontSize="10" FontWeight="DemiBold">Tên bàn:</TextBlock>
+                        <TextBlock Margin="10 0 0 0"  HorizontalAlignment="Left" Foreground="Black" FontSize="14" FontWeight="Normal" Name="TableName"></TextBlock>
+                        <TextBlock Margin="30 0 0 0"  Foreground="Black" FontSize="10" FontWeight="DemiBold">Số lượng:</TextBlock>
+                        <TextBlock Margin="5 0 0 0"  HorizontalAlignment="Left" Foreground="Black" FontSize="14" FontWeight="Normal" Name="Quantity"></TextBlock>
+                    </DockPanel>
+                </BlockUIContainer>
+                <BlockUIContainer Margin="5 5">
+                    <DockPanel>
+                        <TextBlock Foreground="Black" FontSize="10" FontWeight="DemiBold">Ghi chú:</TextBlock>
+                        <TextBlock Margin="20 0 0 0" TextWrapping="Wrap" HorizontalAlignment="Left" Foreground="Black" FontSize="14" FontWeight="Normal" Name="Note"></TextBlock>
+                    </DockPanel>
+                </BlockUIContainer>
+                <BlockUIContainer Margin="5 5">
+                    <DockPanel>
+                        <TextBlock Foreground="Black" FontSize="10" FontWeight="DemiBold">Nhân viên:</TextBlock>
+                        <TextBlock Margin="20 0 0 0"  HorizontalAlignment="Left" Foreground="Black" FontSize="14" FontWeight="Normal" Name="EmployeeName"></TextBlock>
+                    </DockPanel>
+                </BlockUIContainer>
+                <Paragraph FontSize="10" Margin="5 5 0 0" TextAlignment="Left">
+                    Giờ gọi:
+                    <TextBlock Foreground="Black" FontSize="10" Name="ComingTime"></TextBlock>
+                    <TextBlock  Foreground="Black" FontSize="10" Text=" Ngày:"></TextBlock>
+                    <TextBlock  Foreground="Black" FontSize="10" Name="ComingDay"></TextBlock>
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentPageViewer>
+    </Grid>
+</Window>

@@ -1,0 +1,153 @@
+﻿<UserControl x:Class="TechresStandaloneSale.UserControlView.ReportRevenue.ReportRevenueUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:helps="clr-namespace:TechresStandaloneSale.Helpers" 
+             xmlns:local="clr-namespace:TechresStandaloneSale.UserControlView.ReportRevenue"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:l ="clr-namespace:TechresStandaloneSale.Loading"
+             Loaded="reportRevenueUserControl_Loaded"
+             mc:Ignorable="d" 
+             Name="reportRevenueUserControl"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedUCCommand}" CommandParameter="{Binding ElementName=reportRevenueUserControl}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <l:AdornedControl x:Name="LoadingAdorner" IsAdornerVisible="{Binding Path=DialogHostOpen,UpdateSourceTrigger=PropertyChanged}">
+        <l:AdornedControl.AdornerContent>
+            <l:LoadingWait></l:LoadingWait>
+        </l:AdornedControl.AdornerContent>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Margin="30 0 30 0" Grid.Row="0">
+                <!--<Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>-->
+                <WrapPanel Grid.Row="0" HorizontalAlignment="Center">
+                    <!--<Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>-->
+                    <Button Visibility="{Binding RevenueVisibility}" x:Name="btnRevenue" Width="{Binding widthButton}" FontSize="{Binding fontsizeButton}" Height="60" Click="btnRevenue_Click" Margin="10" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_COMBINED_REVENUE}}" Style="{StaticResource ReportButton}" Background="{Binding ReportSysthesisRevenueBG}" Command="{Binding ReportSysthesisRevenueCommand}" CommandParameter="{Binding ElementName=reportRevenueUserControl}" Cursor="Hand">
+                    </Button>
+                    <Button Visibility="{Binding PaymentMethodVisibility}" Name="btnPaymentMethod" FontSize="{Binding fontsizeButton}" Width="{Binding widthButton}" Height="60" Click="btnPaymentMethod_Click" Margin="10" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_METHOD_PAYMENT}}" 
+                    Style="{StaticResource ReportButton}" Background="{Binding ReportPaymentMethodBG}" Command="{Binding ReportPaymentMethodCommand}" CommandParameter="{Binding ElementName=reportRevenueUserControl}">
+                    </Button>
+                    <Button Visibility="{Binding RankEmployeeVisibility}"  x:Name="btnRankEmployee" FontSize="{Binding fontsizeButton}" Width="{Binding widthButton}" Height="60" Click="btnRankEmployee_Click" Margin="10" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_LIST_EMPLOYEES_NAME}}" 
+                    Style="{StaticResource ReportButton}" Background="{Binding ReportRevenueRankEmployeeBG}" Command="{Binding ReportRevenueRankEmployeeCommand}" CommandParameter="{Binding ElementName=reportRevenueUserControl}" Cursor="Hand">
+                    </Button>
+                    <Button Visibility="{Binding RevenueAreaVisibility}"  x:Name="btnRevenueArea" FontSize="{Binding fontsizeButton}" Width="{Binding widthButton}" Height="60" Click="btnRevenueArea_Click" Margin="10" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_AREA_REVENUE}}" 
+                    Style="{StaticResource ReportButton}" Background="{Binding ReportRevenueAreaBG}" Command="{Binding ReportRevenueAreaCommand}" CommandParameter="{Binding ElementName=reportRevenueUserControl}">
+                    </Button>
+                    <Button Visibility="{Binding VatVisibility}"  x:Name="btnVAT" Click="btnVAT_Click" FontSize="{Binding fontsizeButton}" Width="{Binding widthButton}" Height="60" Margin="10" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_REVENUE_VAT}}" 
+                    Style="{StaticResource ReportButton}" Background="{Binding ReportVATBG}" Command="{Binding ReportVATCommand}" CommandParameter="{Binding ElementName=reportRevenueUserControl}" Cursor="Hand">
+                    </Button>
+                    <Button Visibility="{Binding DiscountVisibility}"  x:Name="btnDiscount" FontSize="{Binding fontsizeButton}" Width="{Binding widthButton}" Height="60" Click="btnDiscount_Click" Margin="10" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_DISCOUNT_STRING}}" 
+                    Style="{StaticResource ReportButton}" Background="{Binding ReportDiscountBG}" Command="{Binding ReportDiscountCommand}" CommandParameter="{Binding ElementName=reportRevenueUserControl}">
+                    </Button>
+                    <Button Visibility="{Binding OrderMethodVisibility}"  x:Name="btnOrderMethod" FontSize="{Binding fontsizeButton}" Width="{Binding widthButton}" Height="60" Click="btnOrderMethod_Click" Margin="10" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SERVICE_REVENUE}}" 
+                    Style="{StaticResource ReportButton}" Background="{Binding ReportOrderMethodBG}" Command="{Binding ReportOrderMethodCommand}" CommandParameter="{Binding ElementName=reportRevenueUserControl}" Cursor="Hand">
+                    </Button>
+                    <Button Visibility="{Binding OrderVisibility}" FontSize="{Binding fontsizeButton}"  x:Name="btnOrder" Width="{Binding widthButton}" Height="60" Click="btnOrder_Click" Margin="10" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_REVENUE}}" 
+                    Style="{StaticResource ReportButton}" Background="{Binding ReportOrderBG}" Command="{Binding ReportOrderCommand}" CommandParameter="{Binding ElementName=reportRevenueUserControl}">
+                    </Button>
+                </WrapPanel>
+                <!--<Grid Grid.Row="1">
+                    -->
+                <!--<Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>--><!--
+                    <Button Visibility="{Binding VatVisibility}"  x:Name="btnVAT" Click="btnVAT_Click" Grid.Column="0" Margin="10" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_REVENUE_VAT}}" 
+                    Style="{StaticResource ReportButton}" Background="{Binding ReportVATBG}" Command="{Binding ReportVATCommand}" CommandParameter="{Binding ElementName=reportRevenueUserControl}" Cursor="Hand">
+                    </Button>
+                    <Button Visibility="{Binding DiscountVisibility}"  x:Name="btnDiscount" Click="btnDiscount_Click" Grid.Column="1" Margin="10" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_DISCOUNT_STRING}}" 
+                    Style="{StaticResource ReportButton}" Background="{Binding ReportDiscountBG}" Command="{Binding ReportDiscountCommand}" CommandParameter="{Binding ElementName=reportRevenueUserControl}">
+                    </Button>
+                    <Button Visibility="{Binding OrderMethodVisibility}"  x:Name="btnOrderMethod" Click="btnOrderMethod_Click" Grid.Column="2" Margin="10" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SERVICE_REVENUE}}" 
+                    Style="{StaticResource ReportButton}" Background="{Binding ReportOrderMethodBG}" Command="{Binding ReportOrderMethodCommand}" CommandParameter="{Binding ElementName=reportRevenueUserControl}" Cursor="Hand">
+                    </Button>
+                    <Button Visibility="{Binding OrderVisibility}"  x:Name="btnOrder" Click="btnOrder_Click" Grid.Column="3" Margin="10" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ORDER_REVENUE}}" 
+                    Style="{StaticResource ReportButton}" Background="{Binding ReportOrderBG}" Command="{Binding ReportOrderCommand}" CommandParameter="{Binding ElementName=reportRevenueUserControl}">
+                    </Button>
+                </Grid>-->
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.7*"/>
+                    <ColumnDefinition Width="0.3*"/>
+                </Grid.ColumnDefinitions>
+                <DockPanel Margin="10 0 0 0" HorizontalAlignment="Left" Grid.Column="0">
+                    <ComboBox Visibility="{Binding BrandVisibility}" MinWidth="150" Height="40" FontSize="{StaticResource fontSize}" Padding="3" HorizontalAlignment="Center" VerticalContentAlignment="Center"  BorderThickness="1" SelectedItem="{Binding BrandItem}"
+                    Margin="0 5 5 0" Name="Brands" ItemsSource="{Binding BrandList}" BorderBrush="{StaticResource MainLine}" >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding SelectionChangedBrandCommand}" CommandParameter="{Binding ElementName=reportRevenueUserControl}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Padding="3"  Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox Visibility="{Binding BranchVisibility}" MinWidth="150" Height="40" FontSize="{StaticResource fontSize}" Padding="3" HorizontalAlignment="Center" VerticalContentAlignment="Center"  BorderThickness="1" SelectedItem="{Binding BranchItem}"
+                    Margin="0 5 5 0" Name="Branches" ItemsSource="{Binding BranchList}" BorderBrush="{StaticResource MainLine}" >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding ElementName=reportRevenueUserControl}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Padding="3"  Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox MinWidth="150" Height="40" FontSize="{StaticResource fontSize}" Padding="3" HorizontalAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" SelectedItem="{Binding TimeItem}"
+                    Margin="5 5 0 0" Name="Times" ItemsSource="{Binding TimesList}" BorderBrush="{StaticResource MainLine}" >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding SelectionChangedTimeCommand}" CommandParameter="{Binding ElementName=reportRevenueUserControl}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Padding="3" Text="{Binding Content}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ContentControl x:Name="SearchControl" VerticalAlignment="Center"></ContentControl>
+                </DockPanel>
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0"/>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <DockPanel VerticalAlignment="Center"  Grid.Column="1" Margin="0 0 10 0">
+                        <Label Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SEARCH}}" Foreground="Black" VerticalContentAlignment="Center" HorizontalAlignment="Right"/>
+                        <TextBox TextChanged="txtFilter_TextChanged" Style="{StaticResource SearchTextBox}" Name="txtFilter" BorderBrush="{StaticResource LineListViewBrush}"  Height="40" BorderThickness="0"  SnapsToDevicePixels="True" UseLayoutRounding="True" Tag="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SEARCH_FOOD_TAG}}" 
+                                 Background="{StaticResource GrayBackgroundBrush}" VerticalAlignment="Center" VerticalContentAlignment="Center"  Padding="5 0 5 0">
+                            
+                        </TextBox>
+                    </DockPanel>
+                    <!--<Button Margin="10 0 10 0" Grid.Column="2" Style="{StaticResource btnExport}" Command="{Binding PrintExcelCommand}" CommandParameter="{Binding ElementName=reportSysthesisRevenueUC}" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_REPORT_REVENUE_EXCEL}}"  MinWidth="50" MinHeight="20" Background="White" Foreground="White" BorderBrush="White" BorderThickness="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Excel"/>-->
+                </Grid>
+            </Grid>
+            <ContentControl Grid.Row="2" x:Name="ReportControl" Margin="5"></ContentControl>
+        </Grid>
+    </l:AdornedControl>
+</UserControl>

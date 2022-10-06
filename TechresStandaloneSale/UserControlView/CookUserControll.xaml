@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="TechresStandaloneSale.UserControlView.CookUserControll"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:helps ="clr-namespace:TechresStandaloneSale.Helpers"
+             xmlns:l ="clr-namespace:TechresStandaloneSale.Loading"
+             mc:Ignorable="d" 
+             Name="cookUc" 
+             Background="White"
+             FontFamily="{StaticResource Roboto-Regular}"
+             DataContext="{StaticResource cookVM}"
+             Loaded="FoodUserControk_OnLoaded"
+             d:DesignHeight="450" d:DesignWidth="1200">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedUserControlCommand}" 
+                                   CommandParameter="{Binding ElementName=cookUc}"></i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.Resources>
+        <BitmapImage x:Key="icon-refresh" UriSource="../Resources/Images/icon-refresh.png"/>
+    </UserControl.Resources>
+    <l:AdornedControl x:Name="LoadingAdorner" IsAdornerVisible="{Binding DialogHostOpen,UpdateSourceTrigger=PropertyChanged}">
+        <l:AdornedControl.AdornerContent>
+            <l:LoadingWait></l:LoadingWait>
+        </l:AdornedControl.AdornerContent>
+
+        <DockPanel  Background="{StaticResource GrayBackgroupBrush}" >
+            <DockPanel DockPanel.Dock="Top" Height="50" Background="{StaticResource GrayBackgroundBrush}" >
+                <Grid Margin="5 0 5 0" >
+                    <Grid.ColumnDefinitions>
+                        <!--<ColumnDefinition Width="130"></ColumnDefinition>
+                        <ColumnDefinition Width="130"></ColumnDefinition>
+                        <ColumnDefinition Width="130"></ColumnDefinition>
+                        <ColumnDefinition Width="130"></ColumnDefinition>
+                        <ColumnDefinition Width="130"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>-->
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"  Click="Button_Click" CommandParameter="{Binding ElementName=cookUc}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_ALL_ORDER}}"   Command="{Binding BtnAllFood}" FontSize="{StaticResource fontSize}" 
+                           VerticalAlignment="Center" Height="40" Padding="5 0 5 0"   BorderThickness="0" Foreground="White" BorderBrush="{StaticResource LineListViewBrush}"  Background="{Binding AllFoodBackground}"/>
+                    <Button Grid.Column="1"  Click="Button_Click" CommandParameter="{Binding ElementName=cookUc}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_PENDING}}"   Command="{Binding BtWaitingFood}" FontSize="{StaticResource fontSize}" 
+                           VerticalAlignment="Center" Height="40" Padding="5 0 5 0"   BorderThickness="0" Foreground="White" BorderBrush="{StaticResource LineListViewBrush}"  Background="{Binding PendingBackground}"/>
+                    <Button Click="Button_Click" Grid.Column="2"  CommandParameter="{Binding ElementName=cookUc}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_CASHIER_MAIN_HOME_ORDER_TAKE_AWAY}}"   Command="{Binding BtnTakeAwayFood}" FontSize="{StaticResource fontSize}" 
+                            VerticalAlignment="Center"  Height="40" BorderThickness="0"  Foreground="White" BorderBrush="{StaticResource LineListViewBrush}"  Background="{Binding TakeAwayBackground}"/>
+                    <!--<Button Click="Button_Click" Grid.Column="3"  CommandParameter="{Binding ElementName=cookUc}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_CASHIER_MAIN_HOME_ORDER_TAKE_AWAY}}"   Command="{Binding BtnTakeAwayFood}" FontSize="{StaticResource fontSize}" 
+                            VerticalAlignment="Center"  Height="40" BorderThickness="0"  Foreground="White" BorderBrush="{StaticResource LineListViewBrush}"  Background="{Binding TakeAwayBackground}"/>-->
+                    <Button  Grid.Column="3"  CommandParameter="{Binding ElementName=cookUc}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_CASHIER_MAIN_HOME_ORDER_OUT_STORE}}" Command="{Binding BtnOutOfFood}" FontSize="{StaticResource fontSize}" 
+                            VerticalAlignment="Center"  Height="40" BorderThickness="0"  Foreground="White" BorderBrush="{StaticResource LineListViewBrush}"  Background="{Binding OutOfStockBackground}" Click="Button_Click_2"/>
+
+                    <Button  Grid.Column="4"  Click="Button_Click_1" CommandParameter="{Binding ElementName=cookUc}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_HISTORY}}"   Command="{Binding BtnHistoryFood}" FontSize="{StaticResource fontSize}" 
+                            VerticalAlignment="Center" Height="40"  BorderThickness="0"  Foreground="White" BorderBrush="{StaticResource LineListViewBrush}"  Background="{Binding HistoryBackground}">
+                    </Button>
+                    <!--<Button Visibility="Collapsed" CommandParameter="{Binding ElementName=cookUc}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_STOCKING}}"   Command="{Binding BtnInventoryWarehouse}" Background="{StaticResource BlueGGBrush}" FontSize="{StaticResource fontSize}" 
+                            VerticalAlignment="Center"  Height="Auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" BorderThickness="0.5 0.5 0.5 0.5" BorderBrush="White"/>-->
+                    <DockPanel Margin="10 0 10 0" Grid.Column="5"  Visibility="{Binding SearchVisibility}" Height="40">
+                        <TextBox   Style="{StaticResource SearchTextBox}" Background="{StaticResource GrayDarkBackgroundBrush}" Foreground="Black" Name="txtFilter"  Height="40" BorderBrush="{StaticResource LineListViewBrush}"  FontSize="{StaticResource fontSize}" BorderThickness="0"  SnapsToDevicePixels="True" UseLayoutRounding="True" Tag="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SEARCH_FOOD_TAG}}" 
+                                   VerticalAlignment="Center" VerticalContentAlignment="Center" Padding="5 0 5 0" KeyUp="txtFilter_KeyUp" ></TextBox>
+                    </DockPanel>
+                    <DockPanel Margin="10 0 10 0" Grid.Column="5"  Visibility="{Binding SearchOutOfFoodVisibility}"  Height="40">
+                        <TextBox  Style="{StaticResource SearchTextBox}" Background="{StaticResource GrayDarkBackgroundBrush}" Foreground="Black" Name="txtFilterOutStock" MinWidth="300"  Height="40" BorderBrush="{StaticResource LineListViewBrush}"  FontSize="{StaticResource fontSize}" BorderThickness="0"  SnapsToDevicePixels="True" UseLayoutRounding="True" Tag="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SEARCH_FOOD_TAG}}" VerticalContentAlignment="Center" Padding="5 0 5 0"  TextChanged="txtFilterOutStock_TextChanged"/>
+                    </DockPanel>
+                    <DockPanel Width="250" Visibility="{Binding DatePickerVisibility}" Name="Datetime" Grid.Column="6"  Height="40">
+                        <DatePicker Foreground="Black" DisplayDateEnd="{Binding DateTimeEnd}" Template ="{StaticResource SpecialDatePicker}" Height="40" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0" Background="{StaticResource GrayDarkBackgroundBrush}"   Padding="5 0 5 0"  SelectedDate="{Binding DatetimeInput,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Name="ToDate"  VerticalAlignment="Center" FontSize="14" materialDesign:HintAssist.Hint="Chọn ngày cần xem" VerticalContentAlignment="Center">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="CalendarClosed">
+                                    <i:InvokeCommandAction Command="{Binding SelectionDateChangedCommand}" CommandParameter="{Binding ElementName=cookUc}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </DatePicker>
+                    </DockPanel>
+                    <Button  Grid.Column="7" Margin="10 0 10 0" ToolTip="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_REFRESH_DATA}}" Height="45" Visibility="{Binding RefreshVisibility}" CommandParameter="{Binding ElementName=refreshRealtime}" Name="refreshRealtime" Command="{Binding RefreshRealtimeCommand}" Background="Transparent" FontSize="12" 
+                             HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" BorderThickness="0" Width="45" BorderBrush="{StaticResource LineListViewBrush}">
+                        <Image Source="{StaticResource icon-refresh}" Height="40" Width="40"></Image>
+                    </Button>
+                    <!--<Button  Grid.Column="5"  Visibility="{Binding BtnSaveVisibility}" CommandParameter="{Binding ElementName=cookUc}" Content="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_SAVE}}"   Command="{Binding SaveInventoryWarehouse}" Background="{StaticResource RedGGBrush }" FontSize="12" 
+                          VerticalAlignment="Center"  Height="Auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" BorderThickness="1" BorderBrush="White"/>-->
+
+                </Grid>
+            </DockPanel>
+            <Border  Grid.Row="1" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0">
+                <ContentControl  Name="ContentCook" Background="{DynamicResource MainBrush}" Grid.Row="1" ></ContentControl>
+            </Border>
+        </DockPanel>
+    </l:AdornedControl>
+</UserControl>
+

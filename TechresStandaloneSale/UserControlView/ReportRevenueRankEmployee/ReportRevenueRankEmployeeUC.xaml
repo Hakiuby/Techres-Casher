@@ -1,0 +1,168 @@
+﻿<UserControl x:Class="TechresStandaloneSale.UserControlView.ReportRevenueRankEmployee.ReportRevenueRankEmployeeUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:TechresStandaloneSale.UserControlView.ReportRevenueRankEmployee"
+             xmlns:helps="clr-namespace:TechresStandaloneSale.Helpers"
+             xmlns:l ="clr-namespace:TechresStandaloneSale.Loading"
+             mc:Ignorable="d" 
+             Name="reportRevenueRankEmployee"
+             Background="White"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Color x:Key="mainColor">#FF09A2CF</Color>
+        <Color x:Key="RowColor">#b3e6ff</Color>
+        <SolidColorBrush x:Key="DtColor" Color="{DynamicResource RowColor}"/>
+        <SolidColorBrush x:Key="MainColor" Color="{DynamicResource mainColor}"/>
+    </UserControl.Resources>
+    <l:AdornedControl x:Name="LoadingAdorner" IsAdornerVisible="{Binding Path=DialogHostOpen,UpdateSourceTrigger=PropertyChanged}">
+        <l:AdornedControl.AdornerContent>
+            <l:LoadingWait></l:LoadingWait>
+        </l:AdornedControl.AdornerContent>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.6*"/>
+            </Grid.RowDefinitions>
+            <Label VerticalAlignment="Center"  Grid.Row="0" Content="{Binding ReportContent}" Foreground="Black" FontSize="{StaticResource fontSizeLabelHeader}" HorizontalAlignment="Center"/>
+            <Grid Grid.Row="1" x:Name="Row1" Visibility="{Binding DoubleChartVisibility}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60*"/>
+                    <ColumnDefinition Width="91*"/>
+                    <ColumnDefinition Width="9*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Margin="5">
+                    <lvc:PieChart LegendLocation="Right" Series="{Binding DataPieChartValue}" DataTooltip="{x:Null}"/>
+                    <!--<lvc:CartesianChart Foreground="Black" LegendLocation="Bottom" FontWeight="Black">
+                    <lvc:CartesianChart.Series>
+                        <lvc:LineSeries Foreground="Black" Title="Doanh thu" Values="{Binding DataChartValue}"></lvc:LineSeries>
+                    </lvc:CartesianChart.Series>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Foreground="Black" Title="VND" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Foreground="Black" LabelsRotation="-45" Labels="{Binding LabelData}"></lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                </lvc:CartesianChart>-->
+                </Grid>
+                <Grid Grid.Column="1" Margin="5" Grid.ColumnSpan="2">
+                    <lvc:CartesianChart DataTooltip="{x:Null}" Foreground="Black">
+                        <lvc:CartesianChart.Series>
+                            <lvc:ColumnSeries Foreground="Black" Title="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_REVENUE}}" DataLabels="True" LabelsPosition="Top" LabelPoint="{Binding PointLabel}" Values="{Binding DataChartValue}"/>
+                        </lvc:CartesianChart.Series>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Foreground="Black" LabelFormatter="{Binding Formatter}">
+                                <lvc:Axis.Sections>
+                                    <lvc:AxisSection Value="{Binding YPointer}" DataLabel="True" StrokeThickness="1" Stroke="#ff5722"
+                                         DisableAnimations="True" DataLabelForeground="White" Panel.ZIndex="1"/>
+                                </lvc:Axis.Sections>
+                            </lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Foreground="Black" LabelsRotation="-45" Labels="{Binding LabelData}">
+                                <lvc:Axis.Sections>
+                                    <lvc:AxisSection Value="{Binding XPointer}" DataLabel="True" StrokeThickness="1" Stroke="#ff5722"
+                                         DisableAnimations="True" DataLabelForeground="White" Panel.ZIndex="1"/>
+                                </lvc:Axis.Sections>
+                                <lvc:Axis.Separator>
+                                    <lvc:Separator Step="1" />
+                                </lvc:Axis.Separator>
+                            </lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                    </lvc:CartesianChart>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1" Visibility="{Binding OneChartVisibility}">
+                <Grid  Margin="5">
+                    <!--<lvc:CartesianChart DataTooltip="{x:Null}" Foreground="Black">
+                    <lvc:CartesianChart.Series>
+                        <lvc:ColumnSeries Foreground="White" Title="Doanh thu" DataLabels="True" LabelsPosition="Merged" LabelPoint="{Binding PointLabel}" Values="{Binding DataChartValue}"/>
+                    </lvc:CartesianChart.Series>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Foreground="Black" LabelFormatter="{Binding Formatter}">
+                            <lvc:Axis.Sections>
+                                <lvc:AxisSection Value="{Binding YPointer}" 
+                                         DataLabel="True"
+                                         StrokeThickness="1"
+                                         Stroke="#ff5722"
+                                         DisableAnimations="True"
+                                         DataLabelForeground="White"
+                                         Panel.ZIndex="1"/>
+                            </lvc:Axis.Sections>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Foreground="Black" LabelsRotation="-45" Labels="{Binding LabelData}">
+                            <lvc:Axis.Sections>
+                                <lvc:AxisSection Value="{Binding XPointer}"
+                                        DataLabel="True"
+                                         StrokeThickness="1"
+                                         Stroke="#ff5722"
+                                         DisableAnimations="True"
+                                         DataLabelForeground="White"
+                                         Panel.ZIndex="1"/>
+                            </lvc:Axis.Sections>
+                            <lvc:Axis.Separator>
+                                <lvc:Separator Step="1" />
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                </lvc:CartesianChart>-->
+                </Grid>
+            </Grid>
+            <DockPanel Name="DCP" Grid.Row="2">
+                <DockPanel  Margin="15,50,15,0">
+                    <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" Foreground="Black" Margin="5,-40,5,0"  x:Name="lvRevenueRankEmployee" ItemsSource="{Binding RevenueReportRankEmployee}" Background="White"  ScrollViewer.CanContentScroll="True" 
+                           VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" RenderTransformOrigin="0.5,0.5">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn x:Name="TotalOrder" Width="0.05*" >
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_NAME}}" TextWrapping="WrapWithOverflow"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Employee.Name}" FontSize="{StaticResource fontSize}" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn x:Name="Revenue" Width="0.1*" >
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_LIST_ROLE}}" TextWrapping="WrapWithOverflow"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Employee.RoleName}" FontSize="{StaticResource fontSize}" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn x:Name="VAT" Width="0.1*" >
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FUND_BRANCH_LIST}}" TextWrapping="WrapWithOverflow"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Branch.Name}" FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn x:Name="Discount" Width="0.1*" >
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock Text="{Binding Source={x:Static helps:MessageValue.MESSAGE_FROM_REPORT_ADDITION_FEE_REVENUE}}" TextWrapping="WrapWithOverflow"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding RevenueString}" FontSize="{StaticResource fontSize}"  HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </DockPanel>
+        </Grid>
+    </l:AdornedControl>
+</UserControl>

@@ -1,0 +1,49 @@
+﻿<Page x:Class="TechresStandaloneSale.Template.PrintQrCodeOfManager"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TechresStandaloneSale.Template"
+      mc:Ignorable="d" 
+       Width="220"
+      Background="White"
+      Title="PrintQrCodeOfManager">
+
+    <Grid VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400*"/>
+        </Grid.ColumnDefinitions>
+        <FlowDocumentPageViewer  Width="220" Height="Auto" Margin=" 0 0 0 0">
+            <FlowDocument Name="InfoDocument" ColumnWidth="999999">
+                <BlockUIContainer></BlockUIContainer>
+                <BlockUIContainer>
+                    <TextBlock FontSize="18" FontWeight="DemiBold" Margin="30,20,20,15">THÔNG TIN ĐĂNG NHẬP</TextBlock>
+                </BlockUIContainer>
+                <BlockUIContainer Margin="15 0">
+                    <DockPanel>
+                        <Label FontSize="14" FontWeight="DemiBold">Tên nhân viên:</Label>
+                        <TextBlock Margin="0,5,0,0" TextWrapping="Wrap" Foreground="Black" FontSize="14" FontWeight="DemiBold" Name="EmployeeName"></TextBlock>
+                    </DockPanel>
+                </BlockUIContainer>
+                <BlockUIContainer Margin="15 0">
+                    <DockPanel>
+                        <Label Content="Username:" FontSize="14"></Label>
+                        <TextBlock Margin="0,5,0,0" FontSize="14" Name="UserName"></TextBlock>
+                    </DockPanel>
+                </BlockUIContainer>
+                <BlockUIContainer Margin="15 0">
+                    <DockPanel>
+                        <Label Content="Password:" FontSize="14"></Label>
+                        <TextBlock Margin="0,5,0,0" FontSize="14" Name="Password"></TextBlock>
+                    </DockPanel>
+                </BlockUIContainer>
+                <BlockUIContainer>
+                    <DockPanel>
+                      
+                        <Image Margin="-70,0,0,0" Name="ImageQrCode" Width="200" Height="200"></Image>
+                    </DockPanel>
+                </BlockUIContainer>
+            </FlowDocument>
+        </FlowDocumentPageViewer>
+    </Grid>
+</Page>

@@ -1,0 +1,629 @@
+﻿<UserControl x:Class="TechresStandaloneSale.UserControlView.CreateOrderTakeAwayNew"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TechresStandaloneSale.UserControlView"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:select ="clr-namespace:TechresStandaloneSale.Helpers"
+             xmlns:l ="clr-namespace:TechresStandaloneSale.Loading"
+             mc:Ignorable="d" 
+             Name="createOrderTakeAwayNew"
+             Background="White"
+             TextElement.FontFamily="{StaticResource Roboto-Regular}"
+             TextElement.FontSize="{StaticResource fontSize}"
+             d:DesignHeight="800" d:DesignWidth="800">
+    <UserControl.InputBindings>
+        <KeyBinding Key="F2" Command="{Binding AddFoodCommand}" CommandParameter="{Binding ElementName=createOrderTakeAway}"/>
+    </UserControl.InputBindings>
+    <UserControl.Resources>
+        <Style x:Key="ReturnBeerButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="detailtyle" TargetType="ToggleButton" BasedOn="{StaticResource MaterialDesignFlatToggleButton}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="#ffc107"/>
+        </Style>
+    </UserControl.Resources>
+    <!--<l:AdornedControl x:Name="LoadingAdorner" IsAdornerVisible="{Binding Path=DialogHostOpen,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+        <l:AdornedControl.AdornerContent>
+            <l:LoadingWait></l:LoadingWait>
+        </l:AdornedControl.AdornerContent>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=createOrderTakeAway}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Grid Background="{StaticResource GrayBackgroupBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="{Binding widthfoodFrame}"/>
+            </Grid.ColumnDefinitions>
+            <Grid Name="GC1" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition  Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Name="GR1" Grid.Row="0" Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Visibility="{Binding CategoryFoodVisibility}"  Command="{Binding CategoryFoodCommand}" CommandParameter="{Binding ElementName=createOrderTakeAway}" VerticalContentAlignment="Center" Height="45" Foreground="{Binding CategoryFoodForeground}" Background="{Binding CategoryFoodBackground}" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0.75 0">
+                        <WrapPanel>
+                            <Image Source="{Binding FoodIcon}" Name="foodIcon" Margin="0 0 5 0" Width="30" Height="30"/>
+                            <Label FontSize="{StaticResource fontSizeFifteen}" Margin="0 10 0 0" FontWeight="DemiBold" FontFamily="roboto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="{Binding CategoryFoodForeground}" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_FOOD_BUTON}}"/>
+                        </WrapPanel>
+                    </Button>
+                    <Button Grid.Column="1" Visibility="{Binding CategoryDrinkVisibility}" Command="{Binding CategoryDrinkCommand}" CommandParameter="{Binding ElementName=createOrderTakeAway}" Height="45" Foreground="{Binding CategoryDrinkForeground}" Background="{Binding CategoryDrinkBackground}" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness=" 0 0 0.75 0">
+                        <WrapPanel>
+                            <Image Source="{Binding DrinkIcon}" Name="drinkIcon" Width="30" Height="30"/>
+                            <Label FontSize="{StaticResource fontSizeFifteen}" Margin="0 10 0 0" FontWeight="DemiBold" FontFamily="roboto"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="{Binding CategoryDrinkForeground}"  Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_DRINK}}"/>
+                        </WrapPanel>
+                    </Button>
+                    <Button Grid.Column="2" Visibility="{Binding CategoryOtherVisibility}" Command="{Binding CategoryOtherCommand}" CommandParameter="{Binding ElementName=createOrderTakeAway}" Height="45" Foreground="{Binding CategoryOtherForeground}" Background="{Binding CategoryOtherBackground}" BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0.75 0">
+                        <WrapPanel>
+                            <Image Source="{Binding OtherIcon}" Name="otherIcon"  Width="30" Height="30"/>
+                            <Label FontSize="{StaticResource fontSizeFifteen}" Margin="0 10 0 0" FontWeight="DemiBold" FontFamily="roboto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="{Binding CategoryOtherForeground}" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_OTHER}}"/>
+                        </WrapPanel>
+                    </Button>
+                    <Button Grid.Column="3" Visibility="{Binding CategorySeaFoodVisibility}" Margin="0 0 0 0" Command="{Binding CategorySeaFoodCommand}" CommandParameter="{Binding ElementName=createOrderTakeAway}"  Height="45" Foreground="{Binding CategorySeaFoodForeground}" Background="{Binding CategorySeaFoodBackground}"  BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0">
+                        <WrapPanel>
+                            <Image Source="{Binding SeaFoodIcon}" Name="seaFoodIcon"  Width="30" Height="30"/>
+                            <Label FontSize="{StaticResource fontSizeFifteen}" Margin="0 10 0 0" FontWeight="DemiBold" FontFamily="roboto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="{Binding CategorySeaFoodForeground}" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_SEA_FOOD}}"/>
+                        </WrapPanel>
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="1" Background="White" Height="60" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="120"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Background="{StaticResource GrayBackgroundBrush}" select:SelectAllFocusBehavior.Enable="True" Grid.Column="0" Grid.ColumnSpan="2" Margin="10 0 10 0" VerticalContentAlignment="Center" Padding="5 0 0 0"  BorderBrush="{StaticResource MainLine}" BorderThickness="0"  Height="40" Name="CommentTextBox" Tag="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_SEARCH_FOOD}}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="TextChanged">
+                                <i:InvokeCommandAction Command="{Binding FilterFoodCommand}"
+                                   CommandParameter="{Binding ElementName=CommentTextBox}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBox>
+                    --><!--<Button Grid.Column="1" Height="40" Margin="0 0 20 0" Command="{Binding AddFoodCommand}" CommandParameter="{Binding ElementName=createOrderTakeAway}" Style="{StaticResource BoderButtonAddFood}">
+                        <Label FontSize="{StaticResource fontSizeFifteen}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Foreground="White"  Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_ADD_FOOD_OTHER}}"/>
+                    </Button>--><!--
+                </Grid>
+                <DockPanel Grid.Row="2" Background="White">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="3.8*"/>
+                        </Grid.ColumnDefinitions>
+                        <DockPanel Background="White" Grid.Column="0">
+                            <ListView ItemsSource="{Binding ItemsCategory,UpdateSourceTrigger=PropertyChanged}" Background="White" ScrollViewer.VerticalScrollBarVisibility="Auto" >
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Foreground" Value="{StaticResource ColorForegroundBrush}"/>
+                                        <Setter Property="BorderBrush" Value="{StaticResource GrayBackgroundBrush}"/>
+                                        <Setter Property="BorderThickness" Value="0 0 0 0"></Setter>
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Width="200" HorizontalContentAlignment="Left" Height="35" Background="Transparent"  Command="{Binding Path=DataContext.BtnCategories, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type ListView}}}" CommandParameter="{Binding}">
+                                            <Button.Content>
+                                                <DockPanel>
+                                                    <Image Source="{Binding ImageCheck}" Margin="5 0 5 0" Width="15" Height="15"></Image>
+                                                    <TextBlock Text="{Binding Name}" TextWrapping="WrapWithOverflow" FontSize="{Binding fontSizfontImageeMini}"/>
+                                                </DockPanel>
+                                            </Button.Content>
+                                        </Button>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </DockPanel>
+                        <Image Height="auto" Grid.Column="1"  Source="/Resources/Images/line_create-order-choose-food.png"></Image>
+                        <ListBox Background="{StaticResource GrayBackgroundBrush}" Grid.Column="2" Name="TblItemsControl" ItemsSource="{Binding ItemsOrderDetail,IsAsync=True }" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemContainerStyle>
+                                <Style>
+                                    <Style.Triggers>
+                                        <Trigger Property="Control.IsMouseOver" Value="True">
+                                            <Setter Property="Control.Background" Value="Transparent"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel IsItemsHost="True" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Button  Width="{Binding RelativeSource={RelativeSource AncestorType=ListBox, Mode=FindAncestor}, Path=DataContext.sizeWidthFood}" Height="{Binding RelativeSource={RelativeSource AncestorType=ListBox, Mode=FindAncestor}, Path=DataContext.sizeHeightFood}" Command="{Binding Path=DataContext.AddFood, RelativeSource= {RelativeSource FindAncestor,AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}" Background="White" BorderBrush="{StaticResource ColorForegroundBrush}" BorderThickness="0.5">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseRightButtonUp">
+                                                <i:InvokeCommandAction Command="{Binding Path=DataContext.ReturnFood, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="35"/>
+                                                <RowDefinition Height="20"/>
+                                            </Grid.RowDefinitions>
+                                            <DockPanel  Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                                <Image Name="ImageFood" Source="{Binding ImageFood}" Width="175" Height="200"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </DockPanel>
+                                            <DockPanel  Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <TextBlock VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="roboto" Foreground="Black" TextAlignment="Center" FontSize="{StaticResource fontSizeMini}" Text="{Binding ContentFoodName}" TextWrapping="Wrap" Name="ContentFoodName"/>
+                                            </DockPanel>
+                                            <DockPanel Grid.Row="2" Margin="0 0 0 5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <TextBlock VerticalAlignment="Center" Foreground="Red" FontWeight="DemiBold" FontFamily="roboto" TextAlignment="Center" FontSize="{StaticResource fontSizeMini}" Text="{Binding PriceFoodstring}" TextWrapping="Wrap" Name="PriceFood"/>
+                                            </DockPanel>
+                                        </Grid>
+                                    </Button>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </DockPanel>
+            </Grid>
+            <Grid Margin="5 5 5 5" Grid.Column="1" Background="White" Name="GC2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="3.2*"/>
+                    <RowDefinition Height=" 0.3*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <Label Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_CUSTOMER_INFORMATION_SHIP}}" FontSize="{Binding FontSizeTitleMain}" FontFamily="{StaticResource Roboto-Regular}"></Label>
+                    <DockPanel Height="{Binding heightLableTb}"  Margin="5 0 5 5">
+                        <Label FontSize="{Binding fontsizeLable}" VerticalContentAlignment="Center" MinWidth="120" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_CUSTOMER_PHONE}}"></Label>
+                        <TextBox Name="txtPhoneNumber" FontSize="{Binding fontsizeLable}" Style="{StaticResource TextBoxCornerRadius}"  Background="{StaticResource GrayBackgroundBrush}"  IsEnabled="{Binding IsEnabledTakeAway}" Padding="5 0 0 0" select:SelectAllFocusBehavior.Enable="True" VerticalContentAlignment="Center" Tag="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_CREAT_BOOKING_PHONE_CUSTOMER_NUMBER_HINT}}" Text="{Binding CustomerPhone, UpdateSourceTrigger=PropertyChanged}" MaxLength="10" TextChanged="txtPhoneNumber_TextChanged" PreviewTextInput="NumberValidationTextBox">
+                            <TextBox.InputBindings>
+                                <KeyBinding  Command="{Binding EnterTextBoxCustomerCommand}"  Key="Enter" CommandParameter="{Binding ElementName=createOrderTakeAway}"></KeyBinding>
+                            </TextBox.InputBindings>
+                        </TextBox>
+                    </DockPanel>
+                    <DockPanel Height="{Binding heightLableTb}" Margin="5 0 5 5">
+                        <Label VerticalContentAlignment="Center" FontSize="{Binding fontsizeLable}" MinWidth="120" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_RECEVICE_DEPOSIT_BOOKING_NAME}}"></Label>
+                        <TextBox Name="txtNameCustomer" FontSize="{Binding fontsizeLable}" Style="{StaticResource TextBoxCornerRadius}" Background="{StaticResource GrayBackgroundBrush}"  IsEnabled="{Binding IsEnabledTakeAway}"  Padding="5 0 0 0" TextChanged="txtNameCustomer_TextChanged" MaxLength="32"
+                                 select:SelectAllFocusBehavior.Enable="True" VerticalContentAlignment="Center" Tag="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_CUSTOMER_NAME_TAG}}" Text="{Binding CustomerName, UpdateSourceTrigger=PropertyChanged}">
+                        </TextBox>
+                    </DockPanel>
+                    <DockPanel Height="{Binding heighTbAddress}"  Margin="5 0 5 5">
+                        <Label VerticalContentAlignment="Center" FontSize="{Binding fontsizeLable}" MinWidth="120" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_CUSTOMER_ADDRESS}}"></Label>
+                        <TextBox Style="{StaticResource TextBoxCornerRadius}" FontSize="{Binding fontsizeLable}"  Background="{StaticResource GrayBackgroundBrush}" MaxLength="255"  IsEnabled="{Binding IsEnabledTakeAway}" TextWrapping="Wrap" Padding="5 5 0 0" select:SelectAllFocusBehavior.Enable="True" VerticalContentAlignment="Top" Tag="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_ADDRESS_SHIP_TAG}}" Text="{Binding CustomerAddress, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    </DockPanel>
+                    <DockPanel Height="{Binding heightLableTb}"  Margin="5 0 5 5" Visibility="Collapsed">
+                        <Label VerticalContentAlignment="Center" FontSize="{Binding fontsizeLable}" MinWidth="120" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FORM_MONEY_SHIP}}"></Label>
+                        <TextBox Style="{StaticResource TextBoxCornerRadius}" MaxLength="12" FontSize="{Binding fontsizeLable}" Background="{StaticResource GrayBackgroundBrush}" IsEnabled="{Binding IsEnabledTakeAway}" HorizontalContentAlignment="Right" x:Name="shippingFee" select:SelectAllFocusBehavior.Enable="True"  VerticalContentAlignment="Center" Tag="{Binding Source={x:Static select:MessageValue.MESSAGE_FORM_MONEY_SHIP_TAG}}" Text="{Binding ShippingFee, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" PreviewKeyDown="shippingFee_PreviewKeyDown">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="KeyUp">
+                                    <i:InvokeCommandAction Command="{Binding ChangeShippingAmountCommand}" CommandParameter="{Binding ElementName=shippingFee}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBox>
+                    </DockPanel>
+                </StackPanel>
+                <DockPanel  Grid.Row="1" Background="White" Margin=" 0 0 0 0 ">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="{Binding heightFuntion}"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <DataGrid Grid.Row="0" RowDetailsVisibilityMode="Visible" SelectionMode="Extended" GridLinesVisibility="None" Background="White"  Name="lvFoodPending"  BorderBrush="{StaticResource MainLine}" BorderThickness="0" ItemsSource="{Binding FoodOrderList}"
+                            AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="True" Grid.ColumnSpan="2">
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCook}"></Style>
+                            </DataGrid.CellStyle>
+                            <DataGrid.Columns>
+
+                                <DataGridTemplateColumn Width="0.4*" IsReadOnly="True" x:Name="code">
+                                    <DataGridTemplateColumn.Header>
+                                        <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid,Mode=FindAncestor}, Path=DataContext.fontsizeTitle}" FontWeight="Bold" Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_LIST_FOOD_NAME}}" TextWrapping="WrapWithOverflow" TextAlignment="Center" Foreground="{StaticResource ColorForegroundBrush}"></TextBlock>
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel Grid.Column="0" Margin="10 0 0 0" Height="50">
+                                                    <TextBlock Visibility="{Binding VisibilityCancel}" TextWrapping="Wrap" FontWeight="Bold" VerticalAlignment="Center" Foreground="{Binding ColorStatusLv2}" FontSize="{Binding fontsizeLable}" Text="{Binding FoodNameCustom}">
+                                                        --><!-- Trả Bia --><!--
+                                                        <i:Interaction.Triggers>
+                                                            <i:EventTrigger EventName="PreviewMouseUp">
+                                                                <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}, Mode=FindAncestor}, Path=DataContext.ReturnBeer}" CommandParameter="{Binding}"/>
+                                                            </i:EventTrigger>
+                                                        </i:Interaction.Triggers>--><!--
+                                                    </TextBlock>
+                                                    <TextBlock Visibility="{Binding VisibilityCancel1}"  TextWrapping="Wrap" FontWeight="Bold" VerticalAlignment="Center" Foreground="Red" FontSize="{Binding fontsizeLable}" Text="{Binding FoodNameCustom}">
+                                                        <TextBlock.TextDecorations>
+                                                            <TextDecoration Location="Strikethrough">
+                                                                <TextDecoration.Pen>
+                                                                    <Pen Brush="Red" />
+                                                                </TextDecoration.Pen>
+                                                            </TextDecoration>
+                                                        </TextBlock.TextDecorations>
+
+                                                    </TextBlock>
+                                                    <TextBlock Margin="10 0 0 0" FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid,Mode=FindAncestor}, Path=DataContext.fontButton}" Foreground="Red" VerticalAlignment="Top" FontFamily="{StaticResource Roboto-Italic}" TextWrapping="Wrap" Text="{Binding Note}" />
+                                                </StackPanel>
+                                                <ToggleButton Visibility="{Binding visibilityShowDetail}" Width="22" Height="22" Click="Expander_Collapsed" Grid.Column="1"> --><!-- Style="{StaticResource detailStyle}"--><!--
+                                                    <ToggleButton.Content>
+                                                        <materialDesign:PackIcon Kind="ArrowDownThick" />
+                                                    </ToggleButton.Content>
+                                                    <materialDesign:ToggleButtonAssist.OnContent>
+                                                        <materialDesign:PackIcon Kind="ArrowUpThick" />
+                                                    </materialDesign:ToggleButtonAssist.OnContent>
+                                                </ToggleButton>
+                                                <Image Grid.Column="1" Visibility="{Binding visibilityDoneReturnBeer}" Source="{StaticResource DoneReturnBeerIcon}" ToolTip="Đã trả bia" Width="30" Height="30"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="0.3*" IsReadOnly="True" x:Name="totalQuantity">
+                                    <DataGridTemplateColumn.Header>
+                                        <TextBlock HorizontalAlignment="Center" FontWeight="Bold" FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid,Mode=FindAncestor}, Path=DataContext.fontsizeTitle}" Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_LIST_QUANTITY}}" TextWrapping="WrapWithOverflow" Foreground="{StaticResource ColorForegroundBrush}"  TextAlignment="Center"/>
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Border CornerRadius="15" Width="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor}, Path=DataContext.widthButton}" Height="23" Background="{StaticResource GrayBackgroupBrush}">
+                                                    --><!--Visibility="{Binding FoodQuantityVisibility}"--><!--
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="0.3*"/>
+                                                            <ColumnDefinition Width="0.4*"/>
+                                                            <ColumnDefinition Width="0.3*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Border Visibility="{Binding FoodQuantityVisibility}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" CornerRadius="15" Width="20" Height="20" Background="{StaticResource RedBackgroundeBrush}">
+                                                            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor}, Path=DataContext.sizeWidthImage}" Height="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor}, Path=DataContext.sizeHeightImage}" Command="{Binding Path=DataContext.SubQuantityCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" BorderThickness="0" Background="Transparent">
+                                                                <Button.Style>
+                                                                    <Style TargetType="{x:Type Button}">
+                                                                        <Setter Property="Background" Value="Red"/>
+                                                                        <Setter Property="Cursor" Value="Hand"></Setter>
+                                                                        <Setter Property="Template">
+                                                                            <Setter.Value>
+                                                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                                                    <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                                                    </Border>
+                                                                                    <ControlTemplate.Triggers>
+                                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                                            <Setter Property="Background" Value="Transparent" TargetName="Border"/>
+                                                                                        </Trigger>
+                                                                                    </ControlTemplate.Triggers>
+                                                                                </ControlTemplate>
+                                                                            </Setter.Value>
+                                                                        </Setter>
+                                                                    </Style>
+                                                                </Button.Style>
+                                                                <materialDesign:PackIcon Kind="Minus" Foreground="White" FontWeight="Bold" Width="15" Height="15"></materialDesign:PackIcon>
+                                                            </Button>
+                                                        </Border>
+                                                        <TextBox Grid.Column="1" MinWidth="30" Visibility="{Binding visibilityQuantity1}" IsEnabled="{Binding IsEnabledQuantity}" select:SelectAllFocusBehavior.Enable="True" BorderThickness="0" x:Name="quantity" VerticalAlignment="Center" TextChanged="quantity_TextChanged" PreviewTextInput="quantity_PreviewTextInput" MaxLength="3"
+                                                                 FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="11" Background="{StaticResource GrayBackgroupBrush}" Text="{Binding Path=Quantity,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" >
+                                                            <i:Interaction.Triggers>
+                                                                <i:EventTrigger EventName="LostFocus">
+                                                                    <i:InvokeCommandAction Command="{Binding Path=DataContext.TextChangeAmount, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"/>
+                                                                </i:EventTrigger>
+                                                            </i:Interaction.Triggers>
+                                                        </TextBox>
+
+                                                        <TextBox Grid.Column="1" MinWidth="30" Visibility="{Binding visibilityQuantity}" IsEnabled="{Binding IsEnabledQuantity}" select:SelectAllFocusBehavior.Enable="True" BorderThickness="0" x:Name="quantitySellByWeight" VerticalAlignment="Center" TextChanged="quantity_TextChanged" PreviewTextInput="quantitySellByWeight_PreviewTextInput" MaxLength="8"
+                                                                 FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="11" Background="{StaticResource GrayBackgroupBrush}" Text="{Binding Path=Quantity,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" >
+                                                            <i:Interaction.Triggers>
+                                                                <i:EventTrigger EventName="LostFocus">
+                                                                    <i:InvokeCommandAction Command="{Binding Path=DataContext.TextChangeAmount, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"/>
+                                                                </i:EventTrigger>
+                                                            </i:Interaction.Triggers>
+                                                        </TextBox>
+
+                                                        <Border Visibility="{Binding FoodQuantityVisibility}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" CornerRadius="15" Width="20" Height="20" Background="{StaticResource MainBrush}">
+                                                            <Button Width="20" Height="20" Command="{Binding Path=DataContext.AddQuantityCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" BorderThickness="0" Background="Transparent">
+                                                                <Button.Style>
+                                                                    <Style TargetType="{x:Type Button}">
+                                                                        <Setter Property="Background" Value="{StaticResource MainBrush}"/>
+                                                                        <Setter Property="Cursor" Value="Hand"></Setter>
+                                                                        <Setter Property="Template">
+                                                                            <Setter.Value>
+                                                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                                                    <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                                                    </Border>
+                                                                                    <ControlTemplate.Triggers>
+                                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                                            <Setter Property="Background" Value="Transparent" TargetName="Border"/>
+                                                                                        </Trigger>
+                                                                                    </ControlTemplate.Triggers>
+                                                                                </ControlTemplate>
+                                                                            </Setter.Value>
+                                                                        </Setter>
+                                                                    </Style>
+                                                                </Button.Style>
+                                                                <materialDesign:PackIcon Kind="Add" Foreground="White" FontWeight="Bold" Width="15" Height="15"></materialDesign:PackIcon>
+                                                            </Button>
+                                                        </Border>
+                                                    </Grid>
+                                                </Border>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="0.3*" IsReadOnly="True">
+                                    <DataGridTemplateColumn.Header>
+                                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontWeight="Bold" FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid,Mode=FindAncestor}, Path=DataContext.fontsizeTitle}" Text="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_LIST_TOTAL_AMOUNT}}" TextWrapping="WrapWithOverflow" Foreground="{StaticResource ColorForegroundBrush}" />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <TextBlock Visibility="{Binding VisibilityCancel}"  FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid,Mode=FindAncestor}, Path=DataContext.fontsizeLable}"  HorizontalAlignment="Center" Text="{Binding TotalPriceInlcudeAdditionFoodsString,UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="{StaticResource ColorForegroundBrush}"></TextBlock>
+                                                <TextBlock Visibility="{Binding VisibilityCancel1}"  FontSize="{Binding RelativeSource={RelativeSource AncestorType=DataGrid,Mode=FindAncestor}, Path=DataContext.fontsizeLable}"  HorizontalAlignment="Center" Text="{Binding TotalPriceInlcudeAdditionFoodsString,UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="Red">
+                                                    <TextBlock.TextDecorations>
+                                                        <TextDecoration Location="Strikethrough">
+                                                            <TextDecoration.Pen>
+                                                                <Pen Brush="Red" />
+                                                            </TextDecoration.Pen>
+                                                        </TextDecoration>
+                                                    </TextBlock.TextDecorations>
+                                                </TextBlock>
+                                            </Grid>
+
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="130" IsReadOnly="True">
+                                    <DataGridTemplateColumn.Header>
+                                        <TextBlock  HorizontalAlignment="Center" Text="" TextWrapping="WrapWithOverflow" Foreground="{StaticResource ColorForegroundBrush}" />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <DockPanel HorizontalAlignment="Center">
+                                                <Button Visibility="{Binding GiftFoodVisibility}" ToolTip ="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_GIFT_FOOD}}" Width="30" Height="30" Command="{Binding DataContext.GiftFoodCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" Background="Transparent">
+                                                    <Image Source="/Resources/Images/icon-gift.png" Stretch="Uniform" Width="25" Height="25"></Image>
+                                                </Button>
+                                                <Button Visibility="{Binding visibilityReturnBeer}" BorderThickness="0" Background="Transparent" ToolTip="Trả bia" Width="30" Height="30" Grid.Column="1">
+                                                    <Button.Content>
+                                                        --><!--<materialDesign:PackIcon Kind="Backburger" Height="25" Width="25"/>--><!--
+                                                        <Image Source="{StaticResource icon_beer_bottles_by_VexelsDrawingImage}" Width="30" Height="30"/>
+                                                    </Button.Content>
+                                                    --><!-- Trả Bia --><!--
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="Click">
+                                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}, Mode=FindAncestor}, Path=DataContext.ReturnBeer}" CommandParameter="{Binding}"/>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </Button>
+                                                <Button ToolTip ="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_NOTE_FOOD}}" Visibility="{Binding CancelFoodVisibility}" Width="30" Height="30" BorderBrush="{StaticResource BlueGGBrush}" Margin="5,0,0,0" Command="{Binding DataContext.NoteFood, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" Background="Transparent">
+                                                    <Image Source="/Resources/Images/icon-note.png" Width="25" Height="25"></Image>
+                                                </Button>
+                                                <Button ToolTip ="{Binding Source={x:Static select:MessageValue.MESSAGE_CANCEL_FOOD_LIST}}" Visibility="{Binding CancelFoodVisibility}" Width="30" Height="30" Margin="5,0,2,0" Command="{Binding DataContext.CancelFood, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" Background="Transparent">
+                                                    <Image Source="/Resources/Images/icon-closed.png" Width="20" Height="20"></Image>
+                                                </Button>
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                            <DataGrid.RowDetailsTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0 0 0 0" >
+                                        <ItemsControl  ItemsSource="{Binding OrderDetailAdditions,UpdateSourceTrigger=PropertyChanged}" Grid.IsSharedSizeScope="False" Margin="12 0 12 0">
+                                            <ItemsControl.ItemTemplate >
+                                                <DataTemplate>
+                                                    <Border BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0 0">
+                                                        <Grid Margin="0 0 0 0">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="0.4*"/>
+                                                                <ColumnDefinition Width="0.3*"/>
+                                                                <ColumnDefinition Width="0.3*"/>
+                                                                <ColumnDefinition Width="130"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Grid Grid.Column="0">
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="auto"/>
+                                                                    <ColumnDefinition Width="auto"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <CheckBox Margin="0 0 0 0" HorizontalAlignment="Left" Grid.Column="0" Focusable="True" Visibility="{Binding IsCheckVisibility}" VerticalAlignment="Center" IsChecked="{Binding IsSelectedAdditionFood}" Command="{Binding Path=DataContext.IsCheckCommand, RelativeSource= {RelativeSource FindAncestor,
+                                                                        AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                                                    <CheckBox.LayoutTransform>
+                                                                        <ScaleTransform ScaleX="0.8" ScaleY="0.8" />
+                                                                    </CheckBox.LayoutTransform>
+                                                                </CheckBox>
+                                                                <TextBlock Grid.Column="0" Margin="0 0 0 0" Visibility="{Binding QuantityVisibilityOnlyView}" InputScope="Number" InputMethod.InputScope="Number" FontFamily="{StaticResource Roboto-Italic}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="11" Foreground="Black" Background="White" Text="{Binding OnlyViewQuantity,UpdateSourceTrigger=PropertyChanged,StringFormat={}+{0}}"/>
+                                                                <TextBlock Grid.Column="1" Margin="0 0 0 0" Text="{Binding FoodNameAddition}" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="11" FontFamily="{StaticResource Roboto-Italic}"/>
+                                                            </Grid>
+                                                            <Border Grid.Column="1" CornerRadius="15" Visibility="{Binding QuantityVisibility}"
+                                                                    Width="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor}, Path=DataContext.widthButton}"
+                                                                    Height="23" Background="{StaticResource GrayBackgroupBrush}">
+                                                                <Grid Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                    <TextBox InputScope="Number" InputMethod.InputScope="Number" select:SelectAllFocusBehavior.Enable="True" TextChanged="quantity_TextChanged" PreviewTextInput="quantity_PreviewTextInput" MaxLength="3"
+                                                                         HorizontalContentAlignment="Center" Margin="0 0 0 0" MinWidth="30" VerticalContentAlignment="Center" BorderBrush="{StaticResource MainBrush}" BorderThickness="0" HorizontalAlignment="Center" FontSize="11" FontWeight="Bold" Background="{StaticResource GrayBackgroupBrush}"  Text="{Binding Path=Quantity,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+                                                                        <i:Interaction.Triggers>
+                                                                            <i:EventTrigger EventName="LostKeyboardFocus">
+                                                                                <i:InvokeCommandAction Command="{Binding Path=DataContext.WrittionChangeCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"/>
+                                                                            </i:EventTrigger>
+                                                                        </i:Interaction.Triggers>
+                                                                    </TextBox>
+                                                                </Grid>
+                                                            </Border>
+                                                        </Grid>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                        <ItemsControl  ItemsSource="{Binding OrderDetailPromotion,UpdateSourceTrigger=PropertyChanged}" Grid.IsSharedSizeScope="False" Margin="12 0 12 0">
+                                            <ItemsControl.ItemTemplate >
+                                                <DataTemplate>
+                                                    <Border BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0 0">
+                                                        <Grid Margin="0 0 0 2">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="0.4*"/>
+                                                                <ColumnDefinition Width="0.3*"/>
+                                                                <ColumnDefinition Width="0.3*"/>
+                                                                <ColumnDefinition Width="130"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Grid Grid.Column="0">
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="auto"/>
+                                                                    <ColumnDefinition Width="auto"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <CheckBox Margin="0 0 0 0" HorizontalAlignment="Left" Grid.Column="0" Focusable="True" Visibility="{Binding IsCheckVisibility}" VerticalAlignment="Center" IsChecked="{Binding IsSelectedAdditionFood}" Command="{Binding Path=DataContext.IsCheckCommand, RelativeSource= {RelativeSource FindAncestor,
+                                                                        AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                                                    <CheckBox.LayoutTransform>
+                                                                        <ScaleTransform ScaleX="0.8" ScaleY="0.8" />
+                                                                    </CheckBox.LayoutTransform>
+                                                                </CheckBox>
+                                                                --><!--<RadioButton GroupName="ready" Margin="0 0 0 0" HorizontalAlignment="Left" Grid.Column="0" Focusable="True" Visibility="{Binding IsCheckVisibility}" VerticalAlignment="Center" IsChecked="{Binding IsSelectedAdditionFood}" Command="{Binding Path=DataContext.IsCheckPromotionCommand, RelativeSource= {RelativeSource FindAncestor,
+                                                                        AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                                                    <RadioButton.LayoutTransform>
+                                                                        <ScaleTransform ScaleX="0.8" ScaleY="0.8" />
+                                                                    </RadioButton.LayoutTransform>
+                                                                </RadioButton>--><!--
+                                                                <TextBlock Grid.Column="0" Margin="0 0 0 0" Visibility="{Binding QuantityVisibilityOnlyView}" InputScope="Number" InputMethod.InputScope="Number" FontFamily="{StaticResource Roboto-Light}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="11" Foreground="Black" Background="White" Text="{Binding OnlyViewQuantity,UpdateSourceTrigger=PropertyChanged,StringFormat={}+{0}}"/>
+                                                                <TextBlock Grid.Column="1" Margin="0 0 0 0" Text="{Binding FoodNamePromotion}" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="11" FontFamily="{StaticResource Roboto-Light}"/>
+                                                            </Grid>
+                                                            <Border Grid.Column="1" CornerRadius="15" Visibility="{Binding QuantityVisibility}"
+                                                                    Width="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor}, Path=DataContext.widthButton}"
+                                                                    Height="23" Background="{StaticResource GrayBackgroupBrush}">
+                                                                <Grid Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                    <TextBox InputScope="Number" InputMethod.InputScope="Number" select:SelectAllFocusBehavior.Enable="True" TextChanged="quantity_TextChanged" PreviewTextInput="quantity_PreviewTextInput" MaxLength="3"
+                                                                         HorizontalContentAlignment="Center" Margin="0 0 0 0" MinWidth="30" VerticalContentAlignment="Center" BorderBrush="{StaticResource MainBrush}" BorderThickness="0" HorizontalAlignment="Center" FontSize="11" FontWeight="Bold" Background="{StaticResource GrayBackgroupBrush}"  Text="{Binding Path=Quantity,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+                                                                        <i:Interaction.Triggers>
+                                                                            <i:EventTrigger EventName="LostKeyboardFocus">
+                                                                                <i:InvokeCommandAction Command="{Binding Path=DataContext.WrittionChangeCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"/>
+                                                                            </i:EventTrigger>
+                                                                        </i:Interaction.Triggers>
+                                                                    </TextBox>
+                                                                </Grid>
+                                                            </Border>
+                                                        </Grid>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                        <ItemsControl ItemsSource="{Binding OrderDetailCombo,UpdateSourceTrigger=PropertyChanged}" Grid.IsSharedSizeScope="True" Margin="12 0 12 0">
+                                            <ItemsControl.ItemTemplate >
+                                                <DataTemplate >
+                                                    <Border BorderBrush="{StaticResource LineListViewBrush}" BorderThickness="0 0 0 0.2">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="0.4*"/>
+                                                                <ColumnDefinition Width="0.3*"/>
+                                                                <ColumnDefinition Width="0.3*"/>
+                                                                <ColumnDefinition Width="130"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <DockPanel Grid.Column="0">
+                                                                <TextBlock Visibility="{Binding VisibilityCancel}" Foreground="#6fa9dc" Margin="10 0 0 0" Text="{Binding FoodNameCombo}" VerticalAlignment="Center" FontSize="11"/>
+                                                                <TextBlock Visibility="{Binding VisibilityCancel1}" Foreground="Red" Margin="10 0 0 0" Text="{Binding FoodNameCombo}" VerticalAlignment="Center" FontSize="15">
+                                                                    <TextBlock.TextDecorations>
+                                                                        <TextDecoration Location="Strikethrough">
+                                                                            <TextDecoration.Pen>
+                                                                                <Pen Brush="Red" />
+                                                                            </TextDecoration.Pen>
+                                                                        </TextDecoration>
+                                                                    </TextBlock.TextDecorations>
+                                                                </TextBlock>
+                                                            </DockPanel>
+                                                        </Grid>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+
+                                </DataTemplate>
+                            </DataGrid.RowDetailsTemplate>
+                        </DataGrid>
+                        <Image Source="/Resources/Images/ic_bottom_order_item.png" Width="auto" Height="15" Grid.Row="1"></Image>
+                        <StackPanel Margin="20 0 10 0" Name="GR12" Grid.Row="2" Grid.ColumnSpan="2">
+                            <DockPanel HorizontalAlignment="Left" >
+                                --><!--<Button Width="140" Height="45" Style="{StaticResource BtnPaymentMethod}" Background="{StaticResource BlueBackgroundBrush}" Visibility="{Binding AddFoodOtherVisibility}" Command="{Binding AddFoodOther}" ToolTip="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_ADD_FOOD_OTHER}}" CommandParameter="{Binding ElementName=createOrderTakeAway}" Margin="5 0 0 0"   Foreground="White" BorderThickness="0">--><!--
+                                <Button Width="{Binding widthButton}" Height="{Binding heightButton}" Style="{StaticResource BtnPaymentMethod}" Background="{StaticResource BlueBackgroundBrush}" Visibility="{Binding AddFoodOtherVisibility}" Command="{Binding AddFoodOther}" ToolTip="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_ADD_FOOD_OTHER}}" CommandParameter="{Binding ElementName=createOrderTakeAway}" Margin="5 0 0 0"   Foreground="White" BorderThickness="0">
+                                    <WrapPanel>
+                                        <Image Source="/Resources/Images/ic_plus_white.png"  Height="{Binding sizeHeightImage}" Width="{Binding sizeWidthImage}"/>
+                                        <Label FontSize="{Binding fontButton}" Name="Add" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Padding="0" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_ADD_FOOD_OTHER}}"/>
+                                    </WrapPanel>
+                                </Button>
+                                <Button Width="{Binding widthButton}" Height="{Binding heightButton}" Background="{StaticResource MainBrush}" Foreground="White"  Style="{StaticResource BtnPaymentMethod}" Visibility="{Binding DiscountVisibility}" ToolTip="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_DISCOUNT}}" Command="{Binding DiscountCommand}" CommandParameter="{Binding ElementName=createOrderTakeAway}"  VerticalAlignment="Center"  Margin="25 0 0 0"   BorderThickness="0">
+                                    <WrapPanel>
+                                        <Image Source="/Resources/Images/icon-discount.png" Height="{Binding sizeHeightImage}" Width="{Binding sizeWidthImage}" Margin="0 0 5 0"/>
+                                        <Label FontSize="{Binding fontButton}" Name="Discount" Foreground="White" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Padding="0" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_DISCOUNT}}"/>
+                                    </WrapPanel>
+                                </Button>
+                                <Button Width="{Binding widthButton}" Height="{Binding heightButton}" Background="{StaticResource GreenGGBrush}" Foreground="White" Style="{StaticResource BtnPaymentMethod}" Visibility="{Binding AddExtraChargeVisibility}" ToolTip="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_REPORT_EXTRAL}}" Command="{Binding AddExtraChargeCommand}" CommandParameter="{Binding ElementName=createOrder}"  VerticalAlignment="Center"  Margin="25 0 0 0"  BorderThickness="0">
+                                    <WrapPanel>
+                                        <Image Source="/Resources/Images/ic_plus_white.png"  Height="{Binding sizeHeightImage}" Width="{Binding sizeWidthImage}"/>
+                                        <Label FontSize="{Binding fontButton}" Foreground="White" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Padding="0" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_REPORT_EXTRAL}}"/>
+                                    </WrapPanel>
+                                </Button>
+                            </DockPanel>
+
+                            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                                <Label FontSize="{Binding fontsize}" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_DISCOUNT_AMOUNT_CREATE_ORDER}}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="{StaticResource ColorForegroundBrush}" FontWeight="Bold"/>
+                                <Label  VerticalAlignment="Center" FontSize="{Binding fontsize}" Content="{Binding Discount}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="{StaticResource ColorForegroundBrush}" FontWeight="Bold"/>
+                                <Label FontSize="{Binding fontsizeTitle}" Margin="10 0 10 0" HorizontalContentAlignment="Right"  Foreground="{StaticResource ColorForegroundBrush}" Content="{Binding DiscountAmount}"  VerticalContentAlignment="Center"  FontWeight="DemiBold"/>
+                            </DockPanel>
+
+                            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                                <CheckBox FontSize="{Binding fontsize}" Command="{Binding VATCommand}" Visibility="{Binding VatVisibility}" IsChecked="{Binding IsCheckVat, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=createOrderTakeAway}" VerticalAlignment="Center" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_VAT_AMOUNT_CREATE_ORDER}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="{StaticResource ColorForegroundBrush}" FontWeight="Bold"></CheckBox>
+                                --><!--<Label  VerticalAlignment="Center" FontSize="{Binding fontsize}" Content="{Binding Vat}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="{StaticResource ColorForegroundBrush}" FontWeight="Bold"/>--><!--
+                                <Label Margin="10 0 10 0" HorizontalContentAlignment="Right" Visibility="{Binding VatAmountVisibility}" Foreground="{StaticResource ColorForegroundBrush}" Content="{Binding VatAmount}"  VerticalContentAlignment="Center"  FontWeight="DemiBold" FontSize="{Binding fontsizeTitle}"/>
+                            </DockPanel>
+                            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                                <Label FontSize="{Binding fontsize}" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_DEPOSIT_AMOUNT_CREATE_ORDER}}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="{StaticResource ColorForegroundBrush}" FontWeight="Bold"/>
+                                <Label Margin="10 0 10 0" HorizontalContentAlignment="Right"  Foreground="{StaticResource ColorForegroundBrush}" Content="{Binding DepositAmount}"  FontSize="{Binding fontsizeTitle}" VerticalContentAlignment="Center"  FontWeight="DemiBold"/>
+                            </DockPanel>
+                            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                                <Label FontSize="{Binding fontsizeTitle}" Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_TOTAL_AMOUNT_CREATE_ORDER}}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="{StaticResource ColorForegroundBrush}" FontWeight="Bold"/>
+                                <Label Margin="10 0 10 0" HorizontalContentAlignment="Right"  Foreground="{StaticResource BlueBackgroundBrush}" Content="{Binding TotalAmount}"  FontSize="{Binding fontsizeTitle}" VerticalContentAlignment="Center"  FontWeight="Bold"/>
+                            </DockPanel>
+                        </StackPanel>
+                    </Grid>
+                </DockPanel>
+
+                <DockPanel Margin="0 0 0 0" Name="GR14" Grid.Row="3" Background="{StaticResource GrayBackgroundBrush}" >
+                    <Button Style="{StaticResource BtnPaymentMethod}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource MainBrush}" Name="SendCook" Command="{Binding SendCookOrderCommand}" CommandParameter="{Binding ElementName=createOrderTakeAway}" Width="{Binding widthSendBar}"  Height="{Binding heightButton}" Foreground="White"  BorderThickness="0">
+                        <DockPanel>
+                            <Image Source="/Resources/Images/icon-sent-chef.png"  Height="{Binding sizeHeightImage}" Width="{Binding sizeWidthImage}"/>
+                            <Label Name="SendCookSize" Foreground="White" FontSize="{Binding fontButton}"  Content="{Binding Source={x:Static select:MessageValue.MESSAGE_FROM_CREATE_ORDER_SEND_COOK_AND_BAR}}"/>
+                        </DockPanel>
+                    </Button>
+                    <DockPanel HorizontalAlignment="Right">
+                        <Button Style="{StaticResource BoderButtonClose}" Width="{Binding widthButton}"  Height="{Binding heightButton}" FontWeight="ExtraBold" FontSize="{Binding fontButton}" Name="Clear" Command="{Binding CancelOrderCommand}" CommandParameter="{Binding ElementName=createOrderTakeAway}">
+                        </Button>
+                        <Button Style="{StaticResource BoderButtonAgree}" Margin="3 0 0 0" Name="SaveOrder" Command="{Binding SaveOrderCommand}" CommandParameter="{Binding ElementName=createOrderTakeAway}" Width="{Binding widthButton}"  Height="{Binding heightButton}" FontSize="{Binding fontButton}">
+                        </Button>
+                        <Button Style="{StaticResource BoderButtonAgreeAndAdd}"  Margin="3 0 0 0" Name="SaveAndOrder" Command="{Binding SaveAndAddOrderCommand}" CommandParameter="{Binding ElementName=createOrderTakeAway}" Width="{Binding widthButton}"  Height="{Binding heightButton}" FontSize="{Binding fontButton}">
+                        </Button>
+                        <Button Style="{StaticResource BoderButtonPaymentOrder}"  Margin="3 0 0 0" Name="PaymentOrder" Command="{Binding PaymentOrderCommand}" CommandParameter="{Binding ElementName=createOrderTakeAway}" Width="{Binding widthButton}"  Height="{Binding heightButton}" FontSize="{Binding fontButton}">
+                        </Button>
+                    </DockPanel>
+                </DockPanel>
+            </Grid>
+        </Grid>
+    </l:AdornedControl>-->
+</UserControl>
