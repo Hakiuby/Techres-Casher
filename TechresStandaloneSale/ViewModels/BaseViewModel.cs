@@ -16,7 +16,7 @@ namespace TechresStandaloneSale.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-       
+       // fix conditions here 
 
     }
 
@@ -36,7 +36,7 @@ class RelayCommand<T> : ICommand
         _canExecute = canExecute;
         _execute = execute;
     }
-
+// ???? what is base, dont use pa
 
 
 
